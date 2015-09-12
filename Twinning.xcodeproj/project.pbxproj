@@ -1,0 +1,448 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11F106121BA4A3BC00D044AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106111BA4A3BC00D044AC /* main.m */; };
+		11F106151BA4A3BC00D044AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106141BA4A3BC00D044AC /* AppDelegate.m */; };
+		11F106181BA4A3BC00D044AC /* Twinning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11F106161BA4A3BC00D044AC /* Twinning.xcdatamodeld */; };
+		11F1061B1BA4A3BC00D044AC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F1061A1BA4A3BC00D044AC /* ViewController.m */; };
+		11F1061E1BA4A3BC00D044AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F1061C1BA4A3BC00D044AC /* Main.storyboard */; };
+		11F106201BA4A3BC00D044AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11F1061F1BA4A3BC00D044AC /* Images.xcassets */; };
+		11F106231BA4A3BC00D044AC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11F106211BA4A3BC00D044AC /* LaunchScreen.xib */; };
+		11F1062F1BA4A3BC00D044AC /* TwinningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F1062E1BA4A3BC00D044AC /* TwinningTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		11F106291BA4A3BC00D044AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11F106041BA4A3BC00D044AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11F1060B1BA4A3BC00D044AC;
+			remoteInfo = Twinning;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		11F1060C1BA4A3BC00D044AC /* Twinning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twinning.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		11F106101BA4A3BC00D044AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11F106111BA4A3BC00D044AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		11F106131BA4A3BC00D044AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		11F106141BA4A3BC00D044AC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		11F106171BA4A3BC00D044AC /* Twinning.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Twinning.xcdatamodel; sourceTree = "<group>"; };
+		11F106191BA4A3BC00D044AC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		11F1061A1BA4A3BC00D044AC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		11F1061D1BA4A3BC00D044AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		11F1061F1BA4A3BC00D044AC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		11F106221BA4A3BC00D044AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		11F106281BA4A3BC00D044AC /* TwinningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwinningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		11F1062D1BA4A3BC00D044AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11F1062E1BA4A3BC00D044AC /* TwinningTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwinningTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		11F106091BA4A3BC00D044AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11F106251BA4A3BC00D044AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		11F106031BA4A3BC00D044AC = {
+			isa = PBXGroup;
+			children = (
+				11F1060E1BA4A3BC00D044AC /* Twinning */,
+				11F1062B1BA4A3BC00D044AC /* TwinningTests */,
+				11F1060D1BA4A3BC00D044AC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		11F1060D1BA4A3BC00D044AC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11F1060C1BA4A3BC00D044AC /* Twinning.app */,
+				11F106281BA4A3BC00D044AC /* TwinningTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11F1060E1BA4A3BC00D044AC /* Twinning */ = {
+			isa = PBXGroup;
+			children = (
+				11F106131BA4A3BC00D044AC /* AppDelegate.h */,
+				11F106141BA4A3BC00D044AC /* AppDelegate.m */,
+				11F106191BA4A3BC00D044AC /* ViewController.h */,
+				11F1061A1BA4A3BC00D044AC /* ViewController.m */,
+				11F1061C1BA4A3BC00D044AC /* Main.storyboard */,
+				11F1061F1BA4A3BC00D044AC /* Images.xcassets */,
+				11F106211BA4A3BC00D044AC /* LaunchScreen.xib */,
+				11F106161BA4A3BC00D044AC /* Twinning.xcdatamodeld */,
+				11F1060F1BA4A3BC00D044AC /* Supporting Files */,
+			);
+			path = Twinning;
+			sourceTree = "<group>";
+		};
+		11F1060F1BA4A3BC00D044AC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				11F106101BA4A3BC00D044AC /* Info.plist */,
+				11F106111BA4A3BC00D044AC /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		11F1062B1BA4A3BC00D044AC /* TwinningTests */ = {
+			isa = PBXGroup;
+			children = (
+				11F1062E1BA4A3BC00D044AC /* TwinningTests.m */,
+				11F1062C1BA4A3BC00D044AC /* Supporting Files */,
+			);
+			path = TwinningTests;
+			sourceTree = "<group>";
+		};
+		11F1062C1BA4A3BC00D044AC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				11F1062D1BA4A3BC00D044AC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		11F1060B1BA4A3BC00D044AC /* Twinning */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11F106321BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "Twinning" */;
+			buildPhases = (
+				11F106081BA4A3BC00D044AC /* Sources */,
+				11F106091BA4A3BC00D044AC /* Frameworks */,
+				11F1060A1BA4A3BC00D044AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Twinning;
+			productName = Twinning;
+			productReference = 11F1060C1BA4A3BC00D044AC /* Twinning.app */;
+			productType = "com.apple.product-type.application";
+		};
+		11F106271BA4A3BC00D044AC /* TwinningTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11F106351BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "TwinningTests" */;
+			buildPhases = (
+				11F106241BA4A3BC00D044AC /* Sources */,
+				11F106251BA4A3BC00D044AC /* Frameworks */,
+				11F106261BA4A3BC00D044AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				11F1062A1BA4A3BC00D044AC /* PBXTargetDependency */,
+			);
+			name = TwinningTests;
+			productName = TwinningTests;
+			productReference = 11F106281BA4A3BC00D044AC /* TwinningTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		11F106041BA4A3BC00D044AC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Gen Y Solutions LLC";
+				TargetAttributes = {
+					11F1060B1BA4A3BC00D044AC = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					11F106271BA4A3BC00D044AC = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 11F1060B1BA4A3BC00D044AC;
+					};
+				};
+			};
+			buildConfigurationList = 11F106071BA4A3BC00D044AC /* Build configuration list for PBXProject "Twinning" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 11F106031BA4A3BC00D044AC;
+			productRefGroup = 11F1060D1BA4A3BC00D044AC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				11F1060B1BA4A3BC00D044AC /* Twinning */,
+				11F106271BA4A3BC00D044AC /* TwinningTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		11F1060A1BA4A3BC00D044AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11F1061E1BA4A3BC00D044AC /* Main.storyboard in Resources */,
+				11F106231BA4A3BC00D044AC /* LaunchScreen.xib in Resources */,
+				11F106201BA4A3BC00D044AC /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11F106261BA4A3BC00D044AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		11F106081BA4A3BC00D044AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11F106151BA4A3BC00D044AC /* AppDelegate.m in Sources */,
+				11F106121BA4A3BC00D044AC /* main.m in Sources */,
+				11F1061B1BA4A3BC00D044AC /* ViewController.m in Sources */,
+				11F106181BA4A3BC00D044AC /* Twinning.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11F106241BA4A3BC00D044AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11F1062F1BA4A3BC00D044AC /* TwinningTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		11F1062A1BA4A3BC00D044AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11F1060B1BA4A3BC00D044AC /* Twinning */;
+			targetProxy = 11F106291BA4A3BC00D044AC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		11F1061C1BA4A3BC00D044AC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				11F1061D1BA4A3BC00D044AC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		11F106211BA4A3BC00D044AC /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				11F106221BA4A3BC00D044AC /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		11F106301BA4A3BC00D044AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		11F106311BA4A3BC00D044AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		11F106331BA4A3BC00D044AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Twinning/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		11F106341BA4A3BC00D044AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Twinning/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		11F106361BA4A3BC00D044AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TwinningTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twinning.app/Twinning";
+			};
+			name = Debug;
+		};
+		11F106371BA4A3BC00D044AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TwinningTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twinning.app/Twinning";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		11F106071BA4A3BC00D044AC /* Build configuration list for PBXProject "Twinning" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11F106301BA4A3BC00D044AC /* Debug */,
+				11F106311BA4A3BC00D044AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11F106321BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "Twinning" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11F106331BA4A3BC00D044AC /* Debug */,
+				11F106341BA4A3BC00D044AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		11F106351BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "TwinningTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11F106361BA4A3BC00D044AC /* Debug */,
+				11F106371BA4A3BC00D044AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		11F106161BA4A3BC00D044AC /* Twinning.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				11F106171BA4A3BC00D044AC /* Twinning.xcdatamodel */,
+			);
+			currentVersion = 11F106171BA4A3BC00D044AC /* Twinning.xcdatamodel */;
+			path = Twinning.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 11F106041BA4A3BC00D044AC /* Project object */;
+}
