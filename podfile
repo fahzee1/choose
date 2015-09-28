@@ -1,0 +1,40 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '6.0'
+
+target 'Twinning' do
+pod "AFNetworking", "2.4.0"
+pod 'SDWebImage', '~>3.6'
+pod 'Appirater'
+pod 'TMCache'
+#pod 'NSDate+TimeAgo'
+pod 'FontAwesomeKit/FontAwesome'
+pod 'FontAwesomeKit/IonIcons'
+#pod 'JDStatusBarNotification'
+pod 'CRToast', '~> 0.0.7'
+pod 'MBProgressHUD', '~> 0.8'
+pod 'MZFormSheetController'
+#pod 'BFKit'
+pod 'RSKImageCropper'
+#pod 'DBCamera', '~> 2.3'
+pod 'AMPopTip'
+pod 'DateTools'
+pod 'SCLAlertView-Objective-C'
+pod 'MBAutoGrowingTextView', '~> 0.1.0'
+pod 'Tweaks'
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+pod 'FBSDKShareKit'
+pod 'ECSlidingViewController', '~> 2.0.3'
+pod 'ASProgressPopUpView'
+pod 'CBStoreHouseRefreshControl'
+pod 'PSTAlertController'
+pod 'FXBlurView'
+#pod 'YapDatabase'
+
+
+end
+
+target 'TwinningTests' do
+
+end
+

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		114626811BA9E4FA00A6D8C2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626801BA9E4FA00A6D8C2 /* User.m */; };
+		114626841BA9E53D00A6D8C2 /* User+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626831BA9E53D00A6D8C2 /* User+Utils.m */; };
+		114626871BAA069E00A6D8C2 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626861BAA069E00A6D8C2 /* HomeViewController.m */; };
+		114626911BAA154500A6D8C2 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626901BAA154500A6D8C2 /* MenuCell.m */; };
+		114626941BAA71FB00A6D8C2 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626931BAA71FB00A6D8C2 /* MenuViewController.m */; };
 		11F106121BA4A3BC00D044AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106111BA4A3BC00D044AC /* main.m */; };
 		11F106151BA4A3BC00D044AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106141BA4A3BC00D044AC /* AppDelegate.m */; };
 		11F106181BA4A3BC00D044AC /* Twinning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11F106161BA4A3BC00D044AC /* Twinning.xcdatamodeld */; };
@@ -15,6 +20,22 @@
 		11F106201BA4A3BC00D044AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11F1061F1BA4A3BC00D044AC /* Images.xcassets */; };
 		11F106231BA4A3BC00D044AC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11F106211BA4A3BC00D044AC /* LaunchScreen.xib */; };
 		11F1062F1BA4A3BC00D044AC /* TwinningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F1062E1BA4A3BC00D044AC /* TwinningTests.m */; };
+		11F1063B1BA4A43400D044AC /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F1063A1BA4A43400D044AC /* UIImage+Utils.m */; };
+		11F106461BA4A46600D044AC /* UIView+Glow.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F1063D1BA4A46600D044AC /* UIView+Glow.m */; };
+		11F106471BA4A46600D044AC /* UIView+MyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F1063F1BA4A46600D044AC /* UIView+MyInfo.m */; };
+		11F106481BA4A46600D044AC /* NSData+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106411BA4A46600D044AC /* NSData+Format.m */; };
+		11F106491BA4A46600D044AC /* NSString+utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106431BA4A46600D044AC /* NSString+utils.m */; };
+		11F1064A1BA4A46600D044AC /* UIColor+HexValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106451BA4A46600D044AC /* UIColor+HexValue.m */; };
+		11F106511BA4A4C900D044AC /* EasyFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F1064E1BA4A4C900D044AC /* EasyFacebook.m */; };
+		11F106521BA4A4C900D044AC /* EasyTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106501BA4A4C900D044AC /* EasyTwitter.m */; };
+		11F106561BA4ACF000D044AC /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106551BA4ACF000D044AC /* APIClient.m */; };
+		11F4DEDB1BAC9C4600E4A6E8 /* HomeFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEDA1BAC9C4600E4A6E8 /* HomeFeedCell.m */; };
+		11F4DEDE1BADE8F400E4A6E8 /* CreateVoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEDD1BADE8F400E4A6E8 /* CreateVoteController.m */; };
+		11F4DEEA1BAE09F400E4A6E8 /* twinning.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11F4DEE91BAE09F400E4A6E8 /* twinning.plist */; };
+		11F4DEED1BB49EC900E4A6E8 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEEC1BB49EC900E4A6E8 /* UIView+Screenshot.m */; };
+		11F4DEF01BB49EFE00E4A6E8 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEEF1BB49EFE00E4A6E8 /* ShareViewController.m */; };
+		11F4DEF31BB9E16C00E4A6E8 /* ShareScreenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEF21BB9E16C00E4A6E8 /* ShareScreenCell.m */; };
+		C285608A67CE575EE9C6FEA2 /* libPods-Twinning.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C49A033E85888CC6365382 /* libPods-Twinning.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +49,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1146267F1BA9E4FA00A6D8C2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		114626801BA9E4FA00A6D8C2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		114626821BA9E53D00A6D8C2 /* User+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Utils.h"; sourceTree = "<group>"; };
+		114626831BA9E53D00A6D8C2 /* User+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Utils.m"; sourceTree = "<group>"; };
+		114626851BAA069E00A6D8C2 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		114626861BAA069E00A6D8C2 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		1146268F1BAA154500A6D8C2 /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
+		114626901BAA154500A6D8C2 /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
+		114626921BAA71FB00A6D8C2 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		114626931BAA71FB00A6D8C2 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		11F1060C1BA4A3BC00D044AC /* Twinning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twinning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F106101BA4A3BC00D044AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11F106111BA4A3BC00D044AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -42,6 +73,39 @@
 		11F106281BA4A3BC00D044AC /* TwinningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwinningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F1062D1BA4A3BC00D044AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11F1062E1BA4A3BC00D044AC /* TwinningTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwinningTests.m; sourceTree = "<group>"; };
+		11F106391BA4A43400D044AC /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
+		11F1063A1BA4A43400D044AC /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
+		11F1063C1BA4A46600D044AC /* UIView+Glow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Glow.h"; sourceTree = "<group>"; };
+		11F1063D1BA4A46600D044AC /* UIView+Glow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Glow.m"; sourceTree = "<group>"; };
+		11F1063E1BA4A46600D044AC /* UIView+MyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MyInfo.h"; sourceTree = "<group>"; };
+		11F1063F1BA4A46600D044AC /* UIView+MyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MyInfo.m"; sourceTree = "<group>"; };
+		11F106401BA4A46600D044AC /* NSData+Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Format.h"; sourceTree = "<group>"; };
+		11F106411BA4A46600D044AC /* NSData+Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Format.m"; sourceTree = "<group>"; };
+		11F106421BA4A46600D044AC /* NSString+utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+utils.h"; sourceTree = "<group>"; };
+		11F106431BA4A46600D044AC /* NSString+utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+utils.m"; sourceTree = "<group>"; };
+		11F106441BA4A46600D044AC /* UIColor+HexValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexValue.h"; sourceTree = "<group>"; };
+		11F106451BA4A46600D044AC /* UIColor+HexValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexValue.m"; sourceTree = "<group>"; };
+		11F1064D1BA4A4C900D044AC /* EasyFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyFacebook.h; sourceTree = "<group>"; };
+		11F1064E1BA4A4C900D044AC /* EasyFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyFacebook.m; sourceTree = "<group>"; };
+		11F1064F1BA4A4C900D044AC /* EasyTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyTwitter.h; sourceTree = "<group>"; };
+		11F106501BA4A4C900D044AC /* EasyTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyTwitter.m; sourceTree = "<group>"; };
+		11F106541BA4ACF000D044AC /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
+		11F106551BA4ACF000D044AC /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
+		11F106571BA4AE7400D044AC /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		11F4DED91BAC9C4600E4A6E8 /* HomeFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFeedCell.h; sourceTree = "<group>"; };
+		11F4DEDA1BAC9C4600E4A6E8 /* HomeFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFeedCell.m; sourceTree = "<group>"; };
+		11F4DEDC1BADE8F400E4A6E8 /* CreateVoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateVoteController.h; sourceTree = "<group>"; };
+		11F4DEDD1BADE8F400E4A6E8 /* CreateVoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateVoteController.m; sourceTree = "<group>"; };
+		11F4DEE91BAE09F400E4A6E8 /* twinning.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = twinning.plist; sourceTree = "<group>"; };
+		11F4DEEB1BB49EC900E4A6E8 /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshot.h"; sourceTree = "<group>"; };
+		11F4DEEC1BB49EC900E4A6E8 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
+		11F4DEEE1BB49EFE00E4A6E8 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		11F4DEEF1BB49EFE00E4A6E8 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		11F4DEF11BB9E16C00E4A6E8 /* ShareScreenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareScreenCell.h; sourceTree = "<group>"; };
+		11F4DEF21BB9E16C00E4A6E8 /* ShareScreenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareScreenCell.m; sourceTree = "<group>"; };
+		52C49A033E85888CC6365382 /* libPods-Twinning.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Twinning.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		56C8F31513C6C77A26B3E8F4 /* Pods-Twinning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twinning.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twinning/Pods-Twinning.debug.xcconfig"; sourceTree = "<group>"; };
+		FEB13F0D21F9AD5A5DF063BC /* Pods-Twinning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twinning.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twinning/Pods-Twinning.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C285608A67CE575EE9C6FEA2 /* libPods-Twinning.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,12 +127,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1146267D1BA9E35E00A6D8C2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1146267F1BA9E4FA00A6D8C2 /* User.h */,
+				114626801BA9E4FA00A6D8C2 /* User.m */,
+				114626821BA9E53D00A6D8C2 /* User+Utils.h */,
+				114626831BA9E53D00A6D8C2 /* User+Utils.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		1146267E1BA9E37B00A6D8C2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				114626851BAA069E00A6D8C2 /* HomeViewController.h */,
+				114626861BAA069E00A6D8C2 /* HomeViewController.m */,
+				114626921BAA71FB00A6D8C2 /* MenuViewController.h */,
+				114626931BAA71FB00A6D8C2 /* MenuViewController.m */,
+				11F4DEDC1BADE8F400E4A6E8 /* CreateVoteController.h */,
+				11F4DEDD1BADE8F400E4A6E8 /* CreateVoteController.m */,
+				11F4DEEE1BB49EFE00E4A6E8 /* ShareViewController.h */,
+				11F4DEEF1BB49EFE00E4A6E8 /* ShareViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1146268E1BAA14AA00A6D8C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1146268F1BAA154500A6D8C2 /* MenuCell.h */,
+				114626901BAA154500A6D8C2 /* MenuCell.m */,
+				11F4DED91BAC9C4600E4A6E8 /* HomeFeedCell.h */,
+				11F4DEDA1BAC9C4600E4A6E8 /* HomeFeedCell.m */,
+				11F4DEF11BB9E16C00E4A6E8 /* ShareScreenCell.h */,
+				11F4DEF21BB9E16C00E4A6E8 /* ShareScreenCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		11F106031BA4A3BC00D044AC = {
 			isa = PBXGroup;
 			children = (
 				11F1060E1BA4A3BC00D044AC /* Twinning */,
 				11F1062B1BA4A3BC00D044AC /* TwinningTests */,
 				11F1060D1BA4A3BC00D044AC /* Products */,
+				BAC0A339003DC910DA765BD7 /* Pods */,
+				548E2A145F17AC2891E6BE81 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +189,12 @@
 		11F1060E1BA4A3BC00D044AC /* Twinning */ = {
 			isa = PBXGroup;
 			children = (
+				11F106531BA4ACDC00D044AC /* API */,
+				11F1064B1BA4A49D00D044AC /* 3rd Party */,
+				11F106381BA4A41700D044AC /* Utils */,
+				1146268E1BAA14AA00A6D8C2 /* Views */,
+				1146267E1BA9E37B00A6D8C2 /* Controllers */,
+				1146267D1BA9E35E00A6D8C2 /* Models */,
 				11F106131BA4A3BC00D044AC /* AppDelegate.h */,
 				11F106141BA4A3BC00D044AC /* AppDelegate.m */,
 				11F106191BA4A3BC00D044AC /* ViewController.h */,
@@ -101,6 +213,8 @@
 			children = (
 				11F106101BA4A3BC00D044AC /* Info.plist */,
 				11F106111BA4A3BC00D044AC /* main.m */,
+				11F106571BA4AE7400D044AC /* constants.h */,
+				11F4DEE91BAE09F400E4A6E8 /* twinning.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -122,6 +236,72 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		11F106381BA4A41700D044AC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				11F4DEEB1BB49EC900E4A6E8 /* UIView+Screenshot.h */,
+				11F4DEEC1BB49EC900E4A6E8 /* UIView+Screenshot.m */,
+				11F1063C1BA4A46600D044AC /* UIView+Glow.h */,
+				11F1063D1BA4A46600D044AC /* UIView+Glow.m */,
+				11F1063E1BA4A46600D044AC /* UIView+MyInfo.h */,
+				11F1063F1BA4A46600D044AC /* UIView+MyInfo.m */,
+				11F106401BA4A46600D044AC /* NSData+Format.h */,
+				11F106411BA4A46600D044AC /* NSData+Format.m */,
+				11F106421BA4A46600D044AC /* NSString+utils.h */,
+				11F106431BA4A46600D044AC /* NSString+utils.m */,
+				11F106441BA4A46600D044AC /* UIColor+HexValue.h */,
+				11F106451BA4A46600D044AC /* UIColor+HexValue.m */,
+				11F106391BA4A43400D044AC /* UIImage+Utils.h */,
+				11F1063A1BA4A43400D044AC /* UIImage+Utils.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		11F1064B1BA4A49D00D044AC /* 3rd Party */ = {
+			isa = PBXGroup;
+			children = (
+				11F1064C1BA4A4B200D044AC /* Easy Social */,
+			);
+			name = "3rd Party";
+			sourceTree = "<group>";
+		};
+		11F1064C1BA4A4B200D044AC /* Easy Social */ = {
+			isa = PBXGroup;
+			children = (
+				11F1064D1BA4A4C900D044AC /* EasyFacebook.h */,
+				11F1064E1BA4A4C900D044AC /* EasyFacebook.m */,
+				11F1064F1BA4A4C900D044AC /* EasyTwitter.h */,
+				11F106501BA4A4C900D044AC /* EasyTwitter.m */,
+			);
+			name = "Easy Social";
+			sourceTree = "<group>";
+		};
+		11F106531BA4ACDC00D044AC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				11F106541BA4ACF000D044AC /* APIClient.h */,
+				11F106551BA4ACF000D044AC /* APIClient.m */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		548E2A145F17AC2891E6BE81 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52C49A033E85888CC6365382 /* libPods-Twinning.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BAC0A339003DC910DA765BD7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				56C8F31513C6C77A26B3E8F4 /* Pods-Twinning.debug.xcconfig */,
+				FEB13F0D21F9AD5A5DF063BC /* Pods-Twinning.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,9 +309,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11F106321BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "Twinning" */;
 			buildPhases = (
+				4E0A82F38813A942851DC37F /* Check Pods Manifest.lock */,
 				11F106081BA4A3BC00D044AC /* Sources */,
 				11F106091BA4A3BC00D044AC /* Frameworks */,
 				11F1060A1BA4A3BC00D044AC /* Resources */,
+				EBCAD3B2A8872B97D823DAC4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -171,6 +353,11 @@
 				TargetAttributes = {
 					11F1060B1BA4A3BC00D044AC = {
 						CreatedOnToolsVersion = 6.3.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					11F106271BA4A3BC00D044AC = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -204,6 +391,7 @@
 			files = (
 				11F1061E1BA4A3BC00D044AC /* Main.storyboard in Resources */,
 				11F106231BA4A3BC00D044AC /* LaunchScreen.xib in Resources */,
+				11F4DEEA1BAE09F400E4A6E8 /* twinning.plist in Resources */,
 				11F106201BA4A3BC00D044AC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,15 +405,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4E0A82F38813A942851DC37F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EBCAD3B2A8872B97D823DAC4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twinning/Pods-Twinning-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		11F106081BA4A3BC00D044AC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				11F106151BA4A3BC00D044AC /* AppDelegate.m in Sources */,
+				11F4DEED1BB49EC900E4A6E8 /* UIView+Screenshot.m in Sources */,
+				11F4DEF01BB49EFE00E4A6E8 /* ShareViewController.m in Sources */,
+				11F1064A1BA4A46600D044AC /* UIColor+HexValue.m in Sources */,
+				11F106481BA4A46600D044AC /* NSData+Format.m in Sources */,
 				11F106121BA4A3BC00D044AC /* main.m in Sources */,
+				114626941BAA71FB00A6D8C2 /* MenuViewController.m in Sources */,
 				11F1061B1BA4A3BC00D044AC /* ViewController.m in Sources */,
+				11F106491BA4A46600D044AC /* NSString+utils.m in Sources */,
+				11F106461BA4A46600D044AC /* UIView+Glow.m in Sources */,
+				114626871BAA069E00A6D8C2 /* HomeViewController.m in Sources */,
+				11F4DEF31BB9E16C00E4A6E8 /* ShareScreenCell.m in Sources */,
 				11F106181BA4A3BC00D044AC /* Twinning.xcdatamodeld in Sources */,
+				114626841BA9E53D00A6D8C2 /* User+Utils.m in Sources */,
+				114626811BA9E4FA00A6D8C2 /* User.m in Sources */,
+				11F106511BA4A4C900D044AC /* EasyFacebook.m in Sources */,
+				114626911BAA154500A6D8C2 /* MenuCell.m in Sources */,
+				11F106521BA4A4C900D044AC /* EasyTwitter.m in Sources */,
+				11F4DEDE1BADE8F400E4A6E8 /* CreateVoteController.m in Sources */,
+				11F106561BA4ACF000D044AC /* APIClient.m in Sources */,
+				11F4DEDB1BAC9C4600E4A6E8 /* HomeFeedCell.m in Sources */,
+				11F1063B1BA4A43400D044AC /* UIImage+Utils.m in Sources */,
+				11F106471BA4A46600D044AC /* UIView+MyInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,8 +589,11 @@
 		};
 		11F106331BA4A3BC00D044AC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56C8F31513C6C77A26B3E8F4 /* Pods-Twinning.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Twinning/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -359,8 +602,11 @@
 		};
 		11F106341BA4A3BC00D044AC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEB13F0D21F9AD5A5DF063BC /* Pods-Twinning.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Twinning/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -420,6 +666,7 @@
 				11F106341BA4A3BC00D044AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		11F106351BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "TwinningTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +675,7 @@
 				11F106371BA4A3BC00D044AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

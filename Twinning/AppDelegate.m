@@ -7,9 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import "EasyFacebook.h"
+#import "constants.h"
+#import "UIColor+HexValue.h"
+#import "User+Utils.h"
+#import "MenuViewController.h"
+#import <ECSlidingViewController.h>
 
 @interface AppDelegate ()
-
+@property (assign) BOOL appInForeground;
 @end
 
 @implementation AppDelegate
@@ -17,6 +23,60 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    // Global appearance
+    [[UINavigationBar appearance] setBackgroundColor:[UIColor colorWithHexString:kColorRed]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithHexString:kColorRed]];
+    [[UINavigationBar appearance] setTranslucent:NO];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    // Menu setup
+    // Right slide out menu setup
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
+                                                             bundle: nil];
+    UIViewController *home = [mainStoryboard instantiateViewControllerWithIdentifier:kStoryboardHomeRoot];
+    MenuViewController *menu = [mainStoryboard instantiateViewControllerWithIdentifier:kStoryboardMenu];
+    ECSlidingViewController *slideController = [ECSlidingViewController slidingWithTopViewController:home];
+    slideController.underLeftViewController = menu;
+    [self.window makeKeyAndVisible];
+    self.window.rootViewController = slideController;
+    
+    
+    
+    //Facebook stuff
+    [EasyFacebook application:application didFinishLaunchingWithOptions:launchOptions];
+    
+    // Notifications
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        // use registerUserNotificationSettings
+        
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        
+        [application registerForRemoteNotifications];
+        
+    } else {
+        // use registerForRemoteNotificationTypes:
+        
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge)];
+    }
+    
+    if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]){
+        self.appInForeground = YES;
+    }
+    
+
+    
+    // Create initial user
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults boolForKey:kLocalUserCreated]){
+        [User createLocalUserInContext:self.managedObjectContext];
+        [defaults setBool:YES forKey:kLocalUserCreated];
+    }
+    
+    
     return YES;
 }
 
@@ -43,6 +103,37 @@
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL wasHandled1 = [EasyFacebook application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    
+    return wasHandled1;
+}
+
+// Push Notification code
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    const unsigned *tokenBytes = [deviceToken bytes];
+    NSString *token = [NSString stringWithFormat:@"%08x%08x%08x%08x%08x%08x%08x%08x",
+                       ntohl(tokenBytes[0]), ntohl(tokenBytes[1]), ntohl(tokenBytes[2]),
+                       ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
+                       ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
+    DLog(@"Token is %@... do something with it",token);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    DLog(@"Did Fail to Register for Remote Notifications");
+    DLog(@"%@, %@", error, error.localizedDescription);
+    
+}
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [self notifyReceivedRemoteNotificationWithData:userInfo foreground:self.appInForeground];
+    completionHandler(UIBackgroundFetchResultNoData);
+}
+
 
 #pragma mark - Core Data stack
 
@@ -123,5 +214,38 @@
         }
     }
 }
+
+#pragma mark - Push Notifications
+
+- (void)notifyReceivedRemoteNotificationWithData:(NSDictionary *)data
+                                      foreground:(BOOL)foreground
+{
+    // Notify home controller that a notification came in
+    //NSMutableDictionary *mutableData = [data mutableCopy];
+    //mutableData[@"foreground"] = [NSNumber numberWithBool:foreground];
+    
+    //[[NSNotificationCenter defaultCenter] postNotificationName:kRecievedRemoteNotification object:self userInfo:mutableData];
+    
+    //NSString *styleName = @"basicNotification";
+    NSString *alert = data[@"alert"];
+    DLog(@"do something with (%@)",alert);
+    /*
+    [JDStatusBarNotification addStyleNamed:styleName
+                                   prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
+                                       style.barColor = [UIColor colorWithHexString:kColorGreen];
+                                       style.textColor = [UIColor whiteColor];
+                                       style.font = [UIFont fontWithName:kAltruusFontBold size:13];
+                                       
+                                       return style;
+                                   }];
+    
+    if (![alert isEqualToString:@""]){
+        [JDStatusBarNotification showWithStatus:alert dismissAfter:4 styleName:styleName];
+    }
+    */
+    
+    
+}
+
 
 @end
