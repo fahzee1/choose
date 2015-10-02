@@ -45,6 +45,7 @@
 #define TICK NSDate *startTime = [NSDate date]
 #define TOCK NSLog(@"Elapsed Time: %f", -[startTime timeIntervalSinceNow])
 
+static NSString *const kTwinningEmail = @"fahzee1@gmail.com";
 static NSString *const kLocalUser = @"localuser";
 static NSString *const kLocalUserAuthKey = @"localauthkey";
 static NSString *const kLocalUserCreated = @"kLocalUserCreated";
@@ -61,7 +62,8 @@ static NSString *const kColorFlatNavyBlue = @"#34495e";
 static NSString *const kColorFlatTurquoise = @"#1abc9c";
 static NSString *const kColorFlatOrange = @"#f39c12";
 static NSString *const kColorFlatPurple = @"#9b59b6";
-
+static NSString *const kColorFacebook = @"#3b5998";
+static NSString *const kColorBlackSexy = @"#343434";
 // Storyboards
 static NSString *const kStoryboardMenu = @"menu";
 static NSString *const kStoryboardHome = @"home";
@@ -77,3 +79,9 @@ static NSString *const kTimeAgoLogo = @"clock-logo";
 static NSString *const kUploadIcon = @"upload-a-photo-button";
 static NSString *const kSelfieIcon = @"take-a-selfie-button";
 static NSString *const kAppIcon = @"app-icon";
+
+// Notifications
+static NSString *const kNotificationMenuTappedSearch = @"kNotificationMenuTappedSearch";
+static NSString *const kNotificationMenuTappedCategoryChoice = @"kNotificationMenuTappedCategoryChoice";
+static NSString *const kNotificationMenuTappedAccountChoice = @"kNotificationMenuTappedAccountChoice";
+static NSString *const kNotificationMenuTappedSupportChoice = @"kNotificationMenuTappedSupportChoice";

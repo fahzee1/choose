@@ -35,6 +35,7 @@
 		11F4DEED1BB49EC900E4A6E8 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEEC1BB49EC900E4A6E8 /* UIView+Screenshot.m */; };
 		11F4DEF01BB49EFE00E4A6E8 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEEF1BB49EFE00E4A6E8 /* ShareViewController.m */; };
 		11F4DEF31BB9E16C00E4A6E8 /* ShareScreenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEF21BB9E16C00E4A6E8 /* ShareScreenCell.m */; };
+		11F4DEF51BBC6F5600E4A6E8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F4DEF41BBC6F5600E4A6E8 /* MessageUI.framework */; };
 		C285608A67CE575EE9C6FEA2 /* libPods-Twinning.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C49A033E85888CC6365382 /* libPods-Twinning.a */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,7 @@
 		11F4DEEF1BB49EFE00E4A6E8 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		11F4DEF11BB9E16C00E4A6E8 /* ShareScreenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareScreenCell.h; sourceTree = "<group>"; };
 		11F4DEF21BB9E16C00E4A6E8 /* ShareScreenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareScreenCell.m; sourceTree = "<group>"; };
+		11F4DEF41BBC6F5600E4A6E8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		52C49A033E85888CC6365382 /* libPods-Twinning.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Twinning.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56C8F31513C6C77A26B3E8F4 /* Pods-Twinning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twinning.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twinning/Pods-Twinning.debug.xcconfig"; sourceTree = "<group>"; };
 		FEB13F0D21F9AD5A5DF063BC /* Pods-Twinning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twinning.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twinning/Pods-Twinning.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11F4DEF51BBC6F5600E4A6E8 /* MessageUI.framework in Frameworks */,
 				C285608A67CE575EE9C6FEA2 /* libPods-Twinning.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +291,7 @@
 		548E2A145F17AC2891E6BE81 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11F4DEF41BBC6F5600E4A6E8 /* MessageUI.framework */,
 				52C49A033E85888CC6365382 /* libPods-Twinning.a */,
 			);
 			name = Frameworks;

@@ -71,19 +71,16 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    // Pop up the progressview
     [self.progressView showPopUpViewAnimated:YES];
 
-    
-    double delayInSeconds = 1.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        //code to be executed on the main queue after delay
-        if (!self.shownPopTip1){
-            [self showPopTipWithText:NSLocalizedString(@"Tap below to take a selfie", nil) andDelay:1 forStage:self.stage];
-            self.shownPopTip1 = YES;
-        }
-        
-    });
+    // If I havent shown the initial pop tip then show it
+    if (!self.shownPopTip1){
+        [self showPopTipWithText:NSLocalizedString(@"Tap below to take a selfie", nil) andDelay:1 forStage:self.stage];
+        self.shownPopTip1 = YES;
+    }
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -96,7 +93,7 @@
 -(void)setup
 {
     self.stage = VoteStage1;
-    self.navigationItem.title = NSLocalizedString(@"Create!", nil);
+    self.navigationItem.title = NSLocalizedString(@"Create 🐣⚡️", nil);
     
     FAKIonIcons *backIcon = [FAKIonIcons chevronLeftIconWithSize:35];
     UIImage *backImage = [backIcon imageWithSize:CGSizeMake(35, 35)];
@@ -138,7 +135,7 @@
                                                 iterations:3
                                                  tintColor:nil];
     self.topHalfView.backgroundColor = [UIColor colorWithPatternImage:blurredIcon];
-    self.view.backgroundColor = [UIColor colorWithHexString:kColorLightGrey];
+    self.view.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
 
     
 

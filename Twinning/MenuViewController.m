@@ -12,6 +12,9 @@
 #import "UIColor+HexValue.h"
 #import <UIViewController+ECSlidingViewController.h>
 #import "constants.h"
+#import <SCLAlertView.h>
+#import <SCLAlertViewStyleKit.h>
+#import <MessageUI/MessageUI.h>
 
 @interface MenuViewController()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
@@ -29,6 +32,7 @@
     self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; // use this to not allow extra table cells
     
     [self setup];
+
     
 }
 
@@ -57,15 +61,19 @@
         [self.delegate menuViewControllerTappedSearch:self];
     }
     
-    UIViewController *controller2 = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardMenu];
+    //UIViewController *controller2 = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardMenu];
     
     
     ECSlidingViewController *controller = [self slidingViewController];
     
     [controller resetTopViewAnimated:YES onComplete:^{
+        /*
         if ([controller.topViewController isKindOfClass:[UINavigationController class]]){
             [((UINavigationController *)controller.topViewController) pushViewController:controller2 animated:YES];
         }
+         */
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationMenuTappedSearch object:nil];
     }];
 }
 
@@ -83,10 +91,10 @@
         return NSLocalizedString(@"Categories", nil);
     }
     else if (section == 1){
-         return NSLocalizedString(@"Support", nil);
+         return NSLocalizedString(@"Account", nil);
     }
     else if (section == 2){
-        return NSLocalizedString(@"Account", nil);
+        return NSLocalizedString(@"Support", nil);
     }
     else{
         return @"Set title";
@@ -103,8 +111,8 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     UILabel *myLabel = [[UILabel alloc] init];
-    myLabel.frame = CGRectMake(20, 0, 320, 20);
-    myLabel.font = [UIFont boldSystemFontOfSize:16];
+    myLabel.frame = CGRectMake(20, -5, 320, 30);
+    myLabel.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:20];
     myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
     myLabel.textColor = [UIColor colorWithHexString:kColorLightGrey];
     
@@ -123,12 +131,12 @@
         return 6;
     }
     else if (section == 1){
-        // Support
+        // account
         return 2;
     }
     else if (section == 2){
-        // account
-        return 3;
+        // support
+        return 2;
     }
     else{
         return 0;
@@ -185,16 +193,16 @@
     }
     
     else if (indexPath.section == 1){
-        // Support
+        // Account
         switch (indexPath.row) {
             case 0:
             {
-                cellText = NSLocalizedString(@"Help", nil);
+                cellText = NSLocalizedString(@"Recent", nil);
             }
                 break;
             case 1:
             {
-                cellText = NSLocalizedString(@"Feedback", nil);
+                cellText = NSLocalizedString(@"Points", nil);
             }
                 break;
             default:
@@ -208,16 +216,16 @@
     
     
     else if (indexPath.section == 2){
-        // Account
+        // Support
         switch (indexPath.row) {
             case 0:
             {
-                cellText = NSLocalizedString(@"Profile", nil);
+                cellText = NSLocalizedString(@"Help", nil);
             }
                 break;
             case 1:
             {
-                cellText = NSLocalizedString(@"Points", nil);
+                cellText = NSLocalizedString(@"Feedback", nil);
             }
                 break;
             case 2:
@@ -236,7 +244,7 @@
 
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"menuCell"];
-    cell.backgroundColor = [UIColor colorWithHexString:kColorRed];
+    cell.backgroundColor = [UIColor colorWithHexString:kColorFlatRed];
     UIView *tappedBackgroundColor = [UIView new];
     tappedBackgroundColor.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
     cell.selectedBackgroundView = tappedBackgroundColor;
@@ -246,5 +254,66 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    ECSlidingViewController *controller = [self slidingViewController];
+    
+    if (indexPath.section == 0){
+        // Category section - when someone taps, close menu and send notification to home screen
+        // with name of category (cell)
+        if ([cell isKindOfClass:[MenuCell class]]){
+            
+            [controller resetTopViewAnimated:YES onComplete:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationMenuTappedCategoryChoice
+                                                                    object:self
+                                                                  userInfo:@{@"category":((MenuCell *)cell).name.text}];
+            }];
+
+        }
+    }
+    
+    else if (indexPath.section == 1){
+        // Account
+        
+    }
+    
+    else if (indexPath.section == 2){
+        // Support
+        switch (indexPath.row) {
+            case 0:
+            {
+                
+            }
+                break;
+            case 1:
+            {
+                // Feedback
+                [tableView deselectRowAtIndexPath:indexPath animated:YES];
+                [controller resetTopViewAnimated:YES
+                                      onComplete:^{
+                                          if ([MFMailComposeViewController canSendMail]){
+                                              MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
+                                              [mail setSubject:NSLocalizedString(@"Twinning Feedback", nil)];
+                                              [mail setToRecipients:@[kTwinningEmail]];
+                                              if ([controller.topViewController isKindOfClass:[UINavigationController class]]){
+                                                  mail.mailComposeDelegate = (HomeViewController *)((UINavigationController *)controller.topViewController).topViewController;
+                                              }
+                                              else{
+                                                  return;
+                                              }
+
+                                              [controller.topViewController presentViewController:mail animated:YES completion:nil];
+                                          }
+                                      }];
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
 
 @end

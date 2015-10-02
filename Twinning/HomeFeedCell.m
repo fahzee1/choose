@@ -8,6 +8,7 @@
 
 #import "HomeFeedCell.h"
 #import "constants.h"
+#import "UIColor+HexValue.h"
 
 @implementation HomeFeedCell
 
@@ -26,6 +27,22 @@
     timeAgoImage.frame = CGRectMake(20,1, 10, 10);
     
     [self.timeAgoLabel addSubview:timeAgoImage];
+    [self setupColor];
+    
+}
+
+- (void)setupColor
+{
+    self.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
+    UIView *tappedBackgroundColor = [UIView new];
+    tappedBackgroundColor.backgroundColor = [UIColor lightGrayColor];
+    self.selectedBackgroundView = tappedBackgroundColor;
+    
+    for (UIView *view in self.contentView.subviews){
+        if ([view isKindOfClass:[UILabel class]]){
+            ((UILabel *)view).textColor = [UIColor whiteColor];
+        }
+    }
     
 }
 
