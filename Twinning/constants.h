@@ -46,9 +46,13 @@
 #define TOCK NSLog(@"Elapsed Time: %f", -[startTime timeIntervalSinceNow])
 
 static NSString *const kTwinningEmail = @"fahzee1@gmail.com";
+static NSString *const kLocalAppID = @"1020419872";
 static NSString *const kLocalUser = @"localuser";
 static NSString *const kLocalUserAuthKey = @"localauthkey";
 static NSString *const kLocalUserCreated = @"kLocalUserCreated";
+static NSString *const kInstagramUserName = @"cj_o32";
+static NSString *const kFacebookPageID = @"373149746105451";
+static NSString *const kFacebookPageName = @"Altruus";
 
 // Colors
 static NSString *const kColorRed = @"#ef2b2b";
@@ -63,7 +67,15 @@ static NSString *const kColorFlatTurquoise = @"#1abc9c";
 static NSString *const kColorFlatOrange = @"#f39c12";
 static NSString *const kColorFlatPurple = @"#9b59b6";
 static NSString *const kColorFacebook = @"#3b5998";
+static NSString *const kColorInstagram = @"#125688";
+static NSString *const kColorTwitter = @"#00aced";
 static NSString *const kColorBlackSexy = @"#343434";
+
+// Fonts
+static NSString *const kFontGlobal = @"ProximaNova-Semibold";
+static NSString *const kFontGlobalBold = @"ProximaNova-Bold";
+static NSString *const kFontSilly = @"GoodDog";
+
 // Storyboards
 static NSString *const kStoryboardMenu = @"menu";
 static NSString *const kStoryboardHome = @"home";
@@ -72,6 +84,7 @@ static NSString *const kStoryboardLogin = @"login";
 static NSString *const kStoryboardCreateVote = @"create";
 static NSString *const kStoryboardCreateVoteRoot = @"createRoot";
 static NSString *const kStoryboardShare = @"share";
+static NSString *const kStoryboardSearch = @"search";
 
 // Images
 static NSString *const kBannerLogo = @"logo";
@@ -85,3 +98,4 @@ static NSString *const kNotificationMenuTappedSearch = @"kNotificationMenuTapped
 static NSString *const kNotificationMenuTappedCategoryChoice = @"kNotificationMenuTappedCategoryChoice";
 static NSString *const kNotificationMenuTappedAccountChoice = @"kNotificationMenuTappedAccountChoice";
 static NSString *const kNotificationMenuTappedSupportChoice = @"kNotificationMenuTappedSupportChoice";
+static NSString *const kNotificationSubmittedCard = @"kNotificationSubmittedCard";

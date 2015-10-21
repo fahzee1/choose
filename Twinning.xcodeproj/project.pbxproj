@@ -12,6 +12,20 @@
 		114626871BAA069E00A6D8C2 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626861BAA069E00A6D8C2 /* HomeViewController.m */; };
 		114626911BAA154500A6D8C2 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626901BAA154500A6D8C2 /* MenuCell.m */; };
 		114626941BAA71FB00A6D8C2 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626931BAA71FB00A6D8C2 /* MenuViewController.m */; };
+		117825FA1BC31F1D00C59DCD /* HomeContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 117825F91BC31F1C00C59DCD /* HomeContainerView.xib */; };
+		117825FD1BC31F4600C59DCD /* HomeContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 117825FC1BC31F4600C59DCD /* HomeContainerView.m */; };
+		117826001BC58F7200C59DCD /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 117825FF1BC58F7200C59DCD /* Card.m */; };
+		117826021BC59ED700C59DCD /* HomeResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 117826011BC59ED700C59DCD /* HomeResultView.xib */; };
+		117826051BC5A2DB00C59DCD /* HomeResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 117826041BC5A2DB00C59DCD /* HomeResultView.m */; };
+		117826091BC8291400C59DCD /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 117826071BC8291400C59DCD /* ProximaNova-Bold.otf */; };
+		1178260A1BC8291400C59DCD /* ProximaNova-Reg.otf in Resources */ = {isa = PBXBuildFile; fileRef = 117826081BC8291400C59DCD /* ProximaNova-Reg.otf */; };
+		1178260E1BC829CC00C59DCD /* ProximaNova-Sbold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1178260D1BC829CC00C59DCD /* ProximaNova-Sbold.otf */; };
+		117826141BC879CE00C59DCD /* SocialIconButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 117826131BC879CE00C59DCD /* SocialIconButton.m */; };
+		117826161BCC55CB00C59DCD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117826151BCC55CB00C59DCD /* Social.framework */; };
+		1181D2331BD47B7E00DB52ED /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1181D2311BD47B7E00DB52ED /* Fabric.framework */; };
+		1181D2341BD47B7E00DB52ED /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1181D2321BD47B7E00DB52ED /* Crashlytics.framework */; };
+		1181D2371BD58B7E00DB52ED /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1181D2361BD58B7E00DB52ED /* SearchViewController.m */; };
+		1181D23A1BD58C2B00DB52ED /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1181D2391BD58C2B00DB52ED /* SearchCell.m */; };
 		11F106121BA4A3BC00D044AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106111BA4A3BC00D044AC /* main.m */; };
 		11F106151BA4A3BC00D044AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106141BA4A3BC00D044AC /* AppDelegate.m */; };
 		11F106181BA4A3BC00D044AC /* Twinning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11F106161BA4A3BC00D044AC /* Twinning.xcdatamodeld */; };
@@ -31,11 +45,11 @@
 		11F106561BA4ACF000D044AC /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106551BA4ACF000D044AC /* APIClient.m */; };
 		11F4DEDB1BAC9C4600E4A6E8 /* HomeFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEDA1BAC9C4600E4A6E8 /* HomeFeedCell.m */; };
 		11F4DEDE1BADE8F400E4A6E8 /* CreateVoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEDD1BADE8F400E4A6E8 /* CreateVoteController.m */; };
-		11F4DEEA1BAE09F400E4A6E8 /* twinning.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11F4DEE91BAE09F400E4A6E8 /* twinning.plist */; };
 		11F4DEED1BB49EC900E4A6E8 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEEC1BB49EC900E4A6E8 /* UIView+Screenshot.m */; };
 		11F4DEF01BB49EFE00E4A6E8 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEEF1BB49EFE00E4A6E8 /* ShareViewController.m */; };
 		11F4DEF31BB9E16C00E4A6E8 /* ShareScreenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEF21BB9E16C00E4A6E8 /* ShareScreenCell.m */; };
 		11F4DEF51BBC6F5600E4A6E8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F4DEF41BBC6F5600E4A6E8 /* MessageUI.framework */; };
+		11F4DEF81BBF0FF300E4A6E8 /* SelfieImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEF71BBF0FF300E4A6E8 /* SelfieImageView.m */; };
 		C285608A67CE575EE9C6FEA2 /* libPods-Twinning.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C49A033E85888CC6365382 /* libPods-Twinning.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +74,26 @@
 		114626901BAA154500A6D8C2 /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
 		114626921BAA71FB00A6D8C2 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		114626931BAA71FB00A6D8C2 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		117825F91BC31F1C00C59DCD /* HomeContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeContainerView.xib; sourceTree = "<group>"; };
+		117825FB1BC31F4600C59DCD /* HomeContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeContainerView.h; sourceTree = "<group>"; };
+		117825FC1BC31F4600C59DCD /* HomeContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeContainerView.m; sourceTree = "<group>"; };
+		117825FE1BC58F7200C59DCD /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		117825FF1BC58F7200C59DCD /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		117826011BC59ED700C59DCD /* HomeResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeResultView.xib; sourceTree = "<group>"; };
+		117826031BC5A2DB00C59DCD /* HomeResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeResultView.h; sourceTree = "<group>"; };
+		117826041BC5A2DB00C59DCD /* HomeResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeResultView.m; sourceTree = "<group>"; };
+		117826071BC8291400C59DCD /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
+		117826081BC8291400C59DCD /* ProximaNova-Reg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Reg.otf"; sourceTree = "<group>"; };
+		1178260D1BC829CC00C59DCD /* ProximaNova-Sbold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Sbold.otf"; sourceTree = "<group>"; };
+		117826121BC879CE00C59DCD /* SocialIconButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialIconButton.h; sourceTree = "<group>"; };
+		117826131BC879CE00C59DCD /* SocialIconButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialIconButton.m; sourceTree = "<group>"; };
+		117826151BCC55CB00C59DCD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		1181D2311BD47B7E00DB52ED /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		1181D2321BD47B7E00DB52ED /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		1181D2351BD58B7E00DB52ED /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		1181D2361BD58B7E00DB52ED /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		1181D2381BD58C2B00DB52ED /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
+		1181D2391BD58C2B00DB52ED /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
 		11F1060C1BA4A3BC00D044AC /* Twinning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twinning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F106101BA4A3BC00D044AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11F106111BA4A3BC00D044AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,7 +131,6 @@
 		11F4DEDA1BAC9C4600E4A6E8 /* HomeFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFeedCell.m; sourceTree = "<group>"; };
 		11F4DEDC1BADE8F400E4A6E8 /* CreateVoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateVoteController.h; sourceTree = "<group>"; };
 		11F4DEDD1BADE8F400E4A6E8 /* CreateVoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateVoteController.m; sourceTree = "<group>"; };
-		11F4DEE91BAE09F400E4A6E8 /* twinning.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = twinning.plist; sourceTree = "<group>"; };
 		11F4DEEB1BB49EC900E4A6E8 /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshot.h"; sourceTree = "<group>"; };
 		11F4DEEC1BB49EC900E4A6E8 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
 		11F4DEEE1BB49EFE00E4A6E8 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
@@ -105,6 +138,8 @@
 		11F4DEF11BB9E16C00E4A6E8 /* ShareScreenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareScreenCell.h; sourceTree = "<group>"; };
 		11F4DEF21BB9E16C00E4A6E8 /* ShareScreenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareScreenCell.m; sourceTree = "<group>"; };
 		11F4DEF41BBC6F5600E4A6E8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		11F4DEF61BBF0FF300E4A6E8 /* SelfieImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfieImageView.h; sourceTree = "<group>"; };
+		11F4DEF71BBF0FF300E4A6E8 /* SelfieImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfieImageView.m; sourceTree = "<group>"; };
 		52C49A033E85888CC6365382 /* libPods-Twinning.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Twinning.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56C8F31513C6C77A26B3E8F4 /* Pods-Twinning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twinning.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twinning/Pods-Twinning.debug.xcconfig"; sourceTree = "<group>"; };
 		FEB13F0D21F9AD5A5DF063BC /* Pods-Twinning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twinning.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twinning/Pods-Twinning.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,8 +150,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117826161BCC55CB00C59DCD /* Social.framework in Frameworks */,
+				1181D2341BD47B7E00DB52ED /* Crashlytics.framework in Frameworks */,
 				11F4DEF51BBC6F5600E4A6E8 /* MessageUI.framework in Frameworks */,
 				C285608A67CE575EE9C6FEA2 /* libPods-Twinning.a in Frameworks */,
+				1181D2331BD47B7E00DB52ED /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +175,8 @@
 				114626801BA9E4FA00A6D8C2 /* User.m */,
 				114626821BA9E53D00A6D8C2 /* User+Utils.h */,
 				114626831BA9E53D00A6D8C2 /* User+Utils.m */,
+				117825FE1BC58F7200C59DCD /* Card.h */,
+				117825FF1BC58F7200C59DCD /* Card.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -152,6 +192,8 @@
 				11F4DEDD1BADE8F400E4A6E8 /* CreateVoteController.m */,
 				11F4DEEE1BB49EFE00E4A6E8 /* ShareViewController.h */,
 				11F4DEEF1BB49EFE00E4A6E8 /* ShareViewController.m */,
+				1181D2351BD58B7E00DB52ED /* SearchViewController.h */,
+				1181D2361BD58B7E00DB52ED /* SearchViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -165,8 +207,30 @@
 				11F4DEDA1BAC9C4600E4A6E8 /* HomeFeedCell.m */,
 				11F4DEF11BB9E16C00E4A6E8 /* ShareScreenCell.h */,
 				11F4DEF21BB9E16C00E4A6E8 /* ShareScreenCell.m */,
+				11F4DEF61BBF0FF300E4A6E8 /* SelfieImageView.h */,
+				11F4DEF71BBF0FF300E4A6E8 /* SelfieImageView.m */,
+				117825F91BC31F1C00C59DCD /* HomeContainerView.xib */,
+				117826011BC59ED700C59DCD /* HomeResultView.xib */,
+				117825FB1BC31F4600C59DCD /* HomeContainerView.h */,
+				117825FC1BC31F4600C59DCD /* HomeContainerView.m */,
+				117826031BC5A2DB00C59DCD /* HomeResultView.h */,
+				117826041BC5A2DB00C59DCD /* HomeResultView.m */,
+				117826121BC879CE00C59DCD /* SocialIconButton.h */,
+				117826131BC879CE00C59DCD /* SocialIconButton.m */,
+				1181D2381BD58C2B00DB52ED /* SearchCell.h */,
+				1181D2391BD58C2B00DB52ED /* SearchCell.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		117826061BC828EC00C59DCD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1178260D1BC829CC00C59DCD /* ProximaNova-Sbold.otf */,
+				117826071BC8291400C59DCD /* ProximaNova-Bold.otf */,
+				117826081BC8291400C59DCD /* ProximaNova-Reg.otf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		11F106031BA4A3BC00D044AC = {
@@ -192,6 +256,7 @@
 		11F1060E1BA4A3BC00D044AC /* Twinning */ = {
 			isa = PBXGroup;
 			children = (
+				117826061BC828EC00C59DCD /* Fonts */,
 				11F106531BA4ACDC00D044AC /* API */,
 				11F1064B1BA4A49D00D044AC /* 3rd Party */,
 				11F106381BA4A41700D044AC /* Utils */,
@@ -217,7 +282,6 @@
 				11F106101BA4A3BC00D044AC /* Info.plist */,
 				11F106111BA4A3BC00D044AC /* main.m */,
 				11F106571BA4AE7400D044AC /* constants.h */,
-				11F4DEE91BAE09F400E4A6E8 /* twinning.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -291,6 +355,9 @@
 		548E2A145F17AC2891E6BE81 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1181D2311BD47B7E00DB52ED /* Fabric.framework */,
+				1181D2321BD47B7E00DB52ED /* Crashlytics.framework */,
+				117826151BCC55CB00C59DCD /* Social.framework */,
 				11F4DEF41BBC6F5600E4A6E8 /* MessageUI.framework */,
 				52C49A033E85888CC6365382 /* libPods-Twinning.a */,
 			);
@@ -318,6 +385,7 @@
 				11F106091BA4A3BC00D044AC /* Frameworks */,
 				11F1060A1BA4A3BC00D044AC /* Resources */,
 				EBCAD3B2A8872B97D823DAC4 /* Copy Pods Resources */,
+				1181D2301BD47ABF00DB52ED /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -393,9 +461,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117826021BC59ED700C59DCD /* HomeResultView.xib in Resources */,
+				1178260A1BC8291400C59DCD /* ProximaNova-Reg.otf in Resources */,
+				117825FA1BC31F1D00C59DCD /* HomeContainerView.xib in Resources */,
+				117826091BC8291400C59DCD /* ProximaNova-Bold.otf in Resources */,
+				1178260E1BC829CC00C59DCD /* ProximaNova-Sbold.otf in Resources */,
 				11F1061E1BA4A3BC00D044AC /* Main.storyboard in Resources */,
 				11F106231BA4A3BC00D044AC /* LaunchScreen.xib in Resources */,
-				11F4DEEA1BAE09F400E4A6E8 /* twinning.plist in Resources */,
 				11F106201BA4A3BC00D044AC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +482,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1181D2301BD47ABF00DB52ED /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run ac915d5ec1b9aa06b5a09e6906112ced64ff0f78 ab315b53e4728b59b3e5d0ca9450a20f0e831bbf236e2740ca894ae242f2850d";
+		};
 		4E0A82F38813A942851DC37F /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -447,17 +532,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117825FD1BC31F4600C59DCD /* HomeContainerView.m in Sources */,
 				11F106151BA4A3BC00D044AC /* AppDelegate.m in Sources */,
 				11F4DEED1BB49EC900E4A6E8 /* UIView+Screenshot.m in Sources */,
 				11F4DEF01BB49EFE00E4A6E8 /* ShareViewController.m in Sources */,
+				1181D2371BD58B7E00DB52ED /* SearchViewController.m in Sources */,
 				11F1064A1BA4A46600D044AC /* UIColor+HexValue.m in Sources */,
 				11F106481BA4A46600D044AC /* NSData+Format.m in Sources */,
 				11F106121BA4A3BC00D044AC /* main.m in Sources */,
 				114626941BAA71FB00A6D8C2 /* MenuViewController.m in Sources */,
 				11F1061B1BA4A3BC00D044AC /* ViewController.m in Sources */,
+				117826141BC879CE00C59DCD /* SocialIconButton.m in Sources */,
 				11F106491BA4A46600D044AC /* NSString+utils.m in Sources */,
 				11F106461BA4A46600D044AC /* UIView+Glow.m in Sources */,
+				117826051BC5A2DB00C59DCD /* HomeResultView.m in Sources */,
+				11F4DEF81BBF0FF300E4A6E8 /* SelfieImageView.m in Sources */,
 				114626871BAA069E00A6D8C2 /* HomeViewController.m in Sources */,
+				117826001BC58F7200C59DCD /* Card.m in Sources */,
 				11F4DEF31BB9E16C00E4A6E8 /* ShareScreenCell.m in Sources */,
 				11F106181BA4A3BC00D044AC /* Twinning.xcdatamodeld in Sources */,
 				114626841BA9E53D00A6D8C2 /* User+Utils.m in Sources */,
@@ -468,6 +559,7 @@
 				11F4DEDE1BADE8F400E4A6E8 /* CreateVoteController.m in Sources */,
 				11F106561BA4ACF000D044AC /* APIClient.m in Sources */,
 				11F4DEDB1BAC9C4600E4A6E8 /* HomeFeedCell.m in Sources */,
+				1181D23A1BD58C2B00DB52ED /* SearchCell.m in Sources */,
 				11F1063B1BA4A43400D044AC /* UIImage+Utils.m in Sources */,
 				11F106471BA4A46600D044AC /* UIView+MyInfo.m in Sources */,
 			);
@@ -598,7 +690,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Twinning/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -611,7 +708,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Twinning/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

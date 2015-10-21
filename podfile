@@ -29,8 +29,7 @@ pod 'ASProgressPopUpView'
 pod 'CBStoreHouseRefreshControl'
 pod 'PSTAlertController'
 pod 'FXBlurView'
-#pod 'YapDatabase'
-
+pod 'MGInstagram'
 
 end
 

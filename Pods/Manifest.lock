@@ -54,6 +54,7 @@ PODS:
   - FXBlurView (1.6.4)
   - MBAutoGrowingTextView (0.1.0)
   - MBProgressHUD (0.9.1)
+  - MGInstagram (0.1.0)
   - MZAppearance (1.1.5)
   - MZFormSheetController (3.1.0):
     - MZAppearance
@@ -86,6 +87,7 @@ DEPENDENCIES:
   - FXBlurView
   - MBAutoGrowingTextView (~> 0.1.0)
   - MBProgressHUD (~> 0.8)
+  - MGInstagram
   - MZFormSheetController
   - PSTAlertController
   - RSKImageCropper
@@ -111,6 +113,7 @@ SPEC CHECKSUMS:
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   MBAutoGrowingTextView: 3955d4513be3d184fe2cb7739999c1f994dcd4d5
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MGInstagram: c85a061e25b053ad1cb1227675e238ce6cc50221
   MZAppearance: 6e9dc64e42074c0a19812a327f590746c3283bab
   MZFormSheetController: a29e904f8832bcaa08a9751106e10beb4df751df
   PSTAlertController: cb21afcfa76c3229feec7db044afd4f60dab5892

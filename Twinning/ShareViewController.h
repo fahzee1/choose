@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ShareViewController : UIViewController
+@property (strong, nonatomic) UIImage *topImage;
 @property (strong, nonatomic) UIImage *shareImage;
+@property (strong, nonatomic) NSString *titleText;
+@property (strong, nonatomic) NSString *subtitleText;
+@property (strong, nonatomic) NSString *imageViewText;
+@property (strong, nonatomic) NSString *bottomShareText;
+
 @end

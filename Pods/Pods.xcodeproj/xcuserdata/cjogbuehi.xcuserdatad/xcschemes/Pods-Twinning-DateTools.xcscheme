@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "701C5F3920BCD3715D8EE50F"
+               BlueprintIdentifier = "573269DED8467416C7C97F69"
                BuildableName = "libPods-Twinning-DateTools.a"
                BlueprintName = "Pods-Twinning-DateTools"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8A187144F208249E83897737"
+               BlueprintIdentifier = "5017641AF3442899961107B1"
                BuildableName = "libPods-Twinning-SCLAlertView-Objective-C.a"
                BlueprintName = "Pods-Twinning-SCLAlertView-Objective-C"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E24067B8151317ED3676BF2E"
+               BlueprintIdentifier = "31CFC300E7681A68BE09A6E6"
                BuildableName = "libPods-Twinning-PSTAlertController.a"
                BlueprintName = "Pods-Twinning-PSTAlertController"
                ReferencedContainer = "container:Pods.xcodeproj">

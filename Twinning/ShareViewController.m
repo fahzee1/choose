@@ -12,18 +12,41 @@
 #import "constants.h"
 #import "ShareScreenCell.h"
 #import "UIColor+HexValue.h"
+#import "SocialIconButton.h"
 #import <CRToast.h>
+#import <MGInstagram.h>
+#import <PSTAlertController.h>
+#import <Social/Social.h>
 
+@interface ShareViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *topImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *middleImageView;
 
-@interface ShareViewController ()<UITableViewDataSource,UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *shareImageView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *imageViewLabel;
 
-@property (weak, nonatomic) IBOutlet ASProgressPopUpView *progressView;
+@property (weak, nonatomic) IBOutlet UILabel *bottomShareLabel;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSTimer *timer;
-@property (assign) BOOL savedToLibrary;
-@property (assign) BOOL sentToServer;
+@property (weak, nonatomic) IBOutlet SocialIconButton *shareButton1;
+@property (weak, nonatomic) IBOutlet SocialIconButton *shareButton2;
+@property (weak, nonatomic) IBOutlet SocialIconButton *shareButton3;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
+
+@property (strong, nonatomic) MGInstagram *ig;
+
+// Constraints
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topImageViewTopConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topImageViewWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topImageViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLabelTopConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleImageViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleImageViewWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleImageViewTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomButtonsTopConstraint;
+
 @end
 
 @implementation ShareViewController
@@ -31,17 +54,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    if (IS_IPHONE_5 || IS_IPHONE_4_OR_LESS){
-        self.tableView.scrollEnabled = YES;
-    }
-    else{
-        self.tableView.scrollEnabled = NO;
-    }
-    self.tableView.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; // use this to not allow extra table cells
-    
     [self setup];
 }
 
@@ -49,7 +61,6 @@
 {
     [super viewWillAppear:animated];
     
-    self.shareImageView.image = self.shareImage;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -65,19 +76,83 @@
 
 - (void)setup
 {
-    self.navigationItem.title = NSLocalizedString(@"Share 🎉💥", nil);
-    self.view.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
-    FAKIonIcons *backIcon = [FAKIonIcons chevronLeftIconWithSize:35];
-    UIImage *backImage = [backIcon imageWithSize:CGSizeMake(35, 35)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backImage style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
+    if (self.topImage){
+        self.topImageView.image = self.topImage;
+    }
+    else{
+        FAKIonIcons *smileIcon = [FAKIonIcons happyIconWithSize:50];
+        [smileIcon addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:kColorRed]];
+        UIImage *smileImage = [smileIcon imageWithSize:CGSizeMake(50, 50)];
+        self.topImageView.image = smileImage;
+    }
+   
+    if (self.titleText){
+        self.titleLabel.text = self.titleText;
+    }
     
-    self.progressView.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:18];
-    self.progressView.popUpViewAnimatedColors = @[[UIColor colorWithHexString:kColorFlatOrange], [UIColor colorWithHexString:kColorFlatGreen], [UIColor colorWithHexString:kColorFlatTurquoise]];
-    self.progressView.popUpViewCornerRadius = 10.0;
-    self.progressView.progress = .75;
-    [self.progressView showPopUpViewAnimated:YES];
+    if (self.subtitleText){
+        self.subtitleLabel.text = self.subtitleText;
+    }
+    
+    if (self.shareImage){
+        self.middleImageView.image = self.shareImage;
+    }
+    else{
+        self.middleImageView.image = [UIImage imageNamed:kAppIcon];
+    }
+    
+    if (self.bottomShareText){
+        self.bottomShareLabel.text = self.bottomShareText;
+    }
+    else{
+        self.bottomShareLabel.text = NSLocalizedString(@"Ask Friends On...", nil);
+    }
+    
+    if (self.imageViewText){
+        self.imageViewLabel.text = self.imageViewText;
+    }
+    else{
+        self.imageViewLabel.text = @"";
+    }
+    
+    self.titleLabel.textColor = [UIColor colorWithHexString:kColorBlackSexy];
+    self.subtitleLabel.textColor = [UIColor colorWithHexString:kColorBlackSexy];
+    self.bottomShareLabel.textColor = [UIColor colorWithHexString:kColorBlackSexy];
+     self.imageViewLabel.textColor = [UIColor colorWithHexString:kColorDarkGrey];
+    self.imageViewLabel.font = [UIFont fontWithName:kFontGlobal size:15];
+    self.titleLabel.font = [UIFont fontWithName:kFontGlobalBold size:20];
+    self.subtitleLabel.font = [UIFont fontWithName:kFontGlobal size:17];
+    self.bottomShareLabel.font = [UIFont fontWithName:kFontGlobal size:15];
+
+    
+    // IG button
+    self.shareButton1.type = SocialButtonInstagram;
+    
+    // FB button
+    self.shareButton2.type = SocialButtonFacebook;
+    
+    // More button
+    self.shareButton3.type = SocialButtonMore;
+    
+    // Done Button
+    [self.doneButton setTitle:NSLocalizedString(@"DONE", nil) forState:UIControlStateNormal];
+    self.doneButton.titleLabel.font = [UIFont fontWithName:kFontGlobalBold size:20];
+    [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.doneButton.backgroundColor = [UIColor colorWithHexString:kColorDarkGrey];
 
 
+    if (IS_IPHONE_4_OR_LESS){
+        self.topImageViewHeightConstraint.constant = 50;
+        self.topImageViewWidthConstraint.constant = 50;
+        self.middleImageViewHeightConstraint.constant = 50;
+        self.middleImageViewWidthConstraint.constant = 50;
+    }
+    else if (IS_IPHONE_5){
+        self.topImageViewHeightConstraint.constant = 70;
+        self.topImageViewWidthConstraint.constant = 70;
+        self.middleImageViewHeightConstraint.constant = 70;
+        self.middleImageViewWidthConstraint.constant = 70;
+    }
 
 }
 
@@ -91,90 +166,55 @@
     }
 }
 
-- (void)updateTimerWithPreviousTime
-{
-    if (!self.timer){
-        [self addMyTimer];
+- (IBAction)tappedShareButton1:(UIButton *)sender {
+    // IG
+    if (![MGInstagram isAppInstalled]){
+        [PSTAlertController presentDismissableAlertWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Instagram isn't installed on this device.", nil) controller:self];
+        return;
     }
     
-    if( self.progressView.progress < .99){
-        self.progressView.progress = self.progressView.progress + .01f;
-    }
-    else{
-        [self removeMyTimer];
-        //[self performSelector:@selector(goForward2) withObject:nil];
-    }
-
-    
+    self.ig = [[MGInstagram alloc] init];
+    self.ig.photoFileName = kInstagramOnlyPhotoFileName;
+    [self.ig postImage:self.middleImageView.image withCaption:self.subtitleText inView:self.view];
 }
 
-- (void)removeMyTimer
-{
-    [self.timer invalidate];
-    self.timer = nil;
+- (IBAction)tappedShareButton2:(UIButton *)sender {
+    [self showFacebookShareScreenWithText:self.subtitleLabel.text];
 }
 
-- (void)addMyTimer
-{
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:.05
-                                                  target:self
-                                                selector:@selector(updateTimerWithPreviousTime)
-                                                userInfo:nil
-                                                 repeats:YES];
+- (IBAction)tappedShareButton3:(UIButton *)sender {
+    [self showSMSorEmailScreenWithText:self.subtitleText];
+}
+
+- (IBAction)tappedDone:(UIButton *)sender {
+    [self goBack];
 }
 
 - (void)saveImageToLibrary
 {
-    UIImageWriteToSavedPhotosAlbum(self.shareImageView.image, nil, nil, nil);
-    self.savedToLibrary = YES;
+    UIImageWriteToSavedPhotosAlbum(self.topImageView.image, nil, nil, nil);
     
-    NSDictionary *options = @{kCRToastTextKey:NSLocalizedString(@"Image saved!", nil),
-                              kCRToastTextColorKey:[UIColor whiteColor],
-                              kCRToastFontKey:[UIFont fontWithName:@"Futura-CondensedExtraBold" size:18],
-                              kCRToastTextAlignmentKey:@(NSTextAlignmentCenter),
-                              kCRToastBackgroundColorKey:[UIColor colorWithHexString:kColorFlatTurquoise],
-                              kCRToastAnimationInTypeKey:@(CRToastAnimationTypeGravity),
-                              kCRToastAnimationOutTypeKey:@(CRToastAnimationTypeGravity),
-                              kCRToastAnimationInDirectionKey:@(CRToastAnimationDirectionLeft),
-                              kCRToastAnimationOutDirectionKey:@(CRToastAnimationDirectionRight),
-                              kCRToastNotificationTypeKey:@(CRToastTypeNavigationBar),
-                              kCRToastNotificationPresentationTypeKey:@(CRToastPresentationTypeCover)};
-    
-    [CRToastManager showNotificationWithOptions:options
-                                completionBlock:^{
-                                    DLog(@"saved image");
-                                }];
-
+  
 }
 
-- (void)showServerToast
+
+- (void)showFacebookShareScreenWithText:(NSString *)text
 {
-    NSTimeInterval time = 60 * 60 * 24 * 360;
-    NSDictionary *options = @{kCRToastTextKey:NSLocalizedString(@"Sending to server...", nil),
-                              kCRToastTextColorKey:[UIColor whiteColor],
-                              kCRToastFontKey:[UIFont fontWithName:@"Futura-CondensedExtraBold" size:18],
-                              kCRToastTextAlignmentKey:@(NSTextAlignmentCenter),
-                              kCRToastBackgroundColorKey:[UIColor colorWithHexString:kColorFlatGreen],
-                              kCRToastAnimationInTypeKey:@(CRToastAnimationTypeGravity),
-                              kCRToastAnimationOutTypeKey:@(CRToastAnimationTypeGravity),
-                              kCRToastAnimationInDirectionKey:@(CRToastAnimationDirectionTop),
-                              kCRToastAnimationOutDirectionKey:@(CRToastAnimationDirectionBottom),
-                              kCRToastNotificationTypeKey:@(CRToastTypeNavigationBar),
-                              kCRToastNotificationPresentationTypeKey:@(CRToastPresentationTypePush),
-                              kCRToastTimeIntervalKey:@(time),
-                              kCRToastShowActivityIndicatorKey:@(YES)};
+    if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
+        [PSTAlertController presentDismissableAlertWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"There was an issue trying to share to Facebook.", nil) controller:self];
+           return;
+    }
+    SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+    [controller setInitialText:text];
+    [controller addURL:[NSURL URLWithString:@"https://bnc.lt/m/rfPe58ANMn"]];
+    [controller addImage:self.middleImageView.image];
+    [self presentViewController:controller animated:YES completion:nil];
     
-    [CRToastManager showNotificationWithOptions:options
-                                completionBlock:^{
-                                    DLog(@"saved image");
-                                }];
-
 }
-
-- (void)showSMSorEmailScreen
+- (void)showSMSorEmailScreenWithText:(NSString *)text
 {
-    NSString *inviteText = [NSString stringWithFormat:@"Go vote for me on Twinning"];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[inviteText,self.shareImageView.image] applicationActivities:nil];
+    NSString *inviteText = text;
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[inviteText,self.middleImageView.image] applicationActivities:nil];
     activityVC.excludedActivityTypes = @[UIActivityTypePrint,UIActivityTypeCopyToPasteboard,UIActivityTypeSaveToCameraRoll];
     
     if (IS_IPAD){
@@ -188,153 +228,4 @@
 
 }
 
-#pragma -mark Tableview
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    if (section == 0){
-        // If we still need to upload to server then just show one cell (submit)
-        // If uploaded to server, check if we need 2 or 3 cells based on if we saved
-        // to library or not
-        if (self.sentToServer){
-            return self.savedToLibrary? 2:3;
-        }
-        else{
-            return 1;
-        }
-    }
-    else{
-        return 0;
-    }
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shareCell"];
-    if (indexPath.section == 0){
-        NSString *cellText;
-        UIImage *cellImage;
-        switch (indexPath.row) {
-            case 0:
-            {
-                // Button 1 - will either be submit or share to facebook depending
-                // on if we sent image to server or not
-                if (!self.sentToServer){
-                    cellText = @"SUBMIT";
-                    FAKIonIcons *fbIcon = [FAKIonIcons happyIconWithSize:25];
-                    [fbIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
-                    fbIcon.drawingBackgroundColor = [UIColor colorWithHexString:kColorFlatGreen];
-                    cellImage = [fbIcon imageWithSize:CGSizeMake(30, 30)];
-                    }
-                else{
-                    cellText = @"SHARE ON FACEBOOK";
-                    FAKIonIcons *fbIcon = [FAKIonIcons socialFacebookIconWithSize:25];
-                    [fbIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
-                    fbIcon.drawingBackgroundColor = [UIColor colorWithHexString:kColorFacebook];
-                    cellImage = [fbIcon imageWithSize:CGSizeMake(30, 30)];
-                }
-            }
-                break;
-            case 1:
-            {
-                // Button 2 - will either be save to library or sms/email depending
-                // on if we saved image to library or not
-
-                if (!self.savedToLibrary){
-                    cellText = @"SAVE TO LIBRARY";
-                    FAKIonIcons *saveIcon = [FAKIonIcons iosDownloadIconWithSize:25];
-                    [saveIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
-                    saveIcon.drawingBackgroundColor = [UIColor colorWithHexString:kColorFlatGreen];
-                    cellImage = [saveIcon imageWithSize:CGSizeMake(30, 30)];
-                }
-                else{
-                    cellText = @"SMS OR EMAIL";
-                    FAKIonIcons *saveIcon = [FAKIonIcons iosPaperplaneIconWithSize:25];
-                    [saveIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
-                    saveIcon.drawingBackgroundColor = [UIColor colorWithHexString:kColorFlatOrange];
-                    cellImage = [saveIcon imageWithSize:CGSizeMake(30, 30)];
-                }
-            }
-                break;
-            case 2:
-            {
-                // Button 3 - as of now third button can only be sms
-                cellText = @"SMS OR EMAIL";
-                FAKIonIcons *saveIcon = [FAKIonIcons iosPaperplaneIconWithSize:25];
-                [saveIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
-                saveIcon.drawingBackgroundColor = [UIColor colorWithHexString:kColorFlatOrange];
-                cellImage = [saveIcon imageWithSize:CGSizeMake(30, 30)];
-            }
-                break;
-                
-            default:
-                break;
-        }
-        
-        ((ShareScreenCell *)cell).titleLabel.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:15];
-        ((ShareScreenCell *)cell).titleLabel.text = cellText;
-        ((ShareScreenCell *)cell).leftIconImage.image = cellImage;
-    }
-
-    return cell;
-    
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (indexPath.section == 0){
-        switch (indexPath.row) {
-            case 0:
-            {
-                // Button 1 - will either be submit or share to facebook depending
-                // on if we sent image to server or not
-                if (!self.sentToServer){
-                    DLog(@"do something then show options");
-                    [self showServerToast];
-                    
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                        [CRToastManager dismissNotification:YES];
-                        self.sentToServer = YES;
-                        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-                    });
-                }
-                else{
-                    DLog(@"tapped on fad")
-                }
-            }
-                break;
-            case 1:
-            {
-                // Button 2 - will either be save to library or sms/email depending
-                // on if we saved image to library or not
-                if (!self.savedToLibrary){
-                    [self saveImageToLibrary];
-                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-
-                }
-                else{
-                    [self showSMSorEmailScreen];
-                }
-            }
-                break;
-
-            case 2:
-            {
-                // Button 3 - as of now third button can only be sms
-                [self showSMSorEmailScreen];
-            }
-                break;
-            default:
-                break;
-        }
-    }
-}
 @end

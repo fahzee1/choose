@@ -9,6 +9,8 @@
 #import "MenuViewController.h"
 #import "MenuCell.h"
 #import "HomeViewController.h"
+#import "ShareViewController.h"
+#import "SearchViewController.h"
 #import "UIColor+HexValue.h"
 #import <UIViewController+ECSlidingViewController.h>
 #import "constants.h"
@@ -16,8 +18,10 @@
 #import <SCLAlertViewStyleKit.h>
 #import <MessageUI/MessageUI.h>
 
-@interface MenuViewController()<UITableViewDelegate,UITableViewDataSource>
+@interface MenuViewController()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+
 
 
 @end
@@ -27,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.searchBar.delegate = self;
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; // use this to not allow extra table cells
@@ -46,13 +51,18 @@
 
 - (void)setup
 {
-    self.view.backgroundColor = [UIColor colorWithHexString:kColorRed];
-    self.tableview.backgroundColor = [UIColor colorWithHexString:kColorRed];
+    self.view.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
+    self.tableview.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
     
     self.searchButton.backgroundColor = [UIColor whiteColor];
-    [self.searchButton setTitleColor:[UIColor colorWithHexString:kColorRed] forState:UIControlStateNormal];
-    self.searchButton.titleLabel.text = NSLocalizedString(@"Find Vote Via Code", nil);
+    [self.searchButton setTitleColor:[UIColor colorWithHexString:kColorBlackSexy] forState:UIControlStateNormal];
+    [self.searchButton setTitle:NSLocalizedString(@"Search Access Codes", nil) forState:UIControlStateNormal];
+    self.searchButton.titleLabel.font = [UIFont fontWithName:kFontGlobal size:15];
     self.searchButton.layer.cornerRadius = 5.f;
+    
+    self.searchBar.barTintColor = [UIColor whiteColor];
+    self.searchBar.barStyle = UIBarStyleBlackTranslucent;
+    
 }
 
 
@@ -76,7 +86,74 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationMenuTappedSearch object:nil];
     }];
 }
+- (void)openAppStoreReview
+{
+    NSString *appID = kLocalAppID;
+    NSString *str;
+    float ver = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (ver >= 7.0 && ver < 7.1) {
+        str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@",appID];
+    } else if (ver >= 8.0) {
+        str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%@&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software",appID];
+    } else {
+        str = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@",appID];
+    }
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+}
 
+- (void)openInstagramProfile
+{
+    
+    NSURL *instagramURL = [NSURL URLWithString:[NSString stringWithFormat:@"instagram://user?username=%@",kInstagramUserName]];
+    if ([[UIApplication sharedApplication] canOpenURL:instagramURL]) {
+        [[UIApplication sharedApplication] openURL:instagramURL];
+    }
+    else{
+        instagramURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://instagram.com/%@",kInstagramUserName]];
+    }
+}
+
+- (void)openFacebookPage
+{
+    NSURL *fbURL = [NSURL URLWithString:[NSString stringWithFormat:@"fb://profile/%@",kFacebookPageID]];
+    if ([[UIApplication sharedApplication] canOpenURL:fbURL]) {
+        [[UIApplication sharedApplication] openURL:fbURL];
+    }
+    else{
+        fbURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.facebook.com/%@",kFacebookPageName]];
+    }
+
+}
+
+- (void)showSearchScreenWithText:(NSString *)text;
+{
+    ECSlidingViewController *controller = [self slidingViewController];
+    [controller resetTopViewAnimated:YES
+                          onComplete:^{
+                              
+                              SearchViewController *searchController = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardSearch];
+                              searchController.searchString = text;
+                              if ([controller.topViewController isKindOfClass:[UINavigationController class]]){
+                                  UINavigationController *base = [[UINavigationController alloc] initWithRootViewController:searchController];
+                                  [((UINavigationController *)controller.topViewController).topViewController presentViewController:base animated:YES completion:nil];
+                              }
+                          }];
+}
+#pragma -mark Searchbar
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    DLog(@"text is %@",searchText);
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    DLog(@"tapped search with text %@",searchBar.text);
+    
+    [self showSearchScreenWithText:searchBar.text];
+
+
+}
 
 
 #pragma -mark Tableview
@@ -88,13 +165,13 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0){
-        return NSLocalizedString(@"Categories", nil);
+        return NSLocalizedString(@"", nil);
     }
     else if (section == 1){
          return NSLocalizedString(@"Account", nil);
     }
     else if (section == 2){
-        return NSLocalizedString(@"Support", nil);
+        return NSLocalizedString(@"Social", nil);
     }
     else{
         return @"Set title";
@@ -112,12 +189,12 @@
     
     UILabel *myLabel = [[UILabel alloc] init];
     myLabel.frame = CGRectMake(20, -5, 320, 30);
-    myLabel.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:20];
+    myLabel.font = [UIFont fontWithName:kFontGlobalBold size:20];
     myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    myLabel.textColor = [UIColor colorWithHexString:kColorLightGrey];
+    myLabel.textColor = [UIColor whiteColor];
     
     UIView *headerView = [[UIView alloc] init];
-    headerView.backgroundColor = [UIColor colorWithHexString:kColorRed];
+    headerView.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
     [headerView addSubview:myLabel];
     
     return headerView;
@@ -128,15 +205,15 @@
     // Return the number of rows in the section.
     if (section == 0){
         // categories
-        return 6;
+        return 3;
     }
     else if (section == 1){
         // account
-        return 2;
+        return 3;
     }
     else if (section == 2){
-        // support
-        return 2;
+        // social
+        return 3;
     }
     else{
         return 0;
@@ -156,32 +233,12 @@
                 break;
             case 1:
             {
-                cellText = NSLocalizedString(@"Actors", nil);
+                cellText = NSLocalizedString(@"Daily Dozen", nil);
             }
                 break;
             case 2:
             {
-                cellText = NSLocalizedString(@"Actresses", nil);
-            }
-                break;
-            case 3:
-            {
-                cellText = NSLocalizedString(@"Athletes", nil);
-            }
-                break;
-            case 4:
-            {
-                cellText = NSLocalizedString(@"Models", nil);
-            }
-                break;
-            case 5:
-            {
-                cellText = NSLocalizedString(@"Personality Stars", nil);
-            }
-                break;
-            case 6:
-            {
-                cellText = NSLocalizedString(@"Politicians", nil);
+                cellText = NSLocalizedString(@"Community", nil);
             }
                 break;
             default:
@@ -197,12 +254,17 @@
         switch (indexPath.row) {
             case 0:
             {
-                cellText = NSLocalizedString(@"Recent", nil);
+                cellText = NSLocalizedString(@"My Questions", nil);
             }
                 break;
             case 1:
             {
-                cellText = NSLocalizedString(@"Points", nil);
+                cellText = NSLocalizedString(@"Share With A Friend", nil);
+            }
+                break;
+            case 2:
+            {
+                cellText = NSLocalizedString(@"Send Feedback", nil);
             }
                 break;
             default:
@@ -216,21 +278,21 @@
     
     
     else if (indexPath.section == 2){
-        // Support
+        // Social
         switch (indexPath.row) {
             case 0:
             {
-                cellText = NSLocalizedString(@"Help", nil);
+                cellText = NSLocalizedString(@"Like Us On Facebook", nil);
             }
                 break;
             case 1:
             {
-                cellText = NSLocalizedString(@"Feedback", nil);
+                cellText = NSLocalizedString(@"Follow Us On Instagram", nil);
             }
                 break;
             case 2:
             {
-                cellText = NSLocalizedString(@"Log Out", nil);
+                cellText = NSLocalizedString(@"Give Us A Review", nil);
             }
                 break;
             default:
@@ -244,11 +306,6 @@
 
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"menuCell"];
-    cell.backgroundColor = [UIColor colorWithHexString:kColorFlatRed];
-    UIView *tappedBackgroundColor = [UIView new];
-    tappedBackgroundColor.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
-    cell.selectedBackgroundView = tappedBackgroundColor;
-    ((MenuCell *)cell).name.textColor = [UIColor colorWithHexString:kColorLightGrey];
     ((MenuCell *)cell).name.text = cellText;
     return cell;
     
@@ -274,20 +331,36 @@
     }
     
     else if (indexPath.section == 1){
-        // Account
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         
-    }
-    
-    else if (indexPath.section == 2){
-        // Support
+        // Account
         switch (indexPath.row) {
             case 0:
             {
+                // My Questions
                 
             }
                 break;
             case 1:
             {
+                // Share with a friend
+                [controller resetTopViewAnimated:YES
+                                      onComplete:^{
+                                       
+                                          ShareViewController *shareController = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardShare];
+                                          shareController.titleText = NSLocalizedString(@"SPREAD THE LOVE!", nil);
+                                          shareController.subtitleText = NSLocalizedString(@"Go download Twinning now to see my wonderful questions", nil);
+                                          shareController.bottomShareText = NSLocalizedString(@"Share With Friends On...", nil);
+                                          if ([controller.topViewController isKindOfClass:[UINavigationController class]]){
+                                              [((UINavigationController *)controller.topViewController).topViewController presentViewController:shareController animated:YES completion:nil];
+                                          }
+                                      }];
+                
+            }
+                break;
+            case 2:
+            {
+                // Feedback
                 // Feedback
                 [tableView deselectRowAtIndexPath:indexPath animated:YES];
                 [controller resetTopViewAnimated:YES
@@ -302,18 +375,71 @@
                                               else{
                                                   return;
                                               }
-
+                                              
                                               [controller.topViewController presentViewController:mail animated:YES completion:nil];
                                           }
                                       }];
-                
+
             }
                 break;
+            default:
+                break;
+        }
+        
+    }
+    
+    else if (indexPath.section == 2){
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        // Social
+        switch (indexPath.row) {
+            case 0:
+            {
+                [controller resetTopViewAnimated:YES
+                                      onComplete:^{
+                                          [self openFacebookPage];
+                                      }];
+            }
+                break;
+            case 1:
+            {
+                // Like on IG
+                [controller resetTopViewAnimated:YES
+                                      onComplete:^{
+                                          [self openInstagramProfile];
+                                      }];
+            }
+                break;
+            case 2:
+            {
+                // App store review
+                [controller resetTopViewAnimated:YES
+                                      onComplete:^{
+                                          [self openAppStoreReview];
+                                      }];
+            }
                 
             default:
                 break;
         }
     }
 }
+
+/*
+ NSString *inviteText = [NSString stringWithFormat:@"Go vote for me on Twinning"];
+ UIImage *appImage = [UIImage imageNamed:kAppIcon];
+ UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[appImage,inviteText] applicationActivities:nil];
+ activityVC.excludedActivityTypes = @[UIActivityTypePrint,UIActivityTypeCopyToPasteboard,UIActivityTypeSaveToCameraRoll];
+ 
+ if (IS_IPAD){
+ if ([activityVC respondsToSelector:@selector(popoverPresentationController)]){
+ activityVC.popoverPresentationController.sourceView = self.view;
+ 
+ }
+ }
+ 
+ if ([controller.topViewController isKindOfClass:[UINavigationController class]]){
+ [((UINavigationController *)controller.topViewController).topViewController presentViewController:activityVC animated:YES completion:nil];
+ }
+*/
 
 @end

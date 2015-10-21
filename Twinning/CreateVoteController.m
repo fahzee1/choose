@@ -8,7 +8,9 @@
 
 #import "CreateVoteController.h"
 #import "ShareViewController.h"
+#import "SelfieImageView.h"
 #import "UIView+Glow.h"
+#import "NSString+utils.h"
 #import <ASProgressPopUpView.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import <AMPopTip.h>
@@ -20,25 +22,27 @@
 #import <SCLAlertView.h>
 #import <SCLAlertViewStyleKit.h>
 #import <FXBlurView.h>
+#import "Card.h"
+
 
 @interface CreateVoteController()<UIImagePickerControllerDelegate,RSKImageCropViewControllerDelegate,UINavigationControllerDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *selfieImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *selfieImageView2;
+@property (weak, nonatomic) IBOutlet SelfieImageView *selfieImageView;
+@property (weak, nonatomic) IBOutlet SelfieImageView *selfieImageView2;
+@property (strong,nonatomic) UIImageView *tappedImageView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *downloadAppImageView;
+@property (weak, nonatomic) IBOutlet UILabel *accessCodeLabel;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *picTapGesture;
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *picTapGesture2;
 
 @property (weak, nonatomic) IBOutlet ASProgressPopUpView *progressView;
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 
-@property (weak, nonatomic) IBOutlet UIView *bottomHalfView;
 @property (weak, nonatomic) IBOutlet UIView *topHalfView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *label1;
-@property (weak, nonatomic) IBOutlet UILabel *label2;
-
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (assign) QuestionType questionType;
+@property (assign) BOOL selfieTitle;
 @property (assign) BOOL selfie1;
 @property (assign) BOOL selfie2;
 
@@ -48,6 +52,12 @@
 @property (strong,nonatomic) NSTimer *timer;
 @property (assign)BOOL shownPopTip1;
 
+// constraints
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *selfieWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *selfieHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *selfieHorizontalSpaceConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *selfieCenterXConstraint;
 
 @end
 
@@ -63,8 +73,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.downloadAppImageView.hidden = YES;
-    self.downloadAppImageView.alpha = 0;
+    self.accessCodeLabel.hidden = YES;
+    self.accessCodeLabel.alpha = 0;
     
 }
 
@@ -92,57 +102,60 @@
 
 -(void)setup
 {
+    self.questionType = QuestionTypeNone;
     self.stage = VoteStage1;
-    self.navigationItem.title = NSLocalizedString(@"Create 🐣⚡️", nil);
+    self.navigationItem.title = NSLocalizedString(@"Create Your Own", nil);
     
-    FAKIonIcons *backIcon = [FAKIonIcons chevronLeftIconWithSize:35];
+    FAKIonIcons *backIcon = [FAKIonIcons closeRoundIconWithSize:35];
     UIImage *backImage = [backIcon imageWithSize:CGSizeMake(35, 35)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backImage style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
-
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backImage style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
+    
     self.selfieImageView.userInteractionEnabled = YES;
     self.selfieImageView2.userInteractionEnabled = YES;
+    self.selfieImageView.descriptionLabel.text = NSLocalizedString(@"Image 1", nil);
+    self.selfieImageView2.descriptionLabel.text = NSLocalizedString(@"Image 2", nil);
+    self.selfieImageView.descriptionLabel.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:12];
+    self.selfieImageView2.descriptionLabel.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:12];
 
     
     [self.continueButton setBackgroundColor:[UIColor colorWithHexString:kColorRed]];
     [self.continueButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.continueButton setTitle:NSLocalizedString(@"Almost Done!", nil) forState:UIControlStateNormal];
-    self.continueButton.titleLabel.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:18];
-    self.continueButton.layer.cornerRadius = 5;
-    self.continueButton.hidden = YES;
-    self.continueButton.alpha = 0;
+    [self.continueButton setTitle:NSLocalizedString(@"DONE", nil) forState:UIControlStateNormal];
+    self.continueButton.titleLabel.font = [UIFont fontWithName:kFontGlobalBold size:20];
     
-    self.titleLabel.text = NSLocalizedString(@"Are we twins or nah?\n Vote now with code cj0092", nil);
-    self.titleLabel.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:17];
-    self.label1.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:16];
-    self.label2.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:16];
+    self.titleLabel.text = NSLocalizedString(@"Tap To Add Question", nil);
+    self.titleLabel.font = [UIFont fontWithName:kFontGlobal size:17];
     self.titleLabel.textColor = [UIColor whiteColor];
-    self.label1.textColor = [UIColor whiteColor];
-    self.label2.textColor = [UIColor whiteColor];
-    self.label1.userInteractionEnabled = YES;
-    self.label2.userInteractionEnabled = YES;
-    self.label1.hidden = YES;
-    self.label1.alpha = 0;
-    self.label2.hidden = YES;
-    self.label2.alpha = 0;
-    self.titleLabel.hidden = YES;
-    self.titleLabel.alpha = 0;
-    self.downloadAppImageView.hidden = YES;
-    self.downloadAppImageView.alpha = 0;
+    self.titleLabel.userInteractionEnabled = YES;
+
+    self.accessCodeLabel.textColor = [UIColor whiteColor];
+    self.accessCodeLabel.font = [UIFont fontWithName:kFontGlobal size:15];
+    self.accessCodeLabel.hidden = YES;
+    self.accessCodeLabel.alpha = 0;
     
     // Create background image for selfies based on app icon
     UIImage *appIcon = [UIImage imageNamed:kAppIcon];
     UIImage *blurredIcon = [appIcon blurredImageWithRadius:3
-                                                iterations:3
-                                                 tintColor:nil];
+                                                iterations:5
+                                                 tintColor:[UIColor blackColor]];
     self.topHalfView.backgroundColor = [UIColor colorWithPatternImage:blurredIcon];
     self.view.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
-
     
 
+    [self.segmentedControl setTitle:NSLocalizedString(@"1 PIC", nil) forSegmentAtIndex:0];
+    [self.segmentedControl setTitle:NSLocalizedString(@"2 PICS", nil) forSegmentAtIndex:1];
+    [self.segmentedControl setTintColor:[UIColor whiteColor]];
+    [self.segmentedControl setSelectedSegmentIndex:1];
+    FAKIonIcons *imageIcon = [FAKIonIcons imageIconWithSize:35];
+    FAKIonIcons *imagesIcon = [FAKIonIcons imagesIconWithSize:35];
+    UIImage *imageImage = [imageIcon imageWithSize:CGSizeMake(35, 35)];
+    UIImage *imagesImage = [imagesIcon imageWithSize:CGSizeMake(35, 35)];
+    [self.segmentedControl setImage:imageImage forSegmentAtIndex:0];
+    [self.segmentedControl setImage:imagesImage forSegmentAtIndex:1];
     
     //self.progressView.dataSource = self;
     //self.progressView.delegate = self;
-    self.progressView.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:18];
+    self.progressView.font = [UIFont fontWithName:kFontGlobal size:18];
     self.progressView.popUpViewAnimatedColors = @[[UIColor colorWithHexString:kColorFlatOrange], [UIColor colorWithHexString:kColorFlatGreen], [UIColor colorWithHexString:kColorFlatTurquoise]];
     self.progressView.popUpViewCornerRadius = 10.0;
     self.progressView.progress = 0.0;
@@ -150,7 +163,7 @@
     // Pop tip code
     AMPopTip *appearance = [AMPopTip appearance];
     appearance.textColor = [UIColor whiteColor];
-    appearance.font = [UIFont fontWithName:@"Futura-CondensedExtraBold" size:16];
+    appearance.font = [UIFont fontWithName:kFontGlobal size:16];
     appearance.popoverColor = [UIColor colorWithHexString:kColorFlatGreen];
     appearance.animationIn = 1;
     self.popTip = [AMPopTip popTip];
@@ -176,13 +189,17 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         //code to be executed on the main queue after delay
+        CGRect frame = CGRectZero;
         if (stage == VoteStage1){
             // show pop tip on first selfie box
-            [self.popTip showText:text direction:AMPopTipDirectionUp maxWidth:200 inView:self.view fromFrame:self.selfieImageView.frame];
+            frame = [self.view convertRect:self.selfieImageView.frame fromView:self.topHalfView];
+            
+            [self.popTip showText:text direction:AMPopTipDirectionUp maxWidth:200 inView:self.view fromFrame:frame];
         }
         else if (stage == VoteStage2){
             // show pop tip on second selfie box
-            [self.popTip showText:text direction:AMPopTipDirectionUp maxWidth:200 inView:self.view fromFrame:self.selfieImageView2.frame];
+            frame = [self.view convertRect:self.selfieImageView2.frame fromView:self.topHalfView];
+            [self.popTip showText:text direction:AMPopTipDirectionUp maxWidth:200 inView:self.view fromFrame:frame];
         }
         
     });
@@ -243,7 +260,6 @@
             }
             else{
                 [self removeMyTimer];
-                [self performSelector:@selector(goForward2) withObject:nil];
             }
             
         }
@@ -288,8 +304,6 @@
 - (void)goForward
 {
 
-    self.downloadAppImageView.hidden = NO;
-    self.downloadAppImageView.alpha = 1;
     
     UIImage *shareImage = [self.topHalfView convertViewToImage];
     UIViewController *contoller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardShare];
@@ -300,17 +314,135 @@
 
 }
 
-- (void)goForward2
+- (BOOL)checkRequired
 {
-    self.stage = VoteStage5;
-    [self goForward];
+    // First check images are there
+    // If one image segment is selected only check for one image, else check for two
+    NSString *title = NSLocalizedString(@"Error", nil);
+    NSString *message = NSLocalizedString(@"Please choose first image by tapping on 'Image 1'.", nil);
+    if (self.segmentedControl.selectedSegmentIndex == 0){
+        if (!self.selfie1){
+            [PSTAlertController presentDismissableAlertWithTitle:title
+                                                         message:message
+                                                      controller:self];
+            return NO;
+        }
+    }
+    else if (self.segmentedControl.selectedSegmentIndex == 1){
+        if (!self.selfie1){
+            [PSTAlertController presentDismissableAlertWithTitle:title
+                                                         message:message
+                                                      controller:self];
+            return NO;
+        }
+        
+        else if (!self.selfie2){
+            message = NSLocalizedString(@"Please choose second image by tapping on 'Image 2'.", nil);
+            [PSTAlertController presentDismissableAlertWithTitle:title
+                                                         message:message
+                                                      controller:self];
+            return NO;
+        }
+    }
+    
+    
+    // Then make sure title is set
+    if (!self.selfieTitle){
+        message = NSLocalizedString(@"Please add your question/title by tapping on 'Tap To Add Question'.", nil);
+        [PSTAlertController presentDismissableAlertWithTitle:title
+                                                     message:message
+                                                  controller:self];
+        return NO;
+    }
+    
+    if (self.questionType == QuestionTypeNone){
+        [self askQuestionType];
+        return NO;
+        
+    }
+    
+    return YES;
+    
+}
+
+- (void)askQuestionType
+{
+    PSTAlertController *alert = [PSTAlertController alertControllerWithTitle:NSLocalizedString(@"Choose question type", nil)
+                                                                     message:NSLocalizedString(@"Is this a 'YES or NO' question or 'A or B' question?", nil)
+                                                              preferredStyle:PSTAlertControllerStyleAlert];
+    
+    PSTAlertAction *yesORno = [PSTAlertAction actionWithTitle:NSLocalizedString(@"YES or NO", nil) style:PSTAlertActionStyleDefault
+                                                      handler:^(PSTAlertAction *action) {
+                                                          DLog(@"Yes or no question");
+                                                          self.questionType = QuestionTypeYESorNO;
+                                                          [self tappedContinueButton:nil];
+                                                          [alert dismissAnimated:YES completion:nil];
+                                                      }];
+    
+
+    
+    PSTAlertAction *aORb = [PSTAlertAction actionWithTitle:NSLocalizedString(@"A or B", nil) style:PSTAlertActionStyleDefault
+                                                   handler:^(PSTAlertAction *action) {
+                                                        DLog(@"A or B question");
+                                                       self.questionType = QuestionTypeAorB;
+                                                       [self tappedContinueButton:nil];
+                                                       [alert dismissAnimated:YES completion:nil];
+                                                   }];
+    [alert addAction:yesORno];
+    [alert addAction:aORb];
+    [alert showWithSender:self controller:self animated:YES completion:nil];
+}
+
+- (IBAction)tappedSegmentedControl:(UISegmentedControl *)sender {
+    [self.popTip hide];
+    if (sender.selectedSegmentIndex == 0){
+        self.selfieHeightConstraint.constant = 200;
+        self.selfieWidthConstraint.constant = 200;
+        self.selfieCenterXConstraint.constant = 0;
+        self.selfieImageView2.hidden = YES;
+        self.selfieImageView2.alpha = 0;
+    }
+    
+    else if (sender.selectedSegmentIndex == 1){
+        self.selfieHeightConstraint.constant = 150;
+        self.selfieWidthConstraint.constant = 150;
+        self.selfieCenterXConstraint.constant = 80;
+        self.selfieImageView2.hidden = NO;
+        self.selfieImageView2.alpha = 1;
+
+    }
+    
+    [UIView animateWithDuration:1
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                         [self.selfieImageView repositionIcon];
+                     }];
 }
 
 - (IBAction)tappedContinueButton:(UIButton *)sender {
-    [self goForward];
+    // submit here
+    // Check to make sure title is added and images are set
+    // Then submit to server, if success then dismiss screen then send notif
+    
+    if (![self checkRequired]){
+        return;
+    }
+    
+    self.accessCodeLabel.hidden = NO;
+    self.accessCodeLabel.alpha = 1;
+    int success = 1;
+    if (success){
+         UIImage *shareImage = [self.topHalfView convertViewToImage];
+        [self dismissViewControllerAnimated:YES completion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationSubmittedCard
+                                                                object:self userInfo:@{@"shareImage":shareImage,@"shareText":self.titleLabel.text}];
+
+        }];
+    }
 }
 
 - (IBAction)tappedSelfieImageView:(UITapGestureRecognizer *)sender {
+    self.tappedImageView = (UIImageView *)sender.view;
     self.tappedSelfie1 = YES;
     [self.popTip hide];
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -350,32 +482,29 @@
 }
 
 
-- (IBAction)tappedLabel1:(UITapGestureRecognizer *)sender {
-    [self.label1 stopGlowing];
-    [self.label2 stopGlowing];
-    
+- (IBAction)tappedTitleLabel:(UITapGestureRecognizer *)sender {
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     alert.backgroundType = Shadow;
     //alert.iconTintColor = [UIColor colorWithHexString:kColorYellow];
-    alert.customViewColor = [UIColor colorWithHexString:kColorFlatGreen];
-    NSString *title = NSLocalizedString(@"Add your names!", nil);
-    NSString *subtitle = NSLocalizedString(@"Name your selfie and twin." , nil);
+    alert.customViewColor = [UIColor colorWithHexString:kColorRed];
+    NSString *title = NSLocalizedString(@"Ask your question!", nil);
+    NSString *subtitle = NSLocalizedString(@"E.g. 'Do I look like like my brother/sister?'" , nil);
     NSString *closeButton = NSLocalizedString(@"Cancel", nil);
     NSString *doneButton = NSLocalizedString(@"Done", nil);
-    NSString *placeholder1 = NSLocalizedString(@"Name your selfie!", nil);
-    NSString *placeholder2 = NSLocalizedString(@"Name your twin", nil);
+    NSString *placeholder1 = NSLocalizedString(@"Ask your question selfie!", nil);
     
     UITextField *commentField = [alert addTextField:placeholder1];
-    UITextField *commentField2 = [alert addTextField:placeholder2];
     
     commentField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
-    commentField.text = self.label1.text;
-    commentField2.autocapitalizationType = UITextAutocapitalizationTypeSentences;
-    commentField2.text = self.label2.text;
+    commentField.text = self.titleLabel.text;
+
     [alert addButton:doneButton actionBlock:^{
-        self.label1.text = commentField.text;
-        self.label2.text = commentField2.text;
-        [self showButtons];
+        NSString *titleText = commentField.text;
+        if (![titleText containsString:@"?"]){
+            titleText = [NSString stringWithFormat:@"%@?",titleText];
+        }
+        self.titleLabel.text = titleText;
+        self.selfieTitle = YES;
         if (self.stage == VoteStage3){
             self.stage = VoteStage4;
             [self updateTimerWithPreviousTime];
@@ -387,44 +516,7 @@
     
 }
 
-- (IBAction)tappedLabel2:(UITapGestureRecognizer *)sender {
-    [self tappedLabel1:sender];
-}
 
-- (void)showButtons
-{
-    if ([self.continueButton isHidden]){
-        [UIView animateWithDuration:1
-                         animations:^{
-                             self.continueButton.hidden = NO;
-                             self.continueButton.alpha = 1;
-                             
-                             FAKIonIcons *goIcon = [FAKIonIcons chevronRightIconWithSize:35];
-                             UIImage *goImage = [goIcon imageWithSize:CGSizeMake(35, 35)];
-                             self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:goImage style:UIBarButtonItemStylePlain target:self action:@selector(goForward)];
-                         }];
-    }
-}
-
-- (void)showLabels
-{
-    
-    [UIView animateWithDuration:1
-                     animations:^{
-                         self.label1.hidden = NO;
-                         self.label1.alpha = 1;
-                         self.label2.hidden = NO;
-                         self.label2.alpha = 1;
-                         self.titleLabel.hidden = NO;
-                         self.titleLabel.alpha = 1;
-                         
-                     } completion:^(BOOL finished) {
-                         [self.label1 startGlowingWithColor:[UIColor whiteColor] intensity:20];
-                         [self.label2 startGlowingWithColor:[UIColor whiteColor] intensity:20];
-                     }];
-
-    
-}
 
 #pragma -mark Image cropper
 -(void)imageCropViewControllerDidCancelCrop:(RSKImageCropViewController *)controller
@@ -441,19 +533,40 @@
 - (void)imageCropViewController:(RSKImageCropViewController *)controller didCropImage:(UIImage *)croppedImage usingCropRect:(CGRect)cropRect rotationAngle:(CGFloat)rotationAngle
 {
     [controller dismissViewControllerAnimated:YES completion:^{
+        if (self.tappedImageView){
+            self.tappedImageView.image = croppedImage;
+            if ([self.tappedImageView isKindOfClass:[SelfieImageView class]]){
+                [((SelfieImageView *)self.tappedImageView) choseImage];
+            }
+            self.tappedImageView.contentMode = UIViewContentModeScaleAspectFit;
+            if (self.tappedImageView == self.selfieImageView){
+                self.selfie1 = YES;
+            }
+            else if (self.tappedImageView == self.selfieImageView2){
+                self.selfie2 = YES;
+            }
+            return;
+        }
+        
         if (self.stage == VoteStage1){
             self.stage = VoteStage2;
+            
+            self.selfieImageView.contentMode = UIViewContentModeScaleAspectFit;
             self.selfieImageView.image = croppedImage;
+            [self.selfieImageView choseImage];
+            
             self.selfie1 = YES;
             [self updateTimerWithPreviousTime];
             [self showPopTipWithText:NSLocalizedString(@"Next choose your twin", nil) andDelay:1 forStage:VoteStage2];
         }
         else if (self.stage == VoteStage2){
             self.stage = VoteStage3;
+            self.selfieImageView2.contentMode = UIViewContentModeScaleToFill;
             self.selfieImageView2.image = croppedImage;
+            [self.selfieImageView2 choseImage];
             self.selfie2 = YES;
             [self updateTimerWithPreviousTime];
-            [self showLabels];
+
         }
         else{
             if (self.tappedSelfie1){
@@ -472,6 +585,11 @@
 -(void)imageCropViewController:(RSKImageCropViewController *)controller didCropImage:(UIImage *)croppedImage usingCropRect:(CGRect)cropRect
 {
     [controller dismissViewControllerAnimated:YES completion:^{
+        if (self.tappedImageView){
+            self.tappedImageView.image = croppedImage;
+            return;
+        }
+        
         if (self.stage == VoteStage1){
             self.selfieImageView.image = croppedImage;
             self.selfie1 = croppedImage;
@@ -480,8 +598,6 @@
         else if (self.stage == VoteStage2){
             self.selfieImageView2.image = croppedImage;
             self.selfie2 = croppedImage;
-            [self showButtons];
-            [self showLabels];
         }
 
         
@@ -508,6 +624,8 @@
                                    
                                    RSKImageCropViewController *crop = [[RSKImageCropViewController alloc] initWithImage:originalImage];
                                    crop.cropMode = RSKImageCropModeSquare;
+                                   crop.applyMaskToCroppedImage = YES;
+                                   crop.avoidEmptySpaceAroundImage = YES;
                                    crop.delegate = self;
                                    [self presentViewController:crop animated:YES completion:nil];
                                }];

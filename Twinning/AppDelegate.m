@@ -13,6 +13,9 @@
 #import "User+Utils.h"
 #import "MenuViewController.h"
 #import <ECSlidingViewController.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 
 @interface AppDelegate ()
 @property (assign) BOOL appInForeground;
@@ -28,9 +31,12 @@
     // Global appearance
     [[UINavigationBar appearance] setBackgroundColor:[UIColor colorWithHexString:kColorRed]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithHexString:kColorRed]];
-    [[UINavigationBar appearance] setTranslucent:NO];
+    if (IS_IOS8){
+        [[UINavigationBar appearance] setTranslucent:NO];
+    }
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
+                                                           NSFontAttributeName:[UIFont fontWithName:kFontGlobalBold size:20]}];
     
     // Menu setup
     // Right slide out menu setup
@@ -67,6 +73,13 @@
         self.appInForeground = YES;
     }
     
+
+    // Fabric
+    [Fabric with:@[[Crashlytics class]]];
+    [CrashlyticsKit setUserIdentifier:@"12345"];
+    [CrashlyticsKit setUserEmail:@"user@fabric.io"];
+    [CrashlyticsKit setUserName:@"Test User"];
+
 
     
     // Create initial user
