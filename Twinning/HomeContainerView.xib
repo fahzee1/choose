@@ -43,6 +43,7 @@
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="bigsmile" translatesAutoresizingMaskIntoConstraints="NO" id="BFB-pz-AXp">
                     <rect key="frame" x="0.0" y="91" width="600" height="396"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="height" constant="353" id="6zW-IT-mac"/>
                         <constraint firstAttribute="width" constant="600" id="fxq-2U-BWl"/>
@@ -59,6 +60,9 @@
                             <exclude reference="uLO-Mm-JO0"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="vIv-wP-RDq" appends="YES" id="E4r-EP-GbF"/>
+                    </connections>
                 </imageView>
                 <view contentMode="scaleToFill" verticalHuggingPriority="200" verticalCompressionResistancePriority="700" translatesAutoresizingMaskIntoConstraints="NO" id="nH2-u4-oes">
                     <rect key="frame" x="0.0" y="487" width="600" height="43"/>
@@ -185,6 +189,7 @@
                 <outlet property="countLabelBottomConstraint" destination="DLt-OK-G8n" id="GKA-Lv-R8H"/>
                 <outlet property="imageView" destination="BFB-pz-AXp" id="mzs-2B-f5s"/>
                 <outlet property="imageViewHeightConstraint" destination="gCf-LS-43A" id="7Vd-XF-w7k"/>
+                <outlet property="imageViewTap" destination="vIv-wP-RDq" id="T56-FU-jGf"/>
                 <outlet property="imageViewWidthConstraint" destination="fxq-2U-BWl" id="8K5-7D-hIp"/>
                 <outlet property="titleLabel" destination="Mhn-cd-WgC" id="v91-jJ-WsI"/>
                 <outlet property="topLabelTopConstraint" destination="ZuK-QK-5q2" id="zSe-SU-AJq"/>
@@ -197,9 +202,9 @@
             </connections>
             <point key="canvasLocation" x="284" y="165"/>
         </view>
-        <tapGestureRecognizer id="cyT-Z4-4CN">
+        <tapGestureRecognizer id="vIv-wP-RDq">
             <connections>
-                <action selector="tappedShareImageView:" destination="iN0-l3-epB" id="7oh-CZ-s1b"/>
+                <action selector="tappedImageView:" destination="iN0-l3-epB" id="3Pm-7i-fGU"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

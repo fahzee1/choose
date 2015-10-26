@@ -94,7 +94,7 @@
 		1181D2361BD58B7E00DB52ED /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		1181D2381BD58C2B00DB52ED /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
 		1181D2391BD58C2B00DB52ED /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
-		11F1060C1BA4A3BC00D044AC /* Twinning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twinning.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		11F1060C1BA4A3BC00D044AC /* Choose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Choose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F106101BA4A3BC00D044AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11F106111BA4A3BC00D044AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		11F106131BA4A3BC00D044AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		11F1061D1BA4A3BC00D044AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		11F1061F1BA4A3BC00D044AC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		11F106221BA4A3BC00D044AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		11F106281BA4A3BC00D044AC /* TwinningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwinningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		11F106281BA4A3BC00D044AC /* ChooseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChooseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F1062D1BA4A3BC00D044AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11F1062E1BA4A3BC00D044AC /* TwinningTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwinningTests.m; sourceTree = "<group>"; };
 		11F106391BA4A43400D044AC /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
@@ -247,8 +247,8 @@
 		11F1060D1BA4A3BC00D044AC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				11F1060C1BA4A3BC00D044AC /* Twinning.app */,
-				11F106281BA4A3BC00D044AC /* TwinningTests.xctest */,
+				11F1060C1BA4A3BC00D044AC /* Choose.app */,
+				11F106281BA4A3BC00D044AC /* ChooseTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -376,9 +376,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		11F1060B1BA4A3BC00D044AC /* Twinning */ = {
+		11F1060B1BA4A3BC00D044AC /* Choose */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 11F106321BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "Twinning" */;
+			buildConfigurationList = 11F106321BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "Choose" */;
 			buildPhases = (
 				4E0A82F38813A942851DC37F /* Check Pods Manifest.lock */,
 				11F106081BA4A3BC00D044AC /* Sources */,
@@ -391,14 +391,14 @@
 			);
 			dependencies = (
 			);
-			name = Twinning;
+			name = Choose;
 			productName = Twinning;
-			productReference = 11F1060C1BA4A3BC00D044AC /* Twinning.app */;
+			productReference = 11F1060C1BA4A3BC00D044AC /* Choose.app */;
 			productType = "com.apple.product-type.application";
 		};
-		11F106271BA4A3BC00D044AC /* TwinningTests */ = {
+		11F106271BA4A3BC00D044AC /* ChooseTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 11F106351BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "TwinningTests" */;
+			buildConfigurationList = 11F106351BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "ChooseTests" */;
 			buildPhases = (
 				11F106241BA4A3BC00D044AC /* Sources */,
 				11F106251BA4A3BC00D044AC /* Frameworks */,
@@ -409,9 +409,9 @@
 			dependencies = (
 				11F1062A1BA4A3BC00D044AC /* PBXTargetDependency */,
 			);
-			name = TwinningTests;
+			name = ChooseTests;
 			productName = TwinningTests;
-			productReference = 11F106281BA4A3BC00D044AC /* TwinningTests.xctest */;
+			productReference = 11F106281BA4A3BC00D044AC /* ChooseTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -437,7 +437,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 11F106071BA4A3BC00D044AC /* Build configuration list for PBXProject "Twinning" */;
+			buildConfigurationList = 11F106071BA4A3BC00D044AC /* Build configuration list for PBXProject "Choose" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -450,8 +450,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				11F1060B1BA4A3BC00D044AC /* Twinning */,
-				11F106271BA4A3BC00D044AC /* TwinningTests */,
+				11F1060B1BA4A3BC00D044AC /* Choose */,
+				11F106271BA4A3BC00D044AC /* ChooseTests */,
 			);
 		};
 /* End PBXProject section */
@@ -578,7 +578,7 @@
 /* Begin PBXTargetDependency section */
 		11F1062A1BA4A3BC00D044AC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 11F1060B1BA4A3BC00D044AC /* Twinning */;
+			target = 11F1060B1BA4A3BC00D044AC /* Choose */;
 			targetProxy = 11F106291BA4A3BC00D044AC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -697,7 +697,7 @@
 				INFOPLIST_FILE = Twinning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Choose;
 			};
 			name = Debug;
 		};
@@ -715,7 +715,7 @@
 				INFOPLIST_FILE = Twinning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Choose;
 			};
 			name = Release;
 		};
@@ -733,7 +733,7 @@
 				);
 				INFOPLIST_FILE = TwinningTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ChooseTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twinning.app/Twinning";
 			};
 			name = Debug;
@@ -748,7 +748,7 @@
 				);
 				INFOPLIST_FILE = TwinningTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ChooseTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twinning.app/Twinning";
 			};
 			name = Release;
@@ -756,7 +756,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		11F106071BA4A3BC00D044AC /* Build configuration list for PBXProject "Twinning" */ = {
+		11F106071BA4A3BC00D044AC /* Build configuration list for PBXProject "Choose" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				11F106301BA4A3BC00D044AC /* Debug */,
@@ -765,7 +765,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		11F106321BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "Twinning" */ = {
+		11F106321BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "Choose" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				11F106331BA4A3BC00D044AC /* Debug */,
@@ -774,7 +774,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		11F106351BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "TwinningTests" */ = {
+		11F106351BA4A3BC00D044AC /* Build configuration list for PBXNativeTarget "ChooseTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				11F106361BA4A3BC00D044AC /* Debug */,

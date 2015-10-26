@@ -15,6 +15,9 @@
 @interface HomeContainerView()
 @property (strong,nonatomic) HomeResultView *resultView;
 
+@property (weak, nonatomic) IBOutlet UITapGestureRecognizer *imageViewTap;
+
+
 // Constraints
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLabelTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomButtonHeightConstraint;
@@ -43,13 +46,14 @@
     self.votesTotalLabel.font = [UIFont fontWithName:kFontGlobal size:18];
     
     self.userContainerView.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
-    self.button1.backgroundColor = [UIColor colorWithHexString:kColorFlatRed];
-    self.button2.backgroundColor = [UIColor colorWithHexString:kColorFlatGreen];
+    self.button1.backgroundColor = [UIColor colorWithHexString:kColorFlatGreen];
+    self.button2.backgroundColor = [UIColor colorWithHexString:kColorFlatRed];
     [self.button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.button1.titleLabel.font = [UIFont fontWithName:kFontGlobalBold size:25];
     self.button2.titleLabel.font = [UIFont fontWithName:kFontGlobalBold size:25];
     
+
     for (UIView *view in self.subviews){
         if ([view isKindOfClass:[UILabel class]]){
             ((UILabel *)view).textColor = [UIColor colorWithHexString:kColorBlackSexy];
@@ -63,13 +67,16 @@
     self.resultView = [[[NSBundle mainBundle] loadNibNamed:@"HomeResultView" owner:self options:nil] objectAtIndex:0];
     self.resultView.frame = CGRectMake(0, 0, self.imageView.frame.size.width, self.imageView.frame.size.height);
     self.resultView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    self.resultView.leftLabel.text = @"66% chose no";
-    self.resultView.rightLabel.text = @"23% chose yes";
+    self.resultView.leftLabel.text = @"65% chose no";
+    self.resultView.rightLabel.text = @"35% chose yes";
     [self.imageView addSubview:self.resultView];
     self.resultView.hidden = YES;
     self.resultView.alpha = 0;
     
     self.shareImageView.userInteractionEnabled = YES;
+    self.imageView.userInteractionEnabled = YES;
+    self.imageViewTap.numberOfTapsRequired = 2;
+    
     FAKIonIcons *shareIcon = [FAKIonIcons shareIconWithSize:15];
     [shareIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
     shareIcon.drawingBackgroundColor = [UIColor colorWithHexString:kColorDarkGrey];
@@ -102,20 +109,23 @@
     self.shareImageView.hidden = YES;
     self.shareImageView.alpha = 0;
     
+    if (self.card.questionType == QuestionTypeYESorNO){
+        self.resultView.leftLabel.text = @"65% chose YES";
+        self.resultView.rightLabel.text = @"35% chose NO";
+    }
+    else if (self.card.questionType == QuestionTypeAorB){
+        self.resultView.leftLabel.text = @"65% chose A";
+        self.resultView.rightLabel.text = @"35% chose B";
+    }
+    
     [UIView animateWithDuration:1
                      animations:^{
-                         uint32_t rnd = arc4random_uniform(2);
-                         if (rnd == 2){
-                             [self.resultView showLeft];
-                         }
-                         else{
-                             [self.resultView showRight];
-                         }
-                     }];
+                         [self.resultView showLeft];
+                        }];
 }
 
 
-- (IBAction)tappedShareImageView:(UITapGestureRecognizer *)sender {
+- (IBAction)tappedImageView:(UITapGestureRecognizer *)sender {
     if (self.delegate){
         [self.delegate homeView:self
                tappedShareImage:self.imageView.image
@@ -148,6 +158,26 @@
 {
     [self removeFromSuperview];
     
+}
+
+- (void)setCard:(Card *)card
+{
+    // When i set the card use that to display correct bottom button
+    _card = card;
+    
+    if (card.questionType == QuestionTypeYESorNO){
+        [self.button1 setTitle:NSLocalizedString(@"YES", nil) forState:UIControlStateNormal];
+        [self.button2 setTitle:NSLocalizedString(@"NO", nil) forState:UIControlStateNormal];
+        self.button1.backgroundColor = [UIColor colorWithHexString:kColorFlatGreen];
+        self.button2.backgroundColor = [UIColor colorWithHexString:kColorFlatRed];
+    }
+    else if (card.questionType == QuestionTypeAorB){
+        [self.button1 setTitle:NSLocalizedString(@"A", nil) forState:UIControlStateNormal];
+        [self.button2 setTitle:NSLocalizedString(@"B", nil) forState:UIControlStateNormal];
+        self.button1.backgroundColor = [UIColor colorWithHexString:kColorOrange];
+        self.button2.backgroundColor = [UIColor colorWithHexString:kColorFlatBlue];
+    }
+
 }
 /*
 // Only override drawRect: if you perform custom drawing.

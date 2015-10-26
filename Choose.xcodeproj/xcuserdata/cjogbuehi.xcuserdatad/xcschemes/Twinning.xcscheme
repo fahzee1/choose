@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "11F1060B1BA4A3BC00D044AC"
-               BuildableName = "Twinning.app"
-               BlueprintName = "Twinning"
-               ReferencedContainer = "container:Twinning.xcodeproj">
+               BuildableName = "Choose.app"
+               BlueprintName = "Choose"
+               ReferencedContainer = "container:Choose.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "11F106271BA4A3BC00D044AC"
-               BuildableName = "TwinningTests.xctest"
-               BlueprintName = "TwinningTests"
-               ReferencedContainer = "container:Twinning.xcodeproj">
+               BuildableName = "ChooseTests.xctest"
+               BlueprintName = "ChooseTests"
+               ReferencedContainer = "container:Choose.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "11F106271BA4A3BC00D044AC"
-               BuildableName = "TwinningTests.xctest"
-               BlueprintName = "TwinningTests"
-               ReferencedContainer = "container:Twinning.xcodeproj">
+               BuildableName = "ChooseTests.xctest"
+               BlueprintName = "ChooseTests"
+               ReferencedContainer = "container:Choose.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "11F1060B1BA4A3BC00D044AC"
-            BuildableName = "Twinning.app"
-            BlueprintName = "Twinning"
-            ReferencedContainer = "container:Twinning.xcodeproj">
+            BuildableName = "Choose.app"
+            BlueprintName = "Choose"
+            ReferencedContainer = "container:Choose.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "11F1060B1BA4A3BC00D044AC"
-            BuildableName = "Twinning.app"
-            BlueprintName = "Twinning"
-            ReferencedContainer = "container:Twinning.xcodeproj">
+            BuildableName = "Choose.app"
+            BlueprintName = "Choose"
+            ReferencedContainer = "container:Choose.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "11F1060B1BA4A3BC00D044AC"
-            BuildableName = "Twinning.app"
-            BlueprintName = "Twinning"
-            ReferencedContainer = "container:Twinning.xcodeproj">
+            BuildableName = "Choose.app"
+            BlueprintName = "Choose"
+            ReferencedContainer = "container:Choose.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

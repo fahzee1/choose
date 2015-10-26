@@ -11,6 +11,7 @@
 #import "ShareViewController.h"
 #import "CreateVoteController.h"
 #import <UIViewController+ECSlidingViewController.h>
+#import <AMPopTip.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import "UIColor+HexValue.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -28,6 +29,7 @@
 @property (strong,nonatomic) NSMutableArray *cardData;
 @property (assign) NSInteger pageNumber;
 @property (assign) CGPoint oldOffset;
+@property (strong , nonatomic) AMPopTip *popTip;
 
 
 @end
@@ -60,6 +62,11 @@
     NSInteger height = self.scrollView.frame.size.height;
     while (i < 30) {
         Card *card = [[Card alloc] init];
+        NSArray *options = @[[NSNumber numberWithInt:QuestionTypeAorB],[NSNumber numberWithInt:QuestionTypeYESorNO]];
+        id type = options[arc4random_uniform([options count])];
+        int typeInt = [(NSNumber *)type intValue];
+        card.questionType = typeInt;
+        
         [self.cardData addObject:card];
         HomeContainerView *containerView = [[[NSBundle mainBundle] loadNibNamed:@"HomeContainerView" owner:self options:nil] objectAtIndex:0];
         containerView.frame = CGRectMake(0,height * i,self.view.frame.size.width, height);
@@ -69,6 +76,7 @@
         [containerView.userImageView sd_setImageWithURL:card.senderImgUrl placeholderImage:[UIImage imageNamed:@"app-icon"]];
         containerView.countLabel.text = [NSString stringWithFormat:@"%d/100",i];
         containerView.delegate = self;
+        containerView.card = card;
         
         [self.scrollView addSubview:containerView];
         i++;
@@ -87,6 +95,25 @@
     [super viewDidAppear:animated];
     if (IS_IPHONE_4_OR_LESS){
         self.scrollView.contentOffset= CGPointMake(0, 0);
+    }
+    
+    // show quick tip
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults boolForKey:@"firstTip"]){
+        [defaults setBool:YES forKey:@"firstTip"];
+        self.popTip = [AMPopTip popTip];
+        self.popTip.shouldDismissOnTapOutside = YES;
+        self.popTip.shouldDismissOnTap = YES;
+        self.popTip.tapHandler = ^{
+            DLog(@"Tapped pop up");
+        };
+        [self.popTip showText:NSLocalizedString(@"Double tap image to share!", nil)
+                    direction:AMPopTipDirectionDown
+                     maxWidth:200
+                       inView:self.scrollView
+                    fromFrame:self.navigationController.navigationBar.frame
+                     duration:4];
+
     }
 
 }
