@@ -10,7 +10,6 @@
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import <ASProgressPopUpView.h>
 #import "constants.h"
-#import "ShareScreenCell.h"
 #import "UIColor+HexValue.h"
 #import "SocialIconButton.h"
 #import <CRToast.h>

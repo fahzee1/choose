@@ -85,6 +85,8 @@ static NSString *const kStoryboardCreateVote = @"create";
 static NSString *const kStoryboardCreateVoteRoot = @"createRoot";
 static NSString *const kStoryboardShare = @"share";
 static NSString *const kStoryboardSearch = @"search";
+static NSString *const kStoryboardProfile = @"profile";
+static NSString *const kStoryboardCard = @"card";
 
 // Images
 static NSString *const kBannerLogo = @"logo";

@@ -338,6 +338,16 @@
             case 0:
             {
                 // My Questions
+                [controller resetTopViewAnimated:YES
+                                      onComplete:^{
+                                          
+                                          UIViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardProfile];
+                                          if ([controller.topViewController isKindOfClass:[UINavigationController class]]){
+                                              UINavigationController *base = [[UINavigationController alloc] initWithRootViewController:profileController];
+                                              [((UINavigationController *)controller.topViewController).topViewController presentViewController:base animated:YES completion:nil];
+                                          }
+
+                                      }];
                 
             }
                 break;

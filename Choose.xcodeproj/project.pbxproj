@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		111863D81BEA5B8A00E62E13 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111863D71BEA5B8A00E62E13 /* ProfileViewController.m */; };
+		111863DC1BEAAD8500E62E13 /* ProfileHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 111863DB1BEAAD8500E62E13 /* ProfileHeaderCell.m */; };
+		111863DF1BEAADF900E62E13 /* ProfileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 111863DE1BEAADF900E62E13 /* ProfileListCell.m */; };
+		111863E21BEAC04400E62E13 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111863E11BEAC04400E62E13 /* CardViewController.m */; };
 		114626811BA9E4FA00A6D8C2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626801BA9E4FA00A6D8C2 /* User.m */; };
 		114626841BA9E53D00A6D8C2 /* User+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626831BA9E53D00A6D8C2 /* User+Utils.m */; };
 		114626871BAA069E00A6D8C2 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626861BAA069E00A6D8C2 /* HomeViewController.m */; };
@@ -47,7 +51,6 @@
 		11F4DEDE1BADE8F400E4A6E8 /* CreateVoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEDD1BADE8F400E4A6E8 /* CreateVoteController.m */; };
 		11F4DEED1BB49EC900E4A6E8 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEEC1BB49EC900E4A6E8 /* UIView+Screenshot.m */; };
 		11F4DEF01BB49EFE00E4A6E8 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEEF1BB49EFE00E4A6E8 /* ShareViewController.m */; };
-		11F4DEF31BB9E16C00E4A6E8 /* ShareScreenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEF21BB9E16C00E4A6E8 /* ShareScreenCell.m */; };
 		11F4DEF51BBC6F5600E4A6E8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F4DEF41BBC6F5600E4A6E8 /* MessageUI.framework */; };
 		11F4DEF81BBF0FF300E4A6E8 /* SelfieImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEF71BBF0FF300E4A6E8 /* SelfieImageView.m */; };
 		C285608A67CE575EE9C6FEA2 /* libPods-Twinning.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C49A033E85888CC6365382 /* libPods-Twinning.a */; };
@@ -64,6 +67,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		111863D61BEA5B8A00E62E13 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		111863D71BEA5B8A00E62E13 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		111863DA1BEAAD8500E62E13 /* ProfileHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileHeaderCell.h; sourceTree = "<group>"; };
+		111863DB1BEAAD8500E62E13 /* ProfileHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileHeaderCell.m; sourceTree = "<group>"; };
+		111863DD1BEAADF900E62E13 /* ProfileListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileListCell.h; sourceTree = "<group>"; };
+		111863DE1BEAADF900E62E13 /* ProfileListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileListCell.m; sourceTree = "<group>"; };
+		111863E01BEAC04400E62E13 /* CardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
+		111863E11BEAC04400E62E13 /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
 		1146267F1BA9E4FA00A6D8C2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		114626801BA9E4FA00A6D8C2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		114626821BA9E53D00A6D8C2 /* User+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Utils.h"; sourceTree = "<group>"; };
@@ -135,8 +146,6 @@
 		11F4DEEC1BB49EC900E4A6E8 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
 		11F4DEEE1BB49EFE00E4A6E8 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		11F4DEEF1BB49EFE00E4A6E8 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
-		11F4DEF11BB9E16C00E4A6E8 /* ShareScreenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareScreenCell.h; sourceTree = "<group>"; };
-		11F4DEF21BB9E16C00E4A6E8 /* ShareScreenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareScreenCell.m; sourceTree = "<group>"; };
 		11F4DEF41BBC6F5600E4A6E8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		11F4DEF61BBF0FF300E4A6E8 /* SelfieImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfieImageView.h; sourceTree = "<group>"; };
 		11F4DEF71BBF0FF300E4A6E8 /* SelfieImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfieImageView.m; sourceTree = "<group>"; };
@@ -168,6 +177,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		111863D91BEAACFE00E62E13 /* Cell Views */ = {
+			isa = PBXGroup;
+			children = (
+				1181D2381BD58C2B00DB52ED /* SearchCell.h */,
+				1181D2391BD58C2B00DB52ED /* SearchCell.m */,
+				1146268F1BAA154500A6D8C2 /* MenuCell.h */,
+				114626901BAA154500A6D8C2 /* MenuCell.m */,
+				11F4DED91BAC9C4600E4A6E8 /* HomeFeedCell.h */,
+				11F4DEDA1BAC9C4600E4A6E8 /* HomeFeedCell.m */,
+				111863DA1BEAAD8500E62E13 /* ProfileHeaderCell.h */,
+				111863DB1BEAAD8500E62E13 /* ProfileHeaderCell.m */,
+				111863DD1BEAADF900E62E13 /* ProfileListCell.h */,
+				111863DE1BEAADF900E62E13 /* ProfileListCell.m */,
+			);
+			name = "Cell Views";
+			sourceTree = "<group>";
+		};
 		1146267D1BA9E35E00A6D8C2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +220,10 @@
 				11F4DEEF1BB49EFE00E4A6E8 /* ShareViewController.m */,
 				1181D2351BD58B7E00DB52ED /* SearchViewController.h */,
 				1181D2361BD58B7E00DB52ED /* SearchViewController.m */,
+				111863D61BEA5B8A00E62E13 /* ProfileViewController.h */,
+				111863D71BEA5B8A00E62E13 /* ProfileViewController.m */,
+				111863E01BEAC04400E62E13 /* CardViewController.h */,
+				111863E11BEAC04400E62E13 /* CardViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -201,12 +231,6 @@
 		1146268E1BAA14AA00A6D8C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1146268F1BAA154500A6D8C2 /* MenuCell.h */,
-				114626901BAA154500A6D8C2 /* MenuCell.m */,
-				11F4DED91BAC9C4600E4A6E8 /* HomeFeedCell.h */,
-				11F4DEDA1BAC9C4600E4A6E8 /* HomeFeedCell.m */,
-				11F4DEF11BB9E16C00E4A6E8 /* ShareScreenCell.h */,
-				11F4DEF21BB9E16C00E4A6E8 /* ShareScreenCell.m */,
 				11F4DEF61BBF0FF300E4A6E8 /* SelfieImageView.h */,
 				11F4DEF71BBF0FF300E4A6E8 /* SelfieImageView.m */,
 				117825F91BC31F1C00C59DCD /* HomeContainerView.xib */,
@@ -217,8 +241,6 @@
 				117826041BC5A2DB00C59DCD /* HomeResultView.m */,
 				117826121BC879CE00C59DCD /* SocialIconButton.h */,
 				117826131BC879CE00C59DCD /* SocialIconButton.m */,
-				1181D2381BD58C2B00DB52ED /* SearchCell.h */,
-				1181D2391BD58C2B00DB52ED /* SearchCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -260,6 +282,7 @@
 				11F106531BA4ACDC00D044AC /* API */,
 				11F1064B1BA4A49D00D044AC /* 3rd Party */,
 				11F106381BA4A41700D044AC /* Utils */,
+				111863D91BEAACFE00E62E13 /* Cell Views */,
 				1146268E1BAA14AA00A6D8C2 /* Views */,
 				1146267E1BA9E37B00A6D8C2 /* Controllers */,
 				1146267D1BA9E35E00A6D8C2 /* Models */,
@@ -549,13 +572,16 @@
 				11F4DEF81BBF0FF300E4A6E8 /* SelfieImageView.m in Sources */,
 				114626871BAA069E00A6D8C2 /* HomeViewController.m in Sources */,
 				117826001BC58F7200C59DCD /* Card.m in Sources */,
-				11F4DEF31BB9E16C00E4A6E8 /* ShareScreenCell.m in Sources */,
+				111863D81BEA5B8A00E62E13 /* ProfileViewController.m in Sources */,
 				11F106181BA4A3BC00D044AC /* Twinning.xcdatamodeld in Sources */,
 				114626841BA9E53D00A6D8C2 /* User+Utils.m in Sources */,
 				114626811BA9E4FA00A6D8C2 /* User.m in Sources */,
 				11F106511BA4A4C900D044AC /* EasyFacebook.m in Sources */,
+				111863DC1BEAAD8500E62E13 /* ProfileHeaderCell.m in Sources */,
 				114626911BAA154500A6D8C2 /* MenuCell.m in Sources */,
 				11F106521BA4A4C900D044AC /* EasyTwitter.m in Sources */,
+				111863DF1BEAADF900E62E13 /* ProfileListCell.m in Sources */,
+				111863E21BEAC04400E62E13 /* CardViewController.m in Sources */,
 				11F4DEDE1BADE8F400E4A6E8 /* CreateVoteController.m in Sources */,
 				11F106561BA4ACF000D044AC /* APIClient.m in Sources */,
 				11F4DEDB1BAC9C4600E4A6E8 /* HomeFeedCell.m in Sources */,
