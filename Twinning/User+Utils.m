@@ -8,6 +8,7 @@
 
 #import "User+Utils.h"
 #import "constants.h"
+#import "APIClient.h"
 
 @implementation User (Utils)
 
@@ -55,6 +56,73 @@
     
     return user;
     
+}
+
++ (User *)getLocalUserInContext:(NSManagedObjectContext *)context
+{
+    // hold value in constants
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSURL *objectURL = [defaults URLForKey:kLocalUser];
+    NSManagedObjectID *objectID = [context.persistentStoreCoordinator managedObjectIDForURIRepresentation:objectURL];
+    NSError *e;
+    NSManagedObject *userObject = [context existingObjectWithID:objectID error:&e];
+    if (!userObject){
+        DLog(@"error %@",e);
+        abort();
+    }
+    
+    return (User *)userObject;
+}
+
+
++ (void)loginWithParams:(NSDictionary *)params
+                  block:(ResponseBlock)block
+{
+    APIClient *client = [APIClient sharedClient];
+    [client startNetworkActivity];
+    
+    [client POST:APILoginString parameters:params
+         success:^(NSURLSessionDataTask *task, id responseObject) {
+             [client stopNetworkActivity];
+             
+             id success = responseObject[@"success"];
+             NSString *userToken = responseObject[@"user"][@"authentication_token"];
+             if ((BOOL)success && block){
+                 block(APIRequestStatusSuccess,responseObject);
+             }
+             else{
+                 block(APIRequestStatusFail,nil);
+             }
+         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+             [client stopNetworkActivity];
+             DLog(@"%@",error.localizedDescription);
+             
+             if (block){
+                 block(APIRequestStatusFail,nil);
+             }
+         }];
+    
+    
+}
+
++ (void)createCardWithParams:(NSDictionary *)params
+                       block:(ResponseBlock)block
+{
+    APIClient *client = [APIClient sharedClient];
+    [client startNetworkActivity];
+    [client POST:APICardCreateString parameters:params
+         success:^(NSURLSessionDataTask *task, id responseObject) {
+             [client stopNetworkActivity];
+             if (block){
+                 block(APIRequestStatusSuccess,responseObject);
+             }
+         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+             [client stopNetworkActivity];
+             DLog(@"error is %@",error.localizedDescription);
+             if (block){
+                 block(APIRequestStatusFail,error.localizedDescription);
+             }
+         }];
 }
 
 @end

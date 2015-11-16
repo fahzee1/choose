@@ -13,6 +13,13 @@
 #endif
 
 // useful stuff
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
@@ -87,6 +94,8 @@ static NSString *const kStoryboardShare = @"share";
 static NSString *const kStoryboardSearch = @"search";
 static NSString *const kStoryboardProfile = @"profile";
 static NSString *const kStoryboardCard = @"card";
+static NSString *const kStoryboardChoose = @"choose";
+static NSString *const kStoryboardADPlacement = @"adPlacement";
 
 // Images
 static NSString *const kBannerLogo = @"logo";
@@ -101,3 +110,13 @@ static NSString *const kNotificationMenuTappedCategoryChoice = @"kNotificationMe
 static NSString *const kNotificationMenuTappedAccountChoice = @"kNotificationMenuTappedAccountChoice";
 static NSString *const kNotificationMenuTappedSupportChoice = @"kNotificationMenuTappedSupportChoice";
 static NSString *const kNotificationSubmittedCard = @"kNotificationSubmittedCard";
+static NSString *const kNotificationShowingADPlacement = @"kNotificationShowingADPlacement";
+static NSString *const kNotificationClosedADPlacement = @"kNotificationClosedADPlacement";
+static NSString *const kNotificationOnboardIsOver = @"kNotificationOnboardIsOver";
+
+// Default images
+static NSString *const kImageCard = @"card";
+static NSString *const kImageCard2 = @"card2";
+static NSString *const kImageCard3 = @"results";
+static NSString *const kImageCard4 = @"create";
+

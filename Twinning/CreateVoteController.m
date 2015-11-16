@@ -23,9 +23,12 @@
 #import <SCLAlertViewStyleKit.h>
 #import <FXBlurView.h>
 #import "Card.h"
+#import "User+Utils.h"
+#import <MBProgressHUD.h>
+#import "UIImage+Utils.h"
 
 
-@interface CreateVoteController()<UIImagePickerControllerDelegate,RSKImageCropViewControllerDelegate,UINavigationControllerDelegate>
+@interface CreateVoteController()<UIImagePickerControllerDelegate,RSKImageCropViewControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet SelfieImageView *selfieImageView;
 @property (weak, nonatomic) IBOutlet SelfieImageView *selfieImageView2;
 @property (strong,nonatomic) UIImageView *tappedImageView;
@@ -39,7 +42,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *topHalfView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (assign) QuestionType questionType;
 @property (assign) BOOL selfieTitle;
@@ -49,7 +51,7 @@
 @property (assign) BOOL tappedSelfie1;
 
 @property (strong,nonatomic) AMPopTip *popTip;
-@property (strong,nonatomic) NSTimer *timer;
+@property (strong,nonatomic) MBProgressHUD *hud;
 @property (assign)BOOL shownPopTip1;
 
 // constraints
@@ -59,6 +61,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *selfieHorizontalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *selfieCenterXConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *selfieContainerHeightConstraint;
+
 @end
 
 @implementation CreateVoteController
@@ -67,6 +71,8 @@
     [super viewDidLoad];
     //self.stage1selfie = YES;
     [self setup];
+    
+    NSParameterAssert(self.localUser);
     
 }
 
@@ -87,7 +93,7 @@
 
     // If I havent shown the initial pop tip then show it
     if (!self.shownPopTip1){
-        [self showPopTipWithText:NSLocalizedString(@"Tap below to take a selfie", nil) andDelay:1 forStage:self.stage];
+        [self showPopTipWithText:NSLocalizedString(@"Tap above to choose picture", nil) andDelay:0];
         self.shownPopTip1 = YES;
     }
 
@@ -103,7 +109,6 @@
 -(void)setup
 {
     self.questionType = QuestionTypeNone;
-    self.stage = VoteStage1;
     self.navigationItem.title = NSLocalizedString(@"Create Your Own", nil);
     
     FAKIonIcons *backIcon = [FAKIonIcons closeRoundIconWithSize:35];
@@ -153,6 +158,13 @@
     [self.segmentedControl setImage:imageImage forSegmentAtIndex:0];
     [self.segmentedControl setImage:imagesImage forSegmentAtIndex:1];
     
+    if (IS_IPHONE_4_OR_LESS){
+        self.selfieContainerHeightConstraint.constant = 300;
+    }
+    else{
+        self.selfieContainerHeightConstraint.constant = 350;
+    }
+    
     //self.progressView.dataSource = self;
     //self.progressView.delegate = self;
     self.progressView.font = [UIFont fontWithName:kFontGlobal size:18];
@@ -173,123 +185,24 @@
         DLog(@"Tapped pop up");
     };
     
-    
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:.05
-                                                  target:self
-                                                selector:@selector(updateTimerWithPreviousTime)
-                                                userInfo:nil
-                                                 repeats:YES];
+
 }
 
 - (void)showPopTipWithText:(NSString *)text
                   andDelay:(float)delay
-                  forStage:(VoteStage)stage
 {
     double delayInSeconds = delay;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         //code to be executed on the main queue after delay
-        CGRect frame = CGRectZero;
-        if (stage == VoteStage1){
-            // show pop tip on first selfie box
-            frame = [self.view convertRect:self.selfieImageView.frame fromView:self.topHalfView];
-            
-            [self.popTip showText:text direction:AMPopTipDirectionUp maxWidth:200 inView:self.view fromFrame:frame];
-        }
-        else if (stage == VoteStage2){
-            // show pop tip on second selfie box
-            frame = [self.view convertRect:self.selfieImageView2.frame fromView:self.topHalfView];
-            [self.popTip showText:text direction:AMPopTipDirectionUp maxWidth:200 inView:self.view fromFrame:frame];
-        }
-        
+        CGRect frame = [self.view convertRect:self.selfieImageView.frame fromView:self.topHalfView];
+        [self.popTip showText:text direction:AMPopTipDirectionDown maxWidth:200 inView:self.view fromFrame:frame];
+
     });
     
 }
-- (void)updateTimerWithPreviousTime
-{
-    if (!self.timer){
-        [self addMyTimer];
-    }
 
-    switch (self.stage) {
-        case VoteStage1:
-        {
-            [self removeMyTimer];
-        }
-            break;
-            
-        case VoteStage2:
-        {
-            if( self.progressView.progress < .25){
-                self.progressView.progress = self.progressView.progress + .01f;
-            }
-            else{
-                [self removeMyTimer];
-            }
-        }
-            break;
-            
-        case VoteStage3:
-        {
-            if( self.progressView.progress < .49){
-                self.progressView.progress = self.progressView.progress + .01f;
-            }
-            else{
-                [self removeMyTimer];
-            }
 
-        }
-            break;
-            
-        case VoteStage4:
-        {
-            if( self.progressView.progress < .74){
-                self.progressView.progress = self.progressView.progress + .01f;
-            }
-            else{
-                [self removeMyTimer];
-            }
-            
-        }
-            break;
-            
-        case VoteStage5:
-        {
-            if( self.progressView.progress < .99){
-                self.progressView.progress = self.progressView.progress + .01f;
-            }
-            else{
-                [self removeMyTimer];
-            }
-            
-        }
-            break;
-            
-        default:
-            break;
-    }
-    
-}
-
-- (void)removeMyTimer
-{
-    [self.timer invalidate];
-    self.timer = nil;
-}
-
-- (void)addMyTimer
-{
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:.05
-                                                  target:self
-                                                selector:@selector(updateTimerWithPreviousTime)
-                                                userInfo:nil
-                                                 repeats:YES];
-}
-
-- (void)replaceAndAnimateSelfies
-{
-
-}
 
 - (void)goBack
 {
@@ -396,8 +309,14 @@
 - (IBAction)tappedSegmentedControl:(UISegmentedControl *)sender {
     [self.popTip hide];
     if (sender.selectedSegmentIndex == 0){
-        self.selfieHeightConstraint.constant = 200;
-        self.selfieWidthConstraint.constant = 200;
+        if (IS_IPHONE_4_OR_LESS){
+            self.selfieHeightConstraint.constant = 190;
+            self.selfieWidthConstraint.constant = 190;
+        }
+        else{
+            self.selfieHeightConstraint.constant = 240;
+            self.selfieWidthConstraint.constant = 240;
+        }
         self.selfieCenterXConstraint.constant = 0;
         self.selfieImageView2.hidden = YES;
         self.selfieImageView2.alpha = 0;
@@ -424,27 +343,71 @@
     // Check to make sure title is added and images are set
     // Then submit to server, if success then dismiss screen then send notif
     
+    
     if (![self checkRequired]){
         return;
     }
     
-    self.accessCodeLabel.hidden = NO;
-    self.accessCodeLabel.alpha = 1;
-    int success = 1;
-    if (success){
-         UIImage *shareImage = [self.topHalfView convertViewToImage];
-        [self dismissViewControllerAnimated:YES completion:^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationSubmittedCard
-                                                                object:self userInfo:@{@"shareImage":shareImage,@"shareText":self.titleLabel.text}];
-
-        }];
+    self.progressView.progress = 1.0;
+    
+    //self.accessCodeLabel.hidden = NO;
+    //self.accessCodeLabel.alpha = 1;
+    
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.labelText = NSLocalizedString(@"Submitting Card...", nil);
+    
+    UIImage *shareImage = [self.topHalfView convertViewToImage];
+    NSString *base64Image = [self base64Image:shareImage compress:NO];
+    int question_type = 0;
+    if (self.questionType == QuestionTypeAorB){
+        question_type = 100;
     }
-}
+    else if (self.questionType == QuestionTypeYESorNO){
+        question_type = 101;
+    }
+    
+    NSDictionary *params = @{@"question":self.titleLabel.text,
+                             @"question_type":[NSNumber numberWithInt:question_type],
+                             @"facebook_id":self.localUser.facebook_id,
+                             @"image":base64Image};
+    
+    [User createCardWithParams:params
+                         block:^(APIRequestStatus status, id data) {
+                             [self.hud hide:YES];
+                             if (status == APIRequestStatusSuccess){
+                                 dispatch_async(dispatch_get_main_queue(), ^{
+                                     [self dismissViewControllerAnimated:YES completion:^{
+                                         [[NSNotificationCenter defaultCenter]
+                                          postNotificationName:kNotificationSubmittedCard
+                                          object:self
+                                          userInfo:@{@"shareImage":shareImage,@"shareText":self.titleLabel.text}];
+                                         
+                                     }];
+                                 });
+                             }
+                             else if (status == APIRequestStatusFail){
+                                 if ([data isKindOfClass:[NSString class]]){
+                                     [self showMessageWithTitle:NSLocalizedString(@"Error", nil) andMessage:data];
+                                 }
+                             }
+                             else{
+                                 abort();
+                             }
+                         }];
+    
+    }
 
 - (IBAction)tappedSelfieImageView:(UITapGestureRecognizer *)sender {
     self.tappedImageView = (UIImageView *)sender.view;
     self.tappedSelfie1 = YES;
     [self.popTip hide];
+    
+    if (SYSTEM_VERSION_LESS_THAN(@"8.0")){
+        // this crashes on iOS7 so use ios& method
+        [self showiOS7ActionSheet];
+        return;
+    }
+    
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
 
@@ -505,10 +468,6 @@
         }
         self.titleLabel.text = titleText;
         self.selfieTitle = YES;
-        if (self.stage == VoteStage3){
-            self.stage = VoteStage4;
-            [self updateTimerWithPreviousTime];
-        }
     }];
     
     [alert showEdit:self title:title subTitle:subtitle closeButtonTitle:closeButton duration:0.0f];
@@ -516,7 +475,56 @@
     
 }
 
+- (void)showiOS7ActionSheet
+{
+    UIActionSheet *sheet = [[UIActionSheet alloc]
+                            initWithTitle:NSLocalizedString(@"Choose Picture", nil)
+                            delegate:self
+                            cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                            destructiveButtonTitle:nil
+                            otherButtonTitles:NSLocalizedString(@"From Library", nil),NSLocalizedString(@"From Camera", nil), nil];
+    
+    [sheet showInView:self.view];
+    
+}
 
+- (NSString *)base64Image:(UIImage *)image compress:(BOOL)compress
+{
+    UIImage *returnImage;
+    if (compress){
+        returnImage = [image compressImage:image];
+    }
+    else{
+        returnImage = image;
+    }
+    
+    NSData *imgData = UIImageJPEGRepresentation(returnImage, 0.8);
+    NSData *imgData64 = [imgData base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    return [NSString stringWithUTF8String:imgData64.bytes];
+}
+
+#pragma -mark iOS7 action sheet delegat
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    
+    if (buttonIndex == 0){
+        // Tapped choose from library
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+        [self presentViewController:picker animated:YES completion:nil];
+
+    }
+    else if (buttonIndex == 1){
+         // Tapped choose from camera
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+}
 
 #pragma -mark Image cropper
 -(void)imageCropViewControllerDidCancelCrop:(RSKImageCropViewController *)controller
@@ -548,35 +556,7 @@
             return;
         }
         
-        if (self.stage == VoteStage1){
-            self.stage = VoteStage2;
-            
-            self.selfieImageView.contentMode = UIViewContentModeScaleAspectFit;
-            self.selfieImageView.image = croppedImage;
-            [self.selfieImageView choseImage];
-            
-            self.selfie1 = YES;
-            [self updateTimerWithPreviousTime];
-            [self showPopTipWithText:NSLocalizedString(@"Next choose your twin", nil) andDelay:1 forStage:VoteStage2];
-        }
-        else if (self.stage == VoteStage2){
-            self.stage = VoteStage3;
-            self.selfieImageView2.contentMode = UIViewContentModeScaleToFill;
-            self.selfieImageView2.image = croppedImage;
-            [self.selfieImageView2 choseImage];
-            self.selfie2 = YES;
-            [self updateTimerWithPreviousTime];
-
-        }
-        else{
-            if (self.tappedSelfie1){
-                self.selfieImageView.image = croppedImage;
-            }
-            else{
-                self.selfieImageView2.image = croppedImage;
-            }
-        }
-        
+    
         
     }];
     
@@ -589,17 +569,7 @@
             self.tappedImageView.image = croppedImage;
             return;
         }
-        
-        if (self.stage == VoteStage1){
-            self.selfieImageView.image = croppedImage;
-            self.selfie1 = croppedImage;
-            [self showPopTipWithText:NSLocalizedString(@"Next choose your twin", nil) andDelay:1 forStage:VoteStage2];
-        }
-        else if (self.stage == VoteStage2){
-            self.selfieImageView2.image = croppedImage;
-            self.selfie2 = croppedImage;
-        }
-
+    
         
     }];
     
@@ -633,21 +603,6 @@
 
 
 #pragma -mark ASProgressPopupVIew datasource
--(NSString *)progressView:(ASProgressPopUpView *)progressView stringForProgress:(float)progress
-{
-    NSString *string;
-    if (self.stage == VoteStage1){
-        string = NSLocalizedString(@"First take a selfie!", nil);
-    }
-    else if (self.stage == VoteStage2){
-        string = NSLocalizedString(@"Choose your twin!", nil);
-    }
-    else if (self.stage == VoteStage3){
-        string = NSLocalizedString(@"Complete!", nil);
-    }
-    
-    return string;
-}
 
 - (void)progressViewWillDisplayPopUpView:(ASProgressPopUpView *)progressView;
 {

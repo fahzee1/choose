@@ -7,19 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User+Utils.h"
 
-
-typedef NS_ENUM(NSInteger, VoteStage){
-    VoteStage1,
-    VoteStage2,
-    VoteStage3,
-    VoteStage4,
-    VoteStage5,
-    
-};
 
 @interface CreateVoteController : UIViewController
-
-@property(assign) VoteStage stage;
+@property (strong,nonatomic) User *localUser;
 
 @end

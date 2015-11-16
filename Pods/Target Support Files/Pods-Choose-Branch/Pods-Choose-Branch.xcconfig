@@ -1,0 +1,1 @@
+PODS_CHOOSE_BRANCH_OTHER_LDFLAGS = -framework "AdSupport" -framework "CoreTelephony" -framework "MobileCoreServices"

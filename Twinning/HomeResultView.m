@@ -58,4 +58,9 @@
     
 }
 
+- (void)hide
+{
+    self.hidden = YES;
+}
+
 @end

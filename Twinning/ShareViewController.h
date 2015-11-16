@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Card.h"
 
 @interface ShareViewController : UIViewController
 @property (strong, nonatomic) UIImage *topImage;
@@ -15,5 +16,5 @@
 @property (strong, nonatomic) NSString *subtitleText;
 @property (strong, nonatomic) NSString *imageViewText;
 @property (strong, nonatomic) NSString *bottomShareText;
-
+@property (strong,nonatomic) Card *card;
 @end

@@ -11,6 +11,7 @@
 		111863DC1BEAAD8500E62E13 /* ProfileHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 111863DB1BEAAD8500E62E13 /* ProfileHeaderCell.m */; };
 		111863DF1BEAADF900E62E13 /* ProfileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 111863DE1BEAADF900E62E13 /* ProfileListCell.m */; };
 		111863E21BEAC04400E62E13 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111863E11BEAC04400E62E13 /* CardViewController.m */; };
+		111863E51BEBF1BF00E62E13 /* ADPlacementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111863E41BEBF1BF00E62E13 /* ADPlacementViewController.m */; };
 		114626811BA9E4FA00A6D8C2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626801BA9E4FA00A6D8C2 /* User.m */; };
 		114626841BA9E53D00A6D8C2 /* User+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626831BA9E53D00A6D8C2 /* User+Utils.m */; };
 		114626871BAA069E00A6D8C2 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626861BAA069E00A6D8C2 /* HomeViewController.m */; };
@@ -30,6 +31,7 @@
 		1181D2341BD47B7E00DB52ED /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1181D2321BD47B7E00DB52ED /* Crashlytics.framework */; };
 		1181D2371BD58B7E00DB52ED /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1181D2361BD58B7E00DB52ED /* SearchViewController.m */; };
 		1181D23A1BD58C2B00DB52ED /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1181D2391BD58C2B00DB52ED /* SearchCell.m */; };
+		11B8AC741BF3EABB000629BF /* ChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B8AC731BF3EABB000629BF /* ChooseViewController.m */; };
 		11F106121BA4A3BC00D044AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106111BA4A3BC00D044AC /* main.m */; };
 		11F106151BA4A3BC00D044AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106141BA4A3BC00D044AC /* AppDelegate.m */; };
 		11F106181BA4A3BC00D044AC /* Twinning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11F106161BA4A3BC00D044AC /* Twinning.xcdatamodeld */; };
@@ -37,7 +39,6 @@
 		11F1061E1BA4A3BC00D044AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11F1061C1BA4A3BC00D044AC /* Main.storyboard */; };
 		11F106201BA4A3BC00D044AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11F1061F1BA4A3BC00D044AC /* Images.xcassets */; };
 		11F106231BA4A3BC00D044AC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11F106211BA4A3BC00D044AC /* LaunchScreen.xib */; };
-		11F1062F1BA4A3BC00D044AC /* TwinningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F1062E1BA4A3BC00D044AC /* TwinningTests.m */; };
 		11F1063B1BA4A43400D044AC /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F1063A1BA4A43400D044AC /* UIImage+Utils.m */; };
 		11F106461BA4A46600D044AC /* UIView+Glow.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F1063D1BA4A46600D044AC /* UIView+Glow.m */; };
 		11F106471BA4A46600D044AC /* UIView+MyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F1063F1BA4A46600D044AC /* UIView+MyInfo.m */; };
@@ -53,7 +54,7 @@
 		11F4DEF01BB49EFE00E4A6E8 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEEF1BB49EFE00E4A6E8 /* ShareViewController.m */; };
 		11F4DEF51BBC6F5600E4A6E8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F4DEF41BBC6F5600E4A6E8 /* MessageUI.framework */; };
 		11F4DEF81BBF0FF300E4A6E8 /* SelfieImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4DEF71BBF0FF300E4A6E8 /* SelfieImageView.m */; };
-		C285608A67CE575EE9C6FEA2 /* libPods-Twinning.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52C49A033E85888CC6365382 /* libPods-Twinning.a */; };
+		B329DC20F95184A0C2B2D87E /* libPods-Choose.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 251E6D6819AA4EBC368B9CE2 /* libPods-Choose.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		111863DE1BEAADF900E62E13 /* ProfileListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileListCell.m; sourceTree = "<group>"; };
 		111863E01BEAC04400E62E13 /* CardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
 		111863E11BEAC04400E62E13 /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
+		111863E31BEBF1BF00E62E13 /* ADPlacementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPlacementViewController.h; sourceTree = "<group>"; };
+		111863E41BEBF1BF00E62E13 /* ADPlacementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPlacementViewController.m; sourceTree = "<group>"; };
 		1146267F1BA9E4FA00A6D8C2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		114626801BA9E4FA00A6D8C2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		114626821BA9E53D00A6D8C2 /* User+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Utils.h"; sourceTree = "<group>"; };
@@ -105,6 +108,8 @@
 		1181D2361BD58B7E00DB52ED /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		1181D2381BD58C2B00DB52ED /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
 		1181D2391BD58C2B00DB52ED /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
+		11B8AC721BF3EABB000629BF /* ChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseViewController.h; sourceTree = "<group>"; };
+		11B8AC731BF3EABB000629BF /* ChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseViewController.m; sourceTree = "<group>"; };
 		11F1060C1BA4A3BC00D044AC /* Choose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Choose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F106101BA4A3BC00D044AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11F106111BA4A3BC00D044AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -149,8 +154,11 @@
 		11F4DEF41BBC6F5600E4A6E8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		11F4DEF61BBF0FF300E4A6E8 /* SelfieImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfieImageView.h; sourceTree = "<group>"; };
 		11F4DEF71BBF0FF300E4A6E8 /* SelfieImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfieImageView.m; sourceTree = "<group>"; };
+		251E6D6819AA4EBC368B9CE2 /* libPods-Choose.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Choose.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47B92AAACA81288A3BC87731 /* Pods-Choose.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Choose.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Choose/Pods-Choose.debug.xcconfig"; sourceTree = "<group>"; };
 		52C49A033E85888CC6365382 /* libPods-Twinning.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Twinning.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56C8F31513C6C77A26B3E8F4 /* Pods-Twinning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twinning.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twinning/Pods-Twinning.debug.xcconfig"; sourceTree = "<group>"; };
+		F7201E07E2499017D7F94B50 /* Pods-Choose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Choose.release.xcconfig"; path = "Pods/Target Support Files/Pods-Choose/Pods-Choose.release.xcconfig"; sourceTree = "<group>"; };
 		FEB13F0D21F9AD5A5DF063BC /* Pods-Twinning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twinning.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twinning/Pods-Twinning.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,8 +170,8 @@
 				117826161BCC55CB00C59DCD /* Social.framework in Frameworks */,
 				1181D2341BD47B7E00DB52ED /* Crashlytics.framework in Frameworks */,
 				11F4DEF51BBC6F5600E4A6E8 /* MessageUI.framework in Frameworks */,
-				C285608A67CE575EE9C6FEA2 /* libPods-Twinning.a in Frameworks */,
 				1181D2331BD47B7E00DB52ED /* Fabric.framework in Frameworks */,
+				B329DC20F95184A0C2B2D87E /* libPods-Choose.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +232,10 @@
 				111863D71BEA5B8A00E62E13 /* ProfileViewController.m */,
 				111863E01BEAC04400E62E13 /* CardViewController.h */,
 				111863E11BEAC04400E62E13 /* CardViewController.m */,
+				111863E31BEBF1BF00E62E13 /* ADPlacementViewController.h */,
+				111863E41BEBF1BF00E62E13 /* ADPlacementViewController.m */,
+				11B8AC721BF3EABB000629BF /* ChooseViewController.h */,
+				11B8AC731BF3EABB000629BF /* ChooseViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -383,6 +395,7 @@
 				117826151BCC55CB00C59DCD /* Social.framework */,
 				11F4DEF41BBC6F5600E4A6E8 /* MessageUI.framework */,
 				52C49A033E85888CC6365382 /* libPods-Twinning.a */,
+				251E6D6819AA4EBC368B9CE2 /* libPods-Choose.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -392,6 +405,8 @@
 			children = (
 				56C8F31513C6C77A26B3E8F4 /* Pods-Twinning.debug.xcconfig */,
 				FEB13F0D21F9AD5A5DF063BC /* Pods-Twinning.release.xcconfig */,
+				47B92AAACA81288A3BC87731 /* Pods-Choose.debug.xcconfig */,
+				F7201E07E2499017D7F94B50 /* Pods-Choose.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -443,11 +458,12 @@
 		11F106041BA4A3BC00D044AC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Gen Y Solutions LLC";
 				TargetAttributes = {
 					11F1060B1BA4A3BC00D044AC = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = HM7K35K49R;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -545,7 +561,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twinning/Pods-Twinning-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Choose/Pods-Choose-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -575,9 +591,11 @@
 				111863D81BEA5B8A00E62E13 /* ProfileViewController.m in Sources */,
 				11F106181BA4A3BC00D044AC /* Twinning.xcdatamodeld in Sources */,
 				114626841BA9E53D00A6D8C2 /* User+Utils.m in Sources */,
+				11B8AC741BF3EABB000629BF /* ChooseViewController.m in Sources */,
 				114626811BA9E4FA00A6D8C2 /* User.m in Sources */,
 				11F106511BA4A4C900D044AC /* EasyFacebook.m in Sources */,
 				111863DC1BEAAD8500E62E13 /* ProfileHeaderCell.m in Sources */,
+				111863E51BEBF1BF00E62E13 /* ADPlacementViewController.m in Sources */,
 				114626911BAA154500A6D8C2 /* MenuCell.m in Sources */,
 				11F106521BA4A4C900D044AC /* EasyTwitter.m in Sources */,
 				111863DF1BEAADF900E62E13 /* ProfileListCell.m in Sources */,
@@ -595,7 +613,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11F1062F1BA4A3BC00D044AC /* TwinningTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,6 +667,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -665,7 +683,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -702,7 +720,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -711,9 +729,11 @@
 		};
 		11F106331BA4A3BC00D044AC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56C8F31513C6C77A26B3E8F4 /* Pods-Twinning.debug.xcconfig */;
+			baseConfigurationReference = 47B92AAACA81288A3BC87731 /* Pods-Choose.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -723,15 +743,19 @@
 				INFOPLIST_FILE = Twinning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.self.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Choose;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		11F106341BA4A3BC00D044AC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FEB13F0D21F9AD5A5DF063BC /* Pods-Twinning.release.xcconfig */;
+			baseConfigurationReference = F7201E07E2499017D7F94B50 /* Pods-Choose.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -741,7 +765,9 @@
 				INFOPLIST_FILE = Twinning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.self.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Choose;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -759,6 +785,7 @@
 				);
 				INFOPLIST_FILE = TwinningTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genysolutions.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ChooseTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twinning.app/Twinning";
 			};
@@ -774,6 +801,7 @@
 				);
 				INFOPLIST_FILE = TwinningTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genysolutions.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ChooseTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twinning.app/Twinning";
 			};

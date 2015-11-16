@@ -22,17 +22,17 @@
     // get auth key from defaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *key = [defaults valueForKey:kLocalUserAuthKey];
-    NSString *authKey = [NSString stringWithFormat:@"Token token=%@",key];
+    //NSString *authKey = [NSString stringWithFormat:@"Token token=%@",key];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         client = [[APIClient alloc] initWithBaseURL:[NSURL URLWithString:APIBaseUrlString]];
         client.responseSerializer = [AFJSONResponseSerializer serializer];
         client.requestSerializer = [AFJSONRequestSerializer serializer];
-        [client.requestSerializer setValue:authKey forHTTPHeaderField:@"Authorization"];
+        [client.requestSerializer setValue:key forHTTPHeaderField:@"Authorization"];
         //client.apiKeyFound = YES;
     });
     
-    [client.requestSerializer setValue:authKey forHTTPHeaderField:@"Authorization"];
+    [client.requestSerializer setValue:key forHTTPHeaderField:@"Authorization"];
     return client;
 }
 

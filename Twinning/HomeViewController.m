@@ -7,9 +7,11 @@
 //
 
 #import "HomeViewController.h"
+#import "ViewController.h"
 #import "HomeFeedCell.h"
 #import "ShareViewController.h"
 #import "CreateVoteController.h"
+#import "ADPlacementViewController.h"
 #import <UIViewController+ECSlidingViewController.h>
 #import <AMPopTip.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
@@ -20,23 +22,30 @@
 #import <CRToast.h>
 #import "HomeContainerView.h"
 #import "Card.h"
-
-//#import <CBStoreHouseRefreshControl.h>
+#import "User+Utils.h"
+#import "AppDelegate.h"
 #import "constants.h"
 
 @interface HomeViewController()<UIScrollViewDelegate,HomeContainerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong,nonatomic) NSMutableArray *cardData;
 @property (assign) NSInteger pageNumber;
+@property (assign) NSInteger cardCount;
 @property (assign) CGPoint oldOffset;
+@property (assign) BOOL showingAD;
 @property (strong , nonatomic) AMPopTip *popTip;
-
+@property (strong,nonatomic) User *localUser;
 
 @end
 @implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //get local user and set it
+    AppDelegate *delegate = [AppDelegate sharedAppDelegate];
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    self.localUser = [User getLocalUserInContext:context];
     
     // So we can slide menu out
     ECSlidingViewController *slideController = [self slidingViewController];
@@ -59,8 +68,10 @@
     self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, SCREEN_HEIGHT - offset);
     
     int i = 0;
+    int count = 10;
     NSInteger height = self.scrollView.frame.size.height;
-    while (i < 30) {
+    self.cardCount = count;
+    while (i < count) {
         Card *card = [[Card alloc] init];
         NSArray *options = @[[NSNumber numberWithInt:QuestionTypeAorB],[NSNumber numberWithInt:QuestionTypeYESorNO]];
         id type = options[arc4random_uniform([options count])];
@@ -69,12 +80,19 @@
         
         [self.cardData addObject:card];
         HomeContainerView *containerView = [[[NSBundle mainBundle] loadNibNamed:@"HomeContainerView" owner:self options:nil] objectAtIndex:0];
-        containerView.frame = CGRectMake(0,height * i,self.view.frame.size.width, height);
+        containerView.frame = CGRectMake(0,height * i ,self.view.frame.size.width, height);
         containerView.countLabel.text = card.voteCountString;
         containerView.titleLabel.text = card.question;
-        containerView.imageView.image = [UIImage imageNamed:@"test"];
+        if (card.questionType == QuestionTypeAorB){
+            containerView.imageView.image = [UIImage imageNamed:@"card2"];
+            containerView.titleLabel.text = @"Trip to Las Vegas or Miami?";
+        }
+        else{
+            containerView.imageView.image = [UIImage imageNamed:@"card"];
+            containerView.titleLabel.text = @"Men's style goals?";
+        }
         [containerView.userImageView sd_setImageWithURL:card.senderImgUrl placeholderImage:[UIImage imageNamed:@"app-icon"]];
-        containerView.countLabel.text = [NSString stringWithFormat:@"%d/100",i];
+        containerView.countLabel.text = [NSString stringWithFormat:@"%d/%d",i + 1,count];
         containerView.delegate = self;
         containerView.card = card;
         
@@ -90,29 +108,45 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults boolForKey:@"loggedIn"]){
+        // set first tip as no so it cab be seen on log in
+        [defaults setBool:NO forKey:@"firstTip"];
+        
+        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardLogin];
+        ((ViewController *)controller).localUser = self.localUser;
+        [self presentViewController:controller animated:NO completion:nil];
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     if (IS_IPHONE_4_OR_LESS){
-        self.scrollView.contentOffset= CGPointMake(0, 0);
+        //self.scrollView.contentOffset= CGPointMake(0, 0);
     }
     
     // show quick tip
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (![defaults boolForKey:@"firstTip"]){
-        [defaults setBool:YES forKey:@"firstTip"];
-        self.popTip = [AMPopTip popTip];
-        self.popTip.shouldDismissOnTapOutside = YES;
-        self.popTip.shouldDismissOnTap = YES;
-        self.popTip.tapHandler = ^{
-            DLog(@"Tapped pop up");
-        };
-        [self.popTip showText:NSLocalizedString(@"Double tap image to share!", nil)
-                    direction:AMPopTipDirectionDown
-                     maxWidth:200
-                       inView:self.scrollView
-                    fromFrame:self.navigationController.navigationBar.frame
-                     duration:4];
+        NSDictionary *options = @{
+                                  kCRToastTextKey : @"Double tap the image to share!",
+                                  kCRToastTextAlignmentKey : @(NSTextAlignmentCenter),
+                                  kCRToastBackgroundColorKey : [UIColor colorWithHexString:kColorFlatTurquoise],
+                                  kCRToastAnimationInTypeKey : @(CRToastAnimationTypeGravity),
+                                  kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeGravity),
+                                  kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionLeft),
+                                  kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionRight),
+                                  kCRToastTextColorKey:[UIColor whiteColor],
+                                  kCRToastFontKey:[UIFont fontWithName:kFontGlobalBold size:18],
+                                  kCRToastNotificationTypeKey:@(CRToastTypeNavigationBar)
+                                  };
+        [CRToastManager showNotificationWithOptions:options
+                                    completionBlock:^{
+                                        [defaults setBool:YES forKey:@"firstTip"];
+                                    }];
 
     }
 
@@ -132,9 +166,9 @@
 
 - (void)listenForNotifications
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSearchPopup) name:kNotificationMenuTappedSearch object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuChoseCategoryOption:) name:kNotificationMenuTappedCategoryChoice object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showShareScreen:) name:kNotificationSubmittedCard object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closedAdNotif:) name:kNotificationClosedADPlacement object:nil];
 }
 
 - (void)setup
@@ -146,44 +180,75 @@
     FAKIonIcons *addIcon = [FAKIonIcons plusRoundIconWithSize:35];
     UIImage *addImage = [addIcon imageWithSize:CGSizeMake(35, 35)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuImage style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:addImage style:UIBarButtonItemStylePlain target:self action:@selector(showAddVoteScreen)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:addImage style:UIBarButtonItemStylePlain target:self action:@selector(showAddCardScreen)];
 
     
 
     
 }
 
-
-- (void)goToPage:(int)page
+- (void)showTip
 {
-    page--;
-    [UIView animateWithDuration:2
+    NSDictionary *options = @{
+                              kCRToastTextKey : @"Double tap the image to share!",
+                              kCRToastTextAlignmentKey : @(NSTextAlignmentCenter),
+                              kCRToastBackgroundColorKey : [UIColor colorWithHexString:kColorFlatTurquoise],
+                              kCRToastAnimationInTypeKey : @(CRToastAnimationTypeGravity),
+                              kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeGravity),
+                              kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionLeft),
+                              kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionRight),
+                              kCRToastTextColorKey:[UIColor whiteColor],
+                              kCRToastFontKey:[UIFont fontWithName:kFontGlobalBold size:18],
+                              kCRToastNotificationTypeKey:@(CRToastTypeNavigationBar)
+                              };
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults boolForKey:@"firstTip"]){
+        
+        [CRToastManager showNotificationWithOptions:options
+                                    completionBlock:^{
+                                        [defaults setBool:YES forKey:@"firstTip"];
+                                    }];
+        
+    }
+    else if (![defaults boolForKey:@"secondTip"]){
+        [CRToastManager showNotificationWithOptions:options
+                                    completionBlock:^{
+                                        [defaults setBool:YES forKey:@"secondTip"];
+                                    }];
+        
+    }
+
+    else if (![defaults boolForKey:@"thirdTip"]){
+        [CRToastManager showNotificationWithOptions:options
+                                    completionBlock:^{
+                                        [defaults setBool:YES forKey:@"thirdTip"];
+                                    }];
+
+    }
+
+}
+
+- (void)goToNextPage
+{
+    if (self.pageNumber == self.cardCount){
+        [self showAdPlacement];
+        return;
+    }
+    
+    [UIView animateWithDuration:.3
+                          delay:2
+                        options:0
                      animations:^{
                          CGFloat pageHeight = self.scrollView.frame.size.height;
-                         self.scrollView.contentOffset = CGPointMake(0, pageHeight * page);
-                         self.pageNumber = page + 1;
-                     }];
-
+                         self.scrollView.contentOffset = CGPointMake(0, pageHeight * self.pageNumber + 1);
+                         
+                     } completion:nil];
+    
     
 }
 
 
-
-
-/*
--(void)setupRefresh
-{
-    self.refreshControl = [CBStoreHouseRefreshControl attachToScrollView:self.tableview
-                                                                  target:self
-                                                           refreshAction:@selector(fetchData)
-                                                                   plist:@"storehouse"];
-}
-
-- (void)fetchData
-{
-    [self.refreshControl finishingLoading];
-}
-*/
 
 - (void)showMenu
 {
@@ -230,92 +295,45 @@
     }
     
 }
-- (void)showAddVoteScreen
+- (void)showAddCardScreen
 {
-    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardCreateVoteRoot];
-    [self presentViewController:controller animated:YES completion:nil];
-}
-
-- (void)showSearchPopup
-{
-    SCLAlertView *alert = [[SCLAlertView alloc] init];
-    alert.backgroundType = Shadow;
-    alert.customViewColor = [UIColor colorWithHexString:kColorRed];
-    NSString *title = NSLocalizedString(@"Search and Vote!", nil);
-    NSString *subtitle = NSLocalizedString(@"Enter Vote Code Below" , nil);
-    NSString *closeButton = NSLocalizedString(@"Cancel", nil);
-    NSString *doneButton = NSLocalizedString(@"Search", nil);
-    NSString *placeholder1 = NSLocalizedString(@"Enter Code...", nil);
-    
-    UITextField *commentField = [alert addTextField:placeholder1];
-    
-    commentField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
-    
-    [alert addButton:doneButton actionBlock:^{
-        DLog(@"search here");
-        [self performSearchWithText:commentField.text];
-    }];
-    
-    [alert showEdit:self title:title subTitle:subtitle closeButtonTitle:closeButton duration:0.0f];
-
-}
-
-- (void)performSearchWithText:(NSString *)text
-{
-    NSMutableDictionary *options = [@{kCRToastTextKey:NSLocalizedString(@"Searching...", nil),
-                              kCRToastTextColorKey:[UIColor whiteColor],
-                              kCRToastFontKey:[UIFont fontWithName:@"Futura-CondensedExtraBold" size:18],
-                              kCRToastTextAlignmentKey:@(NSTextAlignmentCenter),
-                              kCRToastBackgroundColorKey:[UIColor colorWithHexString:kColorFlatGreen],
-                              kCRToastAnimationInTypeKey:@(CRToastAnimationTypeGravity),
-                              kCRToastAnimationOutTypeKey:@(CRToastAnimationTypeGravity),
-                              kCRToastAnimationInDirectionKey:@(CRToastAnimationDirectionTop),
-                              kCRToastAnimationOutDirectionKey:@(CRToastAnimationDirectionBottom),
-                              kCRToastNotificationTypeKey:@(CRToastTypeNavigationBar),
-                              kCRToastNotificationPresentationTypeKey:@(CRToastPresentationTypePush),
-                              kCRToastTimeIntervalKey:@(DBL_MAX),
-                              kCRToastShowActivityIndicatorKey:@(YES)}mutableCopy];
-    
-    // Only show notification if one isnt showing
-    if (![CRToastManager isShowingNotification]){
-        [CRToastManager showNotificationWithOptions:options
-                                    completionBlock:^{
-                                        // This is called after I've dimissed the Toast
-                                        // if success show in table
-                                        // if fail run below
-                                        if (!0){
-                                            NSTimeInterval time2 = 3.0;
-                                            options[kCRToastTextKey] = NSLocalizedString(@"Sorry Nothing Found", nil);
-                                            options[kCRToastBackgroundColorKey] = [UIColor whiteColor];
-                                            options[kCRToastTextColorKey] = [UIColor redColor];
-                                            options[kCRToastShowActivityIndicatorKey] = @(NO);
-                                            options[kCRToastTimeIntervalKey] = @(time2);
-                                            
-                                            [CRToastManager showNotificationWithOptions:options
-                                                                        completionBlock:nil];
-                                            
-                                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                                                [CRToastManager dismissNotification:YES];
-                                            });
-                                        }
-
-                                    }];
+    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardCreateVote];
+    if ([controller isKindOfClass:[CreateVoteController class]]){
+        ((CreateVoteController *)controller).localUser = self.localUser;
     }
-    
-    // Here actually do the searching
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [CRToastManager dismissNotification:YES];
-        });
-    
-    
+    UINavigationController *base = [[UINavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:base animated:YES completion:nil];
 }
+
+- (void)closedAdNotif:(NSNotification *)notif
+{
+    self.showingAD = NO;
+}
+
+- (void)showAdPlacement
+{
+
+    //then when done turn off showing ad
+    UIViewController *adController = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardADPlacement];
+    UINavigationController *base = [[UINavigationController alloc] initWithRootViewController:adController];
+    [self presentViewController:base animated:YES completion:^{
+        self.showingAD = YES;
+    }];
+}
+
+
 
 #pragma -mark HomeContainerView
 - (void)homeView:(UIView *)view tappedButtonNumber:(int)number forType:(QuestionType)type
 {
     // number will be button 1 or button 2
     DLog(@"tapped button %d",number);
-    [self goToPage:self.pageNumber + 1.0];
+    [self goToNextPage];
+    
+    if (self.pageNumber == 4){
+        // show one more share tip when user answers
+        [self showTip];
+    }
 }
 
 - (void)homeView:(UIView *)view tappedShareImage:(UIImage *)img withTitle:(NSString *)title
@@ -330,10 +348,7 @@
 }
 
 #pragma -mark ScrollView
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
 
-}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //DLog(@"started scroll");
@@ -341,18 +356,29 @@
     CGFloat pageHeight = scrollView.frame.size.height;
     float fractionalPage = scrollView.contentOffset.y / pageHeight;
     NSInteger page = lround(fractionalPage);
-    NSLog(@"%ld",(long)page);
+    page = page + 1;
     if (self.pageNumber != page) {
+        NSLog(@"%ld",(long)page);
         self.pageNumber = page;
         /* Page did change */
         DLog(@"page changes");
     }
+    
     
 
 }
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     
+    if (self.pageNumber == self.cardCount){
+        if (!self.showingAD){
+            [self showAdPlacement];
+        }
+    }
+    
+    if (self.pageNumber == 10){
+        [self showTip];
+    }
 }
 
 

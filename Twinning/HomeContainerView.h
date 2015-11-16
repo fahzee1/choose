@@ -31,5 +31,6 @@
 
 @property (strong,nonatomic) Card *card;
 
+- (void)reset;
 - (void)dismiss;
 @end

@@ -1,7 +1,7 @@
 # Uncomment this line to define a global platform for your project
 # platform :ios, '6.0'
 
-target 'Twinning' do
+target 'Choose' do
 pod "AFNetworking", "2.4.0"
 pod 'SDWebImage', '~>3.6'
 pod 'Appirater'
@@ -26,14 +26,15 @@ pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
 pod 'ECSlidingViewController', '~> 2.0.3'
 pod 'ASProgressPopUpView'
-pod 'CBStoreHouseRefreshControl'
 pod 'PSTAlertController'
 pod 'FXBlurView'
 pod 'MGInstagram'
+pod 'Onboard'
+pod 'Branch'
 
 end
 
-target 'TwinningTests' do
+target 'ChooseTests' do
 
 end
 

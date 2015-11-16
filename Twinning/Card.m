@@ -20,6 +20,7 @@
         self.imgUrl = [NSURL URLWithString:@"http://assets.audiomack.com/djsinatra/85747f05cbff570c1815db275f42d34a.jpeg"];
         self.senderName = @"Twinning Team";
         self.senderImgUrl = [NSURL URLWithString:@"http://static.comicvine.com/uploads/original/4/43369/1135029-0000034668_20061021010455.jpg"];
+        self.id = @"44";
         
     }
     return self;

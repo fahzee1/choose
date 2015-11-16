@@ -18,4 +18,5 @@
 
 - (void)showLeft;
 - (void)showRight;
+- (void)hide;
 @end

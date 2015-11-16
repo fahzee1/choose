@@ -361,6 +361,7 @@
                                           shareController.titleText = NSLocalizedString(@"SPREAD THE LOVE!", nil);
                                           shareController.subtitleText = NSLocalizedString(@"Go download Twinning now to see my wonderful questions", nil);
                                           shareController.bottomShareText = NSLocalizedString(@"Share With Friends On...", nil);
+                                          shareController.imageViewText = NSLocalizedString(@"Join me on Choose to vote on cool topics!", nil);
                                           if ([controller.topViewController isKindOfClass:[UINavigationController class]]){
                                               [((UINavigationController *)controller.topViewController).topViewController presentViewController:shareController animated:YES completion:nil];
                                           }

@@ -37,6 +37,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    self.imageView.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
     self.imageView.clipsToBounds = YES;
     self.userImageView.clipsToBounds = YES;
     self.userImageView.layer.cornerRadius = self.userImageView.frame.size.height/2;
@@ -45,7 +46,7 @@
     self.userLabel.font = [UIFont fontWithName:kFontGlobal size:18];
     self.votesTotalLabel.font = [UIFont fontWithName:kFontGlobal size:18];
     
-    self.userContainerView.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
+    self.userContainerView.backgroundColor = [UIColor whiteColor];
     self.button1.backgroundColor = [UIColor colorWithHexString:kColorFlatGreen];
     self.button2.backgroundColor = [UIColor colorWithHexString:kColorFlatRed];
     [self.button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -60,8 +61,8 @@
         }
     }
     
-    self.userLabel.textColor = [UIColor whiteColor];
-    self.votesTotalLabel.textColor = [UIColor whiteColor];
+    self.userLabel.textColor = [UIColor colorWithHexString:kColorBlackSexy];
+    self.votesTotalLabel.textColor = [UIColor colorWithHexString:kColorBlackSexy];
     
     //use this cover label to add on top of the image to show answer was chosen
     self.resultView = [[[NSBundle mainBundle] loadNibNamed:@"HomeResultView" owner:self options:nil] objectAtIndex:0];
@@ -124,6 +125,10 @@
                         }];
 }
 
+- (void)reset
+{
+    [self.resultView hide];
+}
 
 - (IBAction)tappedImageView:(UITapGestureRecognizer *)sender {
     if (self.delegate){
@@ -135,6 +140,7 @@
 }
 
 - (IBAction)tappedButton1:(UIButton *)sender {
+    sender.userInteractionEnabled = NO;
     [self showImageViewCover];
     
     if (self.delegate){
@@ -145,6 +151,7 @@
 }
 
 - (IBAction)tappedButton2:(UIButton *)sender {
+    sender.userInteractionEnabled = NO;
     [self showImageViewCover];
     
     if (self.delegate){

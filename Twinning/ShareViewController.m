@@ -16,6 +16,8 @@
 #import <MGInstagram.h>
 #import <PSTAlertController.h>
 #import <Social/Social.h>
+#import <BranchUniversalObject.h>
+#import <BranchLinkProperties.h>
 
 @interface ShareViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *topImageView;
@@ -33,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 
 @property (strong, nonatomic) MGInstagram *ig;
+@property (strong,nonatomic) NSString *shareLink;
+@property (strong,nonatomic) NSString *shareText;
 
 // Constraints
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topImageViewTopConstraint;
@@ -54,6 +58,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setup];
+    [self createLink];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -75,6 +80,7 @@
 
 - (void)setup
 {
+    
     if (self.topImage){
         self.topImageView.image = self.topImage;
     }
@@ -97,7 +103,7 @@
         self.middleImageView.image = self.shareImage;
     }
     else{
-        self.middleImageView.image = [UIImage imageNamed:kAppIcon];
+        self.middleImageView.image = [UIImage imageNamed:kImageCard2];
     }
     
     if (self.bottomShareText){
@@ -152,6 +158,8 @@
         self.middleImageViewHeightConstraint.constant = 70;
         self.middleImageViewWidthConstraint.constant = 70;
     }
+    
+    self.shareText = self.card? self.card.question:self.imageViewLabel.text;
 
 }
 
@@ -174,15 +182,18 @@
     
     self.ig = [[MGInstagram alloc] init];
     self.ig.photoFileName = kInstagramOnlyPhotoFileName;
-    [self.ig postImage:self.middleImageView.image withCaption:self.subtitleText inView:self.view];
+    NSString *text = [NSString stringWithFormat:@"%@ %@",self.shareText,self.shareLink];
+    [self.ig postImage:self.middleImageView.image withCaption:text inView:self.view];
 }
 
 - (IBAction)tappedShareButton2:(UIButton *)sender {
-    [self showFacebookShareScreenWithText:self.subtitleLabel.text];
+    NSString *text = [NSString stringWithFormat:@"%@ %@",self.shareText,self.shareLink];
+    [self showFacebookShareScreenWithText:text];
 }
 
 - (IBAction)tappedShareButton3:(UIButton *)sender {
-    [self showSMSorEmailScreenWithText:self.subtitleText];
+    NSString *text = [NSString stringWithFormat:@"%@ %@",self.shareText,self.shareLink];
+    [self showSMSorEmailScreenWithText:text];
 }
 
 - (IBAction)tappedDone:(UIButton *)sender {
@@ -196,6 +207,32 @@
   
 }
 
+- (void)createLink
+{
+#warning actually put useful information in this link
+    BranchUniversalObject *branchUniversalObject = [[BranchUniversalObject alloc] initWithCanonicalIdentifier:@"item/12345"];
+    branchUniversalObject.title = @"My Content Title";
+    branchUniversalObject.contentDescription = @"My Content Description";
+    branchUniversalObject.imageUrl = @"https://example.com/mycontent-12345.png";
+    [branchUniversalObject addMetadataKey:@"property1" value:@"blue"];
+    [branchUniversalObject addMetadataKey:@"property2" value:@"red"];
+    
+    BranchLinkProperties *linkProperties = [[BranchLinkProperties alloc] init];
+    linkProperties.feature = @"sharing";
+    linkProperties.channel = @"facebook";
+    [linkProperties addControlParam:@"$desktop_url" withValue:@"http://example.com/home"];
+    [linkProperties addControlParam:@"$ios_url" withValue:@"http://example.com/ios"];
+    
+    [branchUniversalObject registerView];
+    
+    [branchUniversalObject getShortUrlWithLinkProperties:linkProperties
+                                             andCallback:^(NSString *url, NSError *error) {
+                                                 if (!error){
+                                                     self.shareLink = url;
+                                                 }
+                                             }];
+}
+
 
 - (void)showFacebookShareScreenWithText:(NSString *)text
 {
@@ -205,7 +242,7 @@
     }
     SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
     [controller setInitialText:text];
-    [controller addURL:[NSURL URLWithString:@"https://bnc.lt/m/rfPe58ANMn"]];
+    [controller addURL:[NSURL URLWithString:self.shareLink]];
     [controller addImage:self.middleImageView.image];
     [self presentViewController:controller animated:YES completion:nil];
     

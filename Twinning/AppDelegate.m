@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ChooseViewController.h"
 #import "EasyFacebook.h"
 #import "constants.h"
 #import "UIColor+HexValue.h"
@@ -15,6 +16,7 @@
 #import <ECSlidingViewController.h>
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import <Branch.h>
 
 
 @interface AppDelegate ()
@@ -81,6 +83,16 @@
     [CrashlyticsKit setUserName:@"Test User"];
 
 
+    // Branch
+    Branch *branch = [Branch getInstance];
+    ChooseViewController *chooseController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kStoryboardChoose];
+    [branch registerDeepLinkController:chooseController forKey:@"card_url"];
+    
+    [branch initSessionAndAutomaticallyDisplayDeepLinkController:YES deepLinkHandler:^(NSDictionary *params, NSError *error) {
+        // params are the deep linked params associated with the link that the user clicked before showing up.
+        NSLog(@"deep link data: %@", [params description]);
+    }];
+    
     
     // Create initial user
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -119,6 +131,8 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    [[Branch getInstance] handleDeepLink:url];
+    
     BOOL wasHandled1 = [EasyFacebook application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
     
     return wasHandled1;
@@ -145,6 +159,13 @@
 {
     [self notifyReceivedRemoteNotificationWithData:userInfo foreground:self.appInForeground];
     completionHandler(UIBackgroundFetchResultNoData);
+}
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler
+{
+    BOOL handledByBranch = [[Branch getInstance] continueUserActivity:userActivity];
+    
+    return handledByBranch;
 }
 
 
@@ -259,6 +280,13 @@
     
     
 }
+
+#pragma mark - App delegate custom
++ (AppDelegate *)sharedAppDelegate
+{
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
 
 
 @end

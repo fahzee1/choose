@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User+Utils.h"
 
 @interface ViewController : UIViewController
 
-
+@property (strong,nonatomic) User *localUser;
 @end
 

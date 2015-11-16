@@ -128,13 +128,16 @@
     // Should be selectable because row 0 (header) isnt
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    NSInteger row = indexPath.row -1;
-    NSDictionary *obj = [self.data objectAtIndex:row];
-    
-    CardViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardCard];
-    controller.titleText = obj[@"title"];
-    controller.voteText = obj[@"votes"];
-    [self.navigationController pushViewController:controller animated:YES];
+    if (indexPath.row > 0){
+        NSInteger row = indexPath.row -1;
+        NSDictionary *obj = [self.data objectAtIndex:row];
+        
+        CardViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardCard];
+        controller.titleText = obj[@"title"];
+        controller.voteText = obj[@"votes"];
+        controller.image = [UIImage imageNamed:@"card"];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
     
     
 }

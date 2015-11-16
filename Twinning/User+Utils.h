@@ -8,9 +8,25 @@
 
 #import "User.h"
 
+typedef NS_ENUM(NSInteger, APIRequestStatus)
+{
+    APIRequestStatusSuccess,
+    APIRequestStatusFail
+};
+
+
+typedef void (^ResponseBlock) (APIRequestStatus status,id data);
+
 @interface User (Utils)
 
 
 + (User *)createLocalUserInContext:(NSManagedObjectContext *)context;
++ (User *)getLocalUserInContext:(NSManagedObjectContext *)context;
+
++ (void)loginWithParams:(NSDictionary *)params
+                  block:(ResponseBlock)block;
+
++ (void)createCardWithParams:(NSDictionary *)params
+                  block:(ResponseBlock)block;
 
 @end

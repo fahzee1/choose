@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, QuestionType){
 
 @interface Card : NSObject
 
+@property (strong,nonatomic) NSString *id;
 @property (strong,nonatomic) NSString *question;
 @property (strong,nonatomic) NSURL *imgUrl;
 @property (strong,nonatomic) NSURL *senderImgUrl;
