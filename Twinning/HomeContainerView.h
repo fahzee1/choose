@@ -13,7 +13,9 @@
 @protocol HomeContainerDelegate <NSObject>
 
 - (void)homeView:(UIView *)view tappedButtonNumber:(int)number forType:(QuestionType)type;
-- (void)homeView:(UIView *)view tappedShareImage:(UIImage *)img withTitle:(NSString *)title;
+- (void)homeView:(UIView *)view tappedShareImage:(UIImage *)img
+       withTitle:(NSString *)title
+         andCard:(Card *)card;
 @end
 
 @interface HomeContainerView : UIView
@@ -27,10 +29,13 @@
 @property (weak, nonatomic) IBOutlet UIView *userContainerView;
 @property (weak, nonatomic) IBOutlet UIButton *button1;
 @property (weak, nonatomic) IBOutlet UIButton *button2;
-@property (weak, nonatomic) IBOutlet UIImageView *shareImageView;
+
 
 @property (strong,nonatomic) Card *card;
 
 - (void)reset;
 - (void)dismiss;
+
+- (void)hideButtons;
+- (void)showButtons;
 @end

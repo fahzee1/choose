@@ -213,7 +213,7 @@ typedef void (^ResponseBlock2) (bool success, id data);
     firstPage.movesToNextViewController = YES;
     OnboardingContentViewController *secondPage = [OnboardingContentViewController
                                                    contentWithTitle:@"The Choice Is Yours"
-                                                   body:@"Choose A or B or Choose Yes or No, then see what your peers think!"
+                                                   body:@"Choose A or B or choose Yes or No, then see what your peers think!"
                                                    image:[UIImage imageNamed:kImageCard3]
                                                    buttonText:nil action:^{
                                                        DLog(@"tapped button");
@@ -225,11 +225,12 @@ typedef void (^ResponseBlock2) (bool success, id data);
                                                   contentWithTitle:@"Create Your Own"
                                                   body:@"Why not get in on the fun? Submit your questions and get instant feedback!"
                                                   image:[UIImage imageNamed:kImageCard4]
-                                                  buttonText:@"START!" action:^{
+                                                  buttonText:@"Tap to start!" action:^{
                                                       [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationOnboardIsOver object:self];
                                                       [self dismissViewControllerAnimated:YES completion:nil];
                                                       
                                                   }];
+    
     
     self.onboard = [OnboardingViewController
                     onboardWithBackgroundImage:[UIImage imageNamed:@"cedric"]

@@ -7,26 +7,30 @@
 //
 
 #import <Foundation/Foundation.h>
+
 typedef NS_ENUM(NSInteger, QuestionType){
-    QuestionTypeNone,
+     QuestionTypeAorB = 100,
     QuestionTypeYESorNO,
-    QuestionTypeAorB
 };
 
 @interface Card : NSObject
 
-@property (strong,nonatomic) NSString *id;
+@property (strong,nonatomic) NSNumber *id;
 @property (strong,nonatomic) NSString *question;
 @property (strong,nonatomic) NSURL *imgUrl;
 @property (strong,nonatomic) NSURL *senderImgUrl;
 @property (strong,nonatomic) NSString *senderName;
+@property (strong,nonatomic) NSNumber *senderFbID;
 @property (strong,nonatomic) NSNumber *percentVotesLeft;
 @property (strong,nonatomic) NSNumber *percentVotesRight;
 @property (strong,nonatomic) NSNumber *voteCount;
-@property (strong,nonatomic) NSNumber *voteResult;
-@property (assign) QuestionType questionType;
+//@property (strong,nonatomic) NSString *voteResult;
+@property (strong, nonatomic) NSNumber *questionType;
+
 
 - (NSString *)voteCountString;
+- (NSURL *)facebookImageUrl;
 
++ (Card *)createCardWithData:(NSDictionary *)data;
 
 @end

@@ -11,6 +11,7 @@
 #import "constants.h"
 #import "UIColor+HexValue.h"
 #import <FAKIonIcons.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface HomeContainerView()
 @property (strong,nonatomic) HomeResultView *resultView;
@@ -32,7 +33,6 @@
 
 @end
 @implementation HomeContainerView
-
 
 - (void)awakeFromNib
 {
@@ -74,17 +74,12 @@
     self.resultView.hidden = YES;
     self.resultView.alpha = 0;
     
-    self.shareImageView.userInteractionEnabled = YES;
     self.imageView.userInteractionEnabled = YES;
     self.imageViewTap.numberOfTapsRequired = 2;
     
     FAKIonIcons *shareIcon = [FAKIonIcons shareIconWithSize:15];
     [shareIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
     shareIcon.drawingBackgroundColor = [UIColor colorWithHexString:kColorDarkGrey];
-    UIImage *icon = [shareIcon imageWithSize:CGSizeMake(20, 20)];
-    self.shareImageView.image = icon;
-    self.shareImageView.layer.cornerRadius = self.shareImageView.frame.size.height/2;
-    self.shareImageView.layer.masksToBounds = YES;
     
     [self layoutIfNeeded];
     self.imageViewHeightConstraint.constant = 250;
@@ -103,25 +98,29 @@
         self.imageViewWidthConstraint.constant = 320;
     }
     [self layoutIfNeeded];
+    
 }
 
-- (void)showImageViewCover
+- (void)showImageViewCoverForLeft:(BOOL)left
 {
-    self.shareImageView.hidden = YES;
-    self.shareImageView.alpha = 0;
     
-    if (self.card.questionType == QuestionTypeYESorNO){
-        self.resultView.leftLabel.text = @"65% chose YES";
-        self.resultView.rightLabel.text = @"35% chose NO";
+    if ([self.card.questionType intValue] == QuestionTypeYESorNO){
+        self.resultView.leftLabel.text = [NSString stringWithFormat:@"%@%% chose YES",self.card.percentVotesLeft];
+        self.resultView.rightLabel.text = [NSString stringWithFormat:@"%@%% chose NO",self.card.percentVotesRight];
     }
-    else if (self.card.questionType == QuestionTypeAorB){
-        self.resultView.leftLabel.text = @"65% chose A";
-        self.resultView.rightLabel.text = @"35% chose B";
+    else if ([self.card.questionType intValue] == QuestionTypeAorB){
+        self.resultView.leftLabel.text = [NSString stringWithFormat:@"%@%% chose A",self.card.percentVotesLeft];
+        self.resultView.rightLabel.text = [NSString stringWithFormat:@"%@%% chose B",self.card.percentVotesRight];
     }
     
     [UIView animateWithDuration:1
                      animations:^{
-                         [self.resultView showLeft];
+                         if (left){
+                             [self.resultView showLeft];
+                         }
+                         else{
+                             [self.resultView showRight];
+                         }
                         }];
 }
 
@@ -134,31 +133,65 @@
     if (self.delegate){
         [self.delegate homeView:self
                tappedShareImage:self.imageView.image
-                      withTitle:self.titleLabel.text];
+                      withTitle:self.titleLabel.text
+                        andCard:self.card];
     }
     
 }
 
 - (IBAction)tappedButton1:(UIButton *)sender {
     sender.userInteractionEnabled = NO;
-    [self showImageViewCover];
+    [self showImageViewCoverForLeft:YES];
     
     if (self.delegate){
+        QuestionType type;
+        if ([self.card.questionType intValue] == 100){
+            type = QuestionTypeAorB;
+        }
+        else if ([self.card.questionType intValue] == 101){
+            type = QuestionTypeYESorNO;
+        }
+        
         [self.delegate homeView:self
              tappedButtonNumber:1
-                        forType:self.card.questionType];
+                        forType:type];
     }
 }
 
 - (IBAction)tappedButton2:(UIButton *)sender {
     sender.userInteractionEnabled = NO;
-    [self showImageViewCover];
+    [self showImageViewCoverForLeft:NO];
     
     if (self.delegate){
+        QuestionType type;
+        if ([self.card.questionType intValue] == 100){
+            type = QuestionTypeAorB;
+        }
+        else if ([self.card.questionType intValue] == 101){
+            type = QuestionTypeYESorNO;
+        }
         [self.delegate homeView:self
              tappedButtonNumber:2
-                        forType:self.card.questionType];
+                        forType:type];
     }
+}
+
+- (void)hideButtons
+{
+    self.button1.alpha = 0;
+    self.button1.hidden = YES;
+    self.button2.alpha = 0;
+    self.button2.hidden = YES;
+}
+- (void)showButtons
+{
+    [UIView animateWithDuration:1
+                     animations:^{
+                         self.button1.alpha = 1;
+                         self.button1.hidden = NO;
+                         self.button2.alpha = 1;
+                         self.button2.hidden = NO;
+                     }];
 }
 
 - (void)dismiss
@@ -172,18 +205,28 @@
     // When i set the card use that to display correct bottom button
     _card = card;
     
-    if (card.questionType == QuestionTypeYESorNO){
+    if ([card.questionType intValue] == QuestionTypeYESorNO){
         [self.button1 setTitle:NSLocalizedString(@"YES", nil) forState:UIControlStateNormal];
         [self.button2 setTitle:NSLocalizedString(@"NO", nil) forState:UIControlStateNormal];
         self.button1.backgroundColor = [UIColor colorWithHexString:kColorFlatGreen];
         self.button2.backgroundColor = [UIColor colorWithHexString:kColorFlatRed];
     }
-    else if (card.questionType == QuestionTypeAorB){
+    else if ([card.questionType intValue] == QuestionTypeAorB){
         [self.button1 setTitle:NSLocalizedString(@"A", nil) forState:UIControlStateNormal];
         [self.button2 setTitle:NSLocalizedString(@"B", nil) forState:UIControlStateNormal];
         self.button1.backgroundColor = [UIColor colorWithHexString:kColorOrange];
         self.button2.backgroundColor = [UIColor colorWithHexString:kColorFlatBlue];
     }
+    
+    self.titleLabel.text = card.question;
+    self.votesTotalLabel.text = [card voteCountString];
+    self.userLabel.text = card.senderName;
+    
+    [self.userImageView sd_setImageWithURL:[card facebookImageUrl] placeholderImage:[UIImage imageNamed:@"app-icon"]];
+    [self.imageView sd_setImageWithURL:card.imgUrl placeholderImage:[UIImage imageNamed:@"app-icon"]
+                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                 [self showButtons];
+                             }];
 
 }
 /*

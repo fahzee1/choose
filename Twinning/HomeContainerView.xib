@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="300" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="35" text="Best Selfie of 2015 or best selfie of 2014 and tomorrow?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhn-cd-WgC">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="300" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="35" text="Best Selfie of 2015 or best selfie of 2014 and tomorrow?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="590" translatesAutoresizingMaskIntoConstraints="NO" id="Mhn-cd-WgC">
                     <rect key="frame" x="5" y="15" width="590" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="9b5-fU-kdb"/>
@@ -27,8 +27,8 @@
                         </mask>
                     </variation>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="300" misplaced="YES" text="1/100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hva-g5-iFk">
-                    <rect key="frame" x="278" y="60" width="44" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="300" text="1/100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hva-g5-iFk">
+                    <rect key="frame" x="279" y="60" width="42" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="bcL-e9-Fgu"/>
                     </constraints>

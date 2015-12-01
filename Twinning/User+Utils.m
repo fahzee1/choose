@@ -86,7 +86,7 @@
              [client stopNetworkActivity];
              
              id success = responseObject[@"success"];
-             NSString *userToken = responseObject[@"user"][@"authentication_token"];
+             //NSString *userToken = responseObject[@"user"][@"authentication_token"];
              if ((BOOL)success && block){
                  block(APIRequestStatusSuccess,responseObject);
              }
@@ -105,12 +105,60 @@
     
 }
 
++ (void)showCardsWithParams:(NSDictionary *)params
+                  GETParams:(NSString *)qString
+                      block:(ResponseBlock)block
+{
+    NSString *urlString;
+    if (qString){
+        urlString = [NSString stringWithFormat:@"%@%@",APICardsString,qString];
+    }
+    else{
+        urlString = APICardsString;
+    }
+    
+    APIClient *client = [APIClient sharedClient];
+    [client GET:urlString parameters:params
+        success:^(NSURLSessionDataTask *task, id responseObject) {
+            [client stopNetworkActivity];
+            if (block){
+                block(APIRequestStatusSuccess, responseObject);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [client stopNetworkActivity];
+            DLog(@"%@",error.localizedDescription);
+            if (block){
+                block(APIRequestStatusFail,nil);
+            }
+        }];
+}
+
 + (void)createCardWithParams:(NSDictionary *)params
                        block:(ResponseBlock)block
 {
     APIClient *client = [APIClient sharedClient];
     [client startNetworkActivity];
     [client POST:APICardCreateString parameters:params
+         success:^(NSURLSessionDataTask *task, id responseObject) {
+             [client stopNetworkActivity];
+             if (block){
+                 block(APIRequestStatusSuccess,responseObject);
+             }
+         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+             [client stopNetworkActivity];
+             DLog(@"error is %@",error.localizedDescription);
+             if (block){
+                 block(APIRequestStatusFail,error.localizedDescription);
+             }
+         }];
+}
+
++ (void)fetchMyRecentCards:(NSDictionary *)params
+                     block:(ResponseBlock)block
+{
+    APIClient *client = [APIClient sharedClient];
+    [client startNetworkActivity];
+    [client POST:APIUserRecentCards parameters:params
          success:^(NSURLSessionDataTask *task, id responseObject) {
              [client stopNetworkActivity];
              if (block){

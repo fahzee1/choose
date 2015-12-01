@@ -24,6 +24,7 @@ pod 'Tweaks'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
+pod 'FBAudienceNetwork'
 pod 'ECSlidingViewController', '~> 2.0.3'
 pod 'ASProgressPopUpView'
 pod 'PSTAlertController'
@@ -31,7 +32,7 @@ pod 'FXBlurView'
 pod 'MGInstagram'
 pod 'Onboard'
 pod 'Branch'
-
+#pod 'JSONModel'
 end
 
 target 'ChooseTests' do

@@ -10,6 +10,7 @@
 #import "MenuCell.h"
 #import "HomeViewController.h"
 #import "ShareViewController.h"
+#import "ProfileViewController.h"
 #import "SearchViewController.h"
 #import "UIColor+HexValue.h"
 #import <UIViewController+ECSlidingViewController.h>
@@ -38,6 +39,7 @@
     
     [self setup];
 
+
     
 }
 
@@ -60,6 +62,7 @@
     self.searchButton.titleLabel.font = [UIFont fontWithName:kFontGlobal size:15];
     self.searchButton.layer.cornerRadius = 5.f;
     
+    self.searchBar.hidden = YES;
     self.searchBar.barTintColor = [UIColor whiteColor];
     self.searchBar.barStyle = UIBarStyleBlackTranslucent;
     
@@ -165,7 +168,7 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0){
-        return NSLocalizedString(@"", nil);
+        return NSLocalizedString(@"Category", nil);
     }
     else if (section == 1){
          return NSLocalizedString(@"Account", nil);
@@ -343,6 +346,7 @@
                                           
                                           UIViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardProfile];
                                           if ([controller.topViewController isKindOfClass:[UINavigationController class]]){
+                                              ((ProfileViewController *)profileController).localUser = self.localUser;
                                               UINavigationController *base = [[UINavigationController alloc] initWithRootViewController:profileController];
                                               [((UINavigationController *)controller.topViewController).topViewController presentViewController:base animated:YES completion:nil];
                                           }
@@ -357,11 +361,13 @@
                 [controller resetTopViewAnimated:YES
                                       onComplete:^{
                                        
+                            
                                           ShareViewController *shareController = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardShare];
+                                          shareController.localUser = self.localUser;
                                           shareController.titleText = NSLocalizedString(@"SPREAD THE LOVE!", nil);
-                                          shareController.subtitleText = NSLocalizedString(@"Go download Twinning now to see my wonderful questions", nil);
+                                          shareController.subtitleText = NSLocalizedString(@"Get featured by inviting some friends to Choose!", nil);
                                           shareController.bottomShareText = NSLocalizedString(@"Share With Friends On...", nil);
-                                          shareController.imageViewText = NSLocalizedString(@"Join me on Choose to vote on cool topics!", nil);
+                                          shareController.imageViewText = NSLocalizedString(@"Vote on the most important topics", nil);
                                           if ([controller.topViewController isKindOfClass:[UINavigationController class]]){
                                               [((UINavigationController *)controller.topViewController).topViewController presentViewController:shareController animated:YES completion:nil];
                                           }

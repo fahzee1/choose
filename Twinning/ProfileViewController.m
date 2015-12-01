@@ -13,10 +13,13 @@
 #import "UIColor+HexValue.h"
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import "CardViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <MBProgressHUD.h>
 
 @interface ProfileViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSArray *data;
+@property (strong,nonatomic)MBProgressHUD *hud;
 
 @end
 
@@ -25,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    NSParameterAssert(self.localUser);
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -36,6 +41,11 @@
     self.data = @[dict1,dict2,dict3,dict4];
     
     [self setup];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self fetchNewData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +61,23 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backImage style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
     
     
+}
+
+- (void)fetchNewData
+{
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.labelText = NSLocalizedString(@"Loading...", nil);
+    
+    [User fetchMyRecentCards:@{}
+                       block:^(APIRequestStatus status, id data) {
+                           [self.hud hide:YES];
+                           if (status == APIRequestStatusSuccess){
+                               DLog(@"data");
+                           }
+                           else{
+                               DLog(@"issues fetching data");
+                           }
+                       }];
 }
 
 - (void)goBack
@@ -113,7 +140,17 @@
 {
     if (indexPath.row == 0){
         // header cell
-        ((ProfileHeaderCell *)cell).profileLabel.text = @"CJ Ogbuehi";
+        ((ProfileHeaderCell *)cell).profileLabel.text = self.localUser.name;
+        NSString *fbString = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large",self.localUser.facebook_id];
+        NSURL *fbUrl = [NSURL URLWithString:fbString];
+        FAKIonIcons *personIcon = [FAKIonIcons personIconWithSize:45];
+        [personIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+        personIcon.drawingBackgroundColor = [UIColor colorWithHexString:kColorFlatRed];
+        UIImage *personImage = [personIcon imageWithSize:CGSizeMake(50, 50)];
+        
+        [((ProfileHeaderCell *)cell).profileImageView sd_setImageWithURL:fbUrl placeholderImage:personImage options:SDWebImageRefreshCached];
+        
+
     }
     else{
         NSDictionary *obj = [self.data objectAtIndex:indexPath.row - 1];

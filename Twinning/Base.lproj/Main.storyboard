@@ -147,23 +147,17 @@
                                             <constraint firstAttribute="width" constant="114" id="qIx-Eg-2zn"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naS-DQ-p0M">
-                                        <rect key="frame" x="194" y="12" width="213" height="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="210" translatesAutoresizingMaskIntoConstraints="NO" id="naS-DQ-p0M">
+                                        <rect key="frame" x="195" y="12" width="210" height="34"/>
                                         <gestureRecognizers/>
                                         <string key="text">ARE WE TWINS OR NAH?
 VOTE NOW WITH CODE CJ1234</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="fLs-8q-1E9" appends="YES" id="s8E-7M-EIl"/>
                                         </connections>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="181" placeholderIntrinsicHeight="21" text="Access Code: CJ88228" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlH-OS-jLk">
-                                        <rect key="frame" x="8" y="314" width="181" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="150" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="4SJ-sp-6cO" customClass="SelfieImageView">
                                         <rect key="frame" x="145" y="60" width="150" height="150"/>
@@ -204,11 +198,9 @@ VOTE NOW WITH CODE CJ1234</string>
                                     <constraint firstAttribute="centerX" secondItem="4SJ-sp-6cO" secondAttribute="centerX" constant="80" id="Qyf-Su-yJX"/>
                                     <constraint firstItem="naS-DQ-p0M" firstAttribute="leading" secondItem="Z6Q-Ac-WfT" secondAttribute="leading" constant="202" id="RoW-98-c3f"/>
                                     <constraint firstItem="4SJ-sp-6cO" firstAttribute="height" secondItem="PpF-fK-fq7" secondAttribute="height" id="Rq8-sc-BdG"/>
-                                    <constraint firstItem="BlH-OS-jLk" firstAttribute="leading" secondItem="Z6Q-Ac-WfT" secondAttribute="leading" constant="8" id="WR0-OT-unN"/>
                                     <constraint firstAttribute="trailing" secondItem="IsM-Ye-8VO" secondAttribute="trailing" constant="3" id="aKQ-Xf-upG"/>
                                     <constraint firstAttribute="centerX" secondItem="naS-DQ-p0M" secondAttribute="centerX" id="dxx-l1-Dvp"/>
                                     <constraint firstItem="4SJ-sp-6cO" firstAttribute="top" secondItem="PpF-fK-fq7" secondAttribute="top" id="eRX-4R-9gJ"/>
-                                    <constraint firstItem="BlH-OS-jLk" firstAttribute="centerY" secondItem="IsM-Ye-8VO" secondAttribute="centerY" id="f2G-Rk-V1M"/>
                                     <constraint firstAttribute="height" constant="350" id="xU4-Rl-cOZ"/>
                                 </constraints>
                                 <variation key="default">
@@ -278,7 +270,6 @@ VOTE NOW WITH CODE CJ1234</string>
                         </segmentedControl>
                     </navigationItem>
                     <connections>
-                        <outlet property="accessCodeLabel" destination="BlH-OS-jLk" id="zwH-LQ-m4s"/>
                         <outlet property="continueButton" destination="Mj4-Kk-mlh" id="ID1-ni-UFh"/>
                         <outlet property="picTapGesture" destination="Bse-Ku-mL1" id="qRr-1c-wPW"/>
                         <outlet property="picTapGesture2" destination="zfj-18-fzG" id="wEv-WH-oH8"/>
@@ -336,13 +327,13 @@ VOTE NOW WITH CODE CJ1234</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUESTION CREATED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2Q-WT-aAU">
                                 <rect key="frame" x="20" y="164" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just alot of text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRg-Aj-uqk">
                                 <rect key="frame" x="20" y="205" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Ul-8x-ZNj">
@@ -355,7 +346,7 @@ VOTE NOW WITH CODE CJ1234</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dY9-aO-uPB">
                                 <rect key="frame" x="20" y="391" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDN-jj-Nz4" customClass="SocialIconButton">
@@ -423,7 +414,7 @@ VOTE NOW WITH CODE CJ1234</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question Here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtI-0R-n5R">
                                 <rect key="frame" x="2" y="361" width="596" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -544,7 +535,7 @@ VOTE NOW WITH CODE CJ1234</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eP-G7-szH">
                                                     <rect key="frame" x="66" y="15" width="481" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -628,7 +619,7 @@ VOTE NOW WITH CODE CJ1234</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4V-4J-VMO">
                                                     <rect key="frame" x="66" y="19" width="506" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -662,13 +653,13 @@ VOTE NOW WITH CODE CJ1234</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hotline Bling hottest song of 2015?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khK-5W-ce2">
                                                     <rect key="frame" x="116" y="53" width="436" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 days ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZ4-oe-YdR">
                                                     <rect key="frame" x="116" y="93" width="411" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -724,7 +715,7 @@ VOTE NOW WITH CODE CJ1234</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of Card" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFA-L3-QAL">
                                 <rect key="frame" x="25" y="92" width="550" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card" translatesAutoresizingMaskIntoConstraints="NO" id="c6W-MS-YdM">
@@ -742,7 +733,7 @@ VOTE NOW WITH CODE CJ1234</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000 Votes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFy-Q2-dgF">
                                 <rect key="frame" x="257" y="448" width="87" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -798,7 +789,7 @@ VOTE NOW WITH CODE CJ1234</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="As an Uber independent contractor you can get paid to drive your own car! We connect you with riders and much more" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHx-gc-Fox">
                                 <rect key="frame" x="10" y="91" width="580" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="uber" translatesAutoresizingMaskIntoConstraints="NO" id="8Pt-uL-seG">
@@ -828,7 +819,7 @@ VOTE NOW WITH CODE CJ1234</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02h-yR-wfX">
                                 <rect key="frame" x="279" y="506" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -928,7 +919,7 @@ VOTE NOW WITH CODE CJ1234</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="F5u-7L-bnf">
-                                <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                                <rect key="frame" x="0.0" y="50" width="600" height="550"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -970,7 +961,7 @@ VOTE NOW WITH CODE CJ1234</string>
                             <constraint firstItem="bwx-ei-vd1" firstAttribute="top" secondItem="A8o-Mj-fi1" secondAttribute="bottom" constant="14" id="EBa-0D-18s"/>
                             <constraint firstAttribute="trailing" secondItem="F5u-7L-bnf" secondAttribute="trailing" id="RDU-vj-V39"/>
                             <constraint firstItem="bwx-ei-vd1" firstAttribute="leading" secondItem="HiN-vG-Elx" secondAttribute="leading" constant="15" id="ZB4-og-LlZ"/>
-                            <constraint firstItem="F5u-7L-bnf" firstAttribute="top" secondItem="HiN-vG-Elx" secondAttribute="top" constant="70" id="pJs-7D-QwD"/>
+                            <constraint firstItem="F5u-7L-bnf" firstAttribute="top" secondItem="HiN-vG-Elx" secondAttribute="top" constant="50" id="pJs-7D-QwD"/>
                         </constraints>
                     </view>
                     <connections>
@@ -980,7 +971,7 @@ VOTE NOW WITH CODE CJ1234</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq4-0p-qWW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="932" y="293"/>
+            <point key="canvasLocation" x="940" y="276"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bjz-j9-HyL">

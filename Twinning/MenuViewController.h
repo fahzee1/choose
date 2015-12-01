@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User+Utils.h"
 
 @class MenuViewController;
 
@@ -22,4 +23,5 @@
 @interface MenuViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak) id <MenuDelegate> delegate;
+@property (strong, nonatomic) User *localUser;
 @end

@@ -44,6 +44,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (assign) QuestionType questionType;
+
 @property (assign) BOOL selfieTitle;
 @property (assign) BOOL selfie1;
 @property (assign) BOOL selfie2;
@@ -108,7 +109,6 @@
 
 -(void)setup
 {
-    self.questionType = QuestionTypeNone;
     self.navigationItem.title = NSLocalizedString(@"Create Your Own", nil);
     
     FAKIonIcons *backIcon = [FAKIonIcons closeRoundIconWithSize:35];
@@ -268,7 +268,7 @@
         return NO;
     }
     
-    if (self.questionType == QuestionTypeNone){
+    if (!self.questionType){
         [self askQuestionType];
         return NO;
         
@@ -377,18 +377,22 @@
                              if (status == APIRequestStatusSuccess){
                                  dispatch_async(dispatch_get_main_queue(), ^{
                                      [self dismissViewControllerAnimated:YES completion:^{
+                                        
+                                         Card *card = [Card createCardWithData:data[@"data"][@"card"]];
+        
                                          [[NSNotificationCenter defaultCenter]
                                           postNotificationName:kNotificationSubmittedCard
                                           object:self
-                                          userInfo:@{@"shareImage":shareImage,@"shareText":self.titleLabel.text}];
+                                          userInfo:@{@"shareImage":shareImage,
+                                                     @"shareText":self.titleLabel.text,
+                                                     @"card":card}];
                                          
                                      }];
                                  });
                              }
                              else if (status == APIRequestStatusFail){
-                                 if ([data isKindOfClass:[NSString class]]){
-                                     [self showMessageWithTitle:NSLocalizedString(@"Error", nil) andMessage:data];
-                                 }
+                                 // card_id will just be error message
+                                [self showMessageWithTitle:NSLocalizedString(@"Error", nil) andMessage:data];
                              }
                              else{
                                  abort();

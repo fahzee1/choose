@@ -17,6 +17,9 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <Branch.h>
+#import <MMAdSDK/MMAdSDK.h>
+#import "MMConversionTracking.h"
+
 
 
 @interface AppDelegate ()
@@ -86,12 +89,22 @@
     // Branch
     Branch *branch = [Branch getInstance];
     ChooseViewController *chooseController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kStoryboardChoose];
-    [branch registerDeepLinkController:chooseController forKey:@"card_url"];
+    [branch registerDeepLinkController:chooseController forKey:@"card_id"];
     
     [branch initSessionAndAutomaticallyDisplayDeepLinkController:YES deepLinkHandler:^(NSDictionary *params, NSError *error) {
         // params are the deep linked params associated with the link that the user clicked before showing up.
         NSLog(@"deep link data: %@", [params description]);
     }];
+    
+    // Millennial Media (ads)
+    MMAppSettings *appSettings = [[MMAppSettings alloc] init];
+    appSettings.mediator = @"Facebook";
+    
+    //MMUserSettings* userSettings = [[MMUserSettings alloc] init];
+    // Provide userSettings values here, as appropriate
+    
+    [[MMSDK sharedInstance] initializeWithSettings:appSettings withUserSettings:nil];
+    //[MMConversionTracking trackConversionWithGoalId:@"YOUR_APP_TRACKING_ID"];
     
     
     // Create initial user

@@ -29,9 +29,11 @@ PODS:
   - Bolts/AppLinks (1.2.2):
     - Bolts/Tasks
   - Bolts/Tasks (1.2.2)
+  - Branch (0.11.11)
   - CRToast (0.0.8)
   - DateTools (1.7.0)
   - ECSlidingViewController (2.0.3)
+  - FBAudienceNetwork (4.7.0)
   - FBSDKCoreKit (4.6.0):
     - Bolts (~> 1.1)
     - FBSDKCoreKit/arc (= 4.6.0)
@@ -75,9 +77,11 @@ DEPENDENCIES:
   - AMPopTip
   - Appirater
   - ASProgressPopUpView
+  - Branch
   - CRToast (~> 0.0.7)
   - DateTools
   - ECSlidingViewController (~> 2.0.3)
+  - FBAudienceNetwork
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -102,9 +106,11 @@ SPEC CHECKSUMS:
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
   ASProgressPopUpView: 945c19297da09a625db48a5a37cabd7756916b9b
   Bolts: 20a2bd788273360cb1e31530dc19b8544eef2544
+  Branch: 71b1180c49d75e0d849e2611ecf3016de7572eac
   CRToast: b087127369b4c603726ef6249d74d0d737629ab8
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   ECSlidingViewController: 6485c14f23b4487e9946535421ca8f111f86cc53
+  FBAudienceNetwork: 4d69cb1946c3ba83491e2470ce288e559b7215bf
   FBSDKCoreKit: 9954492d90c5fd65ae831395697a1660360d61f1
   FBSDKLoginKit: 3d07febbfa884b9878cacba54f705bb41f07d4b6
   FBSDKShareKit: f474f1123791e215d0299b98b3ee92ddd9187d86
@@ -123,4 +129,4 @@ SPEC CHECKSUMS:
   TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
   Tweaks: 524fa47636cce3bf3a4d9156e980f10ae9480e81
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.39.0

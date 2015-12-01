@@ -26,7 +26,14 @@ typedef void (^ResponseBlock) (APIRequestStatus status,id data);
 + (void)loginWithParams:(NSDictionary *)params
                   block:(ResponseBlock)block;
 
++ (void)showCardsWithParams:(NSDictionary *)params
+                      GETParams:(NSString *)qString
+                     block:(ResponseBlock)block;
+
 + (void)createCardWithParams:(NSDictionary *)params
                   block:(ResponseBlock)block;
+
++ (void)fetchMyRecentCards:(NSDictionary *)params
+                       block:(ResponseBlock)block;
 
 @end

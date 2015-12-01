@@ -12,8 +12,12 @@
 static NSString * const APIBaseUrlString = @"http://192.168.200.187:8000/api/";
 
 // User Endpoints
-static NSString * const APILoginString = @"users/login/";
-static NSString * const APICardCreateString = @"cards/create/";
+static NSString * const APILoginString = @"users/login";
+
+// Card Endpoints
+static NSString * const APICardsString = @"cards";
+static NSString * const APICardCreateString = @"cards/create";
+static NSString * const APIUserRecentCards = @"cards/me";
 
 
 @interface APIClient : AFHTTPSessionManager

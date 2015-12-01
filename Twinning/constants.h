@@ -59,7 +59,8 @@ static NSString *const kLocalUserAuthKey = @"localauthkey";
 static NSString *const kLocalUserCreated = @"kLocalUserCreated";
 static NSString *const kInstagramUserName = @"cj_o32";
 static NSString *const kFacebookPageID = @"373149746105451";
-static NSString *const kFacebookPageName = @"Altruus";
+static NSString *const kFacebookPageName = @"trychoose";
+static NSString *const kFlickrHostedImage = @"https://farm1.staticflickr.com/584/22476394424_e545488535_b.jpg";
 
 // Colors
 static NSString *const kColorRed = @"#ef2b2b";

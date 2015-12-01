@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Gen Y Solutions LLC. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "ShareViewController.h"
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import <ASProgressPopUpView.h>
@@ -38,6 +39,9 @@
 @property (strong,nonatomic) NSString *shareLink;
 @property (strong,nonatomic) NSString *shareText;
 
+@property (strong, nonatomic) BranchUniversalObject *branchUniversalObject;
+@property (strong,nonatomic) BranchLinkProperties *linkProperties;
+
 // Constraints
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topImageViewTopConstraint;
 
@@ -59,6 +63,10 @@
     // Do any additional setup after loading the view.
     [self setup];
     [self createLink];
+    
+    AppDelegate *delegate = [AppDelegate sharedAppDelegate];
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    self.localUser = [User getLocalUserInContext:context];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -182,17 +190,17 @@
     
     self.ig = [[MGInstagram alloc] init];
     self.ig.photoFileName = kInstagramOnlyPhotoFileName;
-    NSString *text = [NSString stringWithFormat:@"%@ %@",self.shareText,self.shareLink];
+    NSString *text = [NSString stringWithFormat:@"%@ Vote now on Choose %@",self.shareText,self.shareLink];
     [self.ig postImage:self.middleImageView.image withCaption:text inView:self.view];
 }
 
 - (IBAction)tappedShareButton2:(UIButton *)sender {
-    NSString *text = [NSString stringWithFormat:@"%@ %@",self.shareText,self.shareLink];
+    NSString *text = [NSString stringWithFormat:@"%@ Vote now on Choose %@",self.shareText,self.shareLink];
     [self showFacebookShareScreenWithText:text];
 }
 
 - (IBAction)tappedShareButton3:(UIButton *)sender {
-    NSString *text = [NSString stringWithFormat:@"%@ %@",self.shareText,self.shareLink];
+    NSString *text = [NSString stringWithFormat:@"%@ Vote now on Choose %@",self.shareText,self.shareLink];
     [self showSMSorEmailScreenWithText:text];
 }
 
@@ -209,28 +217,61 @@
 
 - (void)createLink
 {
-#warning actually put useful information in this link
-    BranchUniversalObject *branchUniversalObject = [[BranchUniversalObject alloc] initWithCanonicalIdentifier:@"item/12345"];
-    branchUniversalObject.title = @"My Content Title";
-    branchUniversalObject.contentDescription = @"My Content Description";
-    branchUniversalObject.imageUrl = @"https://example.com/mycontent-12345.png";
-    [branchUniversalObject addMetadataKey:@"property1" value:@"blue"];
-    [branchUniversalObject addMetadataKey:@"property2" value:@"red"];
     
-    BranchLinkProperties *linkProperties = [[BranchLinkProperties alloc] init];
-    linkProperties.feature = @"sharing";
-    linkProperties.channel = @"facebook";
-    [linkProperties addControlParam:@"$desktop_url" withValue:@"http://example.com/home"];
-    [linkProperties addControlParam:@"$ios_url" withValue:@"http://example.com/ios"];
-    
-    [branchUniversalObject registerView];
-    
-    [branchUniversalObject getShortUrlWithLinkProperties:linkProperties
-                                             andCallback:^(NSString *url, NSError *error) {
-                                                 if (!error){
-                                                     self.shareLink = url;
-                                                 }
-                                             }];
+    if (self.card){
+        self.branchUniversalObject = [[BranchUniversalObject alloc] initWithCanonicalIdentifier:[NSString stringWithFormat:@"card/%@",self.card.id]];
+        self.branchUniversalObject.title = self.card.question;
+        self.branchUniversalObject.contentDescription = NSLocalizedString(@"Vote now on Choose and vote on topics that really matter.", nil);
+        self.branchUniversalObject.imageUrl = [self.card.imgUrl absoluteString];
+        [self.branchUniversalObject addMetadataKey:@"card_image_url" value:[self.card.imgUrl absoluteString]];
+        [self.branchUniversalObject addMetadataKey:@"card_question" value:self.card.question];
+        [self.branchUniversalObject addMetadataKey:@"card_question_type" value:[NSString stringWithFormat:@"%@",self.card.questionType]];
+        [self.branchUniversalObject addMetadataKey:@"card_id" value:[NSString stringWithFormat:@"%@",self.card.id]];
+        [self.branchUniversalObject addMetadataKey:@"card_sender" value:self.card.senderName];
+        [self.branchUniversalObject addMetadataKey:@"card_sender_fb_id" value:[NSString stringWithFormat:@"%@",self.card.senderFbID]];
+        [self.branchUniversalObject addMetadataKey:@"card_total_votes" value:[self.card voteCountString]];
+        [self.branchUniversalObject addMetadataKey:@"card_percent_left" value:[NSString stringWithFormat:@"%@",self.card.percentVotesLeft]];
+        [self.branchUniversalObject addMetadataKey:@"card_percent_right" value:[NSString stringWithFormat:@"%@",self.card.percentVotesRight]];
+        
+        
+        
+        
+        self.linkProperties = [[BranchLinkProperties alloc] init];
+        self.linkProperties.feature = @"sharing";
+        self.linkProperties.channel = @"vote card";
+        
+        [self.branchUniversalObject registerView];
+        [self.branchUniversalObject listOnSpotlight];
+        [self.branchUniversalObject getShortUrlWithLinkProperties:self.linkProperties
+                                                 andCallback:^(NSString *url, NSError *error) {
+                                                     if (!error){
+                                                         self.shareLink = url;
+                                                     }
+                                                 }];
+
+    }
+    else{
+        self.branchUniversalObject = [[BranchUniversalObject alloc] initWithTitle:self.shareText];
+        self.branchUniversalObject.contentDescription = @"Choose allows you to vote on anything your heart desires! Create interesting topics and watch in amazement as the community votes. Choose covers everything from politics, celebrities, humor, and music. The choice is yours!";
+        // choose image hosted on flickr
+        self.branchUniversalObject.imageUrl = kFlickrHostedImage;
+        [self.branchUniversalObject addMetadataKey:@"property1" value:@"blue"];
+        [self.branchUniversalObject addMetadataKey:@"property2" value:@"red"];
+        
+        self.linkProperties = [[BranchLinkProperties alloc] init];
+        self.linkProperties.feature = @"sharing";
+        self.linkProperties.channel = @"Choose";
+        
+        [self.branchUniversalObject registerView];
+        [self.branchUniversalObject listOnSpotlight];
+        [self.branchUniversalObject getShortUrlWithLinkProperties:self.linkProperties
+                                                 andCallback:^(NSString *url, NSError *error) {
+                                                     if (!error){
+                                                         self.shareLink = url;
+                                                     }
+                                                 }];
+
+    }
 }
 
 
@@ -243,15 +284,25 @@
     SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
     [controller setInitialText:text];
     [controller addURL:[NSURL URLWithString:self.shareLink]];
-    [controller addImage:self.middleImageView.image];
     [self presentViewController:controller animated:YES completion:nil];
     
 }
 - (void)showSMSorEmailScreenWithText:(NSString *)text
 {
     NSString *inviteText = text;
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[inviteText,self.middleImageView.image] applicationActivities:nil];
-    activityVC.excludedActivityTypes = @[UIActivityTypePrint,UIActivityTypeCopyToPasteboard,UIActivityTypeSaveToCameraRoll];
+    UIImage *image;
+    NSURL *imageURL;
+    if (self.card){
+        image = self.middleImageView.image;
+        imageURL = self.card.imgUrl;
+    }
+    else{
+        imageURL = [NSURL URLWithString:kFlickrHostedImage];
+        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+    }
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[inviteText,image] applicationActivities:nil];
+    activityVC.excludedActivityTypes = @[UIActivityTypePrint,UIActivityTypeCopyToPasteboard,UIActivityTypeSaveToCameraRoll,UIActivityTypePostToFacebook];
     
     if (IS_IPAD){
         if ([activityVC respondsToSelector:@selector(popoverPresentationController)]){
@@ -259,8 +310,10 @@
             
         }
     }
-    
+
     [self presentViewController:activityVC animated:YES completion:nil];
+    
+    
 
 }
 

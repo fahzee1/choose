@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "MenuViewController.h"
 #import "ViewController.h"
 #import "HomeFeedCell.h"
 #import "ShareViewController.h"
@@ -25,16 +26,28 @@
 #import "User+Utils.h"
 #import "AppDelegate.h"
 #import "constants.h"
+#import <MMAdSDK/MMAdSDK.h>
+#import <MBProgressHUD.h>
+#import <PSTAlertController.h>
 
-@interface HomeViewController()<UIScrollViewDelegate,HomeContainerDelegate>
+@interface HomeViewController()<UIScrollViewDelegate,HomeContainerDelegate,MMInterstitialDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong,nonatomic) NSMutableArray *cardData;
+@property (strong,nonatomic) NSMutableArray *cardData2;
 @property (assign) NSInteger pageNumber;
 @property (assign) NSInteger cardCount;
+@property (strong,nonatomic) NSString *serverLimit;
+@property (strong,nonatomic) NSString *serverOffset;
+@property (strong,nonatomic) NSString *serverQuery;
 @property (assign) CGPoint oldOffset;
 @property (assign) BOOL showingAD;
+@property (assign) BOOL stopServerFetch;
+@property (assign) BOOL firstDataFetch;
 @property (strong , nonatomic) AMPopTip *popTip;
 @property (strong,nonatomic) User *localUser;
+@property (strong, nonatomic) MMInterstitialAd *interstitialAd;
+@property (strong,nonatomic) MBProgressHUD *hud;
+
 
 @end
 @implementation HomeViewController
@@ -46,6 +59,12 @@
     AppDelegate *delegate = [AppDelegate sharedAppDelegate];
     NSManagedObjectContext *context = delegate.managedObjectContext;
     self.localUser = [User getLocalUserInContext:context];
+    UIViewController *controller = self.slidingViewController.underLeftViewController;
+    // pass local user to menu to be able to be passed around also 
+    if ([controller isKindOfClass:[MenuViewController class]]){
+        ((MenuViewController *)controller).localUser = self.localUser;
+    }
+    
     
     // So we can slide menu out
     ECSlidingViewController *slideController = [self slidingViewController];
@@ -58,8 +77,6 @@
     self.scrollView.directionalLockEnabled = YES;
     self.scrollView.pagingEnabled = YES;
     
-    self.pageNumber = 1;
-    
     // Scroll view pages based on the height of frame so set it based on screen size
     int offset = 60;
     if (IS_IPHONE_4_OR_LESS){
@@ -67,43 +84,19 @@
     }
     self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, SCREEN_HEIGHT - offset);
     
-    int i = 0;
-    int count = 10;
-    NSInteger height = self.scrollView.frame.size.height;
-    self.cardCount = count;
-    while (i < count) {
-        Card *card = [[Card alloc] init];
-        NSArray *options = @[[NSNumber numberWithInt:QuestionTypeAorB],[NSNumber numberWithInt:QuestionTypeYESorNO]];
-        id type = options[arc4random_uniform([options count])];
-        int typeInt = [(NSNumber *)type intValue];
-        card.questionType = typeInt;
-        
-        [self.cardData addObject:card];
-        HomeContainerView *containerView = [[[NSBundle mainBundle] loadNibNamed:@"HomeContainerView" owner:self options:nil] objectAtIndex:0];
-        containerView.frame = CGRectMake(0,height * i ,self.view.frame.size.width, height);
-        containerView.countLabel.text = card.voteCountString;
-        containerView.titleLabel.text = card.question;
-        if (card.questionType == QuestionTypeAorB){
-            containerView.imageView.image = [UIImage imageNamed:@"card2"];
-            containerView.titleLabel.text = @"Trip to Las Vegas or Miami?";
-        }
-        else{
-            containerView.imageView.image = [UIImage imageNamed:@"card"];
-            containerView.titleLabel.text = @"Men's style goals?";
-        }
-        [containerView.userImageView sd_setImageWithURL:card.senderImgUrl placeholderImage:[UIImage imageNamed:@"app-icon"]];
-        containerView.countLabel.text = [NSString stringWithFormat:@"%d/%d",i + 1,count];
-        containerView.delegate = self;
-        containerView.card = card;
-        
-        [self.scrollView addSubview:containerView];
-        i++;
-    }
     
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, height * i);
+    self.pageNumber = 1;
+    self.serverLimit = @"10";
+    self.serverOffset = @"0";
+    self.serverQuery = @"featured";
+    
+    //[self makeTestCards];
+    
+    
     
     
     [self setup];
+    [self setupInterstitialMillenialAd];
     [self listenForNotifications];
     
 }
@@ -149,6 +142,11 @@
                                     }];
 
     }
+    
+    if (!self.firstDataFetch){
+        [self fetchCards];
+        self.firstDataFetch = YES;
+    }
 
 }
 
@@ -171,6 +169,27 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closedAdNotif:) name:kNotificationClosedADPlacement object:nil];
 }
 
+- (void)setupCardScrollView
+{
+    int i = 0;
+    int count = [self.cardData count];
+    NSInteger height = self.scrollView.frame.size.height;
+    self.cardCount = count;
+    for (Card *card in self.cardData) {
+        HomeContainerView *containerView = [[[NSBundle mainBundle] loadNibNamed:@"HomeContainerView" owner:self options:nil] objectAtIndex:0];
+        containerView.frame = CGRectMake(0,height * i ,self.view.frame.size.width, height);
+        containerView.card = card;
+        containerView.countLabel.text = [NSString stringWithFormat:@"%d/%d",i + 1,count];
+        containerView.delegate = self;
+        [containerView hideButtons];
+        [self.scrollView addSubview:containerView];
+        i++;
+    }
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, height * i);
+}
+
+
 - (void)setup
 {
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:kBannerLogo]];
@@ -185,6 +204,109 @@
     
 
     
+}
+
+- (void)fetchCards
+{
+    if (!self.stopServerFetch){
+        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.hud.labelText = NSLocalizedString(@"Loading...", nil);
+        
+        NSString *query = self.serverQuery;
+        NSString *limit = self.serverLimit;
+        NSString *offset = self.serverOffset;
+        
+        [User showCardsWithParams:@{}
+                        GETParams:[NSString stringWithFormat:@"?q=%@&limit=%@&offset=%@",query,limit,offset]
+                            block:^(APIRequestStatus status, id data) {
+                                [self.hud hide:YES];
+                                if (status == APIRequestStatusSuccess){
+                                    NSNumber *next_limit = data[@"data"][@"next_limit"];
+                                    NSNumber *next_offset = data[@"data"][@"next_offset"];
+                                    if (![next_limit intValue] || ![next_offset intValue]){
+                                        self.stopServerFetch = YES;
+                                    }
+                                    else{
+                                        self.serverLimit = [NSString stringWithFormat:@"%@",next_limit];
+                                        self.serverOffset = [NSString stringWithFormat:@"%@",next_offset];
+                                    }
+                                    
+                                    for (NSDictionary *cardDict in data[@"data"][@"cards"]){
+                                        Card *card = [Card createCardWithData:cardDict];
+                                        DLog(@"card is %@",card);
+                                        [self.cardData addObject:card];
+                                        
+                                    }
+                                    // get next limit and offset from data and store it locally
+                                    
+                                    
+                                    [self setupCardScrollView];
+                                    
+                                }
+                                else{
+                                    DLog(@"There was an issue fetching new cards. Please try again.");
+                                }
+                            }];
+    }
+}
+
+- (void)makeTestCards
+{
+    // Scroll view pages based on the height of frame so set it based on screen size
+    int offset = 60;
+    if (IS_IPHONE_4_OR_LESS){
+        offset = 0;
+    }
+    self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, SCREEN_HEIGHT - offset);
+    
+    int i = 0;
+    int count = 10;
+    NSInteger height = self.scrollView.frame.size.height;
+    self.cardCount = count;
+    while (i < count) {
+        Card *card = [[Card alloc] init];
+        NSArray *options = @[[NSNumber numberWithInt:QuestionTypeAorB],[NSNumber numberWithInt:QuestionTypeYESorNO]];
+        id type = options[arc4random_uniform([options count])];
+        card.questionType = [NSString stringWithFormat:@"%@",type];
+        
+        [self.cardData2 addObject:card];
+        HomeContainerView *containerView = [[[NSBundle mainBundle] loadNibNamed:@"HomeContainerView" owner:self options:nil] objectAtIndex:0];
+        containerView.frame = CGRectMake(0,height * i ,self.view.frame.size.width, height);
+        containerView.countLabel.text = card.voteCountString;
+        containerView.titleLabel.text = card.question;
+        if ([card.questionType intValue] == QuestionTypeAorB){
+            containerView.imageView.image = [UIImage imageNamed:@"card2"];
+            containerView.titleLabel.text = @"Trip to Las Vegas or Miami?";
+        }
+        else{
+            containerView.imageView.image = [UIImage imageNamed:@"card"];
+            containerView.titleLabel.text = @"Men's style goals?";
+        }
+        [containerView.userImageView sd_setImageWithURL:card.senderImgUrl placeholderImage:[UIImage imageNamed:@"app-icon"]];
+        containerView.countLabel.text = [NSString stringWithFormat:@"%d/%d",i + 1,count];
+        containerView.delegate = self;
+        containerView.card = card;
+        
+        [self.scrollView addSubview:containerView];
+        i++;
+    }
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, height * i);
+
+}
+
+- (void)setupInterstitialMillenialAd
+{
+    self.interstitialAd = [[MMInterstitialAd alloc] initWithPlacementId:@"215657"];
+    self.interstitialAd.delegate = self;
+    [self.interstitialAd load:nil];
+}
+
+- (void)showInterstitialMillenialAd
+{
+    if (self.interstitialAd.ready){
+        [self.interstitialAd showFromViewController:self];
+    }
 }
 
 - (void)showTip
@@ -277,12 +399,16 @@
     NSDictionary *payload = notif.userInfo;
     UIImage *shareImage = payload[@"shareImage"]? payload[@"shareImage"]:nil;
     NSString *shareText = payload[@"shareText"]? payload[@"shareText"]:nil;
+    Card *card = payload[@"card"]? payload[@"card"]:nil;
+    
     FAKIonIcons *checkIcon = [FAKIonIcons checkmarkIconWithSize:50];
     [checkIcon addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:kColorRed]];
     UIImage *checkImage = [checkIcon imageWithSize:CGSizeMake(50, 50)];
     
     UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardShare];
     if ([controller isKindOfClass:[ShareViewController class]]){
+        ((ShareViewController *)controller).card = card;
+        ((ShareViewController *)controller).localUser = self.localUser;
         ((ShareViewController *)controller).topImage = checkImage;
         ((ShareViewController *)controller).shareImage = shareImage;
         ((ShareViewController *)controller).imageViewText = shareText;
@@ -336,7 +462,7 @@
     }
 }
 
-- (void)homeView:(UIView *)view tappedShareImage:(UIImage *)img withTitle:(NSString *)title
+- (void)homeView:(UIView *)view tappedShareImage:(UIImage *)img withTitle:(NSString *)title andCard:(Card *)card
 {
     ShareViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardShare];
     controller.titleText = NSLocalizedString(@"SHARE THE LOVE!", nil);
@@ -344,6 +470,7 @@
     controller.shareImage = img;
     controller.imageViewText = title;
     controller.bottomShareText = NSLocalizedString(@"Share with friends on...", nil);
+    controller.card = card;
     [self presentViewController:controller animated:YES completion:nil];
 }
 
@@ -372,7 +499,8 @@
     
     if (self.pageNumber == self.cardCount){
         if (!self.showingAD){
-            [self showAdPlacement];
+            //[self showAdPlacement];
+            [self showInterstitialMillenialAd];
         }
     }
     
@@ -381,6 +509,29 @@
     }
 }
 
+
+#pragma -mark Millenial ads delegate
+- (void)interstitialAd:(MMInterstitialAd *)ad loadDidFailWithError:(NSError *)error
+{
+    DLog(@"add 'load' failed with error %@ and code %ld",error.localizedDescription,(long)error.code);
+}
+
+- (void)interstitialAd:(MMInterstitialAd *)ad showDidFailWithError:(NSError *)error
+{
+    DLog(@"add 'show' failed with error %@ and code %ld",error.localizedDescription,(long)error.code);
+}
+
+- (void)interstitialAdDidDismiss:(MMInterstitialAd *)ad
+{
+    self.showingAD = NO;
+    MMRequestInfo *info = [[MMRequestInfo alloc] init];
+    [self.interstitialAd load:info];
+}
+
+- (void)interstitialAdDidDisplay:(MMInterstitialAd *)ad
+{
+    DLog(@"showing ad %@",ad.description);
+}
 
 #pragma -mark Email delegate
 
@@ -393,10 +544,19 @@
 
 - (NSMutableArray *)cardData
 {
-    if (_cardData){
+    if (!_cardData){
         _cardData = [NSMutableArray array];
     }
     
     return _cardData;
+}
+
+- (NSMutableArray *)cardData2
+{
+    if (!_cardData2){
+        _cardData2 = [NSMutableArray array];
+    }
+    
+    return _cardData2;
 }
 @end

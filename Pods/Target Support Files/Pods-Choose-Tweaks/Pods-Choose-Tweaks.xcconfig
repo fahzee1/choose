@@ -1,1 +1,0 @@
-PODS_CHOOSE_TWEAKS_OTHER_LDFLAGS = -framework "MessageUI"

@@ -17,6 +17,26 @@
 		114626871BAA069E00A6D8C2 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626861BAA069E00A6D8C2 /* HomeViewController.m */; };
 		114626911BAA154500A6D8C2 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626901BAA154500A6D8C2 /* MenuCell.m */; };
 		114626941BAA71FB00A6D8C2 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626931BAA71FB00A6D8C2 /* MenuViewController.m */; };
+		114A57AE1C0424DA00ED650F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57AD1C0424DA00ED650F /* AdSupport.framework */; };
+		114A57B01C0424E500ED650F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57AF1C0424E500ED650F /* AudioToolbox.framework */; };
+		114A57B21C0424F400ED650F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57B11C0424F400ED650F /* AVFoundation.framework */; };
+		114A57B41C04250100ED650F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57B31C04250100ED650F /* CoreBluetooth.framework */; };
+		114A57B61C04250A00ED650F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57B51C04250A00ED650F /* CoreGraphics.framework */; };
+		114A57B81C04251200ED650F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57B71C04251200ED650F /* CoreLocation.framework */; };
+		114A57BA1C04254100ED650F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57B91C04254100ED650F /* CoreTelephony.framework */; };
+		114A57BC1C04254F00ED650F /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57BB1C04254F00ED650F /* EventKit.framework */; };
+		114A57BE1C04255700ED650F /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57BD1C04255700ED650F /* EventKitUI.framework */; };
+		114A57C01C04256600ED650F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57BF1C04256600ED650F /* Foundation.framework */; };
+		114A57C21C04257D00ED650F /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57C11C04257D00ED650F /* libxml2.tbd */; };
+		114A57C41C04258900ED650F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57C31C04258900ED650F /* MediaPlayer.framework */; };
+		114A57C61C0425A900ED650F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57C51C0425A900ED650F /* StoreKit.framework */; };
+		114A57C81C0425B900ED650F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57C71C0425B900ED650F /* SystemConfiguration.framework */; };
+		114A57CA1C0425C500ED650F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57C91C0425C500ED650F /* UIKit.framework */; };
+		114A57CC1C04273B00ED650F /* MMAdSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57CB1C04273B00ED650F /* MMAdSDK.framework */; };
+		114A57D11C04B8DE00ED650F /* MMConversionTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 114A57D01C04B8DE00ED650F /* MMConversionTracking.m */; };
+		114A57D31C04BEA500ED650F /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57D21C04BEA500ED650F /* iAd.framework */; };
+		114A57D91C04C91E00ED650F /* libMMFacebookAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57D81C04C91E00ED650F /* libMMFacebookAdapter.a */; };
+		114A57DB1C04C94300ED650F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57DA1C04C94300ED650F /* CoreMotion.framework */; };
 		117825FA1BC31F1D00C59DCD /* HomeContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 117825F91BC31F1C00C59DCD /* HomeContainerView.xib */; };
 		117825FD1BC31F4600C59DCD /* HomeContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 117825FC1BC31F4600C59DCD /* HomeContainerView.m */; };
 		117826001BC58F7200C59DCD /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 117825FF1BC58F7200C59DCD /* Card.m */; };
@@ -88,6 +108,27 @@
 		114626901BAA154500A6D8C2 /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
 		114626921BAA71FB00A6D8C2 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		114626931BAA71FB00A6D8C2 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		114A57AD1C0424DA00ED650F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		114A57AF1C0424E500ED650F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		114A57B11C0424F400ED650F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		114A57B31C04250100ED650F /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		114A57B51C04250A00ED650F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		114A57B71C04251200ED650F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		114A57B91C04254100ED650F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		114A57BB1C04254F00ED650F /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		114A57BD1C04255700ED650F /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		114A57BF1C04256600ED650F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		114A57C11C04257D00ED650F /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		114A57C31C04258900ED650F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		114A57C51C0425A900ED650F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		114A57C71C0425B900ED650F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		114A57C91C0425C500ED650F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		114A57CB1C04273B00ED650F /* MMAdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MMAdSDK.framework; sourceTree = "<group>"; };
+		114A57CF1C04B8DE00ED650F /* MMConversionTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMConversionTracking.h; sourceTree = "<group>"; };
+		114A57D01C04B8DE00ED650F /* MMConversionTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMConversionTracking.m; sourceTree = "<group>"; };
+		114A57D21C04BEA500ED650F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		114A57D81C04C91E00ED650F /* libMMFacebookAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMMFacebookAdapter.a; sourceTree = "<group>"; };
+		114A57DA1C04C94300ED650F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		117825F91BC31F1C00C59DCD /* HomeContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeContainerView.xib; sourceTree = "<group>"; };
 		117825FB1BC31F4600C59DCD /* HomeContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeContainerView.h; sourceTree = "<group>"; };
 		117825FC1BC31F4600C59DCD /* HomeContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeContainerView.m; sourceTree = "<group>"; };
@@ -156,7 +197,6 @@
 		11F4DEF71BBF0FF300E4A6E8 /* SelfieImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfieImageView.m; sourceTree = "<group>"; };
 		251E6D6819AA4EBC368B9CE2 /* libPods-Choose.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Choose.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47B92AAACA81288A3BC87731 /* Pods-Choose.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Choose.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Choose/Pods-Choose.debug.xcconfig"; sourceTree = "<group>"; };
-		52C49A033E85888CC6365382 /* libPods-Twinning.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Twinning.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56C8F31513C6C77A26B3E8F4 /* Pods-Twinning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twinning.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twinning/Pods-Twinning.debug.xcconfig"; sourceTree = "<group>"; };
 		F7201E07E2499017D7F94B50 /* Pods-Choose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Choose.release.xcconfig"; path = "Pods/Target Support Files/Pods-Choose/Pods-Choose.release.xcconfig"; sourceTree = "<group>"; };
 		FEB13F0D21F9AD5A5DF063BC /* Pods-Twinning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twinning.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twinning/Pods-Twinning.release.xcconfig"; sourceTree = "<group>"; };
@@ -167,9 +207,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114A57DB1C04C94300ED650F /* CoreMotion.framework in Frameworks */,
+				114A57D31C04BEA500ED650F /* iAd.framework in Frameworks */,
+				114A57D91C04C91E00ED650F /* libMMFacebookAdapter.a in Frameworks */,
+				114A57CA1C0425C500ED650F /* UIKit.framework in Frameworks */,
+				114A57C81C0425B900ED650F /* SystemConfiguration.framework in Frameworks */,
+				114A57C61C0425A900ED650F /* StoreKit.framework in Frameworks */,
+				11F4DEF51BBC6F5600E4A6E8 /* MessageUI.framework in Frameworks */,
+				114A57C41C04258900ED650F /* MediaPlayer.framework in Frameworks */,
+				114A57C21C04257D00ED650F /* libxml2.tbd in Frameworks */,
+				114A57C01C04256600ED650F /* Foundation.framework in Frameworks */,
+				114A57BE1C04255700ED650F /* EventKitUI.framework in Frameworks */,
+				114A57BC1C04254F00ED650F /* EventKit.framework in Frameworks */,
+				114A57BA1C04254100ED650F /* CoreTelephony.framework in Frameworks */,
+				114A57B81C04251200ED650F /* CoreLocation.framework in Frameworks */,
+				114A57B61C04250A00ED650F /* CoreGraphics.framework in Frameworks */,
+				114A57B41C04250100ED650F /* CoreBluetooth.framework in Frameworks */,
+				114A57B21C0424F400ED650F /* AVFoundation.framework in Frameworks */,
+				114A57B01C0424E500ED650F /* AudioToolbox.framework in Frameworks */,
+				114A57AE1C0424DA00ED650F /* AdSupport.framework in Frameworks */,
 				117826161BCC55CB00C59DCD /* Social.framework in Frameworks */,
 				1181D2341BD47B7E00DB52ED /* Crashlytics.framework in Frameworks */,
-				11F4DEF51BBC6F5600E4A6E8 /* MessageUI.framework in Frameworks */,
+				114A57CC1C04273B00ED650F /* MMAdSDK.framework in Frameworks */,
 				1181D2331BD47B7E00DB52ED /* Fabric.framework in Frameworks */,
 				B329DC20F95184A0C2B2D87E /* libPods-Choose.a in Frameworks */,
 			);
@@ -255,6 +314,15 @@
 				117826131BC879CE00C59DCD /* SocialIconButton.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		114A57CE1C04B8C900ED650F /* Millennial */ = {
+			isa = PBXGroup;
+			children = (
+				114A57CF1C04B8DE00ED650F /* MMConversionTracking.h */,
+				114A57D01C04B8DE00ED650F /* MMConversionTracking.m */,
+			);
+			name = Millennial;
 			sourceTree = "<group>";
 		};
 		117826061BC828EC00C59DCD /* Fonts */ = {
@@ -362,6 +430,7 @@
 		11F1064B1BA4A49D00D044AC /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
+				114A57CE1C04B8C900ED650F /* Millennial */,
 				11F1064C1BA4A4B200D044AC /* Easy Social */,
 			);
 			name = "3rd Party";
@@ -390,11 +459,29 @@
 		548E2A145F17AC2891E6BE81 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				114A57DA1C04C94300ED650F /* CoreMotion.framework */,
+				114A57D81C04C91E00ED650F /* libMMFacebookAdapter.a */,
+				114A57D21C04BEA500ED650F /* iAd.framework */,
+				114A57CB1C04273B00ED650F /* MMAdSDK.framework */,
+				114A57C91C0425C500ED650F /* UIKit.framework */,
+				114A57C71C0425B900ED650F /* SystemConfiguration.framework */,
+				114A57C51C0425A900ED650F /* StoreKit.framework */,
+				114A57C31C04258900ED650F /* MediaPlayer.framework */,
+				114A57C11C04257D00ED650F /* libxml2.tbd */,
+				114A57BF1C04256600ED650F /* Foundation.framework */,
+				114A57BD1C04255700ED650F /* EventKitUI.framework */,
+				114A57BB1C04254F00ED650F /* EventKit.framework */,
+				114A57B91C04254100ED650F /* CoreTelephony.framework */,
+				114A57B71C04251200ED650F /* CoreLocation.framework */,
+				114A57B51C04250A00ED650F /* CoreGraphics.framework */,
+				114A57B31C04250100ED650F /* CoreBluetooth.framework */,
+				114A57B11C0424F400ED650F /* AVFoundation.framework */,
+				114A57AF1C0424E500ED650F /* AudioToolbox.framework */,
+				114A57AD1C0424DA00ED650F /* AdSupport.framework */,
 				1181D2311BD47B7E00DB52ED /* Fabric.framework */,
 				1181D2321BD47B7E00DB52ED /* Crashlytics.framework */,
 				117826151BCC55CB00C59DCD /* Social.framework */,
 				11F4DEF41BBC6F5600E4A6E8 /* MessageUI.framework */,
-				52C49A033E85888CC6365382 /* libPods-Twinning.a */,
 				251E6D6819AA4EBC368B9CE2 /* libPods-Choose.a */,
 			);
 			name = Frameworks;
@@ -424,6 +511,7 @@
 				11F1060A1BA4A3BC00D044AC /* Resources */,
 				EBCAD3B2A8872B97D823DAC4 /* Copy Pods Resources */,
 				1181D2301BD47ABF00DB52ED /* ShellScript */,
+				5583C279122067EDDD3D88F4 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -549,6 +637,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		5583C279122067EDDD3D88F4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Choose/Pods-Choose-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EBCAD3B2A8872B97D823DAC4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -599,6 +702,7 @@
 				114626911BAA154500A6D8C2 /* MenuCell.m in Sources */,
 				11F106521BA4A4C900D044AC /* EasyTwitter.m in Sources */,
 				111863DF1BEAADF900E62E13 /* ProfileListCell.m in Sources */,
+				114A57D11C04B8DE00ED650F /* MMConversionTracking.m in Sources */,
 				111863E21BEAC04400E62E13 /* CardViewController.m in Sources */,
 				11F4DEDE1BADE8F400E4A6E8 /* CreateVoteController.m in Sources */,
 				11F106561BA4ACF000D044AC /* APIClient.m in Sources */,
@@ -732,17 +836,27 @@
 			baseConfigurationReference = 47B92AAACA81288A3BC87731 /* Pods-Choose.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Twinning/Info.plist;
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.self.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Choose;
 				PROVISIONING_PROFILE = "";
@@ -754,17 +868,27 @@
 			baseConfigurationReference = F7201E07E2499017D7F94B50 /* Pods-Choose.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Twinning/Info.plist;
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.self.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Choose;
 				PROVISIONING_PROFILE = "";

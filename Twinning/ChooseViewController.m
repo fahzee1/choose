@@ -18,6 +18,8 @@
 @interface ChooseViewController ()<HomeContainerDelegate>
 @property (weak, nonatomic) IBOutlet UINavigationBar *navbar;
 @property (strong,nonatomic) HomeContainerView *cardContainerView;
+@property (strong, nonatomic) Card *card;
+@property (assign)BOOL doneVoting;
 
 @end
 
@@ -28,6 +30,13 @@
     // Do any additional setup after loading the view.
     
     [self setupUI];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.doneVoting){
+        [self close];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,7 +51,7 @@
 
 - (void)setupUI
 {
-    self.navbar.topItem.title = NSLocalizedString(@"User Cards", nil);
+    self.navbar.topItem.title = NSLocalizedString(@"Vote Now!", nil);
     FAKIonIcons *backIcon = [FAKIonIcons closeRoundIconWithSize:35];
     UIImage *backImage = [backIcon imageWithSize:CGSizeMake(35, 35)];
     self.navbar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backImage style:UIBarButtonItemStylePlain target:self action:@selector(close)];
@@ -55,6 +64,8 @@
 
 - (void)doneChoosing
 {
+    self.doneVoting = YES;
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self share];
     });
@@ -66,6 +77,11 @@
     [self.deepLinkingCompletionDelegate deepLinkingControllerCompleted];
 }
 
+- (void)sendVote
+{
+#warning send vote to server
+}
+
 - (void)share
 {
     ShareViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardShare];
@@ -73,6 +89,7 @@
     controller.subtitleText = NSLocalizedString(@"Sharing is caring so make sure you show off this awesomeness.", nil);
     controller.shareImage = self.cardContainerView.imageView.image;
     controller.imageViewText = self.cardContainerView.titleLabel.text;
+    controller.card = self.card;
     controller.bottomShareText = NSLocalizedString(@"Share with friends on...", nil);
     [self presentViewController:controller animated:YES completion:nil];
 }
@@ -83,6 +100,7 @@
     // number will be button 1 or button 2
     DLog(@"tapped button %d",number);
     [self doneChoosing];
+    [self sendVote];
     
 }
 
@@ -105,35 +123,34 @@
 - (void)configureControlWithData:(NSDictionary *)data
 {
     Card *card = [[Card alloc] init];
-    NSArray *options = @[[NSNumber numberWithInt:QuestionTypeAorB],[NSNumber numberWithInt:QuestionTypeYESorNO]];
-    id type = options[arc4random_uniform([options count])];
-    int typeInt = [(NSNumber *)type intValue];
-    card.questionType = typeInt;
-    
-    if (card.questionType == QuestionTypeAorB){
-        self.cardContainerView.imageView.image = [UIImage imageNamed:@"test2"];
-        self.cardContainerView.titleLabel.text = @"Rhianna or Beyonce?";
-    }
-    else{
-        self.cardContainerView.imageView.image = [UIImage imageNamed:@"test"];
-        self.cardContainerView.titleLabel.text = @"Do these jeans look good on me?";
-    }
     
     // grab data from url
-    // live version should just need to grab id and fetch from server (maybe)
-    NSString *url = data[@"card_url"];
-    NSString *title = data[@"question"];
-    NSString *username = data[@"user"];
-    NSString *votes = data[@"votes"];
-    //NSString *questionType = data[@"question_type"];
+    NSString *card_id = data[@"card_id"];
+    NSString *url = data[@"card_image_url"];
+    NSString *title = data[@"card_question"];
+    NSString *username = data[@"card_sender"];
+    NSString *votes = data[@"card_total_votes"];
+    NSString *fbID = data[@"card_sender_fb_id"];
+    NSString *questionType = data[@"card_question_type"];
+    NSString *percentLeft = data[@"card_percent_left"];
+    NSString *percentRight = data[@"card_percent_right"];
     
-    [self.cardContainerView.imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"cedric"]];
+    // create card
+    card.id = [NSNumber numberWithInt:[card_id intValue]];
+    card.imgUrl = [NSURL URLWithString:url];
+    card.question = title;
+    card.senderName = username;
+    card.voteCount = [NSNumber numberWithLongLong:[votes longLongValue]];
+    card.questionType = [NSNumber numberWithInt:[questionType intValue]];
+    card.percentVotesLeft = [NSNumber numberWithInt:[percentLeft intValue]];
+    card.percentVotesRight = [NSNumber numberWithInt:[percentRight intValue]];
+    card.senderFbID = [NSNumber numberWithLongLong:[fbID longLongValue]];
+    
+    // give container view card and link self as delegate 
     self.cardContainerView.countLabel.text = @"1/1";
-    self.cardContainerView.titleLabel.text = title;
-    self.cardContainerView.votesTotalLabel.text = [NSString stringWithFormat:@"%@ Votes",votes];
-    self.cardContainerView.userLabel.text = username;
     self.cardContainerView.delegate = self;
-    self.navbar.topItem.title = title;
+    self.cardContainerView.card = card;
+    self.card = card;
     
 }
 
@@ -142,6 +159,7 @@
     if (!_cardContainerView){
         _cardContainerView = [[[NSBundle mainBundle] loadNibNamed:@"HomeContainerView" owner:self options:nil] objectAtIndex:0];
         _cardContainerView.frame = CGRectMake(0,60,self.view.frame.size.width, self.view.frame.size.height - 60);
+        [_cardContainerView hideButtons];
         [self.view addSubview:_cardContainerView];
     }
     

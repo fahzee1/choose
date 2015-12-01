@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Card.h"
+#import "User+Utils.h"
 
 @interface ShareViewController : UIViewController
 @property (strong, nonatomic) UIImage *topImage;
@@ -17,4 +18,5 @@
 @property (strong, nonatomic) NSString *imageViewText;
 @property (strong, nonatomic) NSString *bottomShareText;
 @property (strong,nonatomic) Card *card;
+@property (strong,nonatomic) User *localUser;
 @end
