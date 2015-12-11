@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Card.h"
-#import "User+Utils.h"
+#import "User+CoreDataProperties.h"
 
 @interface ShareViewController : UIViewController
 @property (strong, nonatomic) UIImage *topImage;

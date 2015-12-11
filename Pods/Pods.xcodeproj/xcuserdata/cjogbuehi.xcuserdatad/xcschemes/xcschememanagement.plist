@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ChameleonFramework.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DateTools.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -75,6 +80,16 @@
 			<false/>
 		</dict>
 		<key>FontAwesomeKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>LaunchKit-LaunchKitResources.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>LaunchKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -147,17 +162,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0827B3A7BF09129E53A94511688A5D29</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1381EBE5BA04D287CD508119AEFBB3D7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>16BF9ADCA5082AEB06B75C41711B7391</key>
+		<key>0E44717E0BD8FDC2D8BFA4C4E4AECCDA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -177,12 +182,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>25515BD6FF573445149AB4F66E259E04</key>
+		<key>2356C4614B6C85123E9278A0810D0566</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>2602F3D0DAC534568B6AD7EEA0DD1959</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>26E9852A5D021FE9609F227DBBEFD134</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -222,17 +232,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>88E0BE06DA0BE879CAD1BBB35AA61F24</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>944264AD01E1D8C58D927A1D6905A531</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9FA38ADE90B99CFA812717AB97DA89AE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -252,7 +252,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B29F8ECB26B849E1DD166509322A950E</key>
+		<key>ABA2B8605A6A5A24403E3C6017B01263</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B9ED33270008F8FC18018B63CADE1C33</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C6CB695C21696934D4CA082070CD7ECA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -267,12 +277,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>D02D0E2434ED89B90127E63CA7072C18</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D575A6E3771824E658487A60785065C2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D95DBCEA6473D47E2751873738DBA248</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E2330BB36641DB3C5F2B0603D4EF120B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>EA876BC718F224A84323EE637839D052</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F62C0109ED1098F0523686D1EB78DA98</key>
 		<dict>
 			<key>primary</key>
 			<true/>

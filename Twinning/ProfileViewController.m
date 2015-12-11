@@ -15,12 +15,15 @@
 #import "CardViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <MBProgressHUD.h>
+#import <DateTools.h>
 
 @interface ProfileViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic) NSArray *data;
+@property (strong,nonatomic) NSMutableArray *data;
 @property (strong,nonatomic)MBProgressHUD *hud;
+@property (strong,nonatomic) UIRefreshControl *refreshControl;
 
+@property (assign)BOOL fetchedCards;
 @end
 
 @implementation ProfileViewController
@@ -29,23 +32,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSParameterAssert(self.localUser);
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    NSDictionary *dict1 = @{@"title":@"Kid Cudi needs to make a comeback?",@"date":@"3 days ago",@"votes":@"2100"};
-    NSDictionary *dict2 = @{@"title":@"Kim k or Amber Rose?",@"date":@"4 days ago",@"votes":@"5323"};
-    NSDictionary *dict3 = @{@"title":@"Peanut Butter or Jelly?",@"date":@"1 week ago",@"votes":@"39393"};
-    NSDictionary *dict4 = @{@"title":@"Kid Cudi needs to make a comeback?",@"date":@"3 days ago",@"votes":@"3393"};
-    self.data = @[dict1,dict2,dict3,dict4];
     
     [self setup];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self fetchNewData];
+    if (!self.fetchedCards){
+        [self fetchNewData];
+        self.fetchedCards = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,29 +54,47 @@
 
 - (void)setup
 {
-    self.navigationItem.title = NSLocalizedString(@"Profile", nil);
+    self.navigationItem.title = NSLocalizedString(@"Recent", nil);
     FAKIonIcons *backIcon = [FAKIonIcons closeRoundIconWithSize:35];
     UIImage *backImage = [backIcon imageWithSize:CGSizeMake(35, 35)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backImage style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchNewData) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
     
     
 }
 
 - (void)fetchNewData
 {
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.hud.labelText = NSLocalizedString(@"Loading...", nil);
+
+    NSString *fbID = nil;
+    if (self.card){
+        fbID = self.card.senderFbID;
+    }
+    else{
+        fbID = self.localUser.facebook_id;
+    }
     
-    [User fetchMyRecentCards:@{}
-                       block:^(APIRequestStatus status, id data) {
-                           [self.hud hide:YES];
-                           if (status == APIRequestStatusSuccess){
-                               DLog(@"data");
-                           }
-                           else{
-                               DLog(@"issues fetching data");
-                           }
-                       }];
+    
+    [User fetchUserCardsWithFBID:fbID
+                       GETParams:nil
+                           block:^(APIRequestStatus status, id data) {
+                               [self.refreshControl endRefreshing];
+                               if (status == APIRequestStatusSuccess){
+                                   self.data = nil;
+                                   for (NSDictionary *cardDict in data[@"data"][@"cards"]){
+                                       Card *card = [Card createCardWithData:cardDict];
+                                        [self.data addObject:card];
+                                   }
+                                   
+                                   [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+                               }
+                               else{
+                                   DLog(@"Failed to get users card");
+                               }
+                           }];
 }
 
 - (void)goBack
@@ -138,24 +155,41 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   
     if (indexPath.row == 0){
         // header cell
-        ((ProfileHeaderCell *)cell).profileLabel.text = self.localUser.name;
-        NSString *fbString = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large",self.localUser.facebook_id];
-        NSURL *fbUrl = [NSURL URLWithString:fbString];
+        
+        NSURL *fbURL;
+        NSString *senderText;
+        if (self.card){
+            fbURL = [self.card facebookImageUrl];
+            senderText = self.card.senderName;
+        }
+        
+        else{
+            fbURL = [self.localUser facebookImageUrl];
+            senderText = self.localUser.name;
+        }
+        
+        ((ProfileHeaderCell *)cell).profileLabel.text = senderText;
+        
+        // Create person icon as default image
         FAKIonIcons *personIcon = [FAKIonIcons personIconWithSize:45];
         [personIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
         personIcon.drawingBackgroundColor = [UIColor colorWithHexString:kColorFlatRed];
         UIImage *personImage = [personIcon imageWithSize:CGSizeMake(50, 50)];
         
-        [((ProfileHeaderCell *)cell).profileImageView sd_setImageWithURL:fbUrl placeholderImage:personImage options:SDWebImageRefreshCached];
-        
+        // Load FB image
+        [((ProfileHeaderCell *)cell).profileImageView sd_setImageWithURL:fbURL placeholderImage:personImage options:SDWebImageRefreshCached];
 
     }
     else{
-        NSDictionary *obj = [self.data objectAtIndex:indexPath.row - 1];
-        ((ProfileListCell *)cell).cardTitle.text = obj[@"title"];
-        ((ProfileListCell *)cell).cardDate.text = obj[@"date"];
+        Card *card = [self.data objectAtIndex:indexPath.row -1];
+        ((ProfileListCell *)cell).cardTitle.text = card.question;
+        NSString *dateText = card.created.timeAgoSinceNow;
+        ((ProfileListCell *)cell).cardDate.text = dateText;
+        [((ProfileListCell *)cell).cardImageView sd_setImageWithURL:card.imgUrl placeholderImage:[UIImage imageNamed:kAppPlaceholer]];
+        
     }
 
 }
@@ -167,16 +201,25 @@
     
     if (indexPath.row > 0){
         NSInteger row = indexPath.row -1;
-        NSDictionary *obj = [self.data objectAtIndex:row];
+        Card *card = [self.data objectAtIndex:row];
         
         CardViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardCard];
-        controller.titleText = obj[@"title"];
-        controller.voteText = obj[@"votes"];
-        controller.image = [UIImage imageNamed:@"card"];
+        controller.card = card;
         [self.navigationController pushViewController:controller animated:YES];
     }
     
     
+}
+
+#pragma -mark getters
+
+- (NSMutableArray *)data
+{
+    if (!_data){
+        _data = [@[] mutableCopy];
+    }
+    
+    return _data;
 }
 
 

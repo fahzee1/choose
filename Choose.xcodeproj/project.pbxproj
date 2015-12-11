@@ -13,7 +13,6 @@
 		111863E21BEAC04400E62E13 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111863E11BEAC04400E62E13 /* CardViewController.m */; };
 		111863E51BEBF1BF00E62E13 /* ADPlacementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111863E41BEBF1BF00E62E13 /* ADPlacementViewController.m */; };
 		114626811BA9E4FA00A6D8C2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626801BA9E4FA00A6D8C2 /* User.m */; };
-		114626841BA9E53D00A6D8C2 /* User+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626831BA9E53D00A6D8C2 /* User+Utils.m */; };
 		114626871BAA069E00A6D8C2 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626861BAA069E00A6D8C2 /* HomeViewController.m */; };
 		114626911BAA154500A6D8C2 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626901BAA154500A6D8C2 /* MenuCell.m */; };
 		114626941BAA71FB00A6D8C2 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626931BAA71FB00A6D8C2 /* MenuViewController.m */; };
@@ -29,7 +28,6 @@
 		114A57C01C04256600ED650F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57BF1C04256600ED650F /* Foundation.framework */; };
 		114A57C21C04257D00ED650F /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57C11C04257D00ED650F /* libxml2.tbd */; };
 		114A57C41C04258900ED650F /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57C31C04258900ED650F /* MediaPlayer.framework */; };
-		114A57C61C0425A900ED650F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57C51C0425A900ED650F /* StoreKit.framework */; };
 		114A57C81C0425B900ED650F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57C71C0425B900ED650F /* SystemConfiguration.framework */; };
 		114A57CA1C0425C500ED650F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57C91C0425C500ED650F /* UIKit.framework */; };
 		114A57CC1C04273B00ED650F /* MMAdSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57CB1C04273B00ED650F /* MMAdSDK.framework */; };
@@ -37,6 +35,7 @@
 		114A57D31C04BEA500ED650F /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57D21C04BEA500ED650F /* iAd.framework */; };
 		114A57D91C04C91E00ED650F /* libMMFacebookAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57D81C04C91E00ED650F /* libMMFacebookAdapter.a */; };
 		114A57DB1C04C94300ED650F /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114A57DA1C04C94300ED650F /* CoreMotion.framework */; };
+		115B7F0E1C1180DD008D3715 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 115B7F0D1C1180DD008D3715 /* User+CoreDataProperties.m */; };
 		117825FA1BC31F1D00C59DCD /* HomeContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 117825F91BC31F1C00C59DCD /* HomeContainerView.xib */; };
 		117825FD1BC31F4600C59DCD /* HomeContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 117825FC1BC31F4600C59DCD /* HomeContainerView.m */; };
 		117826001BC58F7200C59DCD /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 117825FF1BC58F7200C59DCD /* Card.m */; };
@@ -52,6 +51,17 @@
 		1181D2371BD58B7E00DB52ED /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1181D2361BD58B7E00DB52ED /* SearchViewController.m */; };
 		1181D23A1BD58C2B00DB52ED /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1181D2391BD58C2B00DB52ED /* SearchCell.m */; };
 		11B8AC741BF3EABB000629BF /* ChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B8AC731BF3EABB000629BF /* ChooseViewController.m */; };
+		11ECCEBD1C17741F009B458E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ECCEBC1C17741F009B458E /* Parse.framework */; };
+		11ECCEBF1C177456009B458E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ECCEBE1C177456009B458E /* CFNetwork.framework */; };
+		11ECCEC11C17746C009B458E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ECCEC01C17746C009B458E /* QuartzCore.framework */; };
+		11ECCEC31C177478009B458E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ECCEC21C177478009B458E /* Security.framework */; };
+		11ECCEC51C177493009B458E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ECCEC41C177493009B458E /* StoreKit.framework */; };
+		11ECCEC71C1774CB009B458E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ECCEC61C1774CB009B458E /* libz.tbd */; };
+		11ECCEC91C1774D4009B458E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ECCEC81C1774D4009B458E /* libsqlite3.tbd */; };
+		11ECCECB1C1774E3009B458E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ECCECA1C1774E3009B458E /* Accounts.framework */; };
+		11ECCECD1C177E62009B458E /* HomeErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11ECCECC1C177E62009B458E /* HomeErrorView.xib */; };
+		11ECCED01C177F43009B458E /* HomeErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ECCECF1C177F43009B458E /* HomeErrorView.m */; };
+		11ECCED31C1A25D6009B458E /* FullScreenImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ECCED21C1A25D6009B458E /* FullScreenImageViewController.m */; };
 		11F106121BA4A3BC00D044AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106111BA4A3BC00D044AC /* main.m */; };
 		11F106151BA4A3BC00D044AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F106141BA4A3BC00D044AC /* AppDelegate.m */; };
 		11F106181BA4A3BC00D044AC /* Twinning.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11F106161BA4A3BC00D044AC /* Twinning.xcdatamodeld */; };
@@ -100,8 +110,6 @@
 		111863E41BEBF1BF00E62E13 /* ADPlacementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPlacementViewController.m; sourceTree = "<group>"; };
 		1146267F1BA9E4FA00A6D8C2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		114626801BA9E4FA00A6D8C2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		114626821BA9E53D00A6D8C2 /* User+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Utils.h"; sourceTree = "<group>"; };
-		114626831BA9E53D00A6D8C2 /* User+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Utils.m"; sourceTree = "<group>"; };
 		114626851BAA069E00A6D8C2 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		114626861BAA069E00A6D8C2 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		1146268F1BAA154500A6D8C2 /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
@@ -120,7 +128,6 @@
 		114A57BF1C04256600ED650F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		114A57C11C04257D00ED650F /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		114A57C31C04258900ED650F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		114A57C51C0425A900ED650F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		114A57C71C0425B900ED650F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		114A57C91C0425C500ED650F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		114A57CB1C04273B00ED650F /* MMAdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MMAdSDK.framework; sourceTree = "<group>"; };
@@ -129,6 +136,8 @@
 		114A57D21C04BEA500ED650F /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		114A57D81C04C91E00ED650F /* libMMFacebookAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMMFacebookAdapter.a; sourceTree = "<group>"; };
 		114A57DA1C04C94300ED650F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		115B7F0C1C1180DD008D3715 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		115B7F0D1C1180DD008D3715 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		117825F91BC31F1C00C59DCD /* HomeContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeContainerView.xib; sourceTree = "<group>"; };
 		117825FB1BC31F4600C59DCD /* HomeContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeContainerView.h; sourceTree = "<group>"; };
 		117825FC1BC31F4600C59DCD /* HomeContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeContainerView.m; sourceTree = "<group>"; };
@@ -151,6 +160,19 @@
 		1181D2391BD58C2B00DB52ED /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
 		11B8AC721BF3EABB000629BF /* ChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseViewController.h; sourceTree = "<group>"; };
 		11B8AC731BF3EABB000629BF /* ChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseViewController.m; sourceTree = "<group>"; };
+		11ECCEBC1C17741F009B458E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		11ECCEBE1C177456009B458E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		11ECCEC01C17746C009B458E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		11ECCEC21C177478009B458E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		11ECCEC41C177493009B458E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		11ECCEC61C1774CB009B458E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		11ECCEC81C1774D4009B458E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		11ECCECA1C1774E3009B458E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		11ECCECC1C177E62009B458E /* HomeErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeErrorView.xib; sourceTree = "<group>"; };
+		11ECCECE1C177F43009B458E /* HomeErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeErrorView.h; sourceTree = "<group>"; };
+		11ECCECF1C177F43009B458E /* HomeErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeErrorView.m; sourceTree = "<group>"; };
+		11ECCED11C1A25D6009B458E /* FullScreenImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenImageViewController.h; sourceTree = "<group>"; };
+		11ECCED21C1A25D6009B458E /* FullScreenImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenImageViewController.m; sourceTree = "<group>"; };
 		11F1060C1BA4A3BC00D044AC /* Choose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Choose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F106101BA4A3BC00D044AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11F106111BA4A3BC00D044AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -207,12 +229,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11ECCECB1C1774E3009B458E /* Accounts.framework in Frameworks */,
+				11ECCEC91C1774D4009B458E /* libsqlite3.tbd in Frameworks */,
+				11ECCEC71C1774CB009B458E /* libz.tbd in Frameworks */,
+				11ECCEC51C177493009B458E /* StoreKit.framework in Frameworks */,
+				11ECCEC31C177478009B458E /* Security.framework in Frameworks */,
+				11ECCEC11C17746C009B458E /* QuartzCore.framework in Frameworks */,
+				11ECCEBF1C177456009B458E /* CFNetwork.framework in Frameworks */,
 				114A57DB1C04C94300ED650F /* CoreMotion.framework in Frameworks */,
 				114A57D31C04BEA500ED650F /* iAd.framework in Frameworks */,
 				114A57D91C04C91E00ED650F /* libMMFacebookAdapter.a in Frameworks */,
 				114A57CA1C0425C500ED650F /* UIKit.framework in Frameworks */,
 				114A57C81C0425B900ED650F /* SystemConfiguration.framework in Frameworks */,
-				114A57C61C0425A900ED650F /* StoreKit.framework in Frameworks */,
 				11F4DEF51BBC6F5600E4A6E8 /* MessageUI.framework in Frameworks */,
 				114A57C41C04258900ED650F /* MediaPlayer.framework in Frameworks */,
 				114A57C21C04257D00ED650F /* libxml2.tbd in Frameworks */,
@@ -230,6 +258,7 @@
 				1181D2341BD47B7E00DB52ED /* Crashlytics.framework in Frameworks */,
 				114A57CC1C04273B00ED650F /* MMAdSDK.framework in Frameworks */,
 				1181D2331BD47B7E00DB52ED /* Fabric.framework in Frameworks */,
+				11ECCEBD1C17741F009B458E /* Parse.framework in Frameworks */,
 				B329DC20F95184A0C2B2D87E /* libPods-Choose.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,10 +295,10 @@
 			children = (
 				1146267F1BA9E4FA00A6D8C2 /* User.h */,
 				114626801BA9E4FA00A6D8C2 /* User.m */,
-				114626821BA9E53D00A6D8C2 /* User+Utils.h */,
-				114626831BA9E53D00A6D8C2 /* User+Utils.m */,
 				117825FE1BC58F7200C59DCD /* Card.h */,
 				117825FF1BC58F7200C59DCD /* Card.m */,
+				115B7F0C1C1180DD008D3715 /* User+CoreDataProperties.h */,
+				115B7F0D1C1180DD008D3715 /* User+CoreDataProperties.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -295,6 +324,8 @@
 				111863E41BEBF1BF00E62E13 /* ADPlacementViewController.m */,
 				11B8AC721BF3EABB000629BF /* ChooseViewController.h */,
 				11B8AC731BF3EABB000629BF /* ChooseViewController.m */,
+				11ECCED11C1A25D6009B458E /* FullScreenImageViewController.h */,
+				11ECCED21C1A25D6009B458E /* FullScreenImageViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -312,6 +343,9 @@
 				117826041BC5A2DB00C59DCD /* HomeResultView.m */,
 				117826121BC879CE00C59DCD /* SocialIconButton.h */,
 				117826131BC879CE00C59DCD /* SocialIconButton.m */,
+				11ECCECC1C177E62009B458E /* HomeErrorView.xib */,
+				11ECCECE1C177F43009B458E /* HomeErrorView.h */,
+				11ECCECF1C177F43009B458E /* HomeErrorView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -459,13 +493,20 @@
 		548E2A145F17AC2891E6BE81 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11ECCECA1C1774E3009B458E /* Accounts.framework */,
+				11ECCEC81C1774D4009B458E /* libsqlite3.tbd */,
+				11ECCEC61C1774CB009B458E /* libz.tbd */,
+				11ECCEC41C177493009B458E /* StoreKit.framework */,
+				11ECCEC21C177478009B458E /* Security.framework */,
+				11ECCEC01C17746C009B458E /* QuartzCore.framework */,
+				11ECCEBE1C177456009B458E /* CFNetwork.framework */,
+				11ECCEBC1C17741F009B458E /* Parse.framework */,
 				114A57DA1C04C94300ED650F /* CoreMotion.framework */,
 				114A57D81C04C91E00ED650F /* libMMFacebookAdapter.a */,
 				114A57D21C04BEA500ED650F /* iAd.framework */,
 				114A57CB1C04273B00ED650F /* MMAdSDK.framework */,
 				114A57C91C0425C500ED650F /* UIKit.framework */,
 				114A57C71C0425B900ED650F /* SystemConfiguration.framework */,
-				114A57C51C0425A900ED650F /* StoreKit.framework */,
 				114A57C31C04258900ED650F /* MediaPlayer.framework */,
 				114A57C11C04257D00ED650F /* libxml2.tbd */,
 				114A57BF1C04256600ED650F /* Foundation.framework */,
@@ -554,6 +595,12 @@
 						DevelopmentTeam = HM7K35K49R;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -592,6 +639,7 @@
 				1178260A1BC8291400C59DCD /* ProximaNova-Reg.otf in Resources */,
 				117825FA1BC31F1D00C59DCD /* HomeContainerView.xib in Resources */,
 				117826091BC8291400C59DCD /* ProximaNova-Bold.otf in Resources */,
+				11ECCECD1C177E62009B458E /* HomeErrorView.xib in Resources */,
 				1178260E1BC829CC00C59DCD /* ProximaNova-Sbold.otf in Resources */,
 				11F1061E1BA4A3BC00D044AC /* Main.storyboard in Resources */,
 				11F106231BA4A3BC00D044AC /* LaunchScreen.xib in Resources */,
@@ -677,6 +725,7 @@
 				117825FD1BC31F4600C59DCD /* HomeContainerView.m in Sources */,
 				11F106151BA4A3BC00D044AC /* AppDelegate.m in Sources */,
 				11F4DEED1BB49EC900E4A6E8 /* UIView+Screenshot.m in Sources */,
+				11ECCED01C177F43009B458E /* HomeErrorView.m in Sources */,
 				11F4DEF01BB49EFE00E4A6E8 /* ShareViewController.m in Sources */,
 				1181D2371BD58B7E00DB52ED /* SearchViewController.m in Sources */,
 				11F1064A1BA4A46600D044AC /* UIColor+HexValue.m in Sources */,
@@ -690,10 +739,11 @@
 				117826051BC5A2DB00C59DCD /* HomeResultView.m in Sources */,
 				11F4DEF81BBF0FF300E4A6E8 /* SelfieImageView.m in Sources */,
 				114626871BAA069E00A6D8C2 /* HomeViewController.m in Sources */,
+				11ECCED31C1A25D6009B458E /* FullScreenImageViewController.m in Sources */,
 				117826001BC58F7200C59DCD /* Card.m in Sources */,
 				111863D81BEA5B8A00E62E13 /* ProfileViewController.m in Sources */,
+				115B7F0E1C1180DD008D3715 /* User+CoreDataProperties.m in Sources */,
 				11F106181BA4A3BC00D044AC /* Twinning.xcdatamodeld in Sources */,
-				114626841BA9E53D00A6D8C2 /* User+Utils.m in Sources */,
 				11B8AC741BF3EABB000629BF /* ChooseViewController.m in Sources */,
 				114626811BA9E4FA00A6D8C2 /* User.m in Sources */,
 				11F106511BA4A4C900D044AC /* EasyFacebook.m in Sources */,
@@ -859,7 +909,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.self.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Choose;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "561442ad-ece0-4c58-a87f-c3535c7337fd";
 			};
 			name = Debug;
 		};
@@ -891,7 +941,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.self.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Choose;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "561442ad-ece0-4c58-a87f-c3535c7337fd";
 			};
 			name = Release;
 		};

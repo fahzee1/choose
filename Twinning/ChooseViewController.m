@@ -14,12 +14,15 @@
 #import "HomeContainerView.h"
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import "Card.h"
+#import <AMPopTip.h>
+#import "User+CoreDataProperties.h"
 
 @interface ChooseViewController ()<HomeContainerDelegate>
 @property (weak, nonatomic) IBOutlet UINavigationBar *navbar;
 @property (strong,nonatomic) HomeContainerView *cardContainerView;
 @property (strong, nonatomic) Card *card;
 @property (assign)BOOL doneVoting;
+@property (strong,nonatomic) AMPopTip *popTip;
 
 @end
 
@@ -30,10 +33,13 @@
     // Do any additional setup after loading the view.
     
     [self setupUI];
+    [self listenForNotifications];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self fetchCardFromServer];
+    
     if (self.doneVoting){
         [self close];
     }
@@ -44,9 +50,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+
+- (void)listenForNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleFirstTimeUser) name:kNotificationBranchFirstTimeUser object:nil];
 }
 
 - (void)setupUI
@@ -62,11 +78,54 @@
 
 }
 
+- (void)fetchCardFromServer
+{    
+    [User getCardWithID:self.card.id
+                  block:^(APIRequestStatus status, id data) {
+                      if (status == APIRequestStatusSuccess){
+                          Card *card = [Card createCardWithData:data[@"data"][@"card"]];
+                          self.cardContainerView.card = card;
+                      }
+                      else{
+                          DLog(@"failed to get card data");
+                      }
+                  }];
+}
+
+- (void)handleFirstTimeUser
+{
+    // Pop tip code
+    AMPopTip *appearance = [AMPopTip appearance];
+    appearance.textColor = [UIColor whiteColor];
+    appearance.font = [UIFont fontWithName:kFontGlobal size:16];
+    appearance.popoverColor = [UIColor colorWithHexString:kColorFlatGreen];
+    appearance.animationIn = 1;
+    self.popTip = [AMPopTip popTip];
+    self.popTip.shouldDismissOnTapOutside = YES;
+    self.popTip.shouldDismissOnTap = YES;
+    self.popTip.tapHandler = ^{
+        DLog(@"Tapped pop up");
+    };
+    
+    //CGRect frame = [self.view convertRect:self.selfieImageView.frame fromView:self.topHalfView];
+    NSString *text;
+    if ([self.card.questionType intValue] == QuestionTypeAorB){
+        text = NSLocalizedString(@"Welcome to Choose! Vote by tapping either A or B below.", nil);
+    }
+    else if ([self.card.questionType intValue] == QuestionTypeYESorNO){
+        text  = NSLocalizedString(@"Welcome to Choose! Vote by tapping either YES or NO below.", nil);
+    }
+    
+    [self.popTip showText:text direction:AMPopTipDirectionUp maxWidth:300 inView:self.cardContainerView fromFrame:self.cardContainerView.userContainerView.frame duration:4];
+
+    
+}
+
 - (void)doneChoosing
 {
     self.doneVoting = YES;
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self share];
     });
 }
@@ -74,12 +133,23 @@
 - (void)close
 {
     [self.cardContainerView reset];
+    self.doneVoting = NO;
     [self.deepLinkingCompletionDelegate deepLinkingControllerCompleted];
 }
 
-- (void)sendVote
+- (void)sendVoteWithCard:(Card *)card andVote:(int)vote
 {
-#warning send vote to server
+    [User sendVoteForCard:card.id
+                     vote:vote
+                    block:^(APIRequestStatus status, id data) {
+                        if (status == APIRequestStatusSuccess){
+                            DLog(@"Successfully updated card");
+                        }
+                        else{
+                            DLog(@"Failed to update card");
+                        }
+                    }];
+
 }
 
 - (void)share
@@ -95,12 +165,12 @@
 }
 
 #pragma -mark HomeContainerView
-- (void)homeView:(UIView *)view tappedButtonNumber:(int)number forType:(QuestionType)type
+- (void)homeView:(HomeContainerView *)view tappedButtonNumber:(int)number forType:(QuestionType)type
 {
     // number will be button 1 or button 2
     DLog(@"tapped button %d",number);
     [self doneChoosing];
-    [self sendVote];
+    [self sendVoteWithCard:view.card andVote:number];
     
 }
 

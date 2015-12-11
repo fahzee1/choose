@@ -12,12 +12,16 @@
 #import "UIColor+HexValue.h"
 #import <FAKIonIcons.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <ChameleonFramework/Chameleon.h>
+#import <AMPopTip.h>
 
 @interface HomeContainerView()
 @property (strong,nonatomic) HomeResultView *resultView;
 
-@property (weak, nonatomic) IBOutlet UITapGestureRecognizer *imageViewTap;
+@property (strong,nonatomic) AMPopTip *popTip;
 
+@property (weak, nonatomic) IBOutlet UITapGestureRecognizer *singleTap;
+@property (weak, nonatomic) IBOutlet UITapGestureRecognizer *doubleTap;
 
 // Constraints
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLabelTopConstraint;
@@ -29,7 +33,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *countLabelBottomConstraint;
 
-// Constraints
+@property (assign) BOOL randomColorsSet;
 
 @end
 @implementation HomeContainerView
@@ -37,6 +41,8 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    
+    [self listenForNotifications];
     self.imageView.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
     self.imageView.clipsToBounds = YES;
     self.userImageView.clipsToBounds = YES;
@@ -64,6 +70,9 @@
     self.userLabel.textColor = [UIColor colorWithHexString:kColorBlackSexy];
     self.votesTotalLabel.textColor = [UIColor colorWithHexString:kColorBlackSexy];
     
+    // Need this to recieve double tap
+    [self.singleTap requireGestureRecognizerToFail:self.doubleTap];
+    
     //use this cover label to add on top of the image to show answer was chosen
     self.resultView = [[[NSBundle mainBundle] loadNibNamed:@"HomeResultView" owner:self options:nil] objectAtIndex:0];
     self.resultView.frame = CGRectMake(0, 0, self.imageView.frame.size.width, self.imageView.frame.size.height);
@@ -75,11 +84,22 @@
     self.resultView.alpha = 0;
     
     self.imageView.userInteractionEnabled = YES;
-    self.imageViewTap.numberOfTapsRequired = 2;
     
     FAKIonIcons *shareIcon = [FAKIonIcons shareIconWithSize:15];
     [shareIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
     shareIcon.drawingBackgroundColor = [UIColor colorWithHexString:kColorDarkGrey];
+    
+    // Ad gesture recognizer for tapping profile
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedUserProfile)];
+    tap.numberOfTapsRequired = 1;
+    tap.numberOfTouchesRequired = 1;
+    UIView *userTapView = [[UIView alloc] init];
+    userTapView.frame = CGRectMake(0, 0, self.userContainerView.frame.size.width, self.userContainerView.frame.size.width);
+    userTapView.backgroundColor = [UIColor clearColor];
+    userTapView.userInteractionEnabled = YES;
+    [userTapView addGestureRecognizer:tap];
+    [self.userContainerView addSubview:userTapView];
+    
     
     [self layoutIfNeeded];
     self.imageViewHeightConstraint.constant = 250;
@@ -99,6 +119,17 @@
     }
     [self layoutIfNeeded];
     
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+- (void)listenForNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showTipWithText:) name:kNotificationShowShareImageTip object:nil];
 }
 
 - (void)showImageViewCoverForLeft:(BOOL)left
@@ -124,23 +155,57 @@
                         }];
 }
 
+- (void)showTipWithText:(NSNotification *)notif
+{
+    NSDictionary *payload = notif.userInfo;
+    NSString *text = payload[@"text"];
+    
+    AMPopTip *appearance = [AMPopTip appearance];
+    appearance.textColor = [UIColor whiteColor];
+    appearance.font = [UIFont fontWithName:kFontGlobal size:16];
+    appearance.popoverColor = [UIColor colorWithHexString:kColorFlatGreen];
+    appearance.animationIn = 1;
+    self.popTip = [AMPopTip popTip];
+    self.popTip.shouldDismissOnTapOutside = YES;
+    self.popTip.shouldDismissOnTap = YES;
+    
+    //CGRect frame = [self.view convertRect:self.selfieImageView.frame fromView:self.topHalfView];
+    [self.popTip showText:text direction:AMPopTipDirectionUp maxWidth:300 inView:self fromFrame:self.imageView.frame duration:5];
+}
+
 - (void)reset
 {
     [self.resultView hide];
+    [self reanbleButtons];
+    
 }
 
-- (IBAction)tappedImageView:(UITapGestureRecognizer *)sender {
+- (void)tappedUserProfile
+{
+    if (self.delegate){
+        [self.delegate homeViewTappedUserContainer:self];
+    }
+}
+
+- (IBAction)tappedImageViewTwice:(UITapGestureRecognizer *)sender {
     if (self.delegate){
         [self.delegate homeView:self
                tappedShareImage:self.imageView.image
-                      withTitle:self.titleLabel.text
-                        andCard:self.card];
+                      withTitle:self.titleLabel.text];
     }
     
 }
 
+
+- (IBAction)tappedImageViewOnce:(UITapGestureRecognizer *)sender {
+    if (self.delegate){
+        [self.delegate homeView:self
+          tappedFullScreenImage:self.imageView.image];
+    }
+}
+
 - (IBAction)tappedButton1:(UIButton *)sender {
-    sender.userInteractionEnabled = NO;
+    [self disableButtons];
     [self showImageViewCoverForLeft:YES];
     
     if (self.delegate){
@@ -159,7 +224,7 @@
 }
 
 - (IBAction)tappedButton2:(UIButton *)sender {
-    sender.userInteractionEnabled = NO;
+    [self disableButtons];
     [self showImageViewCoverForLeft:NO];
     
     if (self.delegate){
@@ -174,6 +239,36 @@
              tappedButtonNumber:2
                         forType:type];
     }
+}
+
+- (void)disableButtons
+{
+    self.button1.userInteractionEnabled = NO;
+    self.button2.userInteractionEnabled = NO;
+    UIColor *button1Color = self.button1.backgroundColor;
+    UIColor *button2Color = self.button2.backgroundColor;
+    
+    UIColor *button1SelectedColor = [button1Color darkenByPercentage:0.2];
+    UIColor *button2SelectedColor = [button2Color darkenByPercentage:0.2];
+    
+    self.button1.backgroundColor = button1SelectedColor;
+    self.button2.backgroundColor = button2SelectedColor;
+
+}
+
+- (void)reanbleButtons
+{
+    self.button1.userInteractionEnabled = YES;
+    self.button2.userInteractionEnabled = YES;
+    UIColor *button1Color = self.button1.backgroundColor;
+    UIColor *button2Color = self.button2.backgroundColor;
+    
+    UIColor *button1SelectedColor = [button1Color lightenByPercentage:0.2];
+    UIColor *button2SelectedColor = [button2Color lightenByPercentage:0.2];
+    
+    self.button1.backgroundColor = button1SelectedColor;
+    self.button2.backgroundColor = button2SelectedColor;
+    
 }
 
 - (void)hideButtons
@@ -202,28 +297,38 @@
 
 - (void)setCard:(Card *)card
 {
-    // When i set the card use that to display correct bottom button
+    // When i set the card use that to display correct bottom button and set other ui elements
     _card = card;
     
     if ([card.questionType intValue] == QuestionTypeYESorNO){
         [self.button1 setTitle:NSLocalizedString(@"YES", nil) forState:UIControlStateNormal];
         [self.button2 setTitle:NSLocalizedString(@"NO", nil) forState:UIControlStateNormal];
-        self.button1.backgroundColor = [UIColor colorWithHexString:kColorFlatGreen];
-        self.button2.backgroundColor = [UIColor colorWithHexString:kColorFlatRed];
+        //self.button1.backgroundColor = [UIColor colorWithHexString:kColorFlatGreen];
+        //self.button2.backgroundColor = [UIColor colorWithHexString:kColorFlatRed];
+        if (!self.randomColorsSet){
+            self.button1.backgroundColor = [UIColor colorWithRandomFlatColorOfShadeStyle:UIShadeStyleDark];
+            self.button2.backgroundColor = [UIColor colorWithRandomFlatColorOfShadeStyle:UIShadeStyleLight];
+            self.randomColorsSet = YES;
+        }
     }
     else if ([card.questionType intValue] == QuestionTypeAorB){
         [self.button1 setTitle:NSLocalizedString(@"A", nil) forState:UIControlStateNormal];
         [self.button2 setTitle:NSLocalizedString(@"B", nil) forState:UIControlStateNormal];
-        self.button1.backgroundColor = [UIColor colorWithHexString:kColorOrange];
-        self.button2.backgroundColor = [UIColor colorWithHexString:kColorFlatBlue];
+        //self.button1.backgroundColor = [UIColor colorWithHexString:kColorOrange];
+        //self.button2.backgroundColor = [UIColor colorWithHexString:kColorFlatBlue];
+        if (!self.randomColorsSet){
+            self.button1.backgroundColor = [UIColor colorWithRandomFlatColorOfShadeStyle:UIShadeStyleDark];
+            self.button2.backgroundColor = [UIColor colorWithRandomFlatColorOfShadeStyle:UIShadeStyleLight];
+            self.randomColorsSet = YES;
+        }
     }
     
     self.titleLabel.text = card.question;
     self.votesTotalLabel.text = [card voteCountString];
     self.userLabel.text = card.senderName;
     
-    [self.userImageView sd_setImageWithURL:[card facebookImageUrl] placeholderImage:[UIImage imageNamed:@"app-icon"]];
-    [self.imageView sd_setImageWithURL:card.imgUrl placeholderImage:[UIImage imageNamed:@"app-icon"]
+    [self.userImageView sd_setImageWithURL:[card facebookImageUrl] placeholderImage:[UIImage imageNamed:kAppPlaceholer]];
+    [self.imageView sd_setImageWithURL:card.imgUrl placeholderImage:[UIImage imageNamed:kAppPlaceholer]
                              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                  [self showButtons];
                              }];

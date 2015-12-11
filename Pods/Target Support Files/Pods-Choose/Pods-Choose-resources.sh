@@ -63,6 +63,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "FontAwesomeKit/FontAwesomeKit/ionicons.ttf"
   install_resource "RSKImageCropper/RSKImageCropper/RSKImageCropperStrings.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/Appirater.bundle"
+  install_resource "${BUILT_PRODUCTS_DIR}/LaunchKitResources.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "DateTools/DateTools/DateTools.bundle"
@@ -70,6 +71,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "FontAwesomeKit/FontAwesomeKit/ionicons.ttf"
   install_resource "RSKImageCropper/RSKImageCropper/RSKImageCropperStrings.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/Appirater.bundle"
+  install_resource "${BUILT_PRODUCTS_DIR}/LaunchKitResources.bundle"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

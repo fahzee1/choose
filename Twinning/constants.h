@@ -58,9 +58,10 @@ static NSString *const kLocalUser = @"localuser";
 static NSString *const kLocalUserAuthKey = @"localauthkey";
 static NSString *const kLocalUserCreated = @"kLocalUserCreated";
 static NSString *const kInstagramUserName = @"cj_o32";
-static NSString *const kFacebookPageID = @"373149746105451";
+static NSString *const kFacebookPageID = @"1498069333826125";
 static NSString *const kFacebookPageName = @"trychoose";
 static NSString *const kFlickrHostedImage = @"https://farm1.staticflickr.com/584/22476394424_e545488535_b.jpg";
+static NSString *const kServerShareTextID = @"kServerShareTextID";
 
 // Colors
 static NSString *const kColorRed = @"#ef2b2b";
@@ -97,6 +98,7 @@ static NSString *const kStoryboardProfile = @"profile";
 static NSString *const kStoryboardCard = @"card";
 static NSString *const kStoryboardChoose = @"choose";
 static NSString *const kStoryboardADPlacement = @"adPlacement";
+static NSString *const kStoryboardFullScreen = @"fullScreen";
 
 // Images
 static NSString *const kBannerLogo = @"logo";
@@ -104,8 +106,10 @@ static NSString *const kTimeAgoLogo = @"clock-logo";
 static NSString *const kUploadIcon = @"upload-a-photo-button";
 static NSString *const kSelfieIcon = @"take-a-selfie-button";
 static NSString *const kAppIcon = @"app-icon";
+static NSString *const kAppPlaceholer = @"placeholder";
 
 // Notifications
+static NSString *const kNotificationBranchFirstTimeUser = @"kNotificationBranchFirstTimeUser";
 static NSString *const kNotificationMenuTappedSearch = @"kNotificationMenuTappedSearch";
 static NSString *const kNotificationMenuTappedCategoryChoice = @"kNotificationMenuTappedCategoryChoice";
 static NSString *const kNotificationMenuTappedAccountChoice = @"kNotificationMenuTappedAccountChoice";
@@ -114,6 +118,7 @@ static NSString *const kNotificationSubmittedCard = @"kNotificationSubmittedCard
 static NSString *const kNotificationShowingADPlacement = @"kNotificationShowingADPlacement";
 static NSString *const kNotificationClosedADPlacement = @"kNotificationClosedADPlacement";
 static NSString *const kNotificationOnboardIsOver = @"kNotificationOnboardIsOver";
+static NSString *const kNotificationShowShareImageTip = @"kNotificationShowShareImageTip";
 
 // Default images
 static NSString *const kImageCard = @"card";

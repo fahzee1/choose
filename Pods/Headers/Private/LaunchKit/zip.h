@@ -1,0 +1,1 @@
+../../../LaunchKit/LaunchKit/Classes/ThirdParty/ZipArchive/minizip/zip.h

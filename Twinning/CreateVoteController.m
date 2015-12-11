@@ -23,7 +23,6 @@
 #import <SCLAlertViewStyleKit.h>
 #import <FXBlurView.h>
 #import "Card.h"
-#import "User+Utils.h"
 #import <MBProgressHUD.h>
 #import "UIImage+Utils.h"
 
@@ -97,7 +96,8 @@
         [self showPopTipWithText:NSLocalizedString(@"Tap above to choose picture", nil) andDelay:0];
         self.shownPopTip1 = YES;
     }
-
+    
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -196,7 +196,7 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         //code to be executed on the main queue after delay
         CGRect frame = [self.view convertRect:self.selfieImageView.frame fromView:self.topHalfView];
-        [self.popTip showText:text direction:AMPopTipDirectionDown maxWidth:200 inView:self.view fromFrame:frame];
+        [self.popTip showText:text direction:AMPopTipDirectionDown maxWidth:200 inView:self.view fromFrame:frame duration:10];
 
     });
     
@@ -348,7 +348,7 @@
         return;
     }
     
-    self.progressView.progress = 1.0;
+    [self.progressView setProgress:1.0 animated:YES];
     
     //self.accessCodeLabel.hidden = NO;
     //self.accessCodeLabel.alpha = 1;
@@ -357,6 +357,7 @@
     self.hud.labelText = NSLocalizedString(@"Submitting Card...", nil);
     
     UIImage *shareImage = [self.topHalfView convertViewToImage];
+    //shareImage = [UIImage imageWithImage:shareImage convertToSize:CGSizeMake(600, 600)];
     NSString *base64Image = [self base64Image:shareImage compress:NO];
     int question_type = 0;
     if (self.questionType == QuestionTypeAorB){

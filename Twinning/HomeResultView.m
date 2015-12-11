@@ -58,6 +58,14 @@
     
 }
 
+- (void)hideLeftandRight
+{
+    self.leftImageView.hidden = YES;
+    self.leftImageView.alpha = 0;
+    self.rightImageView.hidden = YES;
+    self.rightImageView.alpha = 0;
+}
+
 - (void)hide
 {
     self.hidden = YES;

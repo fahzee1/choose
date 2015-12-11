@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ShareViewController.h"
+#import "FullScreenImageViewController.h"
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import <ASProgressPopUpView.h>
 #import "constants.h"
@@ -23,6 +24,7 @@
 @interface ShareViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *topImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *middleImageView;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *imageViewTap;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
@@ -88,6 +90,8 @@
 
 - (void)setup
 {
+    self.imageViewTap.numberOfTapsRequired = 1;
+    self.imageViewTap.numberOfTouchesRequired = 1;
     
     if (self.topImage){
         self.topImageView.image = self.topImage;
@@ -113,6 +117,8 @@
     else{
         self.middleImageView.image = [UIImage imageNamed:kImageCard2];
     }
+    
+    self.middleImageView.userInteractionEnabled = YES;
     
     if (self.bottomShareText){
         self.bottomShareLabel.text = self.bottomShareText;
@@ -179,6 +185,16 @@
     else{
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+- (IBAction)tappedMiddleImageView:(UITapGestureRecognizer *)sender {
+    UIView *view = sender.view;
+    if ([view isKindOfClass:[UIImageView class]]){
+        FullScreenImageViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardFullScreen];
+        controller.image = ((UIImageView *)view).image;
+        [self presentViewController:controller animated:NO completion:nil];
+    }
+    
 }
 
 - (IBAction)tappedShareButton1:(UIButton *)sender {

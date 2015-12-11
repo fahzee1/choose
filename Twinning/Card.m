@@ -46,6 +46,16 @@
         card.percentVotesRight = data[@"percentage"][@"right"];
         card.voteCount = data[@"total_votes"];
         
+        NSString *createdString = data[@"created"];
+        
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setTimeZone:[NSTimeZone systemTimeZone]];
+        [dateFormat setLocale:[NSLocale currentLocale]];
+        [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [dateFormat setFormatterBehavior:NSDateFormatterBehaviorDefault];
+        NSDate *date = [dateFormat dateFromString:createdString];
+        
+        card.created = date;
     }
     
     return card;

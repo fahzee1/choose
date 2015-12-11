@@ -148,7 +148,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="210" translatesAutoresizingMaskIntoConstraints="NO" id="naS-DQ-p0M">
-                                        <rect key="frame" x="195" y="12" width="210" height="34"/>
+                                        <rect key="frame" x="10" y="12" width="580" height="34"/>
                                         <gestureRecognizers/>
                                         <string key="text">ARE WE TWINS OR NAH?
 VOTE NOW WITH CODE CJ1234</string>
@@ -192,6 +192,8 @@ VOTE NOW WITH CODE CJ1234</string>
                                 <constraints>
                                     <constraint firstItem="4SJ-sp-6cO" firstAttribute="width" secondItem="PpF-fK-fq7" secondAttribute="width" id="4xk-Q0-PJe"/>
                                     <constraint firstItem="PpF-fK-fq7" firstAttribute="leading" secondItem="4SJ-sp-6cO" secondAttribute="trailing" constant="8" id="AKf-GE-liE"/>
+                                    <constraint firstItem="naS-DQ-p0M" firstAttribute="leading" secondItem="Z6Q-Ac-WfT" secondAttribute="leading" constant="10" id="DeB-4I-0Cf"/>
+                                    <constraint firstAttribute="trailing" secondItem="naS-DQ-p0M" secondAttribute="trailing" constant="10" id="I0F-hv-CCL"/>
                                     <constraint firstItem="naS-DQ-p0M" firstAttribute="top" secondItem="Z6Q-Ac-WfT" secondAttribute="top" constant="12" id="MLz-Uf-p2j"/>
                                     <constraint firstAttribute="bottom" secondItem="IsM-Ye-8VO" secondAttribute="bottom" id="MPv-Fk-7XB"/>
                                     <constraint firstItem="4SJ-sp-6cO" firstAttribute="top" secondItem="Z6Q-Ac-WfT" secondAttribute="top" constant="60" id="Njk-j8-6QP"/>
@@ -338,10 +340,14 @@ VOTE NOW WITH CODE CJ1234</string>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Ul-8x-ZNj">
                                 <rect key="frame" x="250" y="256" width="100" height="100"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="eqn-KL-hxL"/>
                                     <constraint firstAttribute="width" constant="100" id="iO0-Z6-b9e"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9XA-EA-8ef" appends="YES" id="lh7-Mm-uWj"/>
+                                </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dY9-aO-uPB">
                                 <rect key="frame" x="20" y="391" width="560" height="21"/>
@@ -482,6 +488,7 @@ VOTE NOW WITH CODE CJ1234</string>
                         <outlet property="bottomShareLabel" destination="dY9-aO-uPB" id="0gV-U5-zYc"/>
                         <outlet property="doneButton" destination="Da2-rA-a1y" id="it0-Nb-PVf"/>
                         <outlet property="imageViewLabel" destination="gtI-0R-n5R" id="fzG-he-qvu"/>
+                        <outlet property="imageViewTap" destination="9XA-EA-8ef" id="Hu9-s9-P6z"/>
                         <outlet property="middleImageView" destination="4Ul-8x-ZNj" id="csv-j5-8e4"/>
                         <outlet property="middleImageViewHeightConstraint" destination="eqn-KL-hxL" id="7Ch-TM-KiI"/>
                         <outlet property="middleImageViewTopConstraint" destination="zMf-Sp-0Mk" id="JYW-2b-GWC"/>
@@ -499,6 +506,11 @@ VOTE NOW WITH CODE CJ1234</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qie-KB-0JH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="9XA-EA-8ef">
+                    <connections>
+                        <action selector="tappedMiddleImageView:" destination="ace-3G-Vuh" id="GGI-Aw-jXN"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="372" y="2295"/>
         </scene>
@@ -598,12 +610,12 @@ VOTE NOW WITH CODE CJ1234</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xX7-FL-GNS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="xX7-FL-GNS">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileHeaderCell" rowHeight="60" id="D8w-hh-o8Z" customClass="ProfileHeaderCell">
-                                        <rect key="frame" x="0.0" y="86" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="114" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D8w-hh-o8Z" id="KKx-to-sAv">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59"/>
@@ -637,7 +649,7 @@ VOTE NOW WITH CODE CJ1234</string>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="profileListCell" rowHeight="128" id="ix3-mI-lKx" customClass="ProfileListCell">
-                                        <rect key="frame" x="0.0" y="146" width="600" height="128"/>
+                                        <rect key="frame" x="0.0" y="174" width="600" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ix3-mI-lKx" id="JAY-0P-AMw">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="127"/>
@@ -720,6 +732,7 @@ VOTE NOW WITH CODE CJ1234</string>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card" translatesAutoresizingMaskIntoConstraints="NO" id="c6W-MS-YdM">
                                 <rect key="frame" x="0.0" y="121" width="600" height="300"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="2aW-Ki-N9B"/>
                                     <constraint firstAttribute="height" constant="300" id="Eqc-U2-McI"/>
@@ -729,9 +742,18 @@ VOTE NOW WITH CODE CJ1234</string>
                                         <exclude reference="2aW-Ki-N9B"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="rk1-dQ-YGh" appends="YES" id="bM0-B0-JGU"/>
+                                </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000 Votes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFy-Q2-dgF">
-                                <rect key="frame" x="257" y="448" width="87" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Out of 1000 Votes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFy-Q2-dgF">
+                                <rect key="frame" x="231" y="448" width="139" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100% chose A and 0% chose B" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nkg-NY-kaM">
+                                <rect key="frame" x="5" y="479" width="590" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -739,14 +761,18 @@ VOTE NOW WITH CODE CJ1234</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Nkg-NY-kaM" secondAttribute="trailing" constant="5" id="0Dn-0o-HFp"/>
+                            <constraint firstItem="Nkg-NY-kaM" firstAttribute="centerX" secondItem="sQg-Qf-oWN" secondAttribute="centerX" id="4jb-db-BIf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wFA-L3-QAL" secondAttribute="trailing" constant="5" id="Dfx-bp-h9v"/>
                             <constraint firstItem="wFA-L3-QAL" firstAttribute="top" secondItem="3iA-Wu-Beg" secondAttribute="bottom" constant="28" id="F4p-z1-Lmr"/>
                             <constraint firstItem="gFy-Q2-dgF" firstAttribute="top" secondItem="c6W-MS-YdM" secondAttribute="bottom" constant="27" id="HYt-LZ-gDy"/>
                             <constraint firstAttribute="trailing" secondItem="c6W-MS-YdM" secondAttribute="trailing" id="I8A-50-din"/>
+                            <constraint firstItem="Nkg-NY-kaM" firstAttribute="top" secondItem="gFy-Q2-dgF" secondAttribute="bottom" constant="10" id="OP2-Iu-UYs"/>
                             <constraint firstItem="c6W-MS-YdM" firstAttribute="leading" secondItem="sQg-Qf-oWN" secondAttribute="leading" id="Rmw-Xk-pTb"/>
                             <constraint firstAttribute="centerX" secondItem="c6W-MS-YdM" secondAttribute="centerX" id="TiA-a8-foR"/>
                             <constraint firstItem="9MH-9J-VdE" firstAttribute="top" secondItem="c6W-MS-YdM" secondAttribute="bottom" constant="70" id="Tzx-pk-0Zx"/>
                             <constraint firstItem="c6W-MS-YdM" firstAttribute="top" secondItem="wFA-L3-QAL" secondAttribute="bottom" constant="8" id="cZD-Mk-i2X"/>
+                            <constraint firstItem="Nkg-NY-kaM" firstAttribute="leading" secondItem="sQg-Qf-oWN" secondAttribute="leading" constant="5" id="dRe-iR-ddd"/>
                             <constraint firstItem="wFA-L3-QAL" firstAttribute="leading" secondItem="sQg-Qf-oWN" secondAttribute="leadingMargin" constant="5" id="fUu-3r-M9a"/>
                             <constraint firstAttribute="trailing" secondItem="c6W-MS-YdM" secondAttribute="trailing" id="hwJ-Kj-QD2"/>
                             <constraint firstAttribute="centerX" secondItem="gFy-Q2-dgF" secondAttribute="centerX" id="mgU-Ag-gR7"/>
@@ -768,9 +794,15 @@ VOTE NOW WITH CODE CJ1234</string>
                         <outlet property="imageViewHeightConstraint" destination="Eqc-U2-McI" id="wWd-zY-nqq"/>
                         <outlet property="titleLabel" destination="wFA-L3-QAL" id="1uZ-qV-Fa5"/>
                         <outlet property="votesLabel" destination="gFy-Q2-dgF" id="k6T-UL-p7a"/>
+                        <outlet property="votesLabel2" destination="Nkg-NY-kaM" id="f4I-db-LJz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dIX-c0-m6p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="rk1-dQ-YGh">
+                    <connections>
+                        <action selector="tappedImage:" destination="GoF-Cg-Yd2" id="G6l-zm-fni"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="328" y="4329"/>
         </scene>
@@ -904,7 +936,40 @@ VOTE NOW WITH CODE CJ1234</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qa0-a5-J8J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="210" y="5763"/>
+            <point key="canvasLocation" x="-296" y="5719"/>
+        </scene>
+        <!--Full Screen Image View Controller-->
+        <scene sceneID="zSi-tF-qeS">
+            <objects>
+                <viewController storyboardIdentifier="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qyv-by-UE2" customClass="FullScreenImageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DNr-hr-f0Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="G2x-x6-vLc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k7f-0q-4NV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jmr-YH-Ahz">
+                                <rect key="frame" x="0.0" y="120" width="600" height="380"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Jmr-YH-Ahz" secondAttribute="trailing" id="6wH-0D-MYt"/>
+                            <constraint firstItem="G2x-x6-vLc" firstAttribute="top" secondItem="Jmr-YH-Ahz" secondAttribute="bottom" constant="100" id="E0w-QE-dJm"/>
+                            <constraint firstItem="Jmr-YH-Ahz" firstAttribute="leading" secondItem="k7f-0q-4NV" secondAttribute="leading" id="Vdn-ea-XUR"/>
+                            <constraint firstItem="Jmr-YH-Ahz" firstAttribute="top" secondItem="DNr-hr-f0Z" secondAttribute="bottom" constant="100" id="aq7-4P-lmn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageview" destination="Jmr-YH-Ahz" id="Zew-yE-ClF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R5x-qN-JYp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="328" y="5719"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="W5p-nG-OeX">

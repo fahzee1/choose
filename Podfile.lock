@@ -30,6 +30,9 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.2.2)
   - Branch (0.11.11)
+  - ChameleonFramework (2.0.4):
+    - ChameleonFramework/Default (= 2.0.4)
+  - ChameleonFramework/Default (2.0.4)
   - CRToast (0.0.8)
   - DateTools (1.7.0)
   - ECSlidingViewController (2.0.3)
@@ -53,6 +56,9 @@ PODS:
   - FontAwesomeKit/IonIcons (2.2.0):
     - FontAwesomeKit/Core
   - FXBlurView (1.6.4)
+  - LaunchKit (1.1.1):
+    - LaunchKit/LaunchKit (= 1.1.1)
+  - LaunchKit/LaunchKit (1.1.1)
   - MBAutoGrowingTextView (0.1.0)
   - MBProgressHUD (0.9.1)
   - MGInstagram (0.1.0)
@@ -78,6 +84,7 @@ DEPENDENCIES:
   - Appirater
   - ASProgressPopUpView
   - Branch
+  - ChameleonFramework
   - CRToast (~> 0.0.7)
   - DateTools
   - ECSlidingViewController (~> 2.0.3)
@@ -88,6 +95,7 @@ DEPENDENCIES:
   - FontAwesomeKit/FontAwesome
   - FontAwesomeKit/IonIcons
   - FXBlurView
+  - LaunchKit
   - MBAutoGrowingTextView (~> 0.1.0)
   - MBProgressHUD (~> 0.8)
   - MGInstagram
@@ -107,6 +115,7 @@ SPEC CHECKSUMS:
   ASProgressPopUpView: 945c19297da09a625db48a5a37cabd7756916b9b
   Bolts: 20a2bd788273360cb1e31530dc19b8544eef2544
   Branch: 71b1180c49d75e0d849e2611ecf3016de7572eac
+  ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
   CRToast: b087127369b4c603726ef6249d74d0d737629ab8
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   ECSlidingViewController: 6485c14f23b4487e9946535421ca8f111f86cc53
@@ -116,6 +125,7 @@ SPEC CHECKSUMS:
   FBSDKShareKit: f474f1123791e215d0299b98b3ee92ddd9187d86
   FontAwesomeKit: 025fd4dd1017fe4e3f8d47b03e024deedbb33cd4
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
+  LaunchKit: b98446fdea94f1dcab584fe1a025dc85db5f2ee6
   MBAutoGrowingTextView: 3955d4513be3d184fe2cb7739999c1f994dcd4d5
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MGInstagram: c85a061e25b053ad1cb1227675e238ce6cc50221

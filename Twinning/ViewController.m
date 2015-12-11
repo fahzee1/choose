@@ -13,6 +13,7 @@
 #import <MBProgressHUD.h>
 #import "APIClient.h"
 #import <Onboard/OnboardingViewController.h>
+#import <ChameleonFramework/Chameleon.h>
 
 @interface ViewController ()
 @property (strong,nonatomic) MBProgressHUD *hud;
@@ -48,7 +49,12 @@
 - (void)setup
 {
     self.navigationController.navigationBarHidden = YES;
-    self.view.backgroundColor = [UIColor colorWithHexString:kColorRed];
+    UIColor *red = [UIColor colorWithHexString:kColorRed];
+    UIColor *green = [UIColor colorWithHexString:kColorFlatGreen];
+    UIColor *white = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:@[green,red,white]];
+    
+    
     self.skipLoginButton.titleLabel.font = [UIFont fontWithName:kFontGlobalBold size:20];
     [self.skipLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.skipLoginButton setTitle:NSLocalizedString(@"Skip Login", nil) forState:UIControlStateNormal];
@@ -163,6 +169,9 @@
                                 self.localUser.name = username;
                                 self.localUser.facebook_id = facebook_id;
                                 self.localUser.logged_in = [NSNumber numberWithBool:YES];
+                                if (email){
+                                    self.localUser.email = email;
+                                }
                                 [self.localUser.managedObjectContext save:nil];
                                 
                                 [self showOnBoardScreens];
@@ -196,7 +205,7 @@ typedef void (^ResponseBlock2) (bool success, id data);
              [client stopNetworkActivity];
              [self.hud hide:YES];
              if (block){
-                 block(APIRequestStatusFail,nil);
+                 block(APIRequestStatusFail,@{});
              }
          }];
 }

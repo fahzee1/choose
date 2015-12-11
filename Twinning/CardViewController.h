@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Card.h"
 
 @interface CardViewController : UIViewController
 
 @property (strong,nonatomic) UIImage *image;
-@property (strong,nonatomic) NSString *titleText;
-@property (strong,nonatomic) NSString *voteText;
+//@property (strong,nonatomic) NSString *titleText;
+//@property (strong,nonatomic) NSString *voteText;
+
+@property (strong,nonatomic) Card *card;
 @end

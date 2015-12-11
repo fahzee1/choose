@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Card.h"
 
+@class HomeContainerView;
 
 @protocol HomeContainerDelegate <NSObject>
 
-- (void)homeView:(UIView *)view tappedButtonNumber:(int)number forType:(QuestionType)type;
-- (void)homeView:(UIView *)view tappedShareImage:(UIImage *)img
-       withTitle:(NSString *)title
-         andCard:(Card *)card;
+- (void)homeView:(HomeContainerView *)view tappedButtonNumber:(int)number forType:(QuestionType)type;
+- (void)homeView:(HomeContainerView *)view tappedShareImage:(UIImage *)img withTitle:(NSString *)title;
+- (void)homeView:(HomeContainerView *)view tappedFullScreenImage:(UIImage *)img;
+- (void)homeViewTappedUserContainer:(HomeContainerView *)view;
+
 @end
 
 @interface HomeContainerView : UIView
@@ -30,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *button1;
 @property (weak, nonatomic) IBOutlet UIButton *button2;
 
+@property (assign)BOOL showCheckOnLargerPercentage;
 
 @property (strong,nonatomic) Card *card;
 
@@ -38,4 +41,5 @@
 
 - (void)hideButtons;
 - (void)showButtons;
+
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "User+Utils.h"
+#import "User+CoreDataProperties.h"
 
 
 @interface CreateVoteController : UIViewController

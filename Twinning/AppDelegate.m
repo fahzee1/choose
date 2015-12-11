@@ -11,19 +11,21 @@
 #import "EasyFacebook.h"
 #import "constants.h"
 #import "UIColor+HexValue.h"
-#import "User+Utils.h"
 #import "MenuViewController.h"
 #import <ECSlidingViewController.h>
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <Branch.h>
 #import <MMAdSDK/MMAdSDK.h>
+#import <Parse/Parse.h>
+#import <LaunchKit/LaunchKit.h>
 #import "MMConversionTracking.h"
-
+#import <CRToast.h>
 
 
 @interface AppDelegate ()
 @property (assign) BOOL appInForeground;
+
 @end
 
 @implementation AppDelegate
@@ -42,6 +44,7 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
                                                            NSFontAttributeName:[UIFont fontWithName:kFontGlobalBold size:20]}];
+    
     
     // Menu setup
     // Right slide out menu setup
@@ -80,10 +83,11 @@
     
 
     // Fabric
+    [[Fabric sharedSDK] setDebug: YES];
     [Fabric with:@[[Crashlytics class]]];
-    [CrashlyticsKit setUserIdentifier:@"12345"];
+    [CrashlyticsKit setUserIdentifier:@"33232"];
     [CrashlyticsKit setUserEmail:@"user@fabric.io"];
-    [CrashlyticsKit setUserName:@"Test User"];
+    [CrashlyticsKit setUserName:@"testname"];
 
 
     // Branch
@@ -94,7 +98,27 @@
     [branch initSessionAndAutomaticallyDisplayDeepLinkController:YES deepLinkHandler:^(NSDictionary *params, NSError *error) {
         // params are the deep linked params associated with the link that the user clicked before showing up.
         NSLog(@"deep link data: %@", [params description]);
+        
+        if (!params[@"is_first_session"]){
+            // send out notification (with delay so appropriate controller is created to hear it)
+            // that alerts of new user from click
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationBranchFirstTimeUser object:self];
+            });
+        }
     }];
+    
+    // LaunchKit stuff
+    [LaunchKit launchWithToken:@"DiYB1vCSfS1WiUzE_9zbPkDpZoC45i-fEop21kIthYDY"];
+    
+    // Parse stuff
+    [Parse setApplicationId:@"Jnloet4uKj9z5hJOaVdiIKRRrOzLCUf1COzse16Z"
+                  clientKey:@"6fzZZrLQXphwTtFlB1gY36hSgTEYeFqwkIFjLEsg"];
+    
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation addUniqueObject:@"Choose" forKey:@"channels"];
+    [currentInstallation saveInBackground];
+    
     
     // Millennial Media (ads)
     MMAppSettings *appSettings = [[MMAppSettings alloc] init];
@@ -134,6 +158,12 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if (currentInstallation.badge != 0) {
+        currentInstallation.badge = 0;
+        [currentInstallation saveEventually];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -159,6 +189,11 @@
                        ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
                        ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
     DLog(@"Token is %@... do something with it",token);
+    
+    // Save to parse
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -172,6 +207,10 @@
 {
     [self notifyReceivedRemoteNotificationWithData:userInfo foreground:self.appInForeground];
     completionHandler(UIBackgroundFetchResultNoData);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
 }
 
 - (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler
@@ -274,23 +313,25 @@
     //[[NSNotificationCenter defaultCenter] postNotificationName:kRecievedRemoteNotification object:self userInfo:mutableData];
     
     //NSString *styleName = @"basicNotification";
-    NSString *alert = data[@"alert"];
+    NSString *alert = data[@"aps"][@"alert"];
     DLog(@"do something with (%@)",alert);
-    /*
-    [JDStatusBarNotification addStyleNamed:styleName
-                                   prepare:^JDStatusBarStyle *(JDStatusBarStyle *style) {
-                                       style.barColor = [UIColor colorWithHexString:kColorGreen];
-                                       style.textColor = [UIColor whiteColor];
-                                       style.font = [UIFont fontWithName:kAltruusFontBold size:13];
-                                       
-                                       return style;
-                                   }];
     
-    if (![alert isEqualToString:@""]){
-        [JDStatusBarNotification showWithStatus:alert dismissAfter:4 styleName:styleName];
-    }
-    */
-    
+    NSDictionary *options = @{
+                              kCRToastTextKey :alert,
+                              kCRToastTextAlignmentKey : @(NSTextAlignmentCenter),
+                              kCRToastBackgroundColorKey : [UIColor colorWithHexString:kColorFlatTurquoise],
+                              kCRToastAnimationInTypeKey : @(CRToastAnimationTypeGravity),
+                              kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeGravity),
+                              kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionTop),
+                              kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionBottom),
+                              kCRToastTextColorKey:[UIColor whiteColor],
+                              kCRToastFontKey:[UIFont fontWithName:kFontGlobalBold size:18],
+                              kCRToastNotificationTypeKey:@(CRToastTypeNavigationBar)
+                              };
+    [CRToastManager showNotificationWithOptions:options
+                                completionBlock:^{
+                                }];
+
     
 }
 

@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "User+Utils.h"
+#import "User+CoreDataProperties.h"
+#import "Card.h"
 
 @interface ProfileViewController : UIViewController
 
 @property (strong,nonatomic) User *localUser;
+@property (strong,nonatomic) Card *card;
+//@property (strong,nonatomic) NSString *userFacebookID;
 @end

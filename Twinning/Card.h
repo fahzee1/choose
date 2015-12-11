@@ -20,11 +20,11 @@ typedef NS_ENUM(NSInteger, QuestionType){
 @property (strong,nonatomic) NSURL *imgUrl;
 @property (strong,nonatomic) NSURL *senderImgUrl;
 @property (strong,nonatomic) NSString *senderName;
-@property (strong,nonatomic) NSNumber *senderFbID;
+@property (strong,nonatomic) NSString *senderFbID;
 @property (strong,nonatomic) NSNumber *percentVotesLeft;
 @property (strong,nonatomic) NSNumber *percentVotesRight;
 @property (strong,nonatomic) NSNumber *voteCount;
-//@property (strong,nonatomic) NSString *voteResult;
+@property (strong,nonatomic) NSDate *created;
 @property (strong, nonatomic) NSNumber *questionType;
 
 

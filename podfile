@@ -32,7 +32,8 @@ pod 'FXBlurView'
 pod 'MGInstagram'
 pod 'Onboard'
 pod 'Branch'
-#pod 'JSONModel'
+pod "LaunchKit"
+pod 'ChameleonFramework'
 end
 
 target 'ChooseTests' do
