@@ -16,6 +16,7 @@
 #import "Card.h"
 #import <AMPopTip.h>
 #import "User+CoreDataProperties.h"
+#import "FullScreenImageViewController.h"
 
 @interface ChooseViewController ()<HomeContainerDelegate>
 @property (weak, nonatomic) IBOutlet UINavigationBar *navbar;
@@ -186,6 +187,13 @@
 }
 
 
+- (void)homeView:(HomeContainerView *)view tappedFullScreenImage:(UIImage *)img
+{
+    FullScreenImageViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardFullScreen];
+    controller.image = img;
+    [self presentViewController:controller animated:NO completion:nil];
+
+}
 
 #pragma -mark Deep link controller
 

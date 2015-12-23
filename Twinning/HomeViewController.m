@@ -12,6 +12,7 @@
 #import "HomeFeedCell.h"
 #import "HomeErrorView.h"
 #import "EasyFacebook.h"
+#import "UIView+MyInfo.h"
 #import "ShareViewController.h"
 #import "FullScreenImageViewController.h"
 #import "ProfileViewController.h"
@@ -38,14 +39,14 @@
 #import <ChameleonFramework/Chameleon.h>
 
 @interface HomeViewController()<UIScrollViewDelegate,HomeContainerDelegate,MMInterstitialDelegate,FBInterstitialAdDelegate,HomeErrorViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) UIScrollView *currentScrollView;
 @property (strong,nonatomic) NSMutableArray *cardData;
 @property (strong,nonatomic) NSMutableArray *cardData2;
 @property (assign) NSInteger pageNumber;
 @property (assign) NSInteger cardCount;
-@property (strong,nonatomic) NSString *serverLimit;
-@property (strong,nonatomic) NSString *serverOffset;
-@property (strong,nonatomic) NSString *serverQuery;
 @property (strong,nonatomic) NSString *serverShareText;
 @property (assign) CGPoint oldOffset;
 @property (assign) BOOL showingAD;
@@ -58,6 +59,7 @@
 @property (strong, nonatomic) FBInterstitialAd *fbinterstitialAd;
 @property (strong,nonatomic) MBProgressHUD *hud;
 @property (strong,nonatomic) HomeErrorView *errorView;
+
 
 @end
 @implementation HomeViewController
@@ -86,6 +88,7 @@
     self.scrollView.delegate = self;
     self.scrollView.directionalLockEnabled = YES;
     self.scrollView.pagingEnabled = YES;
+    self.scrollView.tag = 1 * 100;
     
     // Scroll view pages based on the height of frame so set it based on screen size
     int offset = 60;
@@ -98,7 +101,17 @@
     self.pageNumber = 1;
     self.serverLimit = @"10";
     self.serverOffset = @"0";
-    self.serverQuery = @"featured";
+    self.serverQuery = self.serverQuery? self.serverQuery:@"Featured";
+    
+    if ([[self.currentScrollView subviews] count] > 0){
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *uuid = [defaults objectForKey:self.serverQuery];
+        self.serverUUID = uuid;
+    }
+    else{
+        self.serverUUID = nil;
+    }
+    
     
     //[self makeTestCards];
     
@@ -152,7 +165,7 @@
     [self showFirstPopUp];
     
     if (!self.firstDataFetch){
-        [self fetchCards];
+        [self fetchCardsForScrollView:self.scrollView];
         self.firstDataFetch = YES;
     }
     
@@ -174,6 +187,7 @@
 
 - (void)listenForNotifications
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuChoseCategoryOption:) name:kNotificationMenuTappedCategoryChoice object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showShareScreen:) name:kNotificationSubmittedCard object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closedAdNotif:) name:kNotificationClosedADPlacement object:nil];
@@ -233,7 +247,7 @@
 }
 
 
-- (void)fetchCards
+- (void)fetchCardsForScrollView:(UIScrollView *)scrollview
 {
     if (!self.stopServerFetch){
         self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -242,13 +256,26 @@
         NSString *query = self.serverQuery;
         NSString *limit = self.serverLimit;
         NSString *offset = self.serverOffset;
+        NSString *uuid = self.serverUUID;
         
         [User showCardsWithParams:@{}
-                        GETParams:[NSString stringWithFormat:@"?q=%@&limit=%@&offset=%@",query,limit,offset]
-                            block:^(APIRequestStatus status, id data) {
+                        GETParams:[NSString stringWithFormat:@"?q=%@&limit=%@&offset=%@&uuid=%@",query,limit,offset,uuid]
+                            block:^(APIRequestStatus status, id data,NSInteger status_code) {
                                 [self.hud hide:YES];
                                 if (status == APIRequestStatusSuccess){
                                     
+                                    if (status_code == 222){
+                                        if ([self.currentScrollView.subviews count] > 0){
+                                            return;
+                                        }
+                                        else{
+                                            DLog(@"sending second server fetch");
+                                            self.serverUUID = @"000";
+                                            [self fetchCardsForScrollView:self.currentScrollView];
+                                            
+                                        }
+                                    }
+                                    [self.cardData removeAllObjects];
                                     for (NSDictionary *cardDict in data[@"data"][@"cards"]){
                                         Card *card = [Card createCardWithData:cardDict];
                                         [self.cardData addObject:card];
@@ -268,8 +295,10 @@
                                             self.serverLimit = [NSString stringWithFormat:@"%@",next_limit];
                                             self.serverOffset = [NSString stringWithFormat:@"%@",next_offset];
                                         }
+                                        
+                                        [self saveUUID:data[@"data"][@"uuid"]];
 
-                                        [self setupCardScrollView];
+                                        [self setupCardsOnScrollView:scrollview];
                                     }
                                     else{
                                         // there were no cards so show error
@@ -283,6 +312,17 @@
                                     [self showErrorView];                                }
                             }];
     }
+}
+
+- (void)saveUUID:(NSString *)uuid
+{
+    // Save the uuid for this specific catergory (serverQuery)
+    if (uuid){
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:uuid forKey:self.serverQuery];
+        self.serverUUID = uuid;
+    }
+    
 }
 
 - (void)handleServerShareText:(NSDictionary *)share_text
@@ -311,24 +351,33 @@
         
     }
 }
-- (void)setupCardScrollView
+- (void)setupCardsOnScrollView:(UIScrollView *)scrollview
 {
     int i = 0;
-    int count = [self.cardData count];
-    NSInteger height = self.scrollView.frame.size.height;
+    NSUInteger count = [self.cardData count];
     self.cardCount = count;
+    // add count to info so can later use
+    scrollview.myInfo = [NSNumber numberWithInteger:count];
+    NSInteger height = scrollview.frame.size.height;
+    
+    if ([scrollview.subviews count] > 0){
+        [scrollview.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    }
+    
     for (Card *card in self.cardData) {
         HomeContainerView *containerView = [[[NSBundle mainBundle] loadNibNamed:@"HomeContainerView" owner:self options:nil] objectAtIndex:0];
         containerView.frame = CGRectMake(0,height * i ,self.view.frame.size.width, height);
-        containerView.card = card;
-        containerView.countLabel.text = [NSString stringWithFormat:@"%d/%d",i + 1,count];
+        containerView.countLabel.text = [NSString stringWithFormat:@"%d/%lu",i + 1,(unsigned long)count];
         containerView.delegate = self;
+        // hide bottom a/b/yes/no buttons until image is loaded
         [containerView hideButtons];
-        [self.scrollView addSubview:containerView];
+        // image should load and buttons shown after setting card
+        containerView.card = card;
+        [scrollview addSubview:containerView];
         i++;
     }
     
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, height * i);
+    scrollview.contentSize = CGSizeMake(self.view.frame.size.width, height * i);
 }
 
 
@@ -383,6 +432,12 @@
         self.errorView.hidden = NO;
         self.errorView.alpha = 1;
     }
+}
+
+- (void)hideErrorView
+{
+    self.errorView.hidden = YES;
+    self.errorView.alpha = 0;
 }
 
 - (void)setupFBInterstitial
@@ -456,13 +511,14 @@
 
 - (void)goToNextPage
 {
-    if (self.pageNumber != self.cardCount){
+    if ([self myPageNumber] != self.cardCount){
+        UIScrollView *scroll = self.currentScrollView? self.currentScrollView:self.scrollView;
         [UIView animateWithDuration:.3
                               delay:2
                             options:0
                          animations:^{
-                             CGFloat pageHeight = self.scrollView.frame.size.height;
-                             self.scrollView.contentOffset = CGPointMake(0, pageHeight * self.pageNumber + 1);
+                             CGFloat pageHeight = scroll.frame.size.height;
+                             scroll.contentOffset = CGPointMake(0, pageHeight * self.pageNumber + 1);
                              
                          } completion:nil];
     }
@@ -471,6 +527,23 @@
 }
 
 
+- (NSInteger)myPageNumber
+{
+    UIScrollView *scroll = self.currentScrollView? self.currentScrollView:self.scrollView;
+    CGFloat pageHeight = scroll.frame.size.height;
+    float fractionalPage = scroll.contentOffset.y / pageHeight;
+    NSInteger page = lround(fractionalPage);
+    page = page + 1;
+    if (self.pageNumber != page) {
+        NSLog(@"%ld",(long)page);
+        self.pageNumber = page;
+        /* Page did change */
+        DLog(@"page changes");
+    }
+    
+    return page;
+
+}
 
 - (void)showMenu
 {
@@ -483,13 +556,77 @@
     }
 }
 
+- (void)addViewController:(UIViewController *)controller
+             toController:(UIViewController *)controller2
+                   inView:(UIView *)view
+{
+    [controller2 addChildViewController:controller];
+    [controller didMoveToParentViewController:controller2];
+    controller.view.frame = view.bounds;
+    [view addSubview:controller.view];
+    
+}
+
 - (void)menuChoseCategoryOption:(NSNotification *)notification
 {
     NSDictionary *data = notification.userInfo;
-    NSString *category = data[@"category"];
-    DLog(@"option was %@",category);
+    // Name is used for search term (name of menu selection) and number is used for tags
+    // on scrollviews (number of menu selection)
+    NSString *name = data[@"name"];
+    NSNumber *number = data[@"number"];
+    DLog(@"option was %@",name);
     
-    // with category now fetch data from server here
+    // Hide this view because it sometimes shows at a bad time
+    [self hideErrorView];
+    
+    // Let controller no search term and offsets and limit for fetch
+    self.serverQuery = name;
+    self.serverLimit = @"10";
+    self.serverOffset = @"0";
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *uuid = [defaults objectForKey:name];
+    self.serverUUID = uuid;
+
+    // Hide all subviews of our container view first
+    for (UIView *view in self.containerView.subviews){
+        view.hidden = YES;
+        view.alpha = 0;
+    }
+    
+    // Try to see if we have an existing uiscrollview for menu selection and make it visible
+    UIScrollView *scroll = [self.containerView viewWithTag:[number integerValue] * 100];
+    if (scroll){
+        // need to save the count so can show ads properly... in the varible myinfo
+        self.cardCount = [((NSNumber *)scroll.myInfo) integerValue];
+        self.currentScrollView = scroll;
+        [self.containerView bringSubviewToFront:scroll];
+        [UIView animateWithDuration:1
+                         animations:^{
+                             scroll.hidden = NO;
+                             scroll.alpha = 1;
+                         }];
+    }
+    else{
+        // create a copy of the original uiscrollview for new use
+        // add tag so we can locate it (based on menu number)
+        // and fetch data from server
+        UIScrollView *scrollViewCopy = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self.scrollView]];
+        [scrollViewCopy.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        scrollViewCopy.tag = [number integerValue] * 100;
+        scrollViewCopy.hidden = NO;
+        scrollViewCopy.alpha = 1;
+        scrollViewCopy.delegate = self;
+        [scrollViewCopy setContentOffset:CGPointMake(0, -scrollViewCopy.contentInset.top) animated:NO];
+        self.currentScrollView = scrollViewCopy;
+        [self.containerView addSubview:scrollViewCopy];
+
+        
+    }
+    
+    [self fetchCardsForScrollView:self.currentScrollView];
+    [self fetchLatestShareText];
+    
     
     
 }
@@ -552,9 +689,10 @@
 
 - (void)homeErrorViewTappedButton:(HomeErrorView *)view
 {
+    // View thats shown if no cards come back to display 
     view.hidden = YES;
     view.alpha = 0;
-    [self fetchCards];
+    [self fetchCardsForScrollView:self.scrollView];
 }
 
 #pragma -mark HomeContainerView

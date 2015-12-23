@@ -22,7 +22,7 @@
 @interface MenuViewController()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
-
+@property (strong,nonatomic) NSMutableArray *menuTitles;
 
 
 @end
@@ -40,6 +40,13 @@
     [self setup];
 
 
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self fetchCardLists];
     
 }
 
@@ -66,6 +73,26 @@
     self.searchBar.barTintColor = [UIColor whiteColor];
     self.searchBar.barStyle = UIBarStyleBlackTranslucent;
     
+}
+
+- (void)fetchCardLists
+{
+    [User getCardListsForMenu:^(APIRequestStatus status, id  _Nonnull data) {
+        if (status == APIRequestStatusSuccess){
+            [self.menuTitles removeAllObjects];
+            for (NSDictionary *dict in data[@"data"][@"lists"]){
+                NSString *name = dict[@"name"];
+                [self.menuTitles addObject:name];
+            }
+            
+            NSIndexPath *ipath = [self.tableview indexPathForSelectedRow];
+            [self.tableview reloadData];
+            [self.tableview selectRowAtIndexPath:ipath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
+        else{
+            
+        }
+    }];
 }
 
 
@@ -208,7 +235,14 @@
     // Return the number of rows in the section.
     if (section == 0){
         // categories
-        return 3;
+        
+        // see if we have any from server if not use default
+        if ([self.menuTitles count] > 0){
+            return [self.menuTitles count];
+        }
+        else{
+            return 3;
+        }
     }
     else if (section == 1){
         // account
@@ -228,27 +262,33 @@
 {
     NSString *cellText = @"";
     if (indexPath.section == 0){
-        switch (indexPath.row) {
-            case 0:
-            {
-                cellText = NSLocalizedString(@"Featured", nil);
+        
+        if ([self.menuTitles count] > 0){
+            cellText = [self.menuTitles objectAtIndex:indexPath.row];
+        }
+        else{
+            switch (indexPath.row) {
+                case 0:
+                {
+                    cellText = NSLocalizedString(@"Featured", nil);
+                }
+                    break;
+                case 1:
+                {
+                    cellText = NSLocalizedString(@"Daily Dozen", nil);
+                }
+                    break;
+                case 2:
+                {
+                    cellText = NSLocalizedString(@"Community", nil);
+                }
+                    break;
+                default:
+                {
+                    cellText = @"Same";
+                }
+                    break;
             }
-                break;
-            case 1:
-            {
-                cellText = NSLocalizedString(@"Daily Dozen", nil);
-            }
-                break;
-            case 2:
-            {
-                cellText = NSLocalizedString(@"Community", nil);
-            }
-                break;
-            default:
-            {
-                cellText = @"Same";
-            }
-                break;
         }
     }
     
@@ -325,9 +365,12 @@
         if ([cell isKindOfClass:[MenuCell class]]){
             
             [controller resetTopViewAnimated:YES onComplete:^{
+                NSString *name = ((MenuCell *)cell).name.text;
+                NSNumber *number = [NSNumber numberWithInteger:indexPath.row + 1];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationMenuTappedCategoryChoice
                                                                     object:self
-                                                                  userInfo:@{@"category":((MenuCell *)cell).name.text}];
+                                                                  userInfo:@{@"name":name,
+                                                                             @"number":number}];
             }];
 
         }
@@ -439,6 +482,17 @@
                 break;
         }
     }
+}
+
+#pragma -mark menu titles
+
+- (NSMutableArray *)menuTitles
+{
+    if (!_menuTitles){
+        _menuTitles = [@[] mutableCopy];
+    }
+    
+    return _menuTitles;
 }
 
 /*

@@ -126,7 +126,7 @@
 
 + (void)showCardsWithParams:(NSDictionary *)params
                   GETParams:(NSString *)qString
-                      block:(ResponseBlock)block
+                      block:(StatusCodeResponseBlock)block
 {
     NSString *urlString;
     if (qString){
@@ -136,18 +136,24 @@
         urlString = APICardsString;
     }
     
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
     APIClient *client = [APIClient sharedClient];
     [client GET:urlString parameters:params
         success:^(NSURLSessionDataTask *task, id responseObject) {
             [client stopNetworkActivity];
+            NSHTTPURLResponse *resp = (NSHTTPURLResponse *)task.response;
+            NSInteger status_code = resp.statusCode;
             if (block){
-                block(APIRequestStatusSuccess, responseObject);
+                block(APIRequestStatusSuccess, responseObject,status_code);
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [client stopNetworkActivity];
+            NSHTTPURLResponse *resp = (NSHTTPURLResponse *)task.response;
+            NSInteger status_code = resp.statusCode;
             DLog(@"%@",error.localizedDescription);
             if (block){
-                block(APIRequestStatusFail,@{});
+                block(APIRequestStatusFail,@{},status_code);
             }
         }];
 }
@@ -271,5 +277,25 @@
         }];
 }
 
++ (void)getCardListsForMenu:(nullable ResponseBlock)block
+{
+    APIClient *client = [APIClient sharedClient];
+    [client startNetworkActivity];
+    
+    [client GET:APICardListsString parameters:@{}
+        success:^(NSURLSessionDataTask *task, id responseObject) {
+            [client stopNetworkActivity];
+            if (block){
+                block(APIRequestStatusSuccess,responseObject);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [client stopNetworkActivity];
+            DLog(@"error is %@",error.localizedDescription);
+            if (block){
+                block(APIRequestStatusFail,error.localizedDescription);
+            }
+        }];
+
+}
 
 @end

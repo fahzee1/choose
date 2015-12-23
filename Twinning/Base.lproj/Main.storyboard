@@ -82,40 +82,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7t2-jb-9zY" userLabel="homeScrollView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ipc-uc-8fR">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </scrollView>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7t2-jb-9zY" userLabel="homeScrollView">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="7t2-jb-9zY" secondAttribute="trailing" id="U17-KI-sas"/>
+                                    <constraint firstItem="7t2-jb-9zY" firstAttribute="leading" secondItem="ipc-uc-8fR" secondAttribute="leading" id="c5g-qu-X6n"/>
+                                    <constraint firstItem="7t2-jb-9zY" firstAttribute="top" secondItem="ipc-uc-8fR" secondAttribute="top" id="fak-Ws-21B"/>
+                                    <constraint firstAttribute="bottom" secondItem="7t2-jb-9zY" secondAttribute="bottom" id="raK-iw-WbB"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="7t2-jb-9zY" secondAttribute="width" id="AWi-b9-34K"/>
-                            <constraint firstAttribute="centerY" secondItem="7t2-jb-9zY" secondAttribute="centerY" id="BJb-Qu-NjL"/>
-                            <constraint firstAttribute="height" secondItem="7t2-jb-9zY" secondAttribute="height" id="TfI-LN-GDB"/>
-                            <constraint firstItem="7t2-jb-9zY" firstAttribute="top" secondItem="K2P-Vw-z3D" secondAttribute="top" id="V51-3W-rst"/>
-                            <constraint firstItem="7t2-jb-9zY" firstAttribute="leading" secondItem="K2P-Vw-z3D" secondAttribute="leading" id="Wh4-W3-mx1"/>
-                            <constraint firstAttribute="trailing" secondItem="7t2-jb-9zY" secondAttribute="trailing" id="mhJ-3f-1le"/>
-                            <constraint firstItem="WGV-0F-eAz" firstAttribute="top" secondItem="7t2-jb-9zY" secondAttribute="bottom" id="o2i-Iz-9fU"/>
-                            <constraint firstAttribute="centerX" secondItem="7t2-jb-9zY" secondAttribute="centerX" id="pmy-ob-hMF"/>
-                            <constraint firstItem="7t2-jb-9zY" firstAttribute="top" secondItem="K2P-Vw-z3D" secondAttribute="top" id="tzt-zv-71h"/>
+                            <constraint firstAttribute="bottom" secondItem="ipc-uc-8fR" secondAttribute="bottom" id="7Kg-sz-e4W"/>
+                            <constraint firstItem="ipc-uc-8fR" firstAttribute="leading" secondItem="K2P-Vw-z3D" secondAttribute="leading" id="Pga-AF-tWo"/>
+                            <constraint firstItem="ipc-uc-8fR" firstAttribute="top" secondItem="K2P-Vw-z3D" secondAttribute="top" id="jLD-A5-ps5"/>
+                            <constraint firstAttribute="trailing" secondItem="ipc-uc-8fR" secondAttribute="trailing" id="mAN-ic-dNL"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="AWi-b9-34K"/>
-                                <exclude reference="BJb-Qu-NjL"/>
-                                <exclude reference="TfI-LN-GDB"/>
-                                <exclude reference="V51-3W-rst"/>
-                                <exclude reference="pmy-ob-hMF"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="KoM-SL-XPc"/>
                     <connections>
+                        <outlet property="containerView" destination="ipc-uc-8fR" id="lh2-ra-gLk"/>
                         <outlet property="scrollView" destination="7t2-jb-9zY" id="HNx-lJ-mPU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CWt-sl-Uad" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="312" y="954"/>
+            <point key="canvasLocation" x="258" y="966"/>
         </scene>
         <!--Create Vote Controller-->
         <scene sceneID="f06-M0-VBq">
@@ -1072,7 +1071,7 @@ VOTE NOW WITH CODE CJ1234</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qyy-EA-pcT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-340" y="966"/>
+            <point key="canvasLocation" x="-377" y="966"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jgs-BX-Aba">

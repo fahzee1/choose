@@ -10,5 +10,8 @@
 #import <MessageUI/MessageUI.h>
 
 @interface HomeViewController : UIViewController<MFMailComposeViewControllerDelegate>
-
+@property (strong,nonatomic) NSString *serverLimit;
+@property (strong,nonatomic) NSString *serverOffset;
+@property (strong,nonatomic) NSString *serverQuery;
+@property (strong,nonatomic) NSString *serverUUID;
 @end

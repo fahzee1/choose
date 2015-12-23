@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, APIRequestStatus)
 
 
 typedef void (^ResponseBlock) (APIRequestStatus status, id data);
+typedef void (^StatusCodeResponseBlock) (APIRequestStatus status, id data,NSInteger status_code);
 
 @interface User (CoreDataProperties)
 
@@ -40,7 +41,7 @@ typedef void (^ResponseBlock) (APIRequestStatus status, id data);
 
 + (void)showCardsWithParams:(NSDictionary *)params
                   GETParams:(nullable NSString *)qString
-                      block:(nullable ResponseBlock)block;
+                      block:(nullable StatusCodeResponseBlock)block;
 
 + (void)createCardWithParams:(NSDictionary *)params
                        block:(nullable ResponseBlock)block;
@@ -57,6 +58,8 @@ typedef void (^ResponseBlock) (APIRequestStatus status, id data);
                 block:(nullable ResponseBlock)block;
 
 + (void)getLatestShareTextWithBlock:(nullable ResponseBlock)block;
+
++ (void)getCardListsForMenu:(nullable ResponseBlock)block;
 
 @end
 

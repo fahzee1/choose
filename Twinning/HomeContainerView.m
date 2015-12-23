@@ -208,6 +208,7 @@
     [self disableButtons];
     [self showImageViewCoverForLeft:YES];
     
+    self.card.selectionNumber = [NSNumber numberWithInt:1];
     if (self.delegate){
         QuestionType type;
         if ([self.card.questionType intValue] == 100){
@@ -227,6 +228,7 @@
     [self disableButtons];
     [self showImageViewCoverForLeft:NO];
     
+    self.card.selectionNumber = [NSNumber numberWithInt:2];
     if (self.delegate){
         QuestionType type;
         if ([self.card.questionType intValue] == 100){

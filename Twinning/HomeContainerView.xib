@@ -11,8 +11,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="300" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="35" text="Best Selfie of 2015 or best selfie of 2014 and tomorrow?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="590" translatesAutoresizingMaskIntoConstraints="NO" id="Mhn-cd-WgC">
-                    <rect key="frame" x="10" y="15" width="580" height="35"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="300" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="35" text="Best Selfie of 2015 or best selfie of 2014 and tomorrow?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhn-cd-WgC">
+                    <rect key="frame" x="5" y="15" width="590" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="9b5-fU-kdb"/>
                         <constraint firstAttribute="height" constant="35" id="XjP-p4-0M3"/>
@@ -147,10 +147,10 @@
                 <constraint firstAttribute="bottom" secondItem="C8K-DO-4v6" secondAttribute="bottom" id="Kle-go-DAs"/>
                 <constraint firstAttribute="trailing" secondItem="Mhn-cd-WgC" secondAttribute="trailing" constant="5" id="Sye-tB-wcn"/>
                 <constraint firstAttribute="trailing" secondItem="nH2-u4-oes" secondAttribute="trailing" id="TfC-nA-fDA"/>
-                <constraint firstItem="Mhn-cd-WgC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="VGk-gb-L6B"/>
+                <constraint firstItem="Mhn-cd-WgC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="VGk-gb-L6B"/>
                 <constraint firstItem="nH2-u4-oes" firstAttribute="top" secondItem="BFB-pz-AXp" secondAttribute="bottom" id="VhJ-V9-2Xb"/>
                 <constraint firstItem="BFB-pz-AXp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="WyT-xE-6iS"/>
-                <constraint firstAttribute="trailing" secondItem="Mhn-cd-WgC" secondAttribute="trailing" constant="10" id="XxT-2U-xzI"/>
+                <constraint firstAttribute="trailing" secondItem="Mhn-cd-WgC" secondAttribute="trailing" constant="5" id="XxT-2U-xzI"/>
                 <constraint firstItem="Mhn-cd-WgC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="ZuK-QK-5q2"/>
                 <constraint firstAttribute="bottom" secondItem="WfM-OB-rTF" secondAttribute="bottom" id="ai8-Zo-4e6"/>
                 <constraint firstItem="C8K-DO-4v6" firstAttribute="leading" secondItem="WfM-OB-rTF" secondAttribute="trailing" id="bI7-as-6aa"/>
@@ -193,7 +193,7 @@
                 <outlet property="button2" destination="C8K-DO-4v6" id="Xpn-dV-8mb"/>
                 <outlet property="countLabel" destination="Hva-g5-iFk" id="KwP-LX-Mak"/>
                 <outlet property="countLabelBottomConstraint" destination="DLt-OK-G8n" id="GKA-Lv-R8H"/>
-                <outlet property="doubleTap" destination="vIv-wP-RDq" id="Ncn-Nj-A1l"/>
+                <outlet property="doubleTap" destination="vIv-wP-RDq" id="3KK-8W-LNy"/>
                 <outlet property="imageView" destination="BFB-pz-AXp" id="mzs-2B-f5s"/>
                 <outlet property="imageViewHeightConstraint" destination="gCf-LS-43A" id="7Vd-XF-w7k"/>
                 <outlet property="imageViewWidthConstraint" destination="fxq-2U-BWl" id="8K5-7D-hIp"/>

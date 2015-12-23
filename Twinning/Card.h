@@ -13,7 +13,7 @@ typedef NS_ENUM(NSInteger, QuestionType){
     QuestionTypeYESorNO,
 };
 
-@interface Card : NSObject
+@interface Card : NSObject 
 
 @property (strong,nonatomic) NSNumber *id;
 @property (strong,nonatomic) NSString *question;
@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, QuestionType){
 @property (strong,nonatomic) NSNumber *voteCount;
 @property (strong,nonatomic) NSDate *created;
 @property (strong, nonatomic) NSNumber *questionType;
-
+@property (strong, nonatomic) NSNumber *selectionNumber;
 
 - (NSString *)voteCountString;
 - (NSURL *)facebookImageUrl;

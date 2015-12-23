@@ -86,9 +86,8 @@
     FAKIonIcons *personIcon = [FAKIonIcons personIconWithSize:45];
     [personIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
     personIcon.drawingBackgroundColor = [UIColor colorWithHexString:kColorFlatRed];
-    UIImage *personImage = [personIcon imageWithSize:CGSizeMake(50, 50)];
     
-    [self.imageView sd_setImageWithURL:self.card.imgUrl placeholderImage:personImage];
+    [self.imageView sd_setImageWithURL:self.card.imgUrl placeholderImage:[UIImage imageNamed:kAppPlaceholer]];
     self.imageView.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
     self.imageView.userInteractionEnabled = YES;
     
