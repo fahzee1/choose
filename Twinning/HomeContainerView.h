@@ -36,10 +36,24 @@
 
 @property (strong,nonatomic) Card *card;
 
+/**
+ Reset view do default state - renable buttons and hide results
+ */
 - (void)reset;
 - (void)dismiss;
 
+/**
+ hide buttons to only be seen once the images is loaded
+ */
 - (void)hideButtons;
+/**
+ display bottom buttons for cards
+ */
 - (void)showButtons;
+
+/**
+ show results from cache 
+ */
+- (void)showCachedResults;
 
 @end

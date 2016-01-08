@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '935875E8C18C4CAF3B983F43'
+               BlueprintIdentifier = '1DF40F249E51B12E0FA4A129'
                BlueprintName = 'LaunchKit-LaunchKitResources'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'LaunchKitResources.bundle'>

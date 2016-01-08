@@ -27,6 +27,42 @@
 }
 
 
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.id forKey:@"id"];
+    [aCoder encodeObject:self.question forKey:@"question"];
+    [aCoder encodeObject:self.imgUrl forKey:@"imgUrl"];
+    [aCoder encodeObject:self.senderImgUrl forKey:@"senderImgUrl"];
+    [aCoder encodeObject:self.senderName forKey:@"senderName"];
+    [aCoder encodeObject:self.senderFbID forKey:@"senderFbID"];
+    [aCoder encodeObject:self.percentVotesLeft forKey:@"percentVotesLeft"];
+    [aCoder encodeObject:self.percentVotesRight forKey:@"percentVotesRight"];
+    [aCoder encodeObject:self.voteCount forKey:@"voteCount"];
+    [aCoder encodeObject:self.created forKey:@"created"];
+    [aCoder encodeObject:self.questionType forKey:@"questionType"];
+    [aCoder encodeObject:self.selectionNumber forKey:@"selectionNumber"];
+    
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self.id = [aDecoder decodeObjectForKey:@"id"];
+    self.question = [aDecoder decodeObjectForKey:@"question"];
+    self.imgUrl = [aDecoder decodeObjectForKey:@"imgUrl"];
+    self.senderImgUrl = [aDecoder decodeObjectForKey:@"senderImgUrl"];
+    self.senderName = [aDecoder decodeObjectForKey:@"senderName"];
+    self.senderFbID = [aDecoder decodeObjectForKey:@"senderFbID"];
+    self.percentVotesLeft = [aDecoder decodeObjectForKey:@"percentVotesLeft"];
+    self.percentVotesRight = [aDecoder decodeObjectForKey:@"percentVotesRight"];
+    self.voteCount = [aDecoder decodeObjectForKey:@"voteCount"];
+    self.created = [aDecoder decodeObjectForKey:@"created"];
+    self.questionType = [aDecoder decodeObjectForKey:@"questionType"];
+    self.selectionNumber = [aDecoder decodeObjectForKey:@"selectionNumber"];
+    
+    
+    return self;
+}
+
 - (NSString *)description
 {
     return self.question;

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '82B68DD6A8240D9428F861E3'
+               BlueprintIdentifier = 'DD51174AC5D7CA8DB1A9755B'
                BlueprintName = 'MBAutoGrowingTextView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libMBAutoGrowingTextView.a'>

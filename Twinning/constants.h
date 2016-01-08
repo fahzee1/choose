@@ -52,7 +52,13 @@
 #define TICK NSDate *startTime = [NSDate date]
 #define TOCK NSLog(@"Elapsed Time: %f", -[startTime timeIntervalSinceNow])
 
-static NSString *const kTwinningEmail = @"fahzee1@gmail.com";
+typedef NS_ENUM(NSInteger, UserStatus){
+    UserStatusLoggedIn = 100,
+    UserStatusAnonymous
+};
+
+static NSString *const kChooseEmail = @"cj@trychoose.com";
+#warning add my app id here
 static NSString *const kLocalAppID = @"1020419872";
 static NSString *const kLocalUser = @"localuser";
 static NSString *const kLocalUserAuthKey = @"localauthkey";
@@ -62,6 +68,11 @@ static NSString *const kFacebookPageID = @"1498069333826125";
 static NSString *const kFacebookPageName = @"trychoose";
 static NSString *const kFlickrHostedImage = @"https://farm1.staticflickr.com/584/22476394424_e545488535_b.jpg";
 static NSString *const kServerShareTextID = @"kServerShareTextID";
+static NSString *const kAnonymousUser = @"anonymous";
+
+static NSString *const kEmail = @"kEmail";
+static NSString *const kUsername = @"kUsername";
+static NSString *const kID = @"kID";
 
 // Colors
 static NSString *const kColorRed = @"#ef2b2b";
@@ -119,6 +130,7 @@ static NSString *const kNotificationShowingADPlacement = @"kNotificationShowingA
 static NSString *const kNotificationClosedADPlacement = @"kNotificationClosedADPlacement";
 static NSString *const kNotificationOnboardIsOver = @"kNotificationOnboardIsOver";
 static NSString *const kNotificationShowShareImageTip = @"kNotificationShowShareImageTip";
+static NSString *const kNotificationLogOut = @"kNotificationLogOut";
 
 // Default images
 static NSString *const kImageCard = @"card";

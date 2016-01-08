@@ -10,6 +10,7 @@
 #import "ChooseViewController.h"
 #import "EasyFacebook.h"
 #import "constants.h"
+#import <Bolts.h>
 #import "UIColor+HexValue.h"
 #import "MenuViewController.h"
 #import <ECSlidingViewController.h>
@@ -21,6 +22,7 @@
 #import <LaunchKit/LaunchKit.h>
 #import "MMConversionTracking.h"
 #import <CRToast.h>
+#import <TestFairy.h>
 
 
 @interface AppDelegate ()
@@ -34,6 +36,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     // Global appearance
     [[UINavigationBar appearance] setBackgroundColor:[UIColor colorWithHexString:kColorRed]];
@@ -81,13 +84,24 @@
         self.appInForeground = YES;
     }
     
+    
+    NSString *email = [defaults valueForKey:kEmail]? [defaults valueForKey:kEmail]:@"no email";
+    NSString *name = [defaults valueForKey:kUsername]? [defaults valueForKey:kUsername]:@"no username";
+    NSString *id = [defaults valueForKey:kID]? [defaults valueForKey:kID]:@"no id";
+    
+    // Test Fairy
+    [TestFairy begin:@"02b065755555f2259f81ff722e6f11d86749b2dc"];
+    [TestFairy identify:id
+                 traits:@{TFSDKIdentityTraitEmailAddressKey:email,
+                          TFSDKIdentityTraitNameKey:name}];
+    
 
     // Fabric
     [[Fabric sharedSDK] setDebug: YES];
     [Fabric with:@[[Crashlytics class]]];
-    [CrashlyticsKit setUserIdentifier:@"33232"];
-    [CrashlyticsKit setUserEmail:@"user@fabric.io"];
-    [CrashlyticsKit setUserName:@"testname"];
+    [CrashlyticsKit setUserIdentifier:id];
+    [CrashlyticsKit setUserEmail:email];
+    [CrashlyticsKit setUserName:name];
 
 
     // Branch
@@ -132,7 +146,6 @@
     
     
     // Create initial user
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (![defaults boolForKey:kLocalUserCreated]){
         [User createLocalUserInContext:self.managedObjectContext];
         [defaults setBool:YES forKey:kLocalUserCreated];
@@ -178,6 +191,11 @@
     
     BOOL wasHandled1 = [EasyFacebook application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
     
+    BFURL *parsedUrl = [BFURL URLWithInboundURL:url sourceApplication:sourceApplication];
+    if ([parsedUrl appLinkData]){
+        NSURL *targetUrl = [parsedUrl targetURL];
+        DLog(@"facebook invite target url is %@",[targetUrl absoluteString]);
+    }
     return wasHandled1;
 }
 

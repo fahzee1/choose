@@ -10,6 +10,7 @@
 #import "MenuCell.h"
 #import "HomeViewController.h"
 #import "ShareViewController.h"
+#import "EasyFacebook.h"
 #import "ProfileViewController.h"
 #import "SearchViewController.h"
 #import "UIColor+HexValue.h"
@@ -23,7 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong,nonatomic) NSMutableArray *menuTitles;
-
+@property (assign) BOOL setInitialSelection;
+@property (assign) BOOL addedFacebookButton;
 
 @end
 @implementation MenuViewController
@@ -36,7 +38,7 @@
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero]; // use this to not allow extra table cells
-    
+    [self.tableview selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
     [self setup];
 
 
@@ -241,7 +243,7 @@
             return [self.menuTitles count];
         }
         else{
-            return 3;
+            return 2;
         }
     }
     else if (section == 1){
@@ -275,7 +277,7 @@
                     break;
                 case 1:
                 {
-                    cellText = NSLocalizedString(@"Daily Dozen", nil);
+                    cellText = NSLocalizedString(@"Daily 12", nil);
                 }
                     break;
                 case 2:
@@ -302,7 +304,7 @@
                 break;
             case 1:
             {
-                cellText = NSLocalizedString(@"Share With A Friend", nil);
+                cellText = NSLocalizedString(@"Invite Friends", nil);
             }
                 break;
             case 2:
@@ -350,16 +352,46 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"menuCell"];
     ((MenuCell *)cell).name.text = cellText;
+    
+
+    /*
+    if ([cellText isEqualToString:@"Like Us On Facebook"]){
+        [self addFacebookLikeButtonToCell:cell];
+    }
+    */
+    
     return cell;
     
 }
 
+- (void)addFacebookLikeButtonToCell:(UITableViewCell *)cell
+{
+    FBSDKLikeControl *likeButton = [[FBSDKLikeControl alloc] init];
+    likeButton.objectID = @"https://www.facebook.com/trychoose/";
+    likeButton.center = cell.contentView.center;
+    likeButton.frame = CGRectMake(33, likeButton.frame.origin.y, 300, likeButton.frame.size.height);
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (!self.addedFacebookButton){
+        ((MenuCell *)cell).name.hidden = YES;
+        [cell.contentView addSubview:likeButton];
+        self.addedFacebookButton = YES;
+    }
+
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     ECSlidingViewController *controller = [self slidingViewController];
     
     if (indexPath.section == 0){
+        // deselect initial 
+        if (!self.setInitialSelection){
+            [tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO];
+            self.setInitialSelection = YES;
+        }
+        
         // Category section - when someone taps, close menu and send notification to home screen
         // with name of category (cell)
         if ([cell isKindOfClass:[MenuCell class]]){
@@ -390,6 +422,7 @@
                                           UIViewController *profileController = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardProfile];
                                           if ([controller.topViewController isKindOfClass:[UINavigationController class]]){
                                               ((ProfileViewController *)profileController).localUser = self.localUser;
+                                              ((ProfileViewController *)profileController).screenType = ProfileScreenMe;
                                               UINavigationController *base = [[UINavigationController alloc] initWithRootViewController:profileController];
                                               [((UINavigationController *)controller.topViewController).topViewController presentViewController:base animated:YES completion:nil];
                                           }
@@ -401,6 +434,12 @@
             case 1:
             {
                 // Share with a friend
+                [controller resetTopViewAnimated:YES
+                                      onComplete:^{
+                                          [[EasyFacebook sharedEasyFacebookClient] inviteFriendsFromController:controller.topViewController];
+                                      }];
+                
+                /*
                 [controller resetTopViewAnimated:YES
                                       onComplete:^{
                                        
@@ -415,6 +454,7 @@
                                               [((UINavigationController *)controller.topViewController).topViewController presentViewController:shareController animated:YES completion:nil];
                                           }
                                       }];
+                 */
                 
             }
                 break;
@@ -428,7 +468,7 @@
                                           if ([MFMailComposeViewController canSendMail]){
                                               MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
                                               [mail setSubject:NSLocalizedString(@"Twinning Feedback", nil)];
-                                              [mail setToRecipients:@[kTwinningEmail]];
+                                              [mail setToRecipients:@[kChooseEmail]];
                                               if ([controller.topViewController isKindOfClass:[UINavigationController class]]){
                                                   mail.mailComposeDelegate = (HomeViewController *)((UINavigationController *)controller.topViewController).topViewController;
                                               }

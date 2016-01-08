@@ -1,7 +1,7 @@
 
 #import "EasyFacebook.h"
 
-@interface EasyFacebook ()<FBSDKSharingDelegate>
+@interface EasyFacebook ()<FBSDKSharingDelegate,FBSDKAppInviteDialogDelegate>
     
 @end
 
@@ -330,6 +330,18 @@
         return NO;
 }
 
+ -(void)inviteFriendsFromController:(UIViewController *)controller
+{
+    FBSDKAppInviteContent *content =[[FBSDKAppInviteContent alloc] init];
+    content.appLinkURL = [NSURL URLWithString:@"https://fb.me/216976028635544"];
+    content.appInvitePreviewImageURL = [NSURL URLWithString:@"http://api.trychoose.com/static/vegas.png"];
+    
+    [FBSDKAppInviteDialog showFromViewController:controller
+                                     withContent:content
+                                        delegate:self];
+}
+
+
 #pragma mark Diagnostics
 
 - (void) fixiOSShuttingDownAppProblem
@@ -489,6 +501,19 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#pragma mark FBSDKAppInvite delegate
+
+- (void)appInviteDialog:(FBSDKAppInviteDialog *)appInviteDialog didCompleteWithResults:(NSDictionary *)results
+{
+    NSLog(@"completed with results %@",results);
+    [[NSNotificationCenter defaultCenter] postNotificationName:EasyFacebookInviteSuccessNotification object:self];
+}
+
+- (void)appInviteDialog:(FBSDKAppInviteDialog *)appInviteDialog didFailWithError:(NSError *)error
+{
+    NSLog(@"error %@",error.localizedDescription);
+    [[NSNotificationCenter defaultCenter] postNotificationName:EasyFacebookInviteFailNotification object:self];
+}
 
 #pragma mark FBSDK delegate
 -(void)sharer:(id<FBSDKSharing>)sharer didCompleteWithResults:(NSDictionary *)results

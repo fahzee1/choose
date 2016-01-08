@@ -2,8 +2,8 @@
 //  User+CoreDataProperties.h
 //  Choose
 //
-//  Created by CJ Ogbuehi on 12/4/15.
-//  Copyright © 2015 Gen Y Solutions LLC. All rights reserved.
+//  Created by CJ Ogbuehi on 1/8/16.
+//  Copyright © 2016 Gen Y Solutions LLC. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
@@ -25,11 +25,13 @@ typedef void (^StatusCodeResponseBlock) (APIRequestStatus status, id data,NSInte
 
 @interface User (CoreDataProperties)
 
+@property (nullable, nonatomic, retain) NSString *email;
 @property (nullable, nonatomic, retain) NSString *facebook_id;
 @property (nullable, nonatomic, retain) NSNumber *facebook_post;
 @property (nullable, nonatomic, retain) NSNumber *logged_in;
 @property (nullable, nonatomic, retain) NSString *name;
-@property (nullable, nonatomic, retain) NSString *email;
+@property (nullable, nonatomic, retain) NSNumber *anonymous;
+@property (nullable, nonatomic, retain) NSNumber *is_staff;
 
 - (NSURL *)facebookImageUrl;
 

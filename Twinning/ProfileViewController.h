@@ -10,9 +10,14 @@
 #import "User+CoreDataProperties.h"
 #import "Card.h"
 
+typedef NS_ENUM(NSInteger,ProfileScreen){
+        ProfileScreenMe,
+        ProfileScreenOthers
+};
 @interface ProfileViewController : UIViewController
 
 @property (strong,nonatomic) User *localUser;
 @property (strong,nonatomic) Card *card;
-//@property (strong,nonatomic) NSString *userFacebookID;
+@property (assign) ProfileScreen screenType;
+
 @end

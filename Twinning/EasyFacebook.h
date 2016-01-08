@@ -13,6 +13,8 @@ static NSString *EasyFacebookUserCancelledLoginNotification = @"EasyFacebookUser
 static NSString *EasyFacebookPublishPermissionGrantedNotification = @"EasyFacebookPublishPermissionGrantedNotification";
 static NSString *EasyFacebookPublishPermissionDeclinedNotification = @"EasyFacebookPublishPermissionDeclinedNotification";
 static NSString *EasyFacebookStoryPublishedNotification = @"EasyFacebookStoryPublishedNotification";
+static NSString *EasyFacebookInviteSuccessNotification = @"EasyFacebookInviteSuccessNotification";
+static NSString *EasyFacebookInviteFailNotification = @"EasyFacebookInviteFailNotification";
 
 @interface EasyFacebook : NSObject
 
@@ -71,6 +73,9 @@ static NSString *EasyFacebookStoryPublishedNotification = @"EasyFacebookStoryPub
     + (BOOL)application:(UIApplication *) application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
     + (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
+
+    // Open invite dialog
+-(void)inviteFriendsFromController:(UIViewController *)controller;
 
     //User's Basic Details
     - (void)fetchUserInformation;

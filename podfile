@@ -5,7 +5,7 @@ target 'Choose' do
 pod "AFNetworking", "2.4.0"
 pod 'SDWebImage', '~>3.6'
 pod 'Appirater'
-pod 'TMCache'
+pod 'PINCache'
 #pod 'NSDate+TimeAgo'
 pod 'FontAwesomeKit/FontAwesome'
 pod 'FontAwesomeKit/IonIcons'
@@ -34,6 +34,7 @@ pod 'Onboard'
 pod 'Branch'
 pod "LaunchKit"
 pod 'ChameleonFramework'
+pod 'TestFairy'
 end
 
 target 'ChooseTests' do

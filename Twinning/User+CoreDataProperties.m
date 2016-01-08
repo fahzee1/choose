@@ -2,8 +2,8 @@
 //  User+CoreDataProperties.m
 //  Choose
 //
-//  Created by CJ Ogbuehi on 12/4/15.
-//  Copyright © 2015 Gen Y Solutions LLC. All rights reserved.
+//  Created by CJ Ogbuehi on 1/8/16.
+//  Copyright © 2016 Gen Y Solutions LLC. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
@@ -15,11 +15,13 @@
 
 @implementation User (CoreDataProperties)
 
+@dynamic email;
 @dynamic facebook_id;
 @dynamic facebook_post;
 @dynamic logged_in;
 @dynamic name;
-@dynamic email;
+@dynamic anonymous;
+@dynamic is_staff;
 
 - (void)awakeFromInsert
 {
@@ -261,7 +263,7 @@
 {
     APIClient *client = [APIClient sharedClient];
     [client startNetworkActivity];
-
+    
     [client GET:APILatestShareString parameters:@{}
         success:^(NSURLSessionDataTask *task, id responseObject) {
             [client stopNetworkActivity];
@@ -295,7 +297,6 @@
                 block(APIRequestStatusFail,error.localizedDescription);
             }
         }];
-
+    
 }
-
 @end

@@ -13,7 +13,7 @@ typedef NS_ENUM(NSInteger, QuestionType){
     QuestionTypeYESorNO,
 };
 
-@interface Card : NSObject 
+@interface Card : NSObject <NSCoding>
 
 @property (strong,nonatomic) NSNumber *id;
 @property (strong,nonatomic) NSString *question;

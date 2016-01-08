@@ -218,6 +218,8 @@
             type = QuestionTypeYESorNO;
         }
         
+        self.card.selectionNumber = [NSNumber numberWithInt:1];
+        
         [self.delegate homeView:self
              tappedButtonNumber:1
                         forType:type];
@@ -237,9 +239,40 @@
         else if ([self.card.questionType intValue] == 101){
             type = QuestionTypeYESorNO;
         }
+        
+        self.card.selectionNumber = [NSNumber numberWithInt:2];
+        
         [self.delegate homeView:self
              tappedButtonNumber:2
                         forType:type];
+    }
+}
+
+- (void)showCachedResults
+{
+    switch ([self.card.selectionNumber intValue]) {
+        case 0:
+        {
+            // no selection was made
+        }
+            break;
+        case 1:
+        {
+            // left button was selected
+            [self showImageViewCoverForLeft:YES];
+            [self disableButtons];
+        }
+            break;
+        case 2:
+        {
+            // right button was selected
+            [self showImageViewCoverForLeft:NO];
+            [self disableButtons];
+        }
+            break;
+            
+        default:
+            break;
     }
 }
 

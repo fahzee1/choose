@@ -87,6 +87,11 @@
 - (IBAction)tappedSkipLogin:(UIButton *)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:YES forKey:@"loggedIn"];
+    [defaults setBool:YES forKey:kAnonymousUser];
+    [defaults setValue:kAnonymousUser forKey:kLocalUserAuthKey];
+    self.localUser.anonymous = [NSNumber numberWithBool:YES];
+    [self.localUser.managedObjectContext save:nil];
+    
     
     [self showOnBoardScreens];
     //[self dismissViewControllerAnimated:YES completion:nil];
@@ -165,7 +170,8 @@
                                 [defaults setBool:YES forKey:@"loggedIn"];
                                 NSString *token = data[@"data"][@"user"][@"auth_token"];
                                 [defaults setValue:token forKey:kLocalUserAuthKey];
-                                
+                                [defaults setBool:NO forKey:kAnonymousUser];
+                                self.localUser.anonymous = [NSNumber numberWithBool:NO];
                                 self.localUser.name = username;
                                 self.localUser.facebook_id = facebook_id;
                                 self.localUser.logged_in = [NSNumber numberWithBool:YES];
@@ -214,7 +220,7 @@ typedef void (^ResponseBlock2) (bool success, id data);
 {
     OnboardingContentViewController *firstPage = [OnboardingContentViewController
                                                   contentWithTitle:@"Welcome To Choose"
-                                                  body:@"Check out questions asked by the community like the one above."
+                                                  body:@"Check out questions asked by the community like the one above. Curated everyday at 12 pm."
                                                   image:[UIImage imageNamed:kImageCard2]
                                                   buttonText:nil action:^{
                                                       DLog(@"tapped button");
@@ -222,7 +228,7 @@ typedef void (^ResponseBlock2) (bool success, id data);
     firstPage.movesToNextViewController = YES;
     OnboardingContentViewController *secondPage = [OnboardingContentViewController
                                                    contentWithTitle:@"The Choice Is Yours"
-                                                   body:@"Choose A or B or choose Yes or No, then see what your peers think!"
+                                                   body:@"Choose A or B or choose Yes or No, then see what your peers think."
                                                    image:[UIImage imageNamed:kImageCard3]
                                                    buttonText:nil action:^{
                                                        DLog(@"tapped button");

@@ -124,6 +124,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PINCache.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>PSTAlertController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -145,11 +150,6 @@
 			<false/>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>TMCache.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -192,7 +192,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>26E9852A5D021FE9609F227DBBEFD134</key>
+		<key>2A9FE711D10922C153F3AA667CB148A0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2C32E866D6AA2A4BDCA227AA848D6DD4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -218,6 +223,11 @@
 			<true/>
 		</dict>
 		<key>5A6DB7A94477A4B25220873FB3B139E4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7731098C4116724AF55C909EACB2FEF0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -252,17 +262,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ABA2B8605A6A5A24403E3C6017B01263</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B9ED33270008F8FC18018B63CADE1C33</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C6CB695C21696934D4CA082070CD7ECA</key>
+		<key>BE774D747C836F23CD9F3545D0D19656</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -277,12 +277,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D02D0E2434ED89B90127E63CA7072C18</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D575A6E3771824E658487A60785065C2</key>
+		<key>CC1A1231C644055C6EA1A591026D617C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -297,12 +292,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EA876BC718F224A84323EE637839D052</key>
+		<key>E3CE477CD22AA0259CEDB129E67F5D85</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F62C0109ED1098F0523686D1EB78DA98</key>
+		<key>E5BD7DB5429C9BFBBE579170D8516936</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA876BC718F224A84323EE637839D052</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -16,13 +16,13 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <MBProgressHUD.h>
 #import <DateTools.h>
-
+#import <PSTAlertController.h>
 @interface ProfileViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *data;
 @property (strong,nonatomic)MBProgressHUD *hud;
 @property (strong,nonatomic) UIRefreshControl *refreshControl;
-
+@property (assign) UserStatus userStatus;
 @property (assign)BOOL fetchedCards;
 @end
 
@@ -41,6 +41,14 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    if (self.screenType == ProfileScreenMe){
+        if ([self.localUser.anonymous boolValue]){
+            [self showAnonMessage];
+            [self.tableView reloadData];
+            return;
+        }
+    }
+    
     if (!self.fetchedCards){
         [self fetchNewData];
         self.fetchedCards = YES;
@@ -65,6 +73,33 @@
     
     
 }
+
+- (void)showAnonMessage
+{
+    PSTAlertController *alert = [PSTAlertController alertControllerWithTitle:NSLocalizedString(@"Anonymous User Alert", nil)
+                                                                     message:NSLocalizedString(@"Login to get started using Choose!", nil)
+                                                              preferredStyle:PSTAlertControllerStyleAlert];
+    
+    PSTAlertAction *cancelButton = [PSTAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:PSTAlertActionStyleCancel
+                                                           handler:^(PSTAlertAction *action) {
+                                                               [alert dismissAnimated:YES completion:nil];
+                                                           }];
+    
+    
+    
+    PSTAlertAction *loginButton = [PSTAlertAction actionWithTitle:NSLocalizedString(@"Login", nil) style:PSTAlertActionStyleDefault
+                                                          handler:^(PSTAlertAction *action) {
+                                                              // login alert
+                                                              [alert dismissAnimated:YES completion:nil];
+                                                              [self dismissViewControllerAnimated:NO completion:^{
+                                                                 [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLogOut object:nil];
+                                                              }];
+                                                          }];
+    [alert addAction:cancelButton];
+    [alert addAction:loginButton];
+    [alert showWithSender:self controller:self animated:YES completion:nil];
+}
+
 
 - (void)fetchNewData
 {
@@ -93,6 +128,10 @@
                                }
                                else{
                                    DLog(@"Failed to get users card");
+                                   [PSTAlertController presentDismissableAlertWithTitle:NSLocalizedString(@"Oops", nil)
+                                                                                message:NSLocalizedString(@"There was an error fetching cards.", nil)
+                                                                             controller:self];
+                                   
                                }
                            }];
 }
@@ -164,6 +203,9 @@
         if (self.card){
             fbURL = [self.card facebookImageUrl];
             senderText = self.card.senderName;
+        }
+        else if ([self.localUser.anonymous boolValue]){
+            senderText = NSLocalizedString(kAnonymousUser, nil);
         }
         
         else{

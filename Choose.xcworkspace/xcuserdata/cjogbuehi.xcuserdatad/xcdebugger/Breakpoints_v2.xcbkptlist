@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/ViewController.m"
-            timestampString = "470942874.101897"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
             landmarkName = "-showMessageWithTitle:andMessage:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "507"
-            endingLineNumber = "507"
+            startingLineNumber = "583"
+            endingLineNumber = "583"
             landmarkName = "-showServerShareText:andDisplay:"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/ViewController.m"
-            timestampString = "470898410.881407"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "-handleFacebookLogin:"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/ViewController.m"
-            timestampString = "470898410.881407"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "-handleFacebookLogin:"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "662"
-            endingLineNumber = "662"
+            startingLineNumber = "726"
+            endingLineNumber = "726"
             landmarkName = "-showAddCardScreen"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/ViewController.m"
-            timestampString = "470898410.881407"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "-handleFacebookLogin:"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "640"
-            endingLineNumber = "640"
+            startingLineNumber = "704"
+            endingLineNumber = "704"
             landmarkName = "-showShareScreen:"
             landmarkType = "5">
          </BreakpointContent>
@@ -500,11 +500,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "777"
-            endingLineNumber = "777"
+            startingLineNumber = "867"
+            endingLineNumber = "867"
             landmarkName = "-scrollViewDidEndDecelerating:"
             landmarkType = "5">
          </BreakpointContent>
@@ -516,11 +516,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "465"
-            endingLineNumber = "465"
+            startingLineNumber = "541"
+            endingLineNumber = "541"
             landmarkName = "-showInterstitialMillenialAd"
             landmarkType = "5">
          </BreakpointContent>
@@ -532,11 +532,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "778"
-            endingLineNumber = "778"
+            startingLineNumber = "868"
+            endingLineNumber = "868"
             landmarkName = "-scrollViewDidEndDecelerating:"
             landmarkType = "5">
          </BreakpointContent>
@@ -548,11 +548,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472593568.864545"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
             landmarkName = "-fetchCardsForScrollView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -564,11 +564,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "825"
-            endingLineNumber = "825"
+            startingLineNumber = "915"
+            endingLineNumber = "915"
             landmarkName = "-interstitialAd:loadDidFailWithError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -580,11 +580,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeContainerView.m"
-            timestampString = "471991554.157804"
+            timestampString = "473721162.703509"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "331"
-            endingLineNumber = "331"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
             landmarkName = "-setCard:"
             landmarkType = "5">
          </BreakpointContent>
@@ -612,11 +612,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "466"
-            endingLineNumber = "466"
+            startingLineNumber = "542"
+            endingLineNumber = "542"
             landmarkName = "-showInterstitialMillenialAd"
             landmarkType = "5">
          </BreakpointContent>
@@ -628,11 +628,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "791"
-            endingLineNumber = "791"
+            startingLineNumber = "881"
+            endingLineNumber = "881"
             landmarkName = "-interstitialAd:didFailWithError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -644,11 +644,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "797"
-            endingLineNumber = "797"
+            startingLineNumber = "887"
+            endingLineNumber = "887"
             landmarkName = "-interstitialAdDidLoad:"
             landmarkType = "5">
          </BreakpointContent>
@@ -660,11 +660,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "803"
-            endingLineNumber = "803"
+            startingLineNumber = "893"
+            endingLineNumber = "893"
             landmarkName = "-interstitialAdDidClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -676,11 +676,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "809"
-            endingLineNumber = "809"
+            startingLineNumber = "899"
+            endingLineNumber = "899"
             landmarkName = "-interstitialAdWillClose:"
             landmarkType = "5">
          </BreakpointContent>
@@ -692,11 +692,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "815"
-            endingLineNumber = "815"
+            startingLineNumber = "905"
+            endingLineNumber = "905"
             landmarkName = "-interstitialAdDidClose:"
             landmarkType = "5">
          </BreakpointContent>
@@ -708,11 +708,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "452"
-            endingLineNumber = "452"
+            startingLineNumber = "528"
+            endingLineNumber = "528"
             landmarkName = "-showFBInterstitial"
             landmarkType = "5">
          </BreakpointContent>
@@ -772,11 +772,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/ProfileViewController.m"
-            timestampString = "471482766.748846"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "-tableView:willDisplayCell:forRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -788,11 +788,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472593097.674907"
+            timestampString = "473904241.813722"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -804,11 +804,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472593568.864545"
+            timestampString = "473904867.000708"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -836,11 +836,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeContainerView.m"
-            timestampString = "471991554.157804"
+            timestampString = "472953220.910652"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "-tappedButton2:"
             landmarkType = "5">
          </BreakpointContent>
@@ -980,11 +980,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/ProfileViewController.m"
-            timestampString = "471482766.748846"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1012,11 +1012,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/AppDelegate.m"
-            timestampString = "471465380.466103"
+            timestampString = "473907086.707406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "-application:didFinishLaunchingWithOptions:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1044,11 +1044,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472593568.864545"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
             landmarkName = "-showFirstPopUp"
             landmarkType = "5">
          </BreakpointContent>
@@ -1060,11 +1060,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472593568.864545"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "-showFirstPopUp"
             landmarkType = "5">
          </BreakpointContent>
@@ -1076,11 +1076,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/Card.m"
-            timestampString = "472591673.826725"
+            timestampString = "472953220.910652"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "+createCardWithData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1092,11 +1092,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/Card.m"
-            timestampString = "472591673.826725"
+            timestampString = "472953220.910652"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "+createCardWithData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1108,11 +1108,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/ProfileViewController.m"
-            timestampString = "471482766.748846"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "-tableView:willDisplayCell:forRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1124,11 +1124,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/ProfileViewController.m"
-            timestampString = "471482766.748846"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "-fetchNewData"
             landmarkType = "5">
          </BreakpointContent>
@@ -1140,11 +1140,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/AppDelegate.m"
-            timestampString = "471465380.466103"
+            timestampString = "473907086.707406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "-application:didReceiveRemoteNotification:fetchCompletionHandler:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1156,11 +1156,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/ProfileViewController.m"
-            timestampString = "471482060.537298"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "-fetchNewData"
             landmarkType = "5">
          </BreakpointContent>
@@ -1172,11 +1172,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/Card.m"
-            timestampString = "472591673.826725"
+            timestampString = "472953220.910652"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "+createCardWithData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1268,11 +1268,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/MenuViewController.m"
-            timestampString = "471895823.922648"
+            timestampString = "473910775.123256"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "-fetchCardLists"
             landmarkType = "5">
             <Locations>
@@ -1316,13 +1316,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/User+CoreDataProperties.m"
-            timestampString = "471897822.738916"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "+showCardsWithParams:GETParams:block:"
-            landmarkType = "5">
+            startingLineNumber = "409"
+            endingLineNumber = "409">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1332,13 +1330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/User+CoreDataProperties.m"
-            timestampString = "471897906.029317"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "+showCardsWithParams:GETParams:block:"
-            landmarkType = "5">
+            startingLineNumber = "411"
+            endingLineNumber = "411">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1348,13 +1344,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/User+CoreDataProperties.m"
-            timestampString = "471897907.100125"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "+showCardsWithParams:GETParams:block:"
-            landmarkType = "5">
+            startingLineNumber = "414"
+            endingLineNumber = "414">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1364,13 +1358,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/User+CoreDataProperties.m"
-            timestampString = "471898135.252147"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "+showCardsWithParams:GETParams:block:"
-            landmarkType = "5">
+            startingLineNumber = "415"
+            endingLineNumber = "415">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1380,13 +1372,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/User+CoreDataProperties.m"
-            timestampString = "471898137.348015"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "+showCardsWithParams:GETParams:block:"
-            landmarkType = "5">
+            startingLineNumber = "412"
+            endingLineNumber = "412">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1396,13 +1386,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/User+CoreDataProperties.m"
-            timestampString = "471898139.880119"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "+showCardsWithParams:GETParams:block:"
-            landmarkType = "5">
+            startingLineNumber = "418"
+            endingLineNumber = "418">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1412,11 +1400,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeContainerView.m"
-            timestampString = "471991554.157804"
+            timestampString = "473721162.703509"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "-hideButtons"
             landmarkType = "5">
          </BreakpointContent>
@@ -1428,11 +1416,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeContainerView.m"
-            timestampString = "471991554.157804"
+            timestampString = "473721162.703509"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
             landmarkName = "-setCard:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1444,139 +1432,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "609"
-            endingLineNumber = "609"
-            landmarkName = "-menuChoseCategoryOption:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "590"
-            endingLineNumber = "590"
-            landmarkName = "-menuChoseCategoryOption:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[HomeViewController menuChoseCategoryOption:]"
-                  moduleName = "Choose"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cjogbuehi/contract-work/Twinning/Twinning/HomeViewController.m"
-                  timestampString = "472005917.167923"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "507"
-                  endingLineNumber = "507"
-                  offsetFromSymbolStart = "420">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[HomeViewController menuChoseCategoryOption:]"
-                  moduleName = "Choose"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/cjogbuehi/contract-work/Twinning/Twinning/HomeViewController.m"
-                  timestampString = "472005917.168329"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "507"
-                  endingLineNumber = "507"
-                  offsetFromSymbolStart = "438">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "614"
-            endingLineNumber = "614"
-            landmarkName = "-menuChoseCategoryOption:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "585"
-            endingLineNumber = "585"
-            landmarkName = "-menuChoseCategoryOption:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "596"
-            endingLineNumber = "596"
-            landmarkName = "-menuChoseCategoryOption:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "606"
-            endingLineNumber = "606"
-            landmarkName = "-menuChoseCategoryOption:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "757"
-            endingLineNumber = "757"
+            startingLineNumber = "847"
+            endingLineNumber = "847"
             landmarkName = "-scrollViewDidScroll:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1588,11 +1448,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "702"
-            endingLineNumber = "702"
+            startingLineNumber = "791"
+            endingLineNumber = "791"
             landmarkName = "-homeView:tappedButtonNumber:forType:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1604,11 +1464,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "514"
-            endingLineNumber = "514"
+            startingLineNumber = "590"
+            endingLineNumber = "590"
             landmarkName = "-goToNextPage"
             landmarkType = "5">
          </BreakpointContent>
@@ -1620,11 +1480,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "522"
-            endingLineNumber = "522"
+            startingLineNumber = "598"
+            endingLineNumber = "598"
             landmarkName = "-goToNextPage"
             landmarkType = "5">
             <Locations>
@@ -1683,11 +1543,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472593568.864545"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "-fetchLatestShareText"
             landmarkType = "5">
          </BreakpointContent>
@@ -1699,11 +1559,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "403"
+            endingLineNumber = "403"
             landmarkName = "-handleServerShareText:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1715,27 +1575,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "574"
-            endingLineNumber = "574"
-            landmarkName = "-menuChoseCategoryOption:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "477"
-            endingLineNumber = "477"
+            startingLineNumber = "553"
+            endingLineNumber = "553"
             landmarkName = "-showServerShareText:andDisplay:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1747,11 +1591,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/MenuViewController.m"
-            timestampString = "472261238.218166"
+            timestampString = "473917513.388684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "364"
-            endingLineNumber = "364"
+            startingLineNumber = "396"
+            endingLineNumber = "396"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1763,11 +1607,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472593935.102929"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
             landmarkName = "-fetchCardsForScrollView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1779,11 +1623,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "363"
-            endingLineNumber = "363"
+            startingLineNumber = "433"
+            endingLineNumber = "433"
             landmarkName = "-setupCardsOnScrollView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1795,11 +1639,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
             landmarkName = "-fetchCardsForScrollView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1811,27 +1655,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "626"
-            endingLineNumber = "626"
-            landmarkName = "-menuChoseCategoryOption:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Twinning/HomeViewController.m"
-            timestampString = "472593568.864545"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
             landmarkName = "-fetchCardsForScrollView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1843,11 +1671,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472593568.864545"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
             landmarkName = "-fetchCardsForScrollView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1859,11 +1687,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/AppDelegate.m"
-            timestampString = "472589909.783173"
+            timestampString = "473907086.707406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "-applicationDidEnterBackground:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1875,11 +1703,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594488.591132"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "-fetchCardsForScrollView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1891,12 +1719,726 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twinning/HomeViewController.m"
-            timestampString = "472594226.614976"
+            timestampString = "473966419.210703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
             landmarkName = "-fetchCardsForScrollView:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/User+CoreDataProperties.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "473"
+            endingLineNumber = "473">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/User+CoreDataProperties.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "476"
+            endingLineNumber = "476">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/User+CoreDataProperties.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "481"
+            endingLineNumber = "481">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/User+CoreDataProperties.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "480"
+            endingLineNumber = "480">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[User(CoreDataProperties) fetchUserCardsWithFBID:GETParams:block:]"
+                  moduleName = "Choose"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cjogbuehi/contract-work/Twinning/Twinning/User+CoreDataProperties.m"
+                  timestampString = "473212784.015352"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "636">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__67+[User(CoreDataProperties) fetchUserCardsWithFBID:GETParams:block:]_block_invoke"
+                  moduleName = "Choose"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cjogbuehi/contract-work/Twinning/Twinning/User+CoreDataProperties.m"
+                  timestampString = "473212784.016028"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_240"
+                  moduleName = "Choose"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cjogbuehi/contract-work/Twinning/Twinning/User+CoreDataProperties.m"
+                  timestampString = "473212784.01655"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_241"
+                  moduleName = "Choose"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cjogbuehi/contract-work/Twinning/Twinning/User+CoreDataProperties.m"
+                  timestampString = "473212784.017719"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__67+[User(CoreDataProperties) fetchUserCardsWithFBID:GETParams:block:]_block_invoke243"
+                  moduleName = "Choose"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cjogbuehi/contract-work/Twinning/Twinning/User+CoreDataProperties.m"
+                  timestampString = "473212784.019265"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/User+CoreDataProperties.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "479"
+            endingLineNumber = "479">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[User(CoreDataProperties) fetchUserCardsWithFBID:GETParams:block:]"
+                  moduleName = "Choose"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cjogbuehi/contract-work/Twinning/Twinning/User+CoreDataProperties.m"
+                  timestampString = "473212784.02544"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "636">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__67+[User(CoreDataProperties) fetchUserCardsWithFBID:GETParams:block:]_block_invoke"
+                  moduleName = "Choose"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cjogbuehi/contract-work/Twinning/Twinning/User+CoreDataProperties.m"
+                  timestampString = "473212784.026006"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_240"
+                  moduleName = "Choose"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cjogbuehi/contract-work/Twinning/Twinning/User+CoreDataProperties.m"
+                  timestampString = "473212784.026384"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_241"
+                  moduleName = "Choose"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cjogbuehi/contract-work/Twinning/Twinning/User+CoreDataProperties.m"
+                  timestampString = "473212784.026702"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__67+[User(CoreDataProperties) fetchUserCardsWithFBID:GETParams:block:]_block_invoke243"
+                  moduleName = "Choose"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cjogbuehi/contract-work/Twinning/Twinning/User+CoreDataProperties.m"
+                  timestampString = "473212784.027216"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/User+CoreDataProperties.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "423"
+            endingLineNumber = "423">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/User+CoreDataProperties.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "430"
+            endingLineNumber = "430">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/APIClient.m"
+            timestampString = "472953653.315932"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-startMonitoringConnection"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/User+CoreDataProperties.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "431"
+            endingLineNumber = "431">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/APIClient.m"
+            timestampString = "472953886.003821"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "-startMonitoringConnection"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/APIClient.m"
+            timestampString = "472953916.165295"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "-startMonitoringConnection"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/APIClient.m"
+            timestampString = "472953917.558529"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "-startMonitoringConnection"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "-fetchCardsForScrollView:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473904867.000708"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "-fetchCardsForScrollView:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "838"
+            endingLineNumber = "838"
+            landmarkName = "-homeView:tappedFullScreenImage:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "656"
+            endingLineNumber = "656"
+            landmarkName = "-menuChoseCategoryOption:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "678"
+            endingLineNumber = "678"
+            landmarkName = "-menuChoseCategoryOption:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "684"
+            endingLineNumber = "684"
+            landmarkName = "-menuChoseCategoryOption:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "-dealloc"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "-viewDidDisappear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "-viewDidDisappear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "-dealloc"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "361"
+            endingLineNumber = "361"
+            landmarkName = "-fetchCardsForScrollView:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "502"
+            endingLineNumber = "502"
+            landmarkName = "-showErrorView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/MenuViewController.m"
+            timestampString = "473917675.293024"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "440"
+            endingLineNumber = "440"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/EasyFacebook.m"
+            timestampString = "473796673.371441"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "508"
+            endingLineNumber = "508"
+            landmarkName = "-appInviteDialog:didCompleteWithResults:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/EasyFacebook.m"
+            timestampString = "473796674.114612"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "513"
+            endingLineNumber = "513"
+            landmarkName = "-appInviteDialog:didFailWithError:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/EasyFacebook.m"
+            timestampString = "473796675.632474"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "515"
+            endingLineNumber = "515"
+            landmarkName = "-appInviteDialog:didFailWithError:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/ProfileViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/ProfileViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "-tableView:willDisplayCell:forRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/ProfileViewController.m"
+            timestampString = "473907385.893792"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/MenuViewController.m"
+            timestampString = "473910775.123256"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twinning/HomeViewController.m"
+            timestampString = "473966419.210703"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "-showLoginScreen"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

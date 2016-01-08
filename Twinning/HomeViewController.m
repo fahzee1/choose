@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "MenuViewController.h"
+#import "APIClient.h"
 #import "ViewController.h"
 #import "HomeFeedCell.h"
 #import "HomeErrorView.h"
@@ -37,12 +38,12 @@
 #import <FBAudienceNetwork/FBAudienceNetwork.h>
 #import <LaunchKit/LaunchKit.h>
 #import <ChameleonFramework/Chameleon.h>
+#import <PINCache.h>
 
 @interface HomeViewController()<UIScrollViewDelegate,HomeContainerDelegate,MMInterstitialDelegate,FBInterstitialAdDelegate,HomeErrorViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) UIScrollView *currentScrollView;
 @property (strong,nonatomic) NSMutableArray *cardData;
 @property (strong,nonatomic) NSMutableArray *cardData2;
 @property (assign) NSInteger pageNumber;
@@ -59,6 +60,7 @@
 @property (strong, nonatomic) FBInterstitialAd *fbinterstitialAd;
 @property (strong,nonatomic) MBProgressHUD *hud;
 @property (strong,nonatomic) HomeErrorView *errorView;
+@property (assign) UserStatus userStatus;
 
 
 @end
@@ -77,6 +79,9 @@
         ((MenuViewController *)controller).localUser = self.localUser;
     }
     
+    // Monitor network connection
+    APIClient *client = [APIClient sharedClient];
+    [client startMonitoringConnection];
     
     // So we can slide menu out
     ECSlidingViewController *slideController = [self slidingViewController];
@@ -103,15 +108,9 @@
     self.serverOffset = @"0";
     self.serverQuery = self.serverQuery? self.serverQuery:@"Featured";
     
-    if ([[self.currentScrollView subviews] count] > 0){
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *uuid = [defaults objectForKey:self.serverQuery];
-        self.serverUUID = uuid;
-    }
-    else{
-        self.serverUUID = nil;
-    }
-    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *uuid = [defaults objectForKey:self.serverQuery];
+    self.serverUUID = uuid;
     
     //[self makeTestCards];
     
@@ -128,6 +127,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults boolForKey:kAnonymousUser]){
+        return;
+    }
+    
     if (![defaults boolForKey:@"loggedIn"]){
         // set first tip as no so it cab be seen on log in
         [defaults setBool:NO forKey:@"firstTip"];
@@ -146,6 +150,9 @@
         //self.scrollView.contentOffset= CGPointMake(0, 0);
     }
     
+    
+    //[[PINCache sharedCache] removeObjectForKey:self.serverQuery];
+    
     // Launchkit stuff
     if ([self.localUser.logged_in boolValue]){
         [[LaunchKit sharedInstance] setUserIdentifier:self.localUser.facebook_id
@@ -163,14 +170,25 @@
     
     // show quick tip
     [self showFirstPopUp];
+
+    // set user defaults
+    [self saveLocalUserDefaults];
     
     if (!self.firstDataFetch){
         [self fetchCardsForScrollView:self.scrollView];
         self.firstDataFetch = YES;
     }
     
+
     [self fetchLatestShareText];
 
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self saveCardsToCache];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -191,6 +209,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuChoseCategoryOption:) name:kNotificationMenuTappedCategoryChoice object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showShareScreen:) name:kNotificationSubmittedCard object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closedAdNotif:) name:kNotificationClosedADPlacement object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginScreen) name:kNotificationLogOut object:nil];
 }
 
 - (void)showFirstPopUp
@@ -209,6 +228,35 @@
         
     }
 
+}
+
+- (void)checkUserStatus
+{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults boolForKey:kAnonymousUser]){
+        self.userStatus = UserStatusAnonymous;
+    }
+    else if ([defaults valueForKey:kLocalUserAuthKey]){
+        self.userStatus = UserStatusLoggedIn;
+    }
+    
+}
+
+- (void)saveLocalUserDefaults
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults boolForKey:@"loggedIn"]){
+        [defaults setValue:self.localUser.email forKey:kEmail];
+        [defaults setValue:self.localUser.name forKey:kUsername];
+        [defaults setValue:self.localUser.facebook_id forKey:kID];
+    }
+    else if ([defaults boolForKey:kAnonymousUser]){
+        [defaults setValue:kAnonymousUser forKey:kEmail];
+        [defaults setValue:kAnonymousUser forKey:kUsername];
+        [defaults setValue:kAnonymousUser forKey:kID];
+    }
+    
 }
 
 - (void)showLoginScreen
@@ -249,6 +297,18 @@
 
 - (void)fetchCardsForScrollView:(UIScrollView *)scrollview
 {
+    // first remove error view as subview of scrollview
+    [self hideErrorView];
+    
+    // See if we have any cached data for the category name
+    self.cardData = [[PINCache sharedCache] objectForKey:self.serverQuery];
+    
+    // If so go ahead and lay the views out
+    if ([self.cardData count] > 0){
+        [self setupCardsOnScrollView:scrollview];
+    }
+    
+    // Still check if we have any newer data from server
     if (!self.stopServerFetch){
         self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.hud.labelText = NSLocalizedString(@"Loading...", nil);
@@ -265,16 +325,16 @@
                                 if (status == APIRequestStatusSuccess){
                                     
                                     if (status_code == 222){
-                                        if ([self.currentScrollView.subviews count] > 0){
+                                        if ([self.scrollView.subviews count] > 0){
                                             return;
                                         }
                                         else{
-                                            DLog(@"sending second server fetch");
+                                            [self showErrorView];
+                                            // assumes that we have a stale uuid so send this to get new data
                                             self.serverUUID = @"000";
-                                            [self fetchCardsForScrollView:self.currentScrollView];
-                                            
                                         }
                                     }
+                                    
                                     [self.cardData removeAllObjects];
                                     for (NSDictionary *cardDict in data[@"data"][@"cards"]){
                                         Card *card = [Card createCardWithData:cardDict];
@@ -283,6 +343,8 @@
                                     }
                                     
                                     if ([self.cardData count] > 0){
+                                        [[PINCache sharedCache] setObject:self.cardData forKey:self.serverQuery];
+                                    
                                         // if we have data layout cards and get offsets and limits
                                         // get next limit and offset from data and store it locally
                                         NSNumber *next_limit = data[@"data"][@"next_limit"];
@@ -309,7 +371,10 @@
                                 }
                                 else{
                                     DLog(@"There was an issue fetching new cards. Please try again.");
-                                    [self showErrorView];                                }
+                                    if ([self.cardData count] == 0){
+                                        [self showErrorView];
+                                    }
+                                }
                             }];
     }
 }
@@ -323,6 +388,11 @@
         self.serverUUID = uuid;
     }
     
+}
+
+- (void)saveCardsToCache
+{
+     [[PINCache sharedCache] setObject:self.cardData forKey:self.serverQuery];
 }
 
 - (void)handleServerShareText:(NSDictionary *)share_text
@@ -373,6 +443,7 @@
         [containerView hideButtons];
         // image should load and buttons shown after setting card
         containerView.card = card;
+        [containerView showCachedResults];
         [scrollview addSubview:containerView];
         i++;
     }
@@ -431,6 +502,10 @@
     if (self.errorView.isHidden){
         self.errorView.hidden = NO;
         self.errorView.alpha = 1;
+        
+        if (!self.errorView.superview){
+            [self.scrollView addSubview:self.errorView];
+        }
     }
 }
 
@@ -438,6 +513,7 @@
 {
     self.errorView.hidden = YES;
     self.errorView.alpha = 0;
+    [self.errorView removeFromSuperview];
 }
 
 - (void)setupFBInterstitial
@@ -512,7 +588,7 @@
 - (void)goToNextPage
 {
     if ([self myPageNumber] != self.cardCount){
-        UIScrollView *scroll = self.currentScrollView? self.currentScrollView:self.scrollView;
+        UIScrollView *scroll = self.scrollView;
         [UIView animateWithDuration:.3
                               delay:2
                             options:0
@@ -529,7 +605,7 @@
 
 - (NSInteger)myPageNumber
 {
-    UIScrollView *scroll = self.currentScrollView? self.currentScrollView:self.scrollView;
+    UIScrollView *scroll = self.scrollView;
     CGFloat pageHeight = scroll.frame.size.height;
     float fractionalPage = scroll.contentOffset.y / pageHeight;
     NSInteger page = lround(fractionalPage);
@@ -573,63 +649,51 @@
     // Name is used for search term (name of menu selection) and number is used for tags
     // on scrollviews (number of menu selection)
     NSString *name = data[@"name"];
-    NSNumber *number = data[@"number"];
     DLog(@"option was %@",name);
     
     // Hide this view because it sometimes shows at a bad time
     [self hideErrorView];
+    
+    // save page number for use for later scroll
+    NSInteger oldPage = [self myPageNumber];
+    NSString *oldName = [NSString stringWithFormat:@"%@-scrollNumber",self.serverQuery];
+    [[PINCache sharedCache] setObject:[NSNumber numberWithInteger:oldPage] forKey:oldName];
+    
+    // save cards to cache before fetching next card data
+    [self saveCardsToCache];
     
     // Let controller no search term and offsets and limit for fetch
     self.serverQuery = name;
     self.serverLimit = @"10";
     self.serverOffset = @"0";
     
+    
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *uuid = [defaults objectForKey:name];
     self.serverUUID = uuid;
-
-    // Hide all subviews of our container view first
-    for (UIView *view in self.containerView.subviews){
-        view.hidden = YES;
-        view.alpha = 0;
-    }
     
-    // Try to see if we have an existing uiscrollview for menu selection and make it visible
-    UIScrollView *scroll = [self.containerView viewWithTag:[number integerValue] * 100];
-    if (scroll){
-        // need to save the count so can show ads properly... in the varible myinfo
-        self.cardCount = [((NSNumber *)scroll.myInfo) integerValue];
-        self.currentScrollView = scroll;
-        [self.containerView bringSubviewToFront:scroll];
-        [UIView animateWithDuration:1
-                         animations:^{
-                             scroll.hidden = NO;
-                             scroll.alpha = 1;
-                         }];
-    }
-    else{
-        // create a copy of the original uiscrollview for new use
-        // add tag so we can locate it (based on menu number)
-        // and fetch data from server
-        UIScrollView *scrollViewCopy = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:self.scrollView]];
-        [scrollViewCopy.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        scrollViewCopy.tag = [number integerValue] * 100;
-        scrollViewCopy.hidden = NO;
-        scrollViewCopy.alpha = 1;
-        scrollViewCopy.delegate = self;
-        [scrollViewCopy setContentOffset:CGPointMake(0, -scrollViewCopy.contentInset.top) animated:NO];
-        self.currentScrollView = scrollViewCopy;
-        [self.containerView addSubview:scrollViewCopy];
-
-        
-    }
+    [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    [self fetchCardsForScrollView:self.currentScrollView];
+    self.cardData = [[PINCache sharedCache] objectForKey:self.serverQuery];
+    
+    [self fetchCardsForScrollView:self.scrollView];
     [self fetchLatestShareText];
+    
+    // see if there's a cached scroll position for this page name
+    NSString *newName = [NSString stringWithFormat:@"%@-scrollNumber",self.serverQuery];
+    NSNumber *cachedPageNumber = [[PINCache sharedCache] objectForKey:newName];
+    if (cachedPageNumber){
+        CGFloat pageHeight = self.scrollView.frame.size.height;
+        NSInteger page = [cachedPageNumber integerValue] - 1;
+        int offset = pageHeight * page;
+        self.scrollView.contentOffset = CGPointMake(0,offset);
+    }
     
     
     
 }
+
 
 - (void)showShareScreen:(NSNotification *)notif
 {
@@ -660,12 +724,37 @@
 }
 - (void)showAddCardScreen
 {
-    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardCreateVote];
-    if ([controller isKindOfClass:[CreateVoteController class]]){
-        ((CreateVoteController *)controller).localUser = self.localUser;
+    if (![self.localUser.anonymous boolValue]){
+        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardCreateVote];
+        if ([controller isKindOfClass:[CreateVoteController class]]){
+            ((CreateVoteController *)controller).localUser = self.localUser;
+        }
+        UINavigationController *base = [[UINavigationController alloc] initWithRootViewController:controller];
+        [self presentViewController:base animated:YES completion:nil];
     }
-    UINavigationController *base = [[UINavigationController alloc] initWithRootViewController:controller];
-    [self presentViewController:base animated:YES completion:nil];
+    else{
+        PSTAlertController *alert = [PSTAlertController alertControllerWithTitle:NSLocalizedString(@"Anonymous User Alert", nil)
+                                                                         message:NSLocalizedString(@"You need to login before creating your own cards.", nil)
+                                                                  preferredStyle:PSTAlertControllerStyleAlert];
+        
+        PSTAlertAction *cancelButton = [PSTAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:PSTAlertActionStyleCancel
+                                                          handler:^(PSTAlertAction *action) {
+                                                              [alert dismissAnimated:YES completion:nil];
+                                                          }];
+        
+        
+        
+        PSTAlertAction *loginButton = [PSTAlertAction actionWithTitle:NSLocalizedString(@"Login", nil) style:PSTAlertActionStyleDefault
+                                                       handler:^(PSTAlertAction *action) {
+                                                           // login alert
+                                                           [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLogOut object:nil];
+                                                           [alert dismissAnimated:YES completion:nil];
+                                                       }];
+        [alert addAction:cancelButton];
+        [alert addAction:loginButton];
+        [alert showWithSender:self controller:self animated:YES completion:nil];
+    }
+    
 }
 
 - (void)closedAdNotif:(NSNotification *)notif
@@ -738,6 +827,7 @@
     UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardProfile];
     if ([controller isKindOfClass:[ProfileViewController class]]){
         ((ProfileViewController *)controller).card = view.card;
+        ((ProfileViewController *)controller).screenType = ProfileScreenOthers;
         UINavigationController *base = [[UINavigationController alloc] initWithRootViewController:controller];
         [self presentViewController:base animated:YES completion:nil];
     }

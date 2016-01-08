@@ -12,6 +12,8 @@
 		111863DF1BEAADF900E62E13 /* ProfileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 111863DE1BEAADF900E62E13 /* ProfileListCell.m */; };
 		111863E21BEAC04400E62E13 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111863E11BEAC04400E62E13 /* CardViewController.m */; };
 		111863E51BEBF1BF00E62E13 /* ADPlacementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111863E41BEBF1BF00E62E13 /* ADPlacementViewController.m */; };
+		111CF5511C3EC32E00E36801 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111CF5501C3EC32E00E36801 /* CoreMedia.framework */; };
+		111CF5531C3EC34300E36801 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111CF5521C3EC34300E36801 /* OpenGLES.framework */; };
 		114626811BA9E4FA00A6D8C2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626801BA9E4FA00A6D8C2 /* User.m */; };
 		114626871BAA069E00A6D8C2 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626861BAA069E00A6D8C2 /* HomeViewController.m */; };
 		114626911BAA154500A6D8C2 /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 114626901BAA154500A6D8C2 /* MenuCell.m */; };
@@ -108,6 +110,9 @@
 		111863E11BEAC04400E62E13 /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
 		111863E31BEBF1BF00E62E13 /* ADPlacementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADPlacementViewController.h; sourceTree = "<group>"; };
 		111863E41BEBF1BF00E62E13 /* ADPlacementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADPlacementViewController.m; sourceTree = "<group>"; };
+		111CF5501C3EC32E00E36801 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		111CF5521C3EC34300E36801 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		112DEC361C3DC1E300BBF778 /* Choose.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Choose.entitlements; sourceTree = "<group>"; };
 		1146267F1BA9E4FA00A6D8C2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		114626801BA9E4FA00A6D8C2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		114626851BAA069E00A6D8C2 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -229,6 +234,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				111CF5531C3EC34300E36801 /* OpenGLES.framework in Frameworks */,
+				111CF5511C3EC32E00E36801 /* CoreMedia.framework in Frameworks */,
 				11ECCECB1C1774E3009B458E /* Accounts.framework in Frameworks */,
 				11ECCEC91C1774D4009B458E /* libsqlite3.tbd in Frameworks */,
 				11ECCEC71C1774CB009B458E /* libz.tbd in Frameworks */,
@@ -372,6 +379,7 @@
 		11F106031BA4A3BC00D044AC = {
 			isa = PBXGroup;
 			children = (
+				112DEC361C3DC1E300BBF778 /* Choose.entitlements */,
 				11F1060E1BA4A3BC00D044AC /* Twinning */,
 				11F1062B1BA4A3BC00D044AC /* TwinningTests */,
 				11F1060D1BA4A3BC00D044AC /* Products */,
@@ -493,6 +501,8 @@
 		548E2A145F17AC2891E6BE81 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				111CF5521C3EC34300E36801 /* OpenGLES.framework */,
+				111CF5501C3EC32E00E36801 /* CoreMedia.framework */,
 				11ECCECA1C1774E3009B458E /* Accounts.framework */,
 				11ECCEC81C1774D4009B458E /* libsqlite3.tbd */,
 				11ECCEC61C1774CB009B458E /* libz.tbd */,
@@ -592,16 +602,19 @@
 				TargetAttributes = {
 					11F1060B1BA4A3BC00D044AC = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = HM7K35K49R;
+						DevelopmentTeam = JM95HR8LQB;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.InAppPurchase = {
 								enabled = 0;
 							};
 							com.apple.Push = {
 								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
 							};
 						};
 					};
@@ -906,10 +919,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Twinning",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.self.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Choose;
-				PROVISIONING_PROFILE = "561442ad-ece0-4c58-a87f-c3535c7337fd";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -938,10 +952,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Twinning",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.self.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Choose;
-				PROVISIONING_PROFILE = "561442ad-ece0-4c58-a87f-c3535c7337fd";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
