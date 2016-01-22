@@ -34,6 +34,7 @@ typedef void (^StatusCodeResponseBlock) (APIRequestStatus status, id data,NSInte
 @property (nullable, nonatomic, retain) NSNumber *is_staff;
 
 - (NSURL *)facebookImageUrl;
+- (NSString *)formattedName;
 
 + (User *)createLocalUserInContext:(NSManagedObjectContext *)context;
 + (User *)getLocalUserInContext:(NSManagedObjectContext *)context;
@@ -59,9 +60,15 @@ typedef void (^StatusCodeResponseBlock) (APIRequestStatus status, id data,NSInte
 + (void)getCardWithID:(NSNumber *)cardID
                 block:(nullable ResponseBlock)block;
 
++ (void)updateCardWithID:(NSNumber *)cardID
+              withParams:(NSDictionary *)params
+                block:(nullable ResponseBlock)block;
+
 + (void)getLatestShareTextWithBlock:(nullable ResponseBlock)block;
 
 + (void)getCardListsForMenu:(nullable ResponseBlock)block;
+
++ (void)getMe:(nullable ResponseBlock)block;
 
 @end
 

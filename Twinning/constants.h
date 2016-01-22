@@ -56,17 +56,15 @@ typedef NS_ENUM(NSInteger, UserStatus){
     UserStatusLoggedIn = 100,
     UserStatusAnonymous
 };
-
 static NSString *const kChooseEmail = @"cj@trychoose.com";
-#warning add my app id here
-static NSString *const kLocalAppID = @"1020419872";
+static NSString *const kLocalAppID = @"1072816125";
 static NSString *const kLocalUser = @"localuser";
 static NSString *const kLocalUserAuthKey = @"localauthkey";
 static NSString *const kLocalUserCreated = @"kLocalUserCreated";
 static NSString *const kInstagramUserName = @"cj_o32";
 static NSString *const kFacebookPageID = @"1498069333826125";
 static NSString *const kFacebookPageName = @"trychoose";
-static NSString *const kFlickrHostedImage = @"https://farm1.staticflickr.com/584/22476394424_e545488535_b.jpg";
+static NSString *const kFlickrHostedImage = @"http://images.trychoose.com/static/choose-iphone-example.jpg";
 static NSString *const kServerShareTextID = @"kServerShareTextID";
 static NSString *const kAnonymousUser = @"anonymous";
 
@@ -131,6 +129,8 @@ static NSString *const kNotificationClosedADPlacement = @"kNotificationClosedADP
 static NSString *const kNotificationOnboardIsOver = @"kNotificationOnboardIsOver";
 static NSString *const kNotificationShowShareImageTip = @"kNotificationShowShareImageTip";
 static NSString *const kNotificationLogOut = @"kNotificationLogOut";
+static NSString *const kNotificationUserTrackingReady = @"kNotificationUserTrackingReady";
+static NSString *const kNotificationShowCardWithId = @"kNotificationShowCardWithId";
 
 // Default images
 static NSString *const kImageCard = @"card";

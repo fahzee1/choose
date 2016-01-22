@@ -27,7 +27,7 @@
 
 @interface AppDelegate ()
 @property (assign) BOOL appInForeground;
-
+@property (assign) BOOL setTracking;
 @end
 
 @implementation AppDelegate
@@ -36,6 +36,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setUserTrackingInfo) name:kNotificationUserTrackingReady object:nil];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     // Global appearance
@@ -85,23 +87,13 @@
     }
     
     
-    NSString *email = [defaults valueForKey:kEmail]? [defaults valueForKey:kEmail]:@"no email";
-    NSString *name = [defaults valueForKey:kUsername]? [defaults valueForKey:kUsername]:@"no username";
-    NSString *id = [defaults valueForKey:kID]? [defaults valueForKey:kID]:@"no id";
     
     // Test Fairy
     [TestFairy begin:@"02b065755555f2259f81ff722e6f11d86749b2dc"];
-    [TestFairy identify:id
-                 traits:@{TFSDKIdentityTraitEmailAddressKey:email,
-                          TFSDKIdentityTraitNameKey:name}];
-    
 
     // Fabric
     [[Fabric sharedSDK] setDebug: YES];
     [Fabric with:@[[Crashlytics class]]];
-    [CrashlyticsKit setUserIdentifier:id];
-    [CrashlyticsKit setUserEmail:email];
-    [CrashlyticsKit setUserName:name];
 
 
     // Branch
@@ -223,7 +215,13 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    [self notifyReceivedRemoteNotificationWithData:userInfo foreground:self.appInForeground];
+    application.applicationIconBadgeNumber = 0;
+    if (application.applicationState == UIApplicationStateActive){
+        [self notifyReceivedRemoteNotificationWithData:userInfo foreground:YES];
+    }
+    else{
+        [self notifyReceivedRemoteNotificationWithData:userInfo foreground:NO];
+    }
     completionHandler(UIBackgroundFetchResultNoData);
 }
 
@@ -332,24 +330,38 @@
     
     //NSString *styleName = @"basicNotification";
     NSString *alert = data[@"aps"][@"alert"];
+    NSNumber *card_id = data[@"card_id"];
+    DLog(@"card id is %@",card_id);
     DLog(@"do something with (%@)",alert);
     
-    NSDictionary *options = @{
-                              kCRToastTextKey :alert,
-                              kCRToastTextAlignmentKey : @(NSTextAlignmentCenter),
-                              kCRToastBackgroundColorKey : [UIColor colorWithHexString:kColorFlatTurquoise],
-                              kCRToastAnimationInTypeKey : @(CRToastAnimationTypeGravity),
-                              kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeGravity),
-                              kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionTop),
-                              kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionBottom),
-                              kCRToastTextColorKey:[UIColor whiteColor],
-                              kCRToastFontKey:[UIFont fontWithName:kFontGlobalBold size:18],
-                              kCRToastNotificationTypeKey:@(CRToastTypeNavigationBar)
-                              };
-    [CRToastManager showNotificationWithOptions:options
-                                completionBlock:^{
-                                }];
-
+    if (foreground){
+        NSDictionary *options = @{
+                                  kCRToastTextKey :alert,
+                                  kCRToastTextAlignmentKey : @(NSTextAlignmentCenter),
+                                  kCRToastBackgroundColorKey : [UIColor colorWithHexString:kColorFlatTurquoise],
+                                  kCRToastAnimationInTypeKey : @(CRToastAnimationTypeGravity),
+                                  kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeGravity),
+                                  kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionTop),
+                                  kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionBottom),
+                                  kCRToastTextColorKey:[UIColor whiteColor],
+                                  kCRToastFontKey:[UIFont fontWithName:kFontGlobalBold size:18],
+                                  kCRToastNotificationTypeKey:@(CRToastTypeNavigationBar),
+                                  kCRToastTimeIntervalKey:@5
+                                  };
+        [CRToastManager showNotificationWithOptions:options
+                                    completionBlock:^{
+                                    }];
+        
+    }
+    else{
+        if (card_id){
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShowCardWithId
+                                                                    object:self
+                                                                  userInfo:@{@"card_id":card_id}];
+            });
+        }
+    }
     
 }
 
@@ -357,6 +369,30 @@
 + (AppDelegate *)sharedAppDelegate
 {
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
+- (void)setUserTrackingInfo
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *username = [defaults valueForKey:kUsername];
+    NSString *email = [defaults valueForKey:kEmail];
+    NSString *id = [defaults valueForKey:kID];
+    
+    if (username && email && id){
+        if (!self.setTracking){
+            [TestFairy identify:id
+                         traits:@{TFSDKIdentityTraitEmailAddressKey:email,
+                                  TFSDKIdentityTraitNameKey:username}];
+            
+            
+            [CrashlyticsKit setUserIdentifier:id];
+            [CrashlyticsKit setUserEmail:email];
+            [CrashlyticsKit setUserName:username];
+            self.setTracking = YES;
+        }
+
+    }
+    
 }
 
 

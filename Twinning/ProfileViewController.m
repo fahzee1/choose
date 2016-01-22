@@ -53,6 +53,10 @@
         [self fetchNewData];
         self.fetchedCards = YES;
     }
+    
+    if (self.card_id){
+        [self showCardController];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -135,6 +139,22 @@
                                }
                            }];
 }
+
+- (void)showCardController
+{
+    
+    [User getCardWithID:self.card_id
+                  block:^(APIRequestStatus status, id  _Nonnull data) {
+                      if (status == APIRequestStatusSuccess){
+                          Card *card = [Card createCardWithData:data[@"data"][@"card"]];
+                          CardViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardCard];
+                          controller.card = card;
+                          self.card_id = nil; // need to remove so screen doesnt automatically go to this card
+                          [self.navigationController pushViewController:controller animated:YES];
+                      }
+                  }];
+}
+
 
 - (void)goBack
 {

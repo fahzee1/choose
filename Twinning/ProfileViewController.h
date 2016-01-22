@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger,ProfileScreen){
 
 @property (strong,nonatomic) User *localUser;
 @property (strong,nonatomic) Card *card;
+@property (strong,nonatomic) NSNumber *card_id; // coming from notification
 @property (assign) ProfileScreen screenType;
 
 @end

@@ -96,6 +96,14 @@
     
     return fbUrl;
 }
+
+- (NSString *)formattedName
+{
+    NSString *name = [self.name stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+    name = [NSString stringWithFormat:@"%@-%@",name,self.facebook_id];
+    return name;
+}
+
 + (void)loginWithParams:(NSDictionary *)params
                   block:(ResponseBlock)block
 {
@@ -236,7 +244,7 @@
          }];
 }
 
-+ (void)getCardWithID:(NSString *)cardID
++ (void)getCardWithID:(NSNumber *)cardID
                 block:(ResponseBlock)block
 {
     APIClient *client = [APIClient sharedClient];
@@ -258,6 +266,31 @@
         }];
     
 }
+
++ (void)updateCardWithID:(NSNumber *)cardID
+              withParams:(NSDictionary *)params
+                   block:(nullable ResponseBlock)block
+{
+    APIClient *client = [APIClient sharedClient];
+    [client startNetworkActivity];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@",APICardsString,cardID];
+    [client PUT:urlString parameters:params
+        success:^(NSURLSessionDataTask *task, id responseObject) {
+            [client stopNetworkActivity];
+            if (block){
+                block(APIRequestStatusSuccess,responseObject);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [client stopNetworkActivity];
+            DLog(@"error is %@",error.localizedDescription);
+            if (block){
+                block(APIRequestStatusFail,error.localizedDescription);
+            }
+        }];
+
+}
+
 
 + (void)getLatestShareTextWithBlock:(nullable ResponseBlock)block
 {
@@ -299,4 +332,26 @@
         }];
     
 }
+
++ (void)getMe:(nullable ResponseBlock)block
+{
+    APIClient *client = [APIClient sharedClient];
+    [client startNetworkActivity];
+    
+    [client GET:APIMeString parameters:@{}
+        success:^(NSURLSessionDataTask *task, id responseObject) {
+            [client stopNetworkActivity];
+            if (block){
+                block(APIRequestStatusSuccess,responseObject);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [client stopNetworkActivity];
+            DLog(@"error is %@",error.localizedDescription);
+            if (block){
+                block(APIRequestStatusFail,error.localizedDescription);
+            }
+        }];
+
+}
+
 @end

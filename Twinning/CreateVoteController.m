@@ -25,6 +25,7 @@
 #import "Card.h"
 #import <MBProgressHUD.h>
 #import "UIImage+Utils.h"
+#import <CRToast.h>
 
 
 @interface CreateVoteController()<UIImagePickerControllerDelegate,RSKImageCropViewControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
@@ -43,7 +44,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (assign) QuestionType questionType;
-
+@property (nonatomic,strong) NSString *creatorName; // only used for staff
 @property (assign) BOOL selfieTitle;
 @property (assign) BOOL selfie1;
 @property (assign) BOOL selfie2;
@@ -53,6 +54,7 @@
 @property (strong,nonatomic) AMPopTip *popTip;
 @property (strong,nonatomic) MBProgressHUD *hud;
 @property (assign)BOOL shownPopTip1;
+@property (assign) BOOL askedStaff;
 
 // constraints
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *selfieWidthConstraint;
@@ -95,6 +97,11 @@
     if (!self.shownPopTip1){
         [self showPopTipWithText:NSLocalizedString(@"Tap above to choose picture", nil) andDelay:0];
         self.shownPopTip1 = YES;
+    }
+    
+    if (self.createCardAs == CreateCardAsStaff && !self.askedStaff){
+        [self askStaff];
+        self.askedStaff = YES;
     }
     
     
@@ -227,6 +234,84 @@
 
 }
 
+- (void)saveImageToCameraRoll:(UIImage *)image
+{
+    UIImageWriteToSavedPhotosAlbum(image,nil,nil,nil);
+}
+
+- (void)askStaff
+{
+    PSTAlertController *alert = [PSTAlertController alertControllerWithTitle:NSLocalizedString(@"Choose Staff", nil)
+                                                                     message:NSLocalizedString(@"You're seeing this because you're on the Choose staff. Would you like to create this card with a name (profile) other then your own?", nil)
+                                                              preferredStyle:PSTAlertControllerStyleAlert];
+    
+    PSTAlertAction *yes = [PSTAlertAction actionWithTitle:NSLocalizedString(@"YES", nil) style:PSTAlertActionStyleDefault
+                                                      handler:^(PSTAlertAction *action) {
+                                                          [alert dismissAnimated:YES completion:nil];
+                                                          [self getNameFromStaff];
+                                                          
+                                                      }];
+    
+    
+    
+    PSTAlertAction *no = [PSTAlertAction actionWithTitle:NSLocalizedString(@"NO", nil) style:PSTAlertActionStyleDefault
+                                                   handler:^(PSTAlertAction *action) {
+                                                       [alert dismissAnimated:YES completion:nil];
+                                                   }];
+    [alert addAction:yes];
+    [alert addAction:no];
+    [alert showWithSender:self controller:self animated:YES completion:nil];
+
+}
+
+- (void)getNameFromStaff
+{
+    PSTAlertController *alert = [PSTAlertController alertControllerWithTitle:NSLocalizedString(@"Create Fake User", nil)
+                                                                     message:NSLocalizedString(@"Enter the name of the user you want to be displayed for this card. The server will create a temporary fake user to be displayed. Used by staff only.", nil)
+                                                              preferredStyle:PSTAlertControllerStyleAlert];
+    
+    PSTAlertAction *cancel = [PSTAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:PSTAlertActionStyleCancel
+                                                  handler:^(PSTAlertAction *action) {
+                                                      [alert dismissAnimated:YES completion:nil];
+                                                      
+                                                  }];
+    
+    
+    
+    PSTAlertAction *done = [PSTAlertAction actionWithTitle:NSLocalizedString(@"Done", nil) style:PSTAlertActionStyleDefault
+                                                 handler:^(PSTAlertAction *action) {
+                                                     self.creatorName = alert.textField.text;
+                                                     [alert dismissAnimated:YES completion:nil];
+                                                     // let user know
+                                                     NSDictionary *options = @{
+                                                                               kCRToastTextKey :[NSString stringWithFormat:@"Creating card as %@",self.creatorName],
+                                                                               kCRToastTextAlignmentKey : @(NSTextAlignmentCenter),
+                                                                               kCRToastBackgroundColorKey : [UIColor colorWithHexString:kColorFlatTurquoise],
+                                                                               kCRToastAnimationInTypeKey : @(CRToastAnimationTypeGravity),
+                                                                               kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeGravity),
+                                                                               kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionTop),
+                                                                               kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionTop),
+                                                                               kCRToastTextColorKey:[UIColor whiteColor],
+                                                                               kCRToastFontKey:[UIFont fontWithName:kFontGlobalBold size:15],
+                                                                               kCRToastNotificationTypeKey:@(CRToastTypeNavigationBar),
+                                                                               kCRToastTimeIntervalKey:@5
+                                                                               };
+                                                     [CRToastManager showNotificationWithOptions:options
+                                                                                 completionBlock:^{
+                                                                                 }];
+
+
+                                                 }];
+    [alert addAction:cancel];
+    [alert addAction:done];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = NSLocalizedString(@"Enter name", nil);
+        textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    }];
+    
+    [alert showWithSender:self controller:self animated:YES completion:nil];
+}
+
 - (BOOL)checkRequired
 {
     // First check images are there
@@ -281,7 +366,7 @@
 - (void)askQuestionType
 {
     PSTAlertController *alert = [PSTAlertController alertControllerWithTitle:NSLocalizedString(@"Choose question type", nil)
-                                                                     message:NSLocalizedString(@"Is this a 'YES or NO' question or 'A or B' question?", nil)
+                                                                     message:NSLocalizedString(@"Is this a 'YES or NO' question or an 'A or B' question?", nil)
                                                               preferredStyle:PSTAlertControllerStyleAlert];
     
     PSTAlertAction *yesORno = [PSTAlertAction actionWithTitle:NSLocalizedString(@"YES or NO", nil) style:PSTAlertActionStyleDefault
@@ -357,6 +442,8 @@
     self.hud.labelText = NSLocalizedString(@"Submitting Card...", nil);
     
     UIImage *shareImage = [self.topHalfView convertViewToImage];
+    
+    [self saveImageToCameraRoll:shareImage];
     //shareImage = [UIImage imageWithImage:shareImage convertToSize:CGSizeMake(600, 600)];
     NSString *base64Image = [self base64Image:shareImage compress:NO];
     int question_type = 0;
@@ -367,10 +454,13 @@
         question_type = 101;
     }
     
-    NSDictionary *params = @{@"question":self.titleLabel.text,
+    NSMutableDictionary *params = [@{@"question":self.titleLabel.text,
                              @"question_type":[NSNumber numberWithInt:question_type],
                              @"facebook_id":self.localUser.facebook_id,
-                             @"image":base64Image};
+                             @"image":base64Image} mutableCopy];
+    if (self.creatorName){
+        params[@"creator_name"] = self.creatorName;
+    }
     
     [User createCardWithParams:params
                          block:^(APIRequestStatus status, id data) {
@@ -613,6 +703,7 @@
 {
 
 }
+
 
 #pragma -mark Helper
 -(void)showMessageWithTitle:(NSString *)title andMessage:(NSString *)message

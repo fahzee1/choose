@@ -231,6 +231,22 @@
   
 }
 
+- (void)saveLinkOnServer
+{
+    [User updateCardWithID:self.card.id
+                withParams:@{@"branch_link":self.shareLink}
+                     block:^(APIRequestStatus status, id  _Nonnull data) {
+                         if (status == APIRequestStatusSuccess){
+                             DLog(@"saved link %@",self.shareLink);
+                         }
+                         else{
+                             DLog(@"failed to save link");
+                         }
+                     }];
+
+}
+
+
 - (void)createLink
 {
     
@@ -262,6 +278,7 @@
                                                  andCallback:^(NSString *url, NSError *error) {
                                                      if (!error){
                                                          self.shareLink = url;
+                                                         [self saveLinkOnServer];
                                                      }
                                                  }];
 

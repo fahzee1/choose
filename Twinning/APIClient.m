@@ -29,6 +29,7 @@
         client.responseSerializer = [AFJSONResponseSerializer serializer];
         client.requestSerializer = [AFJSONRequestSerializer serializer];
         [client.requestSerializer setValue:key forHTTPHeaderField:@"Authorization"];
+        [client.requestSerializer setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
         //client.apiKeyFound = YES;
     });
     

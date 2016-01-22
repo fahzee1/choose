@@ -17,6 +17,7 @@
 #import <AMPopTip.h>
 #import "User+CoreDataProperties.h"
 #import "FullScreenImageViewController.h"
+#import "ProfileViewController.h"
 
 @interface ChooseViewController ()<HomeContainerDelegate>
 @property (weak, nonatomic) IBOutlet UINavigationBar *navbar;
@@ -81,7 +82,14 @@
 
 - (void)fetchCardFromServer
 {    
-    [User getCardWithID:self.card.id
+    NSNumber *card_id;
+    if (self.cardID){
+        card_id = self.cardID;
+    }
+    else{
+        card_id = self.card.id;
+    }
+    [User getCardWithID:card_id
                   block:^(APIRequestStatus status, id data) {
                       if (status == APIRequestStatusSuccess){
                           Card *card = [Card createCardWithData:data[@"data"][@"card"]];
@@ -133,9 +141,16 @@
 
 - (void)close
 {
-    [self.cardContainerView reset];
-    self.doneVoting = NO;
-    [self.deepLinkingCompletionDelegate deepLinkingControllerCompleted];
+    if (self.cardID){
+        // being shown from notification or other wise
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else{
+        // being shown from branch link click
+        [self.cardContainerView reset];
+        self.doneVoting = NO;
+        [self.deepLinkingCompletionDelegate deepLinkingControllerCompleted];
+    }
 }
 
 - (void)sendVoteWithCard:(Card *)card andVote:(int)vote
@@ -193,6 +208,16 @@
     controller.image = img;
     [self presentViewController:controller animated:NO completion:nil];
 
+}
+- (void)homeViewTappedUserContainer:(HomeContainerView *)view
+{
+    UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardProfile];
+    if ([controller isKindOfClass:[ProfileViewController class]]){
+        ((ProfileViewController *)controller).card = view.card;
+        ((ProfileViewController *)controller).screenType = ProfileScreenOthers;
+        UINavigationController *base = [[UINavigationController alloc] initWithRootViewController:controller];
+        [self presentViewController:base animated:YES completion:nil];
+    }
 }
 
 #pragma -mark Deep link controller

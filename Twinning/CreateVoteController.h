@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "User+CoreDataProperties.h"
 
+typedef NS_ENUM(NSInteger,CreateCardAs) {
+    CreateCardAsStaff = 100,
+    CreateCardAsNormal
+};
 
 @interface CreateVoteController : UIViewController
 @property (strong,nonatomic) User *localUser;
+@property (assign) CreateCardAs createCardAs;
 
 @end

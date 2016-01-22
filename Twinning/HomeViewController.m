@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "MenuViewController.h"
+#import "ChooseViewController.h"
 #import "APIClient.h"
 #import "ViewController.h"
 #import "HomeFeedCell.h"
@@ -39,6 +40,9 @@
 #import <LaunchKit/LaunchKit.h>
 #import <ChameleonFramework/Chameleon.h>
 #import <PINCache.h>
+#import <Parse/Parse.h>
+#import <TestFairy.h>
+
 
 @interface HomeViewController()<UIScrollViewDelegate,HomeContainerDelegate,MMInterstitialDelegate,FBInterstitialAdDelegate,HomeErrorViewDelegate>
 
@@ -151,7 +155,6 @@
     }
     
     
-    //[[PINCache sharedCache] removeObjectForKey:self.serverQuery];
     
     // Launchkit stuff
     if ([self.localUser.logged_in boolValue]){
@@ -168,18 +171,18 @@
     }];
     
     
+    // create channel for PArse
+    [self createParseChannel];
+    
     // show quick tip
     [self showFirstPopUp];
-
-    // set user defaults
-    [self saveLocalUserDefaults];
     
     if (!self.firstDataFetch){
         [self fetchCardsForScrollView:self.scrollView];
         self.firstDataFetch = YES;
     }
     
-
+    [self fetchUserInfo];
     [self fetchLatestShareText];
 
 }
@@ -210,6 +213,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showShareScreen:) name:kNotificationSubmittedCard object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closedAdNotif:) name:kNotificationClosedADPlacement object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginScreen) name:kNotificationLogOut object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showMyCardContoller:) name:kNotificationShowCardWithId object:nil];
 }
 
 - (void)showFirstPopUp
@@ -228,35 +232,6 @@
         
     }
 
-}
-
-- (void)checkUserStatus
-{
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults boolForKey:kAnonymousUser]){
-        self.userStatus = UserStatusAnonymous;
-    }
-    else if ([defaults valueForKey:kLocalUserAuthKey]){
-        self.userStatus = UserStatusLoggedIn;
-    }
-    
-}
-
-- (void)saveLocalUserDefaults
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults boolForKey:@"loggedIn"]){
-        [defaults setValue:self.localUser.email forKey:kEmail];
-        [defaults setValue:self.localUser.name forKey:kUsername];
-        [defaults setValue:self.localUser.facebook_id forKey:kID];
-    }
-    else if ([defaults boolForKey:kAnonymousUser]){
-        [defaults setValue:kAnonymousUser forKey:kEmail];
-        [defaults setValue:kAnonymousUser forKey:kUsername];
-        [defaults setValue:kAnonymousUser forKey:kID];
-    }
-    
 }
 
 - (void)showLoginScreen
@@ -280,6 +255,50 @@
     
 
     
+}
+
+- (void)createParseChannel
+{
+    if (self.localUser.name){
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        NSArray *channels = currentInstallation.channels;
+        for (NSString *channel in channels){
+            if ([channel isEqualToString:[self.localUser formattedName]]){
+                return;
+            }
+        }
+        
+        [currentInstallation addUniqueObject:[self.localUser formattedName] forKey:@"channels"];
+        [currentInstallation saveInBackground];
+
+    }
+}
+
+- (void)fetchUserInfo
+{
+    [User getMe:^(APIRequestStatus status, id  _Nonnull data) {
+        if (status == APIRequestStatusSuccess){
+            NSDictionary *userData = data[@"data"][@"user"];
+            NSString *username = userData[@"username"];
+            NSString *email = userData[@"email"];
+            NSNumber *is_staff = userData[@"is_staff"];
+            NSString *facebook_id = userData[@"facebook_id"];
+            
+            self.localUser.name = username;
+            self.localUser.email = email;
+            self.localUser.is_staff = is_staff;
+            self.localUser.facebook_id = facebook_id;
+            [self.localUser.managedObjectContext save:nil];
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setValue:email forKey:kEmail];
+            [defaults setValue:username forKey:kUsername];
+            [defaults setValue:facebook_id forKey:kID];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationUserTrackingReady object:nil];
+            
+        }
+    }];
 }
 
 - (void)fetchLatestShareText
@@ -307,77 +326,79 @@
     if ([self.cardData count] > 0){
         [self setupCardsOnScrollView:scrollview];
     }
+    else{
+        self.serverUUID = @"000";
+    }
     
-    // Still check if we have any newer data from server
-    if (!self.stopServerFetch){
-        self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        self.hud.labelText = NSLocalizedString(@"Loading...", nil);
-        
-        NSString *query = self.serverQuery;
-        NSString *limit = self.serverLimit;
-        NSString *offset = self.serverOffset;
-        NSString *uuid = self.serverUUID;
-        
-        [User showCardsWithParams:@{}
-                        GETParams:[NSString stringWithFormat:@"?q=%@&limit=%@&offset=%@&uuid=%@",query,limit,offset,uuid]
-                            block:^(APIRequestStatus status, id data,NSInteger status_code) {
-                                [self.hud hide:YES];
-                                if (status == APIRequestStatusSuccess){
-                                    
-                                    if (status_code == 222){
-                                        if ([self.scrollView.subviews count] > 0){
-                                            return;
-                                        }
-                                        else{
-                                            [self showErrorView];
-                                            // assumes that we have a stale uuid so send this to get new data
-                                            self.serverUUID = @"000";
-                                        }
-                                    }
-                                    
-                                    [self.cardData removeAllObjects];
-                                    for (NSDictionary *cardDict in data[@"data"][@"cards"]){
-                                        Card *card = [Card createCardWithData:cardDict];
-                                        [self.cardData addObject:card];
-                                        
-                                    }
-                                    
-                                    if ([self.cardData count] > 0){
-                                        [[PINCache sharedCache] setObject:self.cardData forKey:self.serverQuery];
-                                    
-                                        // if we have data layout cards and get offsets and limits
-                                        // get next limit and offset from data and store it locally
-                                        NSNumber *next_limit = data[@"data"][@"next_limit"];
-                                        NSNumber *next_offset = data[@"data"][@"next_offset"];
-                                        
-                                        if (![next_limit intValue] || ![next_offset intValue]){
-                                            self.stopServerFetch = YES;
-                                        }
-                                        else{
-                                            self.serverLimit = [NSString stringWithFormat:@"%@",next_limit];
-                                            self.serverOffset = [NSString stringWithFormat:@"%@",next_offset];
-                                        }
-                                        
-                                        [self saveUUID:data[@"data"][@"uuid"]];
-
-                                        [self setupCardsOnScrollView:scrollview];
+// Still check if we have any newer data from server
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.labelText = NSLocalizedString(@"Loading...", nil);
+    
+    NSString *query = self.serverQuery;
+    NSString *limit = self.serverLimit;
+    NSString *offset = self.serverOffset;
+    NSString *uuid = self.serverUUID;
+    
+    [User showCardsWithParams:@{}
+                    GETParams:[NSString stringWithFormat:@"?q=%@&limit=%@&offset=%@&uuid=%@",query,limit,offset,uuid]
+                        block:^(APIRequestStatus status, id data,NSInteger status_code) {
+                            [self.hud hide:YES];
+                            if (status == APIRequestStatusSuccess){
+                                
+                                if (status_code == 222){
+                                    if ([self.scrollView.subviews count] > 0){
+                                        return;
                                     }
                                     else{
-                                        // there were no cards so show error
                                         [self showErrorView];
+                                        // assumes that we have a stale uuid so send this to get new data
+                                        self.serverUUID = @"000";
+                                    }
+                                }
+                                
+                                [self.cardData removeAllObjects];
+                                for (NSDictionary *cardDict in data[@"data"][@"cards"]){
+                                    Card *card = [Card createCardWithData:cardDict];
+                                    [self.cardData addObject:card];
+                                    
+                                }
+                                
+                                if ([self.cardData count] > 0){
+                                    [[PINCache sharedCache] setObject:self.cardData forKey:self.serverQuery];
+                                
+                                    // if we have data layout cards and get offsets and limits
+                                    // get next limit and offset from data and store it locally
+                                    NSNumber *next_limit = data[@"data"][@"next_limit"];
+                                    NSNumber *next_offset = data[@"data"][@"next_offset"];
+                                    
+                                    if (![next_limit intValue] || ![next_offset intValue]){
+                                        self.stopServerFetch = YES;
+                                    }
+                                    else{
+                                        self.serverLimit = [NSString stringWithFormat:@"%@",next_limit];
+                                        self.serverOffset = [NSString stringWithFormat:@"%@",next_offset];
                                     }
                                     
-                                    
+                                    [self saveUUID:data[@"data"][@"uuid"]];
+
+                                    [self setupCardsOnScrollView:scrollview];
                                 }
                                 else{
-                                    DLog(@"There was an issue fetching new cards. Please try again.");
-                                    if ([self.cardData count] == 0){
-                                        [self showErrorView];
-                                    }
+                                    // there were no cards so show error
+                                    [self showErrorView];
                                 }
-                            }];
-    }
+                                
+                                
+                            }
+                            else{
+                                DLog(@"There was an issue fetching new cards. Please try again.");
+                                if ([self.cardData count] == 0){
+                                    [self showErrorView];
+                                }
+                            }
+                        }];
 }
+
 
 - (void)saveUUID:(NSString *)uuid
 {
@@ -400,6 +421,9 @@
     /*
      share dict will have 'message', 'id', and 'display'
      */
+    if (!share_text || [share_text isKindOfClass:[NSNull class]]){
+        return;
+    }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSNumber *oldShareID = [defaults objectForKey:kServerShareTextID];
@@ -621,6 +645,22 @@
 
 }
 
+- (void)showMyCardContoller:(NSNotification *)notif
+{
+    NSDictionary *data = notif.userInfo;
+    NSNumber *card_id = data[@"card_id"];
+    if (card_id){
+        ProfileViewController *profileController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kStoryboardProfile];
+        profileController.card_id = card_id;
+        profileController.localUser = self.localUser;
+        profileController.screenType = ProfileScreenMe;
+        UINavigationController *base = [[UINavigationController alloc] initWithRootViewController:profileController];
+        [self presentViewController:base animated:YES completion:nil];
+    }
+}
+
+
+
 - (void)showMenu
 {
     ECSlidingViewController *controller = [self slidingViewController];
@@ -713,7 +753,7 @@
         ((ShareViewController *)controller).topImage = checkImage;
         ((ShareViewController *)controller).shareImage = shareImage;
         ((ShareViewController *)controller).imageViewText = shareText;
-        ((ShareViewController *)controller).subtitleText = NSLocalizedString(@"We receive thousands of cards daily and choose the best. Poll friends for a better chance at being featured. Good Luck!", nil);
+        ((ShareViewController *)controller).subtitleText = NSLocalizedString(@"We receive ALOT of cards daily, so only the intersting ones will be chosen. Ask friends for a better chance at being featured.", nil);
         ((ShareViewController *)controller).titleText = NSLocalizedString(@"YOUR CARD WAS CREATED!", nil);
         //((ShareViewController *)controller).bottomShareText = NSLocalizedString(@"Ask ", nil)
         

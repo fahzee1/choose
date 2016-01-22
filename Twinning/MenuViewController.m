@@ -13,12 +13,17 @@
 #import "EasyFacebook.h"
 #import "ProfileViewController.h"
 #import "SearchViewController.h"
+#import "CreateVoteController.h"
 #import "UIColor+HexValue.h"
 #import <UIViewController+ECSlidingViewController.h>
 #import "constants.h"
 #import <SCLAlertView.h>
 #import <SCLAlertViewStyleKit.h>
 #import <MessageUI/MessageUI.h>
+#import <PSTAlertController.h>
+#import <CRToast.h>
+#import <Parse/Parse.h>
+
 
 @interface MenuViewController()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
@@ -97,6 +102,57 @@
     }];
 }
 
+- (void)showNotificationAlert
+{
+    PSTAlertController *alert = [PSTAlertController alertControllerWithTitle:NSLocalizedString(@"Send Notification", nil)
+                                                                     message:NSLocalizedString(@"You're allowed to do this because you are staff. Enter the message to send as notification to all users of this app.", nil)
+                                                              preferredStyle:PSTAlertControllerStyleAlert];
+    
+    PSTAlertAction *cancel = [PSTAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:PSTAlertActionStyleCancel
+                                                     handler:^(PSTAlertAction *action) {
+                                                         [alert dismissAnimated:YES completion:nil];
+                                                         
+                                                     }];
+    
+    
+    
+    PSTAlertAction *done = [PSTAlertAction actionWithTitle:NSLocalizedString(@"Done", nil) style:PSTAlertActionStyleDefault
+                                                   handler:^(PSTAlertAction *action) {
+                                                       if (alert.textField.text){
+                                                           PFPush *push = [[PFPush alloc] init];
+                                                           [push setChannel:@"Choose"];
+                                                           [push setMessage:alert.textField.text];
+                                                           [push sendPushInBackground];
+                                                       }
+                                                       
+                                                       [alert dismissAnimated:YES completion:nil];
+                                                       // let user know
+                                                       NSDictionary *options = @{
+                                                                                 kCRToastTextKey :@"Sent notification",
+                                                                                 kCRToastTextAlignmentKey : @(NSTextAlignmentCenter),
+                                                                                 kCRToastBackgroundColorKey : [UIColor colorWithHexString:kColorFlatTurquoise],
+                                                                                 kCRToastAnimationInTypeKey : @(CRToastAnimationTypeGravity),
+                                                                                 kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeGravity),
+                                                                                 kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionTop),
+                                                                                 kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionTop),
+                                                                                 kCRToastTextColorKey:[UIColor whiteColor],
+                                                                                 kCRToastFontKey:[UIFont fontWithName:kFontGlobalBold size:15],
+                                                                                 kCRToastNotificationTypeKey:@(CRToastTypeNavigationBar)
+                                                                                 };
+                                                       [CRToastManager showNotificationWithOptions:options
+                                                                                   completionBlock:^{
+                                                                                   }];
+                                                       
+                                                       
+                                                   }];
+    [alert addAction:cancel];
+    [alert addAction:done];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = NSLocalizedString(@"Enter message", nil);
+    }];
+    
+    [alert showWithSender:self controller:self animated:YES completion:nil];
+}
 
 - (IBAction)tappedSearchButton:(UIButton *)sender {
     if (self.delegate){
@@ -142,6 +198,7 @@
     }
     else{
         instagramURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://instagram.com/%@",kInstagramUserName]];
+        [[UIApplication sharedApplication] openURL:instagramURL];
     }
 }
 
@@ -153,6 +210,7 @@
     }
     else{
         fbURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.facebook.com/%@",kFacebookPageName]];
+        [[UIApplication sharedApplication] openURL:fbURL];
     }
 
 }
@@ -252,7 +310,12 @@
     }
     else if (section == 2){
         // social
-        return 3;
+        if ([self.localUser.is_staff boolValue]){
+            return 5;
+        }
+        else{
+            return 3;
+        }
     }
     else{
         return 0;
@@ -263,6 +326,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellText = @"";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"menuCell"];
+    cell.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
+    cell.contentView.backgroundColor = [UIColor colorWithHexString:kColorBlackSexy];
+    
     if (indexPath.section == 0){
         
         if ([self.menuTitles count] > 0){
@@ -340,6 +407,22 @@
                 cellText = NSLocalizedString(@"Give Us A Review", nil);
             }
                 break;
+            case 3:
+            {
+                // This cell only shows for staff users
+                cellText = NSLocalizedString(@"CREATE AS CHOOSE STAFF", nil);
+                cell.backgroundColor = [UIColor colorWithHexString:kColorFlatOrange];
+                cell.contentView.backgroundColor = [UIColor colorWithHexString:kColorFlatOrange];
+            }
+                break;
+            case 4:
+            {
+                // This cell only shows for staff users
+                cellText = NSLocalizedString(@"SEND NOTIFICATION", nil);
+                cell.backgroundColor = [UIColor colorWithHexString:kColorFlatPurple];
+                cell.contentView.backgroundColor = [UIColor colorWithHexString:kColorFlatPurple];
+            }
+                break;
             default:
             {
                 cellText = @"Set default";
@@ -350,7 +433,6 @@
     }
 
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"menuCell"];
     ((MenuCell *)cell).name.text = cellText;
     
 
@@ -517,7 +599,30 @@
                                           [self openAppStoreReview];
                                       }];
             }
+                break;
+            case 3:
+            {
+                // Only staff memebers will see this
                 
+                UIViewController *createController = [self.storyboard instantiateViewControllerWithIdentifier:kStoryboardCreateVote];
+                if ([createController isKindOfClass:[CreateVoteController class]]){
+                    ((CreateVoteController *)createController).localUser = self.localUser;
+                    ((CreateVoteController *)createController).createCardAs = CreateCardAsStaff;
+                }
+                
+                UINavigationController *base = [[UINavigationController alloc] initWithRootViewController:createController];
+                [controller resetTopViewAnimated:YES
+                                      onComplete:^{
+                                          [controller.topViewController presentViewController:base animated:YES completion:nil];
+                                      }];
+
+
+            }
+                break;
+            case 4:{
+                [self showNotificationAlert];
+            }
+                break;
             default:
                 break;
         }

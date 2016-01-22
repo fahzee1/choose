@@ -334,7 +334,7 @@
 {
     FBSDKAppInviteContent *content =[[FBSDKAppInviteContent alloc] init];
     content.appLinkURL = [NSURL URLWithString:@"https://fb.me/216976028635544"];
-    content.appInvitePreviewImageURL = [NSURL URLWithString:@"http://api.trychoose.com/static/vegas.png"];
+    content.appInvitePreviewImageURL = [NSURL URLWithString:@"http://images.trychoose.com/static/choose-facebook-add.png"];
     
     [FBSDKAppInviteDialog showFromViewController:controller
                                      withContent:content

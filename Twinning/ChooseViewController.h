@@ -11,4 +11,5 @@
 
 @interface ChooseViewController : UIViewController<BranchDeepLinkingController>
 
+@property (strong,nonatomic) NSNumber *cardID;
 @end

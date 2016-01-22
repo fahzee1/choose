@@ -9,11 +9,13 @@
 #import "AFHTTPSessionManager.h"
 
 // Base
-static NSString * const APIBaseUrlString = @"http://192.168.200.187:8000/api/";
+//static NSString * const APIBaseUrlString = @"http://192.168.200.187:8000/api/";
 //static NSString * const APIBaseUrlString = @"http://192.168.1.74:8080/api/";
+static NSString * const APIBaseUrlString = @"http://api.trychoose.com/api/";
 
 // User Endpoints
 static NSString * const APIUsersString = @"users";
+static NSString * const APIMeString = @"users/me";
 static NSString * const APILoginString = @"users/login";
 
 
