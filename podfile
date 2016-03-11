@@ -35,6 +35,7 @@ pod 'Branch'
 pod "LaunchKit"
 pod 'ChameleonFramework'
 pod 'TestFairy'
+pod 'SDVersion'
 end
 
 target 'ChooseTests' do

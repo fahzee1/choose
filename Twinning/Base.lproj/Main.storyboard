@@ -47,15 +47,24 @@
                                     <action selector="tappedSkipLogin:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ibH-ed-mPr"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOX-Vt-JjV">
+                                <rect key="frame" x="10" y="277" width="580" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.094064298860000006" blue="0.061544607360000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="rtx-LT-kYK" secondAttribute="trailing" constant="30" id="1YQ-O2-xlA"/>
                             <constraint firstAttribute="centerX" secondItem="FCX-Af-lY8" secondAttribute="centerX" id="2ar-0B-jnk"/>
                             <constraint firstItem="FCX-Af-lY8" firstAttribute="top" secondItem="rtx-LT-kYK" secondAttribute="bottom" constant="17" id="Dca-SO-KYg"/>
+                            <constraint firstItem="pOX-Vt-JjV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="IJo-yP-Cpe"/>
                             <constraint firstAttribute="centerX" secondItem="RHY-Gw-XB0" secondAttribute="centerX" id="OUL-hH-xgc"/>
+                            <constraint firstItem="rtx-LT-kYK" firstAttribute="top" secondItem="pOX-Vt-JjV" secondAttribute="bottom" constant="18" id="SdK-D3-n2M"/>
                             <constraint firstAttribute="centerX" secondItem="rtx-LT-kYK" secondAttribute="centerX" id="TLV-o8-gvi"/>
                             <constraint firstItem="rtx-LT-kYK" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="30" id="V0e-Le-hkz"/>
+                            <constraint firstAttribute="trailing" secondItem="pOX-Vt-JjV" secondAttribute="trailing" constant="10" id="WZN-gb-CeS"/>
                             <constraint firstItem="RHY-Gw-XB0" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="46" id="gLf-uE-P2j"/>
                             <constraint firstItem="rtx-LT-kYK" firstAttribute="top" secondItem="RHY-Gw-XB0" secondAttribute="bottom" constant="56" id="vqw-9Y-22u"/>
                         </constraints>
@@ -63,6 +72,7 @@
                     <navigationItem key="navigationItem" id="Ta7-MT-p3E"/>
                     <connections>
                         <outlet property="facebookButton" destination="rtx-LT-kYK" id="bb6-I5-3Zz"/>
+                        <outlet property="facebookInfoLabel" destination="pOX-Vt-JjV" id="VZV-0j-UEs"/>
                         <outlet property="skipLoginButton" destination="FCX-Af-lY8" id="sTE-5b-smX"/>
                     </connections>
                 </viewController>

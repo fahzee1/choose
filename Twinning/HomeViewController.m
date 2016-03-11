@@ -42,6 +42,7 @@
 #import <PINCache.h>
 #import <Parse/Parse.h>
 #import <TestFairy.h>
+#import "SDVersion.h"
 
 
 @interface HomeViewController()<UIScrollViewDelegate,HomeContainerDelegate,MMInterstitialDelegate,FBInterstitialAdDelegate,HomeErrorViewDelegate>
@@ -118,8 +119,70 @@
     
     //[self makeTestCards];
     
-    
-    
+    switch ([SDVersion deviceVersion]) {
+        case iPad1:
+        {
+            [self ipadMakeNoise];
+        }
+            break;
+        case iPad2:
+        {
+            [self ipadMakeNoise];
+        }
+            break;
+        case iPad3:
+        {
+            [self ipadMakeNoise];
+        }
+            break;
+        case iPad4:
+        {
+            [self ipadMakeNoise];
+        }
+            break;
+        case iPadAir:
+        {
+            [self ipadMakeNoise];
+        }
+            break;
+        case iPadAir2:
+        {
+            [self ipadMakeNoise];
+        }
+            break;
+        case iPadMini:
+        {
+            [self ipadMakeNoise];
+        }
+            break;
+        case iPadMini2:
+        {
+            [self ipadMakeNoise];
+        }
+            break;
+        case iPadMini3:
+        {
+            [self ipadMakeNoise];
+        }
+            break;
+        case iPadMini4:
+        {
+            [self ipadMakeNoise];
+            
+        }
+            break;
+        case iPadPro:
+        {
+            [self ipadMakeNoise];
+        }
+            break;
+        default:
+        {
+            DLog(@"default here");
+        }
+            break;
+    }
+
     
     [self setup];
     [self setupInterstitialMillenialAd];
@@ -205,6 +268,16 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (void)ipadMakeNoise
+{
+    int offset = 60;
+    if (IS_IPHONE_4_OR_LESS){
+        offset = 0;
+    }
+    self.scrollView.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, SCREEN_HEIGHT - 50);
+}
+
 
 - (void)listenForNotifications
 {
@@ -825,6 +898,14 @@
 }
 
 #pragma -mark HomeContainerView
+- (void)homeViewTappedReport:(HomeContainerView *)view
+{
+    [PSTAlertController presentDismissableAlertWithTitle:NSLocalizedString(@"Thanks!", nil)
+                                                 message:NSLocalizedString(@"This question has been reported and will be looked at and potentially removed by our moderators.", nil)
+                                              controller:self];
+    
+}
+
 - (void)homeView:(HomeContainerView *)view tappedButtonNumber:(int)number forType:(QuestionType)type
 {
     // number will be button 1 or button 2

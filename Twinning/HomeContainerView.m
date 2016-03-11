@@ -60,6 +60,7 @@
     self.button1.titleLabel.font = [UIFont fontWithName:kFontGlobalBold size:25];
     self.button2.titleLabel.font = [UIFont fontWithName:kFontGlobalBold size:25];
     
+    self.reportButton.titleLabel.font = [UIFont fontWithName:kFontGlobalBold size:15];
 
     for (UIView *view in self.subviews){
         if ([view isKindOfClass:[UILabel class]]){
@@ -185,6 +186,12 @@
     if (self.delegate){
         [self.delegate homeViewTappedUserContainer:self];
     }
+}
+- (IBAction)tappedReport:(UIButton *)sender {
+    if (self.delegate){
+        [self.delegate homeViewTappedReport:self];
+    }
+    
 }
 
 - (IBAction)tappedImageViewTwice:(UITapGestureRecognizer *)sender {

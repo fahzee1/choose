@@ -86,7 +86,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
-      customArchiveName = "Choose - Test Fairy"
+      customArchiveName = "Choose - App Store"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

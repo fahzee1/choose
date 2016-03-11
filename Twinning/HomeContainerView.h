@@ -16,6 +16,7 @@
 - (void)homeView:(HomeContainerView *)view tappedButtonNumber:(int)number forType:(QuestionType)type;
 - (void)homeView:(HomeContainerView *)view tappedShareImage:(UIImage *)img withTitle:(NSString *)title;
 - (void)homeView:(HomeContainerView *)view tappedFullScreenImage:(UIImage *)img;
+- (void)homeViewTappedReport:(HomeContainerView *)view;
 - (void)homeViewTappedUserContainer:(HomeContainerView *)view;
 
 @end
@@ -31,6 +32,8 @@
 @property (weak, nonatomic) IBOutlet UIView *userContainerView;
 @property (weak, nonatomic) IBOutlet UIButton *button1;
 @property (weak, nonatomic) IBOutlet UIButton *button2;
+@property (weak, nonatomic) IBOutlet UIButton *reportButton;
+
 
 @property (assign)BOOL showCheckOnLargerPercentage;
 

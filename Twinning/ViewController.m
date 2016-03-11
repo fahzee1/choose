@@ -14,12 +14,15 @@
 #import "APIClient.h"
 #import <Onboard/OnboardingViewController.h>
 #import <ChameleonFramework/Chameleon.h>
+#import "SDVersion.h"
 
 @interface ViewController ()
 @property (strong,nonatomic) MBProgressHUD *hud;
 @property (weak, nonatomic) IBOutlet UIButton *facebookButton;
 @property (weak, nonatomic) IBOutlet UIButton *skipLoginButton;
 @property (strong, nonatomic) OnboardingViewController *onboard;
+
+@property (weak, nonatomic) IBOutlet UILabel *facebookInfoLabel;
 
 // This is to verify we're attempting to login with fbook
 @property BOOL facebookIsLoggingIn;
@@ -58,6 +61,10 @@
     self.skipLoginButton.titleLabel.font = [UIFont fontWithName:kFontGlobalBold size:20];
     [self.skipLoginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.skipLoginButton setTitle:NSLocalizedString(@"Skip Login", nil) forState:UIControlStateNormal];
+    
+    self.facebookInfoLabel.font = [UIFont fontWithName:kFontGlobalBold size:15];
+    [self.facebookInfoLabel setTextColor:[UIColor whiteColor]];
+    self.facebookInfoLabel.text = NSLocalizedString(@"Facebook is only used to create an account with Choose. We will not be collecting your email or posting anything to your account", nil);
 }
 - (void)listenForNotifs
 {
@@ -260,6 +267,79 @@ typedef void (^ResponseBlock2) (bool success, id data);
     self.onboard.buttonFontSize = 17;
     self.onboard.topPadding = 10;
     self.onboard.iconSize = 300;
+    
+    switch ([SDVersion deviceVersion]) {
+        case iPad1:
+        {
+            [self addBottomPadding];
+        }
+            break;
+        case iPad2:
+        {
+            [self addBottomPadding];
+        }
+            break;
+        case iPad3:
+        {
+            [self addBottomPadding];
+        }
+            break;
+        case iPad4:
+        {
+            [self addBottomPadding];
+        }
+            break;
+        case iPadAir:
+        {
+            [self addBottomPadding];
+        }
+            break;
+        case iPadAir2:
+        {
+            [self addBottomPadding];
+        }
+            break;
+        case iPadMini:
+        {
+            [self addBottomPadding];
+        }
+            break;
+        case iPadMini2:
+        {
+            [self addBottomPadding];
+        }
+            break;
+        case iPadMini3:
+        {
+            [self addBottomPadding];
+        }
+            break;
+        case iPadMini4:
+        {
+            [self addBottomPadding];
+            
+        }
+            break;
+        case iPadPro:
+        {
+            [self addBottomPadding];
+        }
+            break;
+        default:
+        {
+            DLog(@"default here");
+        }
+            break;
+    }
+
+}
+
+- (void)addBottomPadding
+{
+    self.onboard.topPadding = 5;
+    self.onboard.underIconPadding = 0;
+    self.onboard.underTitlePadding = 0;
+    self.onboard.bottomPadding = 0;
 }
 
 - (void)showOnBoardScreens

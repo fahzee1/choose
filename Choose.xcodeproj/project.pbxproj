@@ -899,6 +899,7 @@
 			baseConfigurationReference = 47B92AAACA81288A3BC87731 /* Pods-Choose.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
@@ -906,7 +907,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Emeka Enterprises LLC (JM95HR8LQB)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -923,7 +924,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.self.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Choose;
-				PROVISIONING_PROFILE = "2e8ef5cd-8da2-4392-bec4-66f2515a5eab";
+				PROVISIONING_PROFILE = "0c6de80b-e7b8-4a73-96c0-e9ef42a939bd";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -932,6 +934,7 @@
 			baseConfigurationReference = F7201E07E2499017D7F94B50 /* Pods-Choose.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
@@ -939,7 +942,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Emeka Enterprises LLC (JM95HR8LQB)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -956,7 +959,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.self.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Choose;
-				PROVISIONING_PROFILE = "2e8ef5cd-8da2-4392-bec4-66f2515a5eab";
+				PROVISIONING_PROFILE = "0c6de80b-e7b8-4a73-96c0-e9ef42a939bd";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
